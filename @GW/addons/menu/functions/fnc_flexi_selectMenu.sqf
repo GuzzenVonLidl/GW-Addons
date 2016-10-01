@@ -1,0 +1,35 @@
+#include "script_component.hpp"
+
+params ["_type"];
+
+(findDisplay 49) closeDisplay 0;
+
+switch (_type) do {
+	case 1: {
+		["player",[],100, [QUOTE(call FUNC(flexi_InteractSelfClient)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
+	};
+	case 2: {
+		if (GVARMAIN(isAdmin) || (serverCommandAvailable "#logout")) then {
+			["player",[],100, [QUOTE(call FUNC(flexi_InteractSelfAdmin)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
+		};
+	};
+	case 3: {
+		if (GVARMAIN(isAdmin) || (serverCommandAvailable "#logout")) then {
+			['keyDown', [findDisplay 49,59], ''] execVM 'a3\ui_f\scripts\GUI\RscDisplayInterrupt.sqf';
+		};
+	};
+
+	default {
+	};
+};
+
+/*
+
+GOL_LoadSettings = {
+	setViewDistance ((profileNamespace getVariable "GOL_Client_Settings") select 0);
+	setTerrainGrid 25;
+	ACE_NameTags_PlayerNamesViewDistance = ((profileNamespace getVariable "GOL_Client_Settings") select 1);
+	((profileNamespace getVariable "GOL_Client_Settings") select 2) call fn_sthud_usermenu_changeMode;
+};
+
+*/
