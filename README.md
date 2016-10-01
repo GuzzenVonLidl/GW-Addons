@@ -5,7 +5,7 @@ Most functions are created by myself or someone in GOL, however if not, that per
 
 Now each module includes a couple of feature  
 Note: these are the main things.
-
+  
 3den:  
 * New "tab" for easy copying  
 * Copy highlighted units/objects, No more scripting needed, just copy and paste!  
@@ -16,7 +16,7 @@ Note: these are the main things.
 	* "Vehicles" same as "Objects" but only vehicles.  
 * New Composition found in (Composition(F2) > Props > Custom Composition).  
 * Ability to create your own compositions and them to the addon.  
-	  
+  
 Effects:  
 * Smoke: Bigger, longer lasting (extended with 15sec, total 45), slightly optimizeed performance.  
 * Smoke from launchers does NOT bounce, (shoot at a branch and it will not drop down).  
@@ -30,15 +30,15 @@ Enhancment:
 * AI will use RPG 7/42 against air and infantry.  
 * AK-12 now only uses 545x39 caliber.  
 * AKM replaced with AK-74 (545x39 caliber).  
-
- Main:
+  
+Main:
 * Added new GOL Difficulty and set is as standard, (should no longer need to pick difficulty).  
 * Hidden BIS standard mission.  
-
+  
 Menu:
 * More or less same as GOL Menu however with new standard keybinds.  
 * Removed unused menus.  
-
+  
 UI:
 * Removed all icons from the addAction menu..  
 * Map should have new contour lines.  
