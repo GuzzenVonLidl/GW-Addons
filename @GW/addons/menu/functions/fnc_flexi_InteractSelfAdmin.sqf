@@ -43,6 +43,7 @@ private _menus = [
 			[
 				"Modules >",
 				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"modules", 1],
 				-1, true,
 				isClass(missionConfigFile >> "GW_Modules")
 			]
@@ -86,10 +87,12 @@ if (_menuName isEqualTo "player") then {
 		["player","Player Menu", _menuRsc],
 		[
 			[
+				"isActiveAdmin (True)",
 				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true; },
 				"", "", "", -1, (true), !GVARMAIN(isActiveAdmin)
 			],
 			[
+				"isActiveAdmin (False)",
 				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false; },
 				"", "", "", -1, (true), GVARMAIN(isActiveAdmin)
 			],
@@ -148,11 +151,13 @@ if (_menuName isEqualTo "modules") then {
 				"Force Enable Weapon Lock",
 				{["GW_StartUp_Enabled", true] call CBA_fnc_globalEvent},
 				"", "", "", -1, (true),
+				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && !(player getVariable ["GW_StartUp_weaponLock", false]))
 			],
 			[
 				"Force Disable Weapon Lock",
 				{["GW_StartUp_Enabled", false] call CBA_fnc_globalEvent},
 				"", "", "", -1, (true),
+				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && (player getVariable ["GW_StartUp_weaponLock", false]))
 			]
 		]
 	];
