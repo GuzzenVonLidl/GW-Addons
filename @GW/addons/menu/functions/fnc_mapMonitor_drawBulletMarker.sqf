@@ -5,27 +5,27 @@ private ["_distance", "_dir", "_color", "_markerLine", "_markerEnd"];
 params ["_unit","_startPos","_endPos",["_startTime", 0], ["_endTime", GVAR(mapMonitor_bulletMaxFlighttime)]];
 
 _distance = if (isNil "_endPos") then {
-		private ["_cfg"];
-		_cfg = configFile >> typeOf(_projectile) >> "typicalspeed";
-		if (isNumber(_cfg)) then {
-				getNumber(_cfg) * (_endTime - _startTime); // Estimate range
-		} else {
-				300; // Average range of aprox. 150 meters
-		};
+	private ["_cfg"];
+	_cfg = configFile >> typeOf(_projectile) >> "typicalspeed";
+	if (isNumber(_cfg)) then {
+			getNumber(_cfg) * (_endTime - _startTime); // Estimate range
+	} else {
+			300; // Average range of aprox. 150 meters
+	};
 } else {
-		/* Delete 3rd Dimension */
-		_startPos set [2, 0];
-		_endPos set [2, 0];
-		_startPos distance _endPos;
+	/* Delete 3rd Dimension */
+	_startPos set [2, 0];
+	_endPos set [2, 0];
+	_startPos distance _endPos;
 };
 _distance = _distance / 2; // Due to marker mechanics
 _dir = ((_endPos select 0) - (_startPos select 0)) atan2 ((_endPos select 1) - (_startPos select 1));
 _color = [side _unit] call FUNC(mapMonitor_getSideColor);
 /* Create line marker */
 _markerLine = createMarkerLocal [format["shot_line_%1_%2_%3", _unit, random(100), diag_tickTime], [
-		((_startPos select 0) + (_distance * sin(_dir))),
-		((_startPos select 1) + (_distance * cos(_dir))),
-		0
+	((_startPos select 0) + (_distance * sin(_dir))),
+	((_startPos select 1) + (_distance * cos(_dir))),
+	0
 ]];
 _markerLine setMarkerShapeLocal 'RECTANGLE';
 _markerLine setMarkerColorLocal _color;

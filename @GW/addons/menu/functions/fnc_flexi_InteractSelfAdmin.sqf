@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if !(GOL_IsAdmin || (serverCommandAvailable "#logout")) exitWith {false};
+if !(GVARMAIN(isAdmin) || (serverCommandAvailable "#logout")) exitWith {false};
 
 _params = _this select 1;
 
@@ -21,26 +21,52 @@ private _menus = [
 		["main", "Admin Menu", _menuRsc],
 		[
 			[
+				"Actions >",
+				"", "", "",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"actions", 1]
+			],
+			[
 				"Debug >",
 				"", "", "",
-				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"debug_options", 1]
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"debug", 1]
 			],
 			[
 				"Player Options >",
 				"", "", "",
-				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"player_options", 1]
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"player", 1]
+			],
+			[
+				"Spawn Menu >",
+				"", "", "",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"spawn", 1]
+			],
+			[
+				"Modules >",
+				"","","",
+				-1, true,
+				isClass(missionConfigFile >> "GW_Modules")
 			]
 		]
 	]
 ];
 
-if (_menuName isEqualTo "debug_options") then {
+if (_menuName isEqualTo "actions") then {
 	_menus pushBack [
-		["debug_options","Debug Menu", _menuRsc],
+		["actions","Actions Menu", _menuRsc],
+		[
+			["Airdrop Type", { [] call GoL_ParadropType; } ],
+			["Move MHQ_1", { [mhq_1, player, 5] call FUNC(MoveVehicle); } ]
+		]
+	];
+};
+
+if (_menuName isEqualTo "debug") then {
+	_menus pushBack [
+		["debug","Debug Menu", _menuRsc],
 		[
 			["Simple Camera",{ [] call BIS_fnc_cameraOld; }],
 			["Advanced Camera",{ [] call bis_fnc_camera; }],
-			["Spectator",{
+			["Spectator Mode",{
 				if ((["IsSpectating"] call BIS_fnc_EGSpectator)) then {
 					(["Terminate"] call BIS_fnc_EGSpectator);
 				} else {
@@ -55,12 +81,18 @@ if (_menuName isEqualTo "debug_options") then {
 	];
 };
 
-if (_menuName isEqualTo "player_options") then {
+if (_menuName isEqualTo "player") then {
 	_menus pushBack [
-		["player_options","Player Menu", _menuRsc],
+		["player","Player Menu", _menuRsc],
 		[
-			["Airdrop Type", { [] call GoL_ParadropType; } ],
-			["Move MHQ", { [MHQ, player, 5] call GOL_Fnc_MoveVehicle; } ],
+			[
+				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true; },
+				"", "", "", -1, (true), !GVARMAIN(isActiveAdmin)
+			],
+			[
+				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false; },
+				"", "", "", -1, (true), GVARMAIN(isActiveAdmin)
+			],
 			["Open Virtual Aresnal", {['Open', true] call BIS_fnc_arsenal } ],
 			[
 				"Toggle Godmode (Activate)",
@@ -90,6 +122,41 @@ if (_menuName isEqualTo "player_options") then {
 	];
 };
 
+if (_menuName isEqualTo "spawn") then {
+	_menus pushBack [
+		["spawn","Spawn Menu", _menuRsc],
+		[
+/*
+			[
+				"Loadouts >",
+				"", "", "",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"loadouts", 1]
+			],
+*/
+			["Ammo Box - Squad",{ ["small_box","Box_NATO_Ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
+			["Ammo Box - Platoon",{ ["big_box","B_CargoNet_01_ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
+			["Medical Box - Big",{ ["med_box","Box_NATO_AmmoOrd_F", player] remoteExecCall [QFUNC(spawnBox), 2] }]
+		]
+	];
+};
+
+if (_menuName isEqualTo "modules") then {
+	_menus pushBack [
+		["modules","Modules Menu", _menuRsc],
+		[
+			[
+				"Force Enable Weapon Lock",
+				{["GW_StartUp_Enabled", true] call CBA_fnc_globalEvent},
+				"", "", "", -1, (true),
+			],
+			[
+				"Force Disable Weapon Lock",
+				{["GW_StartUp_Enabled", false] call CBA_fnc_globalEvent},
+				"", "", "", -1, (true),
+			]
+		]
+	];
+};
 
 
 {

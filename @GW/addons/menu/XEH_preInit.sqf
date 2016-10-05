@@ -4,10 +4,6 @@ ADDON = false;
 
 #include "XEH_PREP.sqf"
 
-GVARMAIN(isActiveAdmin) = false;
-GVARMAIN(activeAdmins) = [];
-GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, R4IDER, OKSMAN, CHRIS, BENY];
-
 GVAR(viewDistance_Enabled) = true;
 GVAR(viewDistance_Default) = 1200;
 GVAR(viewDistance_Max) = 10000;
@@ -46,18 +42,6 @@ GVAR(mapMonitor_bulletMarkerRefreshRate) = 24; // Hertz of bullet tracking refre
 FUNC(mapMonitor_compareBool) = {
 		((_this select 0) && (_this select 1)) || {!(_this select 0) && !(_this select 1)}; // Either both true or both false
 };
-
-[QGVAR(AddAdmin), {
-	params ["_admin"];
-	GVARMAIN(activeAdmins) pushBackUnique _admin;
-}] call CBA_fnc_addEventHandler;
-
-[QGVAR(RemoveAdmin), {
-	params ["_admin"];
-	if (_admin in GVARMAIN(activeAdmins)) then {
-		GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _admin);
-	};
-}] call CBA_fnc_addEventHandler;
 
 [QGVAR(settings), {
 	params ["_type"];

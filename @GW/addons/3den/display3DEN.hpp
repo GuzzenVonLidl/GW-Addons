@@ -76,7 +76,7 @@ class display3DEN {
 							action = "[2, false] call GW_3DEN_fnc_setAttribute;";
 						};
 					class GW_hideObject {
-						items[] = {"GW_allowDamage_true","GW_allowDamage_false"};
+						items[] = {"GW_hideObject_true","GW_hideObject_false"};
 						text = "hideObject";
 					};
 						class GW_hideObject_true {
@@ -87,7 +87,20 @@ class display3DEN {
 							text = "false";
 							action = "[3, false] call GW_3DEN_fnc_setAttribute;";
 						};
-
+/*
+					class GW_simpleObject {
+						items[] = {"GW_simpleObject_true","GW_simpleObject_false"};
+						text = "hideObject";
+					};
+						class GW_simpleObject_true {
+							text = "true";
+							action = "[4, true] call GW_3DEN_fnc_setAttribute;";
+						};
+						class GW_simpleObject_false {
+							text = "false";
+							action = "[4, false] call GW_3DEN_fnc_setAttribute;";
+						};
+*/
 
 
 				class GW_Links {

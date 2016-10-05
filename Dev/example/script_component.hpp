@@ -1,7 +1,7 @@
 #define COMPONENT example
 #include "\x\gw\addons\main\script_mod.hpp"
 
-//#define DEBUG_ENABLED_3DEN
+//#define DEBUG_ENABLED_EXAMPLE
 
 #ifdef DEBUG_ENABLED_3DEN
     #define DEBUG_MODE_FULL

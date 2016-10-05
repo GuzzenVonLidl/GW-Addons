@@ -15,4 +15,10 @@ class CfgAmmo {
 		airLock = 0;
 		allowAgainstInfantry = 1;
 	};
+
+	class GrenadeHand;
+	class G_40mm_HE: GrenadeHand {
+		soundFly[] = {"A3\Sounds_F\weapons\Rockets\rocket_fly_1",6,1.5,400};
+		whistleDist = 20;
+	};
 };

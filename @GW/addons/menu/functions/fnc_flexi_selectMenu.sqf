@@ -22,14 +22,3 @@ switch (_type) do {
 	default {
 	};
 };
-
-/*
-
-GOL_LoadSettings = {
-	setViewDistance ((profileNamespace getVariable "GOL_Client_Settings") select 0);
-	setTerrainGrid 25;
-	ACE_NameTags_PlayerNamesViewDistance = ((profileNamespace getVariable "GOL_Client_Settings") select 1);
-	((profileNamespace getVariable "GOL_Client_Settings") select 2) call fn_sthud_usermenu_changeMode;
-};
-
-*/

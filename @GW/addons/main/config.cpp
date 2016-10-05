@@ -23,6 +23,7 @@ class CfgAddons {
 	};
 };
 
+#include "CfgEventHandlers.hpp"
 #include "CfgMissions.hpp"
 
 class CfgDLCNotifications {

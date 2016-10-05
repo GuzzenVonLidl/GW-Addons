@@ -27,7 +27,6 @@ class CfgAddons {
 #include "CfgGroups.hpp"
 #include "display3DEN.hpp"
 
-
 /*
 class AttributeCategories {
 	class Inventory {

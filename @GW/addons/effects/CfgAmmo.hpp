@@ -32,44 +32,45 @@ class CfgAmmo {
 
 	class G_40mm_Smoke: SmokeShell {
 		aiAmmoUsageFlags = "4 + 2 + 1 + 64";
+		coefGravity = 0.8;
 		cost = 50;
 		deflecting = 5;
 		explosionTime = 1;
 		hit = 0;
 		simulation = "shotSmoke";
 		smokeColor[] = {1,1,1,1};
-        timeToLive = 45;
-		whistleDist = 28;
+		timeToLive = 45;
 	};
 
-    class G_40mm_SmokeRed: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_RED;
-        timeToLive = 45;
-    };
-    class G_40mm_SmokeGreen: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_GREEN;
-        timeToLive = 45;
-    };
-    class G_40mm_SmokeYellow: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_YELLOW;
-        timeToLive = 45;
-    };
-    class G_40mm_SmokePurple: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_PURPLE;
-        timeToLive = 45;
-    };
-    class G_40mm_SmokeBlue: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_BLUE;
-        timeToLive = 45;
-    };
-    class G_40mm_SmokeOrange: G_40mm_Smoke {
-        smokeColor[] = SMOKE_COLOR_ORANGE;
-        timeToLive = 45;
+	class G_40mm_SmokeRed: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_RED;
+		timeToLive = 45;
+	};
+	class G_40mm_SmokeGreen: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_GREEN;
+		timeToLive = 45;
+	};
+	class G_40mm_SmokeYellow: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_YELLOW;
+		timeToLive = 45;
+	};
+	class G_40mm_SmokePurple: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_PURPLE;
+		timeToLive = 45;
+	};
+	class G_40mm_SmokeBlue: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_BLUE;
+		timeToLive = 45;
+	};
+	class G_40mm_SmokeOrange: G_40mm_Smoke {
+		smokeColor[] = SMOKE_COLOR_ORANGE;
+		timeToLive = 45;
 	};
 
 	class FlareCore;
 	class FlareBase: FlareCore {
 		brightness = 15;
+		coefGravity = 0.5;
 		flareSize = 10;
 		intensity = 500000;
 		timeToLive = 35;

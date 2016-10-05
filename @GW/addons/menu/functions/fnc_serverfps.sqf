@@ -27,6 +27,7 @@ if (isNil "FPSMON_init") then {
 		};
 	};
 };
+
 if ((_delay > 0) && (isNil "FPSMON_handle")) then {
 	FPSMON_handle = [_syncTime, _delay] spawn {
 		waitUntil {
@@ -57,11 +58,9 @@ if ((_delay > 0) && (isNil "FPSMON_handle")) then {
 			false;
 		};
 	};
-//		[["FPS Monitoring Started.\n%1 Second Interval.",(_delay + _syncTime)], 5] call GOL_Fnc_Hint;
 	hintSilent format ["FPS Monitoring Started.\n%1 Second Interval.",(_delay + _syncTime)];
 } else {
 	terminate FPSMON_handle;
 	FPSMON_handle = nil;
 	hintSilent "FPS Monitoring Stopped.";
-//		["FPS Monitoring Stopped.", 5] call GOL_Fnc_Hint;
 };

@@ -3,7 +3,7 @@
 
 params ["_obj"];
 if (isNil {_obj getVariable QGVAR(mapMonitor_firedEH)}) then {
-		_obj setVariable [QGVAR(mapMonitor_firedEH),
-				(_obj addEventHandler ["Fired", {_this call FUNC(mapMonitor_firedEH);}])
-		];
+	_obj setVariable [QGVAR(mapMonitor_firedEH),
+		(_obj addEventHandler ["Fired", {_this call FUNC(mapMonitor_firedEH);}])
+	];
 };

@@ -17,5 +17,8 @@ params ["_case","_value"];
 		case 3: {
 			_x set3DENAttribute ["hideObject", _value];
 		};
+		case 4: {
+//			_x set3DENAttribute ["createAsSimpleObject", _value];
+		};
 	};
 } forEach (get3DENSelected "object");
