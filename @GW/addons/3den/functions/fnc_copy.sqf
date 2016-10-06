@@ -17,16 +17,16 @@ private _return = 0;
 	switch (_type) do {
 		case 1: {	// Units
 			if (_x isKindOf "CAManBase") then {
-				private _stance = "auto";
-				switch GETATTRIBUTE("stance") do {
+				private _stance = "Auto";
+				switch (_x get3DENAttribute "UnitPos") do {
 					case 0: {
-						_stance = "up";
+						_stance = "Up";
 					};
 					case 1: {
-						_stance = "middle";
+						_stance = "Middle";
 					};
 					case 2: {
-						_stance = "down";
+						_stance = "Down";
 					};
 				};
 				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _stance];
