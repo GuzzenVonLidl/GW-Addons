@@ -51,12 +51,20 @@ class CfgDLCNotifications {
 	};
 };
 
+class CfgAILevelPresets {
+	class AILevelCustom {
+		displayName = "GOL";
+		precisionAI = 0.3;
+		skillAI = 0.8;
+	};
+};
+
 class CfgDifficultyPresets {
 	defaultPreset = "Regular";
 	class Regular {
 		description = "Custom difficulty defined by GOL Clan.";
 		displayName = "GOL Setting";
-		levelAI = "AILevelHigh";
+		levelAI = "AILevelCustom";
 		optionDescription = "Custom difficulty defined by GOL Clan.";
 		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
 		class Options {
@@ -76,7 +84,7 @@ class CfgDifficultyPresets {
 			stanceIndicator=1;
 			thirdPersonView=0;
 			visionAid=0;
-			vonID=1;
+			vonID=0;
 			waypoints=0;
 			weaponCrosshair=0;
 			weaponInfo=1;
@@ -112,108 +120,5 @@ class CfgDifficultyPresets {
 			weaponCrosshair = 1;
 			weaponInfo = 2;
 		};
-	};
-};
-
-/*
-	https://community.bistudio.com/wiki/Arma_3_Difficulty_Menu
-	https://community.bistudio.com/wiki/difficulty
-
-
-class CfgDifficultyPresets {
-	defaultPreset = "Veteran";
-	class Custom2 {
-		description = "Custom difficulty set by the player.";
-//		levelAI = "AILevelMedium";
-		levelAI = "AILevelHigh";
-		class Options {
-			autoReport=0;
-			cameraShake=1;
-			commands=0;
-			deathMessages=0;
-			detectedMines=0;
-			enemyTags=0;
-			friendlyTags=0;
-			groupIndicators=0;
-			mapContent=0;
-			multipleSaves=0;
-			reducedDamage=0;
-			scoreTable=0;
-			staminaBar=0;
-			stanceIndicator=1;
-			thirdPersonView=0;
-			visionAid=0;
-			vonID=1;
-			waypoints=0;
-			weaponCrosshair=0;
-			weaponInfo=1;
-		};
-		displayName = "Custom 2";
-		optionDescription = "Custom difficulty set by the player.";
-		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
-	};
-};
-
-
-class CfgDifficultyPresets {
-	defaultPreset = "GOL_Difficulty";
-	class GOL_Difficulty {
-		displayName = "GOL Difficulty";
-		optionDescription = "Standard GOL Server Settings";
-		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
-		class Options {
-			autoReport=0;
-			cameraShake=1;
-			commands=0;
-			deathMessages=0;
-			detectedMines=0;
-			enemyTags=0;
-			friendlyTags=0;
-			groupIndicators=0;
-			mapContent=0;
-			multipleSaves=0;
-			reducedDamage=0;
-			scoreTable=0;
-			staminaBar=0;
-			stanceIndicator=1;
-			thirdPersonView=0;
-			visionAid=0;
-			vonID=1;
-			waypoints=0;
-			weaponCrosshair=0;
-			weaponInfo=1;
-		};
-	};
-};
-
-class DifficultyPresets {
-	class GOL_Difficulty {
-		class Options {
-			autoReport=0;
-			cameraShake=1;
-			commands=0;
-			deathMessages=0;
-			detectedMines=0;
-			enemyTags=0;
-			friendlyTags=0;
-			groupIndicators=0;
-			mapContent=0;
-			multipleSaves=0;
-			reducedDamage=0;
-			scoreTable=0;
-			staminaBar=0;
-			stanceIndicator=1;
-			thirdPersonView=0;
-			visionAid=0;
-			vonID=1;
-			waypoints=0;
-			weaponCrosshair=0;
-			weaponInfo=1;
-		};
-		aiLevelPreset=3;
-	};
-	class GOL_AILevel {
-		skillAI=0.80;
-		precisionAI=0.80;
 	};
 };

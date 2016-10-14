@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-if !(GVARMAIN(isAdmin) || (serverCommandAvailable "#logout")) exitWith {false};
+private _isAdmin = (GVARMAIN(isAdmin) || (serverCommandAvailable "#logout"));
 
 _params = _this select 1;
 
@@ -88,13 +88,13 @@ if (_menuName isEqualTo "player") then {
 		[
 			[
 				"isActiveAdmin (True)",
-				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true; },
-				"", "", "", -1, (true), !GVARMAIN(isActiveAdmin)
+				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false; },
+				"", "", "", -1, (true), !_isAdmin
 			],
 			[
 				"isActiveAdmin (False)",
-				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false; },
-				"", "", "", -1, (true), GVARMAIN(isActiveAdmin)
+				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true; },
+				"", "", "", -1, (true), _isAdmin
 			],
 			["Open Virtual Aresnal", {['Open', true] call BIS_fnc_arsenal } ],
 			[

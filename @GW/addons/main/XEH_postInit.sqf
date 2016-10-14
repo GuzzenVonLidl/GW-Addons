@@ -9,5 +9,4 @@
 			[QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent;
 		};
 	};
-}, []] call CBA_fnc_execNextFrame;
-//}, [], 1] call CBA_fnc_waitAndExecute;
+}, [], 1] call CBA_fnc_waitAndExecute;
