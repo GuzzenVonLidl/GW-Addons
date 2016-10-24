@@ -18,7 +18,7 @@ private _return = 0;
 		case 1: {	// Units
 			if (_x isKindOf "CAManBase") then {
 				private _stance = "Auto";
-				switch (_x get3DENAttribute "UnitPos") do {
+				switch ((_x get3DENAttribute "UnitPos") select 0) do {
 					case 0: {
 						_stance = "Up";
 					};
