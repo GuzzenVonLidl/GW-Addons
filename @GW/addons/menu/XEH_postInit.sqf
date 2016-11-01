@@ -11,8 +11,9 @@
 	if (isClass (configFile >> "CfgPatches" >> "STUI_Core")) then {
 		GVAR(STHud_Compass_Stored) = STHud_Compass;
 	};
+
 	[{
-		if (isNil {profileNamespace getVariable QGVAR(clientSettings)}) then {
+		if (isNil {profileNamespace getVariable QGVAR(clientSettingsV2)}) then {
 			[QGVAR(settings), "save"] call CBA_fnc_localEvent;
 		};
 		[QGVAR(settings), "load"] call CBA_fnc_localEvent;

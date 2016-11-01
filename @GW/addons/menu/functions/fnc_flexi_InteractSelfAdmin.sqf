@@ -55,8 +55,28 @@ if (_menuName isEqualTo "actions") then {
 	_menus pushBack [
 		["actions","Actions Menu", _menuRsc],
 		[
-			["Airdrop Type", { [] call GoL_ParadropType; } ],
-			["Move MHQ_1", { [mhq_1, player, 5] call FUNC(MoveVehicle); } ]
+			[
+				"Select Static Line",
+				{ [] call GoL_ParadropType; },
+				"", "", "", -1, (true), ParadropType
+			],
+			[
+				"Select H.A.L.O",
+				{ [] call GoL_ParadropType; },
+				"", "", "", -1, (true), !ParadropType
+			],
+			[
+				"Move MHQ_1",
+				{ [mhq_1, player, 5] call FUNC(MoveVehicle); },
+				"", "", "", -1, (true),
+				isClass(missionConfigFile >> "GW_Modules")
+			],
+			[
+				"Move MHQ",
+				{ [mhq, player, 5] call FUNC(MoveVehicle); },
+				"", "", "", -1, (true),
+				!isClass(missionConfigFile >> "GW_Modules")
+			]
 		]
 	];
 };

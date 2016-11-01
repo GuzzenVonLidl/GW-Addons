@@ -1,11 +1,12 @@
 #define PREFIX GW
 #define MAJOR 0
 #define MINOR 0
-#define PATCHLVL 4
-#define BUILD 161014	// We will use the DATE for the BUILD# in the format YYMMDD
+#define PATCHLVL 5
+#define BUILD 011116	// We will use the DATE for the BUILD# in the format DDMMYY
 
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
+#define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION); versionAr[] = {VERSION_AR}
 
 #define REQUIRED_VERSION 1.64
 

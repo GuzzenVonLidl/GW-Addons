@@ -36,9 +36,9 @@ class CfgCoreData {
 };
 
 class CfgIRLaserSettings {
-	laserMaxRange = 80;
-	maxNumberOfRays = 24;
-	maxViewDistance = 800;
+	laserMaxRange = 100;
+	maxNumberOfRays = 48;
+	maxViewDistance = 1000;
 };
 
 class CfgVehicles { //  VehiclesVisibleAtDistance_Visuals_C_PvPscene

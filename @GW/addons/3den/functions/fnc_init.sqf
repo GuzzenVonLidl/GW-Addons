@@ -5,12 +5,11 @@
 */
 #include "script_component.hpp"
 
-if (canSuspend) then {
-	sleep 1;
-};
+if (canSuspend) exitWith {false};
 
-if (isClass (missionConfigFile >> "GW_FRAMEWORK")) then {
-//	[] call FUNC(init3DEN);
+if (is3DEN && isClass (missionConfigFile >> "GW_FRAMEWORK")) then {
+	TRACE_1("XEH_preInit started from", (_this select 0));
+//	["init"] call FUNCMAIN(init3DEN);
 	[] call compile preprocessFileLineNumbers "core\XEH_preInit.sqf";
 	LOG("XEH_preInit reloaded");
 };

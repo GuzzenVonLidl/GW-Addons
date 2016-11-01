@@ -1,7 +1,5 @@
 #include "script_component.hpp"
 
-ADDON = false;
-
 #include "XEH_PREP.sqf"
 
 GVAR(viewDistance_Enabled) = true;
@@ -12,25 +10,24 @@ GVAR(Grass_allowDisable) = true;
 GVAR(NameTags_Enabled) = true;
 GVAR(NameTags_Max) = 50;
 
-GVAR(STHud_Enabled) = (isClass(configFile >> "CfgPatches" >> "STUI_Core") || isClass(configFile >> "CfgPatches" >> "ST_STHud"));
-if (isClass (configFile >> "CfgPatches" >> "STUI_Core")) then {
+GVAR(STHud_Enabled) = isClass(configFile >> "CfgPatches" >> "STUI_Core");
+if (GVAR(STHud_Enabled)) then {
 	STHUD_UIMode = 0;
-	STHud_ShowBearingInVehicle = false;
-	STUI_Occlusion = true;
+	STHud_NoSquadBarMode = true; // Default: false
+	STHud_ShowBearingInVehicle = false; // Default: true
+	STUI_Occlusion = true; // Default: true
+	STUI_RemoveDeadViaProximity = true; // Default: true
 	GVAR(Toggle_STHud_Compass) = true;
 	GVAR(STHud_Compass_Stored) = STHud_Compass;
 	FUNC(STHud_Toggle_Compass) = {
-		if !(GVAR(Toggle_stHud_Compass)) then {
-			GVAR(Toggle_stHud_Compass) = true;
+		if !(GVAR(Toggle_STHud_Compass)) then {
+			GVAR(Toggle_STHud_Compass) = true;
 			STHud_Compass = GVAR(STHud_Compass_Stored);
 		} else {
-			GVAR(Toggle_stHud_Compass) = false;
+			GVAR(Toggle_STHud_Compass) = false;
 			STHud_Compass = {};
 		};
 	};
-} else {
-	ST_STHud_ShownUI = 0;
-	ST_STHud_ShowCompass = true;
 };
 
 GVAR(mapMonitor_Enabled) = false;
@@ -46,29 +43,32 @@ FUNC(mapMonitor_compareBool) = {
 [QGVAR(settings), {
 	params ["_type"];
 	if (hasInterface) then {
-		switch (_type) do {
+		if !(isNil {(profileNamespace getVariable "GOL_Client_Settings")}) then {
+			profileNamespace setVariable ["GOL_Client_Settings", nil];
+		};
+		if !(isNil {(profileNamespace getVariable QGVAR(clientSettings))}) then {
+			profileNamespace setVariable [QGVAR(clientSettings), nil];
+		};
+		switch (toLower(_type)) do {
 			case "save": {
-				if (isClass (configFile >> "CfgPatches" >> "STUI_Core")) then {
-					profileNamespace setVariable [QGVAR(clientSettings), [viewDistance, STHUD_UIMode, GVAR(Toggle_stHud_Compass)]];
+				if (GVAR(STHud_Enabled)) then {
+					profileNamespace setVariable [QGVAR(clientSettingsV2), [[viewDistance, getTerrainGrid], [STHUD_UIMode, !GVAR(Toggle_STHud_Compass)]]];
 				} else {
-					profileNamespace setVariable [QGVAR(clientSettings), [viewDistance, ST_STHud_ShownUI, ST_STHud_ShowCompass]];
+					profileNamespace setVariable [QGVAR(clientSettingsV2), [[viewDistance, getTerrainGrid], []]];
 				};
 			};
 
 			case "load": {
-				private _profile = (profileNamespace getVariable QGVAR(clientSettings));
-				setViewDistance (_profile select 0);
-				setTerrainGrid 25;
-				if (isClass (configFile >> "CfgPatches" >> "STUI_Core")) then {
-					STHUD_UIMode = (_profile select 1);
-					[] call FUNC(STHud_Toggle_Compass);
-				} else {
-					(_profile select 1) call fn_sthud_usermenu_changeMode;
-					ST_STHud_ShowCompass = (_profile select 2);
+				private _profile = (profileNamespace getVariable QGVAR(clientSettingsV2));
+				private _profilePerf = (_profile select 0);
+				private _profileUI = (_profile select 1);
+				setViewDistance (_profilePerf select 0);
+				setTerrainGrid (_profilePerf select 1);
+				if (GVAR(STHud_Enabled)) then {
+					STHUD_UIMode = (_profileUI select 0);
+					[(_profileUI select 1)] call FUNC(STHud_Toggle_Compass);
 				};
 			};
 		};
 	};
 }] call CBA_fnc_addEventHandler;
-
-ADDON = true;

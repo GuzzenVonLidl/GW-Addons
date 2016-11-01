@@ -17,11 +17,11 @@ class Cfg3DEN {
 	};
 	class EventHandlers {
 		class GW {
-			onMissionLoad = "[] call GW_3DEN_fnc_init";
-			onMissionNew = "[] call GW_3DEN_fnc_init";
-			onMissionPreviewEnd = "[] call GW_3DEN_fnc_init";
-			OnMissionSave = "[] call GW_3DEN_fnc_init";	// No?
-			onTerrainNew = "[] call GW_3DEN_fnc_init";
+			onMissionLoad = "['load'] call GW_3DEN_fnc_init";
+			onMissionNew = "['new'] call GW_3DEN_fnc_init";
+			onMissionPreviewEnd = "['PreviewEnd'] call GW_3DEN_fnc_init";
+			OnMissionSave = "['save'] call GW_3DEN_fnc_init";	// No?
+			onTerrainNew = "['terrain'] call GW_3DEN_fnc_init";
 		};
 	};
 };

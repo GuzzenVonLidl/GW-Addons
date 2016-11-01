@@ -54,7 +54,7 @@ class CfgDLCNotifications {
 class CfgAILevelPresets {
 	class AILevelCustom {
 		displayName = "GOL";
-		precisionAI = 0.3;
+		precisionAI = 0.4;
 		skillAI = 0.8;
 	};
 };

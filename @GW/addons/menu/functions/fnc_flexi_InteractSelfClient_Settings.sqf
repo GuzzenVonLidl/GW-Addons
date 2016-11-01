@@ -140,7 +140,7 @@ if (_menuName == "settings_grass") then {
 	];
 };
 
-if (isClass(configFile >> "CfgPatches" >> "STUI_Core")) then {	// New
+if (GVAR(STHud_Enabled)) then {	// New
 	if (_menuName isEqualTo "settings_sthud") then {
 		_menus pushBack [
 			["settings_sthud","ST HUD", _menuRsc],
@@ -150,7 +150,7 @@ if (isClass(configFile >> "CfgPatches" >> "STUI_Core")) then {	// New
 					"","","",
 					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
 				],
-				["Toggle compass",{call FUNC(STHud_Toggle_Compass)}],
+				["Toggle compass",{[] call FUNC(STHud_Toggle_Compass)}],
 				["Restart HUD",{STHUD_UIMode = 3;}]
 			]
 		];
@@ -166,35 +166,6 @@ if (isClass(configFile >> "CfgPatches" >> "STUI_Core")) then {	// New
 				["Off", { STHUD_UIMode = 0; } ]
 			]
 		];
-	};
-} else {
-	if (isClass(configFile >> "CfgPatches" >> "ST_STHud")) then {	// Old
-		if (_menuName isEqualTo "settings_sthud") then {
-			_menus pushBack [
-				["settings_sthud","ST HUD", _menuRsc],
-				[
-					[
-						"Display Mode >",
-						"","","",
-						[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
-					],
-					["Toggle compass",{ST_STHud_ShowCompass = !ST_STHud_ShowCompass;}],
-					["Restart HUD",{if (count units (group player) > 1) then{ST_STHud_ToRestart = true;call ST_STHud_Reload;};}]
-				]
-			];
-		};
-
-		if (_menuName isEqualTo "settings_sthud_subMenu") then {
-			_menus pushBack [
-				["settings_sthud_subMenu","Display Mode", _menuRsc],
-				[
-					["Normal", { 3 call fn_sthud_usermenu_changeMode; } ],
-					["HUD only", { 1 call fn_sthud_usermenu_changeMode; } ],
-					["Names only", { 2 call fn_sthud_usermenu_changeMode; }],
-					["Off", { 0 call fn_sthud_usermenu_changeMode; } ]
-				]
-			];
-		};
 	};
 };
 

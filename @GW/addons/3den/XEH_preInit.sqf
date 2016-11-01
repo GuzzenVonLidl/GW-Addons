@@ -1,7 +1,6 @@
 #include "script_component.hpp"
 
-ADDON = false;
-
 #include "XEH_PREP.sqf"
 
-ADDON = true;
+setViewDistance 5000;
+setObjectViewDistance 4800;

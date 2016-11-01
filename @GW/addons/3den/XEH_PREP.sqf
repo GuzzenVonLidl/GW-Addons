@@ -2,5 +2,5 @@
 PREP(copy);
 PREP(copyGroup);
 PREP(createComposition);
-//PREP(Init);
+PREP(Init);
 PREP(setAttribute);
