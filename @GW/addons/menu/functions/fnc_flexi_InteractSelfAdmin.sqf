@@ -46,7 +46,8 @@ private _menus = [
 				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"modules", 1],
 				-1, true,
 				isClass(missionConfigFile >> "GW_Modules")
-			]
+			],
+			["New Server Monitor",{ [] call EFUNC(ServerMonitor,Toggle) }]
 		]
 	]
 ];

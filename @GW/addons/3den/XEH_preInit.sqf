@@ -3,4 +3,4 @@
 #include "XEH_PREP.sqf"
 
 setViewDistance 5000;
-setObjectViewDistance 4800;
+setObjectViewDistance [4500, 100];

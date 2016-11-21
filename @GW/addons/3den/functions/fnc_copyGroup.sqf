@@ -133,6 +133,7 @@ private _vehicles = [];
 } forEach get3DENSelected "waypoint";
 
 copyToClipboard format ["%1 call GW_Common_fnc_spawnGroup;", [_units, _vehicles, _groupWaypoint]];
+systemChat format ["%1 units, %2 vehicles, %3 waypoints copied", (count _units), (count _vehicles), (count _groupWaypoint)];
 
 TRACE_1("Units", _units);
 TRACE_1("Waypoints", _groupWaypoint);

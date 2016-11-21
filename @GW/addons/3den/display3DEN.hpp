@@ -10,11 +10,9 @@ class display3DEN {
 					items[] = {"GW_Copy","Separator","GW_setAttributes","Separator","GW_Links"};
 				};
 
-
-
 				class GW_Copy {
 					text = "Copy Selected";
-					items[] = {"GW_Group","GW_OnlyMen","GW_AllObjects","GW_OnlyObjects","Separator","GW_Composition"};
+					items[] = {"GW_Group","GW_OnlyMen","GW_AllObjects","Separator","GW_Composition","Separator","GW_Copy_Help"};
 				};
 					class GW_Group {
 						text = "Group with waypoints";
@@ -28,29 +26,55 @@ class display3DEN {
 						text = "Objects";
 						action = "[2] call GW_3DEN_fnc_Copy;";
 					};
-					class GW_OnlyObjects {
-						text = "Vehicles";
-						action = "[3] call GW_3DEN_fnc_Copy;";
-					};
 					class GW_Composition {
 						text = "Compositions";
-						items[] = {"GW_Export","GW_Help"};
+						items[] = {"GW_Export","GW_Composition_Help"};
 					};
 						class GW_Export {
 							text = "Export to Configs";
 							action = "[1] call GW_3DEN_fnc_createComposition;";
 						};
-						class GW_Help {
+						class GW_Composition_Help {
 							text = "Help";
 							action = "[2] call GW_3DEN_fnc_createComposition;";
 						};
+					class GW_Copy_Help {
+						text = "Help";
+						action = "[3] call GW_3DEN_fnc_Copy;";
+					};
 
 
 
 				class GW_setAttributes {
 					text = "setAttributes";
-					items[] = {"GW_enableSimulation","GW_allowDamage","GW_hideObject"};
+					items[] = {"GW_unitStance","GW_enableSimulation","GW_allowDamage","GW_hideObject","GW_simpleObject"};
 				};
+					class GW_unitStance {
+						items[] = {"GW_unitStance_up","GW_unitStance_middle","GW_unitStance_down","GW_unitStance_auto"};
+						text = "Unit Stance";
+					};
+						class GW_unitStance_up {
+							text = "Up";
+							action = "[5, 0] call GW_3DEN_fnc_setAttribute;";
+							shortcuts[] = {INPUT_CTRL_OFFSET + DIK_1};
+						};
+						class GW_unitStance_middle {
+							text = "Middle";
+							action = "[5, 1] call GW_3DEN_fnc_setAttribute;";
+							shortcuts[] = {INPUT_CTRL_OFFSET + DIK_2};
+						};
+						class GW_unitStance_down {
+							text = "Down";
+							action = "[5, 2] call GW_3DEN_fnc_setAttribute;";
+							shortcuts[] = {INPUT_CTRL_OFFSET + DIK_3};
+						};
+						class GW_unitStance_auto {
+							text = "Auto";
+							action = "[5, 3] call GW_3DEN_fnc_setAttribute;";
+							shortcuts[] = {INPUT_CTRL_OFFSET + DIK_4};
+						};
+
+
 					class GW_enableSimulation {
 						items[] = {"GW_enableSimulation_true","GW_enableSimulation_false"};
 						text = "enableSimulation";
@@ -87,10 +111,9 @@ class display3DEN {
 							text = "false";
 							action = "[3, false] call GW_3DEN_fnc_setAttribute;";
 						};
-/*
 					class GW_simpleObject {
 						items[] = {"GW_simpleObject_true","GW_simpleObject_false"};
-						text = "hideObject";
+						text = "createSimpleObject";
 					};
 						class GW_simpleObject_true {
 							text = "true";
@@ -100,7 +123,6 @@ class display3DEN {
 							text = "false";
 							action = "[4, false] call GW_3DEN_fnc_setAttribute;";
 						};
-*/
 
 
 				class GW_Links {
@@ -114,7 +136,7 @@ class display3DEN {
 					};
 					class GW_Github {
 						text = "Github GW";
-						weblink = "https://github.com/GOLCLAN/GOL-Template.VR/wiki";
+						weblink = "https://github.com/GuzzenVonLidl/GW-Framework/wiki";
 						picture = "\a3\3DEN\Data\Controls\ctrlMenu\link_ca.paa";
 					};
 					class GOL_Wiki {

@@ -1,1 +1,1 @@
-#include "\x\gw\addons\3den\script_component.hpp"
+#include "\x\gw\addons\example\script_component.hpp"

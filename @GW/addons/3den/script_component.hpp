@@ -11,4 +11,5 @@
     #define DEBUG_SETTINGS DEBUG_SETTINGS_3DEN
 #endif
 
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 #include "\x\gw\addons\main\script_macros.hpp"

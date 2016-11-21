@@ -17,3 +17,22 @@
 #define	GORALIGHT "76561198036367294"
 
 //#define	CHRIS	"76561197973520734"
+
+#define REMOTEONLYSERVER(A) remoteExecCall [A, 2]
+#define MAPLOADED getClientStateNumber >= 9 || !isMultiplayer
+#define MISSIONLOADED getClientStateNumber >= 10 || !isMultiplayer
+
+#define	DEVBUILD (["GW_FRAMEWORK", "Core", "devBuild"] call BIS_fnc_getCfgData) == -2
+#define	DEVCONSOLEENABLED (["GW_FRAMEWORK", "Core", "DebugConsole"] call BIS_fnc_getCfgData) isEqualTo -2
+#define	DEVCONSOLE(VAR1)	"debug_console" callExtension (VAR1)
+
+#define conBeep DEVCONSOLE("A")
+#define conClear DEVCONSOLE("C")
+#define conClose DEVCONSOLE("X")
+
+// *************************************	// Do not edit below
+// Internal
+#define	FALSE -1
+#define	TRUE -2
+#define PRIVATE 0
+#define PUBLIC 2
