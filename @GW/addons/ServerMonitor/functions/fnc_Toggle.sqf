@@ -13,20 +13,10 @@
 */
 #include "script_component.hpp"
 
-if (isNil QGVAR(serverMonitorPFH)) then {
-	GVAR(serverMonitorPFH) = [{
-		[QGVAR(getInfo), player] call CBA_fnc_GlobalEvent;
-		{
-			[QGVAR(getInfoHC), [player, _x], _x] call CBA_fnc_targetEvent;
-		} forEach ([GVARMAIN(Gamelogic)] + EGVAR(HeadlessController,HeadlessList));
-		[{
-			[] call FUNC(Display);
-		}, _this, 1] call CBA_fnc_waitAndExecute;
-	}, 5, []] call CBA_fnc_addPerFrameHandler;
+if (GVAR(doEnabled)) then {
+	[QGVAR(addServerRequest), player] call CBA_fnc_serverEvent;
+	GVAR(doEnabled) = false;
 } else {
-	[GVAR(serverMonitorPFH)] call CBA_fnc_removePerFrameHandler;
-	[{
-		hintSilent "";
-	}, [], 5] call CBA_fnc_waitAndExecute;
-//	[GW_ServerMonitor_serverMonitorPFH] call CBA_fnc_removePerFrameHandler;
+	[QGVAR(removeUpdatesfromServer), player] call CBA_fnc_localEvent;
+	GVAR(doEnabled) = true;
 };
