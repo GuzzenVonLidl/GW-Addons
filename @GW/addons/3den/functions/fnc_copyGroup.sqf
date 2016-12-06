@@ -50,23 +50,44 @@ private _groupWaypoint = [];
 private _vehicles = [];
 
 {
-	if (_x isKindOf "CAManBase") then {
-		_units pushBack [GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2];
-	} else {
-		_crewList = [];
-		_crew = (fullCrew _x);
-		if (count _crew > 0) then {
-			{
-				if (_x select 4) then {	// Force FFV to cargo instead of turret
-					_crewList pushBack ["cargo", (_x select 2), (_x select 3)];
-				} else {
-					_crewList pushBack [(_x select 1), (_x select 2), (_x select 3)];
-				};
-			} forEach _crew;
+	if (_x isKindOf "AllVehicles") then {
+		private _special = [];
+		if !(GETATTRIBUTE("init") isEqualTo "") then {
+			_special pushBack ["init", GETATTRIBUTE("init")];
 		};
-		_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _crewList];
-	};
+		if !(GETATTRIBUTE("enableSimulation")) then {
+			_special pushBack ["simulation", GETATTRIBUTE("enableSimulation")];
+		};
+		if !(GETATTRIBUTE("allowDamage")) then {
+			_special pushBack ["damage", GETATTRIBUTE("allowDamage")];
+		};
+		if !(GETATTRIBUTE("lock") isEqualTo 1) then {
+			_special pushBack ["lock", GETATTRIBUTE("lock")];
+		};
+		if (GETATTRIBUTE("dynamicSimulation")) then {
+			_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
+		};
+		if (GETATTRIBUTE("addToDynSimGrid")) then {
+			_special pushBack ["addToDyn", GETATTRIBUTE("addToDynSimGrid")];
+		};
 
+		if (_x isKindOf "CAManBase") then {
+			_units pushBack [GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _special];
+		} else {
+			private _crewList = [];
+			private _crew = (fullCrew _x);
+			if (count _crew > 0) then {
+				{
+					if (_x select 4) then {	// Force FFV to cargo instead of turret
+						_crewList pushBack ["cargo", (_x select 2), (_x select 3)];
+					} else {
+						_crewList pushBack [(_x select 1), (_x select 2), (_x select 3)];
+					};
+				} forEach _crew;
+			};
+			_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _crewList, _special];
+		};
+	};
 } forEach get3DENSelected "object";
 
 {

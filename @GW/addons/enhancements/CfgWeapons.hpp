@@ -4,7 +4,7 @@ class CfgWeapons {
 	class Rifle_Base_F;
 	class Rifle_Long_Base_F;
 	class LMG_Zafir_F: Rifle_Long_Base_F {
-		magazines[] = {"150Rnd_762x51_Box","150Rnd_762x51_Box_Tracer","150Rnd_762x51_Box_Tracer_Red"};
+		magazines[] += {"150Rnd_762x54_Box_Tracer_Red","150Rnd_762x54_Box_Tracer_Yellow","150Rnd_762x51_Box","150Rnd_762x51_Box_Tracer","150Rnd_762x51_Box_Tracer_Red","150Rnd_762x51_Box_Tracer_Yellow"};
 	};
 
 	class arifle_AK12_base_F: Rifle_Base_F {
@@ -21,13 +21,12 @@ class CfgWeapons {
 	};
 
 	class arifle_AKM_base_F: Rifle_Base_F {
-		magazines[] = {"30Rnd_545x39_Mag_F","30Rnd_545x39_Mag_Green_F","30Rnd_545x39_Mag_Tracer_F","30Rnd_545x39_Mag_Tracer_Green_F"};
+		magazines[] += {"30Rnd_545x39_Mag_F","30Rnd_545x39_Mag_Green_F","30Rnd_545x39_Mag_Tracer_F","30Rnd_545x39_Mag_Tracer_Green_F"};
 	};
 	class arifle_AKM_F: arifle_AKM_base_F {
 		scope = 2;
 		displayName = "AK-74 5.45 mm";
 		descriptionShort = "Assault Rifle<br />Caliber: 5.45x39 mm";
-		magazines[] = {"30Rnd_545x39_Mag_F","30Rnd_545x39_Mag_Green_F","30Rnd_545x39_Mag_Tracer_F","30Rnd_545x39_Mag_Tracer_Green_F"};
 	};
 
 	class ItemCore;

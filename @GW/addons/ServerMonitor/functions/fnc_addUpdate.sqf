@@ -41,7 +41,7 @@ GVAR(serverMonitorPFH) = [{
 				};
 			};
 		} forEach GVAR(infoFPS);
-		private _fps = [_server, (_listHC call EFUNC(Common,findAverage)), (_listPlayers call EFUNC(Common,findAverage))];
+		private _fps = [_server, (_listHC call EFUNC(Common,findAverage)), round(_listPlayers call EFUNC(Common,findAverage))];
 
 		{
 			[QGVAR(reciveServerInfo), [_fps, GVAR(infoHC)], _x] call CBA_fnc_targetEvent;

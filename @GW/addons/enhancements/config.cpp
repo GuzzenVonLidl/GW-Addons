@@ -8,6 +8,9 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {
 			"150Rnd_762x51_Box_Tracer_Red",
+			"150Rnd_762x51_Box_Tracer_Yellow",
+			"150Rnd_762x54_Box_Tracer_Red",
+			"150Rnd_762x54_Box_Tracer_Yellow",
 			"GW_X3000",
 			"GVL_X2000_point",
 			"GVL_X2000_wide",

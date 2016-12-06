@@ -51,7 +51,8 @@ GVAR(HeadlessList) = [];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(removeServerRequest), {
-	GVAR(adminUpdateList) deleteAt (GVAR(adminUpdateList) find _this);
+	params ["_unit"];
+	GVAR(adminUpdateList) deleteAt (GVAR(adminUpdateList) find _unit);
 
 	if ((count GVAR(adminUpdateList)) isEqualTo 0) then {
 		[GVAR(serverMonitorPFH)] call CBA_fnc_removePerFrameHandler;

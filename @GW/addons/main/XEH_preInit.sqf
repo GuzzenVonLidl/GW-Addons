@@ -5,7 +5,7 @@ ADDON = false;
 GVARMAIN(isAdmin) = false;
 GVARMAIN(isActiveAdmin) = false;
 GVARMAIN(activeAdmins) = [];
-GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, R4IDER, BARON, RAPTOR, FILTHY, GORALIGHT];
+GVARMAIN(adminList) = ["_SP_PLAYER_", GUZZENVONLIDL, OKSMAN, R4IDER, BARON, RAPTOR, ARROW, FILTHY, GORALIGHT];
 
 [QGVARMAIN(AddAdmin), {
 	params ["_admin"];

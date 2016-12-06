@@ -34,8 +34,8 @@ GVAR(mapMonitor_Enabled) = false;
 GVAR(mapMonitor_sigTerm) = false;
 GVAR(mapMonitor_constantUpdate) = false; // Whether markers should update while the map isn't open.
 GVAR(mapMonitor_bulletMarkerLifetime) = 2; // Seconds of marker lifetime.
-GVAR(mapMonitor_bulletMaxFlighttime) = 3; // Seconds of max bullet lifetime.
-GVAR(mapMonitor_bulletMarkerRefreshRate) = 24; // Hertz of bullet tracking refresh rate, same as FPS.
+GVAR(mapMonitor_bulletMaxFlighttime) = 2; // Seconds of max bullet lifetime.
+GVAR(mapMonitor_bulletMarkerRefreshRate) = 20; // Hertz of bullet tracking refresh rate, same as FPS.
 FUNC(mapMonitor_compareBool) = {
 		((_this select 0) && (_this select 1)) || {!(_this select 0) && !(_this select 1)}; // Either both true or both false
 };

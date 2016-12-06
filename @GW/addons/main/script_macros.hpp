@@ -9,12 +9,16 @@
     #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif
 
+#define	ISADMIN	(GVARMAIN(isAdmin) || (serverCommandAvailable "#logout"))
+
 #define	GUZZENVONLIDL	"76561197993196728"
+#define	OKSMAN	"76561198013929549"
 #define	R4IDER	"76561197985030555"
 #define	BARON	"76561197970696678"
 #define	RAPTOR	"76561198076457189"
 #define	FILTHY "76561198014971848"
 #define	GORALIGHT "76561198036367294"
+#define	ARROW "76561197971568283"
 
 //#define	CHRIS	"76561197973520734"
 

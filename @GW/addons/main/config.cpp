@@ -82,6 +82,7 @@ class CfgDifficultyPresets {
 			scoreTable=0;
 			staminaBar=0;
 			stanceIndicator=1;
+			tacticalPing = 0;
 			thirdPersonView=0;
 			visionAid=0;
 			vonID=0;
@@ -113,6 +114,7 @@ class CfgDifficultyPresets {
 			squadRadar = 1;
 			staminaBar = 1;
 			stanceIndicator = 2;
+			tacticalPing = 1;
 			thirdPersonView = 1;
 			visionAid = 0;
 			vonID = 1;

@@ -20,11 +20,11 @@ class display3DEN {
 					};
 					class GW_OnlyMen {
 						text = "as Static Units";
-						action = "[1] call GW_3DEN_fnc_Copy;";
+						action = "[1] call GW_3den_fnc_useCorrectVersion;";
 					};
 					class GW_AllObjects {
 						text = "Objects";
-						action = "[2] call GW_3DEN_fnc_Copy;";
+						action = "[2] call GW_3den_fnc_useCorrectVersion;";
 					};
 					class GW_Composition {
 						text = "Compositions";
@@ -40,9 +40,8 @@ class display3DEN {
 						};
 					class GW_Copy_Help {
 						text = "Help";
-						action = "[3] call GW_3DEN_fnc_Copy;";
+						action = "[3] call GW_3den_fnc_useCorrectVersion;";
 					};
-
 
 
 				class GW_setAttributes {

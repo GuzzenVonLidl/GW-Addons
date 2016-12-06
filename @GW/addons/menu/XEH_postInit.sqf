@@ -5,8 +5,8 @@
 [{
 
 //	[DIK code, [Shift, Ctrl, Alt]]
-	["GW", "flexi_InteractSelfClient", "Client Menu", ["player", [], -100, [QUOTE(call FUNC(flexi_InteractSelfClient)),"main"]], [DIK_RWIN,[false,false,false]]] call CBA_fnc_addKeybindToFleximenu;
-	["GW", "flexi_InteractSelfAdmin", "Admin Menu", ["player", [], -100, [QUOTE(call FUNC(flexi_InteractSelfAdmin)),"main"]], [DIK_INSERT,[true,false,true]]] call CBA_fnc_addKeybindToFleximenu;
+	["GW","flexi_InteractSelfClient", "Client Menu", {[1] call FUNC(flexi_selectMenu);}, {}, [DIK_RWIN,[false,false,false]]] call CBA_fnc_addKeybind;
+	["GW","flexi_InteractSelfAdmin", "Admin Menu", {[2] call FUNC(flexi_selectMenu);}, {}, [DIK_INSERT,[true,false,true]]] call CBA_fnc_addKeybind;
 
 	if (isClass (configFile >> "CfgPatches" >> "STUI_Core")) then {
 		GVAR(STHud_Compass_Stored) = STHud_Compass;
