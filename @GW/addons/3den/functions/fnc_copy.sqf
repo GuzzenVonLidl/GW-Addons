@@ -29,13 +29,14 @@ private _return = 0;
 				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
 					_special pushBack ["lock", GETATTRIBUTE("lock")];
 				};
+/*
 				if (GETATTRIBUTE("addToDynSimGrid")) then {
 					_special pushBack ["addToDyn", GETATTRIBUTE("addToDynSimGrid")];
 				};
 				if (GETATTRIBUTE("dynamicSimulation")) then {
 					_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
 				};
-
+*/
 				if (_x isKindOf "CAManBase") then {
 					private _stance = "Auto";
 					switch ((_x get3DENAttribute "UnitPos") select 0) do {
@@ -84,10 +85,11 @@ private _return = 0;
 				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
 					_special pushBack ["lock", GETATTRIBUTE("lock")];
 				};
+/*
 				if (GETATTRIBUTE("dynamicSimulation")) then {
 					_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
 				};
-
+*/
 				_objects pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), [(vectorDir _x), (vectorUp _x)], _special, GETATTRIBUTE("objectIsSimple")];
 			};
 		};

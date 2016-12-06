@@ -64,13 +64,14 @@ private _vehicles = [];
 		if !(GETATTRIBUTE("lock") isEqualTo 1) then {
 			_special pushBack ["lock", GETATTRIBUTE("lock")];
 		};
+/*
 		if (GETATTRIBUTE("dynamicSimulation")) then {
 			_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
 		};
 		if (GETATTRIBUTE("addToDynSimGrid")) then {
 			_special pushBack ["addToDyn", GETATTRIBUTE("addToDynSimGrid")];
 		};
-
+*/
 		if (_x isKindOf "CAManBase") then {
 			_units pushBack [GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _special];
 		} else {
