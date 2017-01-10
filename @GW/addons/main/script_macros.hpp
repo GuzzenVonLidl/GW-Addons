@@ -3,7 +3,7 @@
 
 #ifdef DISABLE_COMPILE_CACHE
     #undef PREP
-    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
+    #define PREP(fncName) TRIPLES(ADDON,fnc,fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 #else
     #undef PREP
     #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
@@ -16,9 +16,10 @@
 #define	R4IDER	"76561197985030555"
 #define	BARON	"76561197970696678"
 #define	RAPTOR	"76561198076457189"
-#define	FILTHY "76561198014971848"
 #define	GORALIGHT "76561198036367294"
 #define	ARROW "76561197971568283"
+#define	BENY "76561197995362215"
+#define	FILTHY "76561198014971848"
 
 //#define	CHRIS	"76561197973520734"
 

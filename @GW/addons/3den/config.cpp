@@ -3,7 +3,7 @@
 class CfgPatches {
 	class ADDON {
 		author = "GuzzenVonlidl";
-		name = CSTRING(component);
+		name = "GW - 3DEN Component";
 		url = "https://github.com/GuzzenVonLidl/";
 		units[] = {};
 		weapons[] = {};
@@ -34,6 +34,23 @@ class CfgFunctions {
 		};
 	};
 };
+
+class ctrlDefault;
+class ctrlCombo;
+class ctrlStatic;
+class ctrlEdit;
+class ctrlXSliderH;
+class ctrlCheckbox;
+class ctrlToolbox;
+class ctrlToolboxPicture;
+class ctrlStaticPicture;
+class ctrlMenuStrip;
+class ctrlMenu;
+class ctrlControlsGroupNoScrollbars;
+class ctrlButtonPictureKeepAspect;
+class RscStructuredText;
+class RscHTML;
+class RscControlsGroup;
 
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"

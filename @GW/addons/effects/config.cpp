@@ -3,7 +3,7 @@
 class CfgPatches {
 	class ADDON {
 		author = "GuzzenVonlidl";
-		name = CSTRING(component);
+		name = "GW - Effects Component";
 		url = "https://github.com/GuzzenVonLidl/";
 		units[] = {};
 		weapons[] = {};

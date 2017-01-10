@@ -3,7 +3,7 @@
 class CfgPatches {
 	class ADDON {
 		author = "GuzzenVonlidl";
-		name = CSTRING(component);
+		name = "GW - Enhancements Component";
 		url = "https://github.com/GuzzenVonLidl/";
 		units[] = {};
 		weapons[] = {
@@ -44,6 +44,7 @@ class asdg_FrontSideRail: asdg_SlotInfo {
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
+//#include "CfgVehicles.hpp"
 
 class CfgSounds {
 	class GW_enhancements_Attachment {
@@ -54,6 +55,18 @@ class CfgSounds {
 };
 
 /*
+
+class CfgMovesMaleSdr {
+	class States {
+		class AmovPercMstpSlowWrflDnon;
+		class AmovPercMstpSrasWrflDnon: AmovPercMstpSlowWrflDnon {
+			file="\A3\anims_f\Data\Anim\Sdr\Mov\Erc\stp\low\rfl\AmovPercMstpSlowWrflDnon";
+			collisionShape="A3\anims_f\data\geom\sdr\Perc_Wrfl_Low.p3d";
+		};
+	};
+};
+
+
 class CfgVehicles {	// custom radio backpack
   	class ReammoBox;
   	class Bag_Base;

@@ -8,5 +8,9 @@
 		} else {
 			[QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent;
 		};
+		if ((getPlayerUID player) in GVARMAIN(superAdminList)) then {
+			GVARMAIN(isSuperAdmin) = true;
+		};
+
 	};
 }, [], 1] call CBA_fnc_waitAndExecute;

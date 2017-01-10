@@ -44,8 +44,7 @@ private _menus = [
 				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"modules", 1],
 				-1, true,
 				isClass(missionConfigFile >> "GW_Modules")
-			],
-			["New Server Monitor",{ [] call EFUNC(ServerMonitor,Toggle) }]
+			]
 		]
 	]
 ];
@@ -69,12 +68,6 @@ if (_menuName isEqualTo "actions") then {
 				{ [mhq_1, player, 5] call FUNC(MoveVehicle); },
 				"", "", "", -1, (true),
 				isClass(missionConfigFile >> "GW_Modules")
-			],
-			[
-				"Move MHQ",
-				{ [mhq, player, 5] call FUNC(MoveVehicle); },
-				"", "", "", -1, (true),
-				!isClass(missionConfigFile >> "GW_Modules")
 			]
 		]
 	];
@@ -94,9 +87,16 @@ if (_menuName isEqualTo "debug") then {
 				};
 			}],
 			["Unit Count",{ ["Server"] call FUNC(countUnits); }],
-			["Unit Count on HC",{ ["HC"] call FUNC(countUnits); }],
-			["Toggle Server Fps",{ [5] spawn FUNC(serverfps) }],
-			["Toggle Map Monitor",{ [2] call FUNC(mapMonitor_handler) }]
+			[
+				"Server Monitor",
+				{ [] call EFUNC(MonitorServer,Toggle) },
+				[!EGVAR(MonitorServer,doEnabled)] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"Map Monitor",
+				{ [] call EFUNC(MonitorMap,Handler) },
+				[EGVAR(MonitorMap,Enabled)] call FUNC(getCheckBoxIcon)
+			]
 		]
 	];
 };
@@ -106,40 +106,46 @@ if (_menuName isEqualTo "player") then {
 		["player","Player Menu", _menuRsc],
 		[
 			[
-				"isActiveAdmin (True)",
-				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false; },
-				"", "", "", -1, (true), GVARMAIN(isActiveAdmin)
+				"isActiveAdmin",
+				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false;},
+				[true] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true), GVARMAIN(isActiveAdmin)
 			],
 			[
-				"isActiveAdmin (False)",
-				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true; },
-				"", "", "", -1, (true), !GVARMAIN(isActiveAdmin)
+				"isActiveAdmin",
+				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true;},
+				[false] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true), !GVARMAIN(isActiveAdmin)
 			],
-			["Open Virtual Aresnal", {['Open', true] call BIS_fnc_arsenal } ],
 			[
-				"Toggle Godmode (Activate)",
-				{player allowDamage false; player setVariable [QGVAR(allowDamage), false]; },
-				"", "", "", -1, (true),
+				"Toggle Godmode",
+				{player allowDamage false; player setVariable [QGVAR(allowDamage), false]},
+				[false] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				(player getVariable [QGVAR(allowDamage), true])
 			],
 			[
-				"Toggle Godmode (Deactivate)",
-				{player allowDamage true; player setVariable [QGVAR(allowDamage), true]; },
-				"", "", "", -1, (true),
+				"Toggle Godmode",
+				{player allowDamage true; player setVariable [QGVAR(allowDamage), true]},
+				[true] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				!(player getVariable [QGVAR(allowDamage), true])
 			],
 			[
-				"Toggle SetCaptive (Activate)",
+				"Toggle SetCaptive",
 				{player setCaptive true},
-				"", "", "", -1, (true),
+				[true] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				!(captive player)
 			],
 			[
-				"Toggle SetCaptive (Deactivate)",
+				"Toggle SetCaptive",
 				{player setCaptive false},
-				"", "", "", -1, (true),
+				[false] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				(captive player)
-			]
+			],
+			["Open Virtual Aresnal", {['Open', true] call BIS_fnc_arsenal}]
 		]
 	];
 };
@@ -167,15 +173,17 @@ if (_menuName isEqualTo "modules") then {
 		["modules","Modules Menu", _menuRsc],
 		[
 			[
-				"Force Enable Weapon Lock",
+				"Weapon Lock",
 				{["GW_StartUp_Enabled", true] call CBA_fnc_globalEvent},
-				"", "", "", -1, (true),
+				[false] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && !(player getVariable ["GW_StartUp_weaponLock", false]))
 			],
 			[
-				"Force Disable Weapon Lock",
+				"Weapon Lock",
 				{["GW_StartUp_Enabled", false] call CBA_fnc_globalEvent},
-				"", "", "", -1, (true),
+				[true] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
 				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && (player getVariable ["GW_StartUp_weaponLock", false]))
 			]
 		]

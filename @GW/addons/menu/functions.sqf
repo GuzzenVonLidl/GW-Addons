@@ -1,12 +1,3 @@
-// UID
-// R4IDER = 76561197985030555
-// Chris = 76561197973520734
-// Oksman = 76561198013929549
-// Raptor = 76561198076457189
-// Guzzen = 76561197993196728
-// Filthy = 76561198014971848
-// Baron = 76561197970696678
-// Beny = 76561197995362215
 
 ParadropType = false;
 GoL_ParadropType = {
@@ -87,19 +78,21 @@ GoL_ParaDrop = {
 				(unitBackpack _unit) addItemCargoGlobal [(_items select 0) select _i,(_items select 1) select _i]; //return the items
 			};
 
-			sleep 5;
-			_inradios = (str _class) in ['"tf_anarc164"','"tf_anarc210"','"tf_anprc155"','"tf_anprc155_coyote"','"tf_mr3000"','"tf_mr3000_bwmod"','"tf_mr3000_multicam"','"tf_mr3000_rhs"','"tf_mr6000l"','"tf_rt1523g"','"tf_rt1523g_big"','"tf_rt1523g_big_bwmod"','"tf_rt1523g_big_rhs"','"tf_rt1523g_black"','"tf_rt1523g_bwmod"','"tf_rt1523g_fabric"','"tf_rt1523g_green"','"tf_rt1523g_rhs"','"tf_rt1523g_sage"'];
-			if(_inradios) then {
-				[(call TFAR_fnc_activeLrRadio), 1, "10"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 2, "20"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 3, "30"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 4, "40"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 5, "50"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio), 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
-				[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 6] call TFAR_fnc_setLrChannel;
-				[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
+			if (isClass (configFile >> "CfgPatches" >> "Task_Force_Radio")) then {
+				sleep 5;
+				_inradios = (str _class) in ['"tf_anarc164"','"tf_anarc210"','"tf_anprc155"','"tf_anprc155_coyote"','"tf_mr3000"','"tf_mr3000_bwmod"','"tf_mr3000_multicam"','"tf_mr3000_rhs"','"tf_mr6000l"','"tf_rt1523g"','"tf_rt1523g_big"','"tf_rt1523g_big_bwmod"','"tf_rt1523g_big_rhs"','"tf_rt1523g_black"','"tf_rt1523g_bwmod"','"tf_rt1523g_fabric"','"tf_rt1523g_green"','"tf_rt1523g_rhs"','"tf_rt1523g_sage"'];
+				if(_inradios) then {
+					[(call TFAR_fnc_activeLrRadio), 1, "10"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 2, "20"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 3, "30"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 4, "40"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 5, "50"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio), 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
+					[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 6] call TFAR_fnc_setLrChannel;
+					[(call TFAR_fnc_activeLrRadio) select 0, (call TFAR_fnc_activeLrRadio) select 1, 5] call TFAR_fnc_setLrVolume;
+				};
 			};
 		} else {
 			titleText ["You can't do that right now!", "PLAIN DOWN"];

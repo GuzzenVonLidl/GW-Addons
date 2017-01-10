@@ -39,6 +39,13 @@ private _menus = [
 				-1, true,
 				GVAR(STHud_Enabled)
 			],
+			[
+				"Performance >",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_performance", 1],
+				-1, true,
+				GVARMAIN(isSuperAdmin)
+			],
 			["Save Settings", { [QGVAR(settings), "save"] call CBA_fnc_localEvent; } ],
 			["Load Settings", { [QGVAR(settings), "load"] call CBA_fnc_localEvent; } ]
 		]
@@ -150,7 +157,11 @@ if (GVAR(STHud_Enabled)) then {	// New
 					"","","",
 					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
 				],
-				["Toggle compass",{[] call FUNC(STHud_Toggle_Compass)}],
+				[
+					"Toggle Compass >",
+					{[] call FUNC(STHud_Toggle_Compass)},
+					[GVAR(Toggle_STHud_Compass)] call FUNC(getCheckBoxIcon)
+				],
 				["Restart HUD",{STHUD_UIMode = 3;}]
 			]
 		];
@@ -167,6 +178,62 @@ if (GVAR(STHud_Enabled)) then {	// New
 			]
 		];
 	};
+};
+
+if (_menuName == "settings_performance") then {
+	_menus pushBack [
+		["settings_performance","Experimental", _menuRsc],
+		[
+			[
+				"Caching System",
+				{[QGVAR(UnitCaching_enablePFH), true] call CBA_fnc_LocalEvent},
+				[false] call FUNC(getCheckBoxIcon),
+				"","",-1,true,
+				!GVAR(UnitCaching_Enabled)
+			],
+			[
+				"Caching System",
+				{[QGVAR(UnitCaching_enablePFH), false] call CBA_fnc_LocalEvent},
+				[true] call FUNC(getCheckBoxIcon),
+				"","",-1,true,
+				GVAR(UnitCaching_Enabled)
+			],
+			[
+				"Dynamic viewDistance (DVD)",
+				{[QGVAR(DynamicViewDistance_enablePFH), true] call CBA_fnc_LocalEvent},
+				[false] call FUNC(getCheckBoxIcon),
+				"","",-1,true,
+				!GVAR(DynamicViewDistance_Enabled)
+			],
+			[
+				"Dynamic viewDistance (DVD)",
+				{[QGVAR(DynamicViewDistance_enablePFH), false] call CBA_fnc_LocalEvent},
+				[true] call FUNC(getCheckBoxIcon),
+				"","",-1,true,
+				GVAR(DynamicViewDistance_Enabled)
+			],
+			[
+				"Target FPS for DVD >",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_dvd_targetfps", 1]
+			]
+		]
+	];
+};
+
+if (_menuName isEqualTo "settings_dvd_targetfps") then {
+	_menus pushBack [
+		["settings_dvd_targetfps","Target FPS", _menuRsc],
+		[
+			["20", { DynamicViewDistance_AvgTargetDistance = 20; } ],
+			["25", { DynamicViewDistance_AvgTargetDistance = 25; } ],
+			["30", { DynamicViewDistance_AvgTargetDistance = 30; } ],
+			["35", { DynamicViewDistance_AvgTargetDistance = 35; } ],
+			["40", { DynamicViewDistance_AvgTargetDistance = 40; } ],
+			["45", { DynamicViewDistance_AvgTargetDistance = 45; } ],
+			["50", { DynamicViewDistance_AvgTargetDistance = 50; } ]
+		]
+	];
 };
 
 {

@@ -1,6 +1,31 @@
 
-class ctrlMenuStrip;
 class display3DEN {
+	class ContextMenu: ctrlMenu {
+		class Items {
+			class Edit {
+				items[] += {"GW_GarrisonBuildings","GW_generateWaypoints","GW_hideClosestObject","GW_showClosestObject"};
+			};
+			class GW_GarrisonBuildings {
+				action = "call GW_3den_fnc_garrisonNearest";
+				Text = "Garrison Selected units";
+				conditionShow = "selectedObject";
+			};
+			class GW_generateWaypoints {
+				action = "call GW_3den_fnc_generateWaypoints";
+				Text = "Generate waypoints around group";
+				conditionShow = "hoverObjectBrain";
+			};
+			class GW_hideClosestObject {
+				text = "Hide Closest Object";
+				action = "[true] call GW_3DEN_fnc_toggleObjects";
+			};
+			class GW_showClosestObject {
+				text = "Show Closest Object";
+				action = "[false] call GW_3DEN_fnc_toggleObjects";
+			};
+		};
+	};
+
 	class Controls {
 		class MenuStrip: ctrlMenuStrip {
 			class Items {

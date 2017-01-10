@@ -1,12 +1,65 @@
 
 class Cfg3DEN {
 	class Mission {
-//			#include "missionAttributes\preferences.hpp"
+		class Preferences {
+			class AttributeCategories {
+				class GW_Options {
+					displayName = "GW Settings";
+					class Attributes {
+						class GW_GarrisonRadius {
+							displayName = "Garrison Radius";
+							tooltip = "Buildings to gather around unit clicked";
+							property = "GW_GarrisonRadius";
+							control = "EditShort";
+							expression = "";
+							defaultValue = "100";
+							typeName = "NUMBER";
+						};
+						class GW_WaypointRadius {
+							displayName = "Waypoint Radius";
+							tooltip = "Places waypoints in a radius around right clicked";
+							property = "GW_WaypointRadius";
+							control = "EditShort";
+							expression = "";
+							defaultValue = "250";
+							typeName = "NUMBER";
+						};
+						class GW_WaypointCount {
+							displayName = "Waypoint Count";
+							tooltip = "Amount of waypoints to be placed";
+							property = "GW_WaypointCount";
+							control = "EditShort";
+							expression = "";
+							defaultValue = "10";
+							typeName = "NUMBER";
+						};
+						class GW_HideObjectRadius {
+							displayName = "Hide Object Radius";
+							tooltip = "In meters, 0 = is closest object";
+							property = "GW_HideObjectRadius";
+							control = "EditShort";
+							expression = "";
+							defaultValue = "0";
+							typeName = "NUMBER";
+						};
+						class GW_ShowObjectRadius {
+							displayName = "Show Object Radius";
+							tooltip = "In meters, 0 = is closest object";
+							property = "GW_ShowObjectRadius";
+							control = "EditShort";
+							expression = "";
+							defaultValue = "0";
+							typeName = "NUMBER";
+						};
+					};
+				};
+			};
+		};
 	 };
 	class Object {
 		class AttributeCategories {
+            delete Identity;
 			class Inventory {
-				displayName = $STR_3DEN_Object_AttributeCategory_Storage;
 				collapsed = 1;
 				class Attributes {
 					class AmmoBox {
@@ -22,7 +75,7 @@ class Cfg3DEN {
 			onMissionNew = "['new'] call GW_3DEN_fnc_init";
 			onMissionPreviewEnd = "['PreviewEnd'] call GW_3DEN_fnc_init";
 			OnMissionSave = "['save'] call GW_3DEN_fnc_init";
-			onTerrainNew = "['terrain'] call GW_3DEN_fnc_init";
+			onTerrainNew = "call compile preProcessFileLineNumbers '\x\GW\addons\3den\XEH_preInit.sqf'; ['terrain'] call GW_3DEN_fnc_init";
 		};
 	};
 };

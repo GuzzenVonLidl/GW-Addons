@@ -33,10 +33,7 @@ class CfgAmmo {
 	class G_40mm_Smoke: SmokeShell {
 		aiAmmoUsageFlags = "4 + 2 + 1 + 64";
 		coefGravity = 0.8;
-		cost = 50;
 		deflecting = 5;
-		explosionTime = 1;
-		hit = 0;
 		simulation = "shotSmoke";
 		smokeColor[] = {1,1,1,1};
 		timeToLive = 45;
@@ -70,7 +67,7 @@ class CfgAmmo {
 	class FlareCore;
 	class FlareBase: FlareCore {
 		brightness = 15;
-		coefGravity = 0.5;
+		coefGravity = 0.25;
 		flareSize = 10;
 		intensity = 500000;
 		timeToLive = 35;

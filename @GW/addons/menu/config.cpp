@@ -3,7 +3,7 @@
 class CfgPatches {
 	class ADDON {
 		author = "GuzzenVonlidl";
-		name = CSTRING(component);
+		name = "GW - Menu Component";
 		url = "https://github.com/GuzzenVonLidl/";
 		units[] = {};
 		weapons[] = {};
