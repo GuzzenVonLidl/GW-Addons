@@ -148,17 +148,4 @@ class CfgWeapons {
 		};
 		inertia = 0.1;
 	};
-	class GW_CoreItem_Static: ItemCore {
-		scope = 2;
-		_generalMacro = "GW_CoreItem_Static";
-		displayName = "Static Weapon";
-		descriptionUse = "Custom static weapon";
-		descriptionShort = "Can only be used with initilased by scripts";
-		picture = "\A3\Weapons_F\Items\data\UI\gear_Toolkit_CA.paa";
-		model = "\A3\Weapons_F\Items\Toolkit";
-		class ItemInfo: InventoryFirstAidKitItem_Base_F {
-//			mass = 30;
-			mass = 2;
-		};
-	};
 };

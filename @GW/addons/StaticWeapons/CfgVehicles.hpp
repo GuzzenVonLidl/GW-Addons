@@ -6,7 +6,6 @@ class CfgVehicles {
 			class ACE_Equipment {
 				class GW_Place_Static_Mortar {
 					displayName = "Place down Static Weapon";
-//					condition = "('GW_Item_StaticDummy' in (itemsWithMagazines player))";
 					condition = "[_player] call GW_StaticWeapons_Fnc_canDeploy";
 					statement = "[_player] call GW_StaticWeapons_Fnc_Deploy";
 				};

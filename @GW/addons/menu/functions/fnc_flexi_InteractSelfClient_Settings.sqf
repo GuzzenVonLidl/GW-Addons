@@ -5,7 +5,7 @@ _params = _this select 1;
 _menuName = "";
 _menuRsc = "popup";
 
-if (typeName _params == typeName []) then {
+if (typeName _params isEqualTo typeName []) then {
 	if (count _params < 1) exitWith {diag_log format["Error: Invalid params: %1, %2", _this, __FILE__];};
 	_menuName = _params select 0;
 	_menuRsc = if (count _params > 1) then {_params select 1} else {_menuRsc};
@@ -52,7 +52,7 @@ private _menus = [
 	]
 ];
 
-if (_menuName == "settings_viewDistance") then {
+if (_menuName isEqualTo "settings_viewDistance") then {
 	_menus pushBack [
 		["settings_viewDistance","View Distance", _menuRsc],
 		[
@@ -118,7 +118,7 @@ if (_menuName == "settings_viewDistance") then {
 	];
 };
 
-if (_menuName == "settings_grass") then {
+if (_menuName isEqualTo "settings_grass") then {
 	_menus pushBack [
 		["settings_grass","Grass Settings", _menuRsc],
 		[
@@ -180,7 +180,7 @@ if (GVAR(STHud_Enabled)) then {	// New
 	};
 };
 
-if (_menuName == "settings_performance") then {
+if (_menuName isEqualTo "settings_performance") then {
 	_menus pushBack [
 		["settings_performance","Experimental", _menuRsc],
 		[
@@ -225,13 +225,41 @@ if (_menuName isEqualTo "settings_dvd_targetfps") then {
 	_menus pushBack [
 		["settings_dvd_targetfps","Target FPS", _menuRsc],
 		[
-			["20", { DynamicViewDistance_AvgTargetDistance = 20; } ],
-			["25", { DynamicViewDistance_AvgTargetDistance = 25; } ],
-			["30", { DynamicViewDistance_AvgTargetDistance = 30; } ],
-			["35", { DynamicViewDistance_AvgTargetDistance = 35; } ],
-			["40", { DynamicViewDistance_AvgTargetDistance = 40; } ],
-			["45", { DynamicViewDistance_AvgTargetDistance = 45; } ],
-			["50", { DynamicViewDistance_AvgTargetDistance = 50; } ]
+			[
+				"20",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 20; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 20] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"25",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 25; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 25] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"30",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 30; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 30] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"35",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 35; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 35] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"40",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 40; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 40] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"45",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 45; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 45] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"50",
+				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 50; },
+				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 50] call FUNC(getCheckBoxIcon)
+			]
 		]
 	];
 };

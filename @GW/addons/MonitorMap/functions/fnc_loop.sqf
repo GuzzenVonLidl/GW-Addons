@@ -59,7 +59,7 @@ while {GVAR(Enabled)} do {
 			if ((isNil "_playerStat") || {!([(isPlayer _x), (_playerStat select 1)] call FUNC(compareBool))}) then {
 				_x setVariable [QGVAR(playerStat), [(name _x), (isPlayer _x)], true];
 			};
-			if (!(_x in _doneObjs) && {(vehicle _x) == _x}) then {
+			if (!(_x in _doneObjs) && {(vehicle _x) isEqualTo _x}) then {
 				private ["_color", "_type", "_marker"];
 				_color = [side _x] call FUNC(getSideColor);
 				_type = if (isPlayer _x) then {"mil_arrow2"} else {"mil_arrow"};

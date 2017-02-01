@@ -8,6 +8,7 @@ PREP(flexi_InteractSelfClient);
 PREP(flexi_InteractSelfClient_Settings);
 PREP(flexi_selectMenu);
 PREP(getCheckBoxIcon);
+PREP(doParadrop);
 
 // Misc
 PREP(MoveVehicle);

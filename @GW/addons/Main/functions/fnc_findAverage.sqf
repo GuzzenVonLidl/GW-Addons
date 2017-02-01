@@ -16,7 +16,7 @@
 
 private ["_total"];
 
-if ((count _this) == 0) exitWith {0};
+if ((count _this) isEqualTo 0) exitWith {0};
 _total = 0;
 
 {

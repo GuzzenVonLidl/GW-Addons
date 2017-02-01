@@ -13,8 +13,7 @@ class CfgPatches {
 			"150Rnd_762x54_Box_Tracer_Yellow",
 			"GW_X3000",
 			"GVL_X2000_point",
-			"GVL_X2000_wide",
-			"GW_CoreItem_Static"
+			"GVL_X2000_wide"
 		};
 		requiredVersion = REQUIRED_VERSION;
 		requiredAddons[] = {"GW_main", "CBA_common", "A3_UI_F"};
@@ -44,7 +43,7 @@ class asdg_FrontSideRail: asdg_SlotInfo {
 #include "CfgEventHandlers.hpp"
 #include "CfgMagazines.hpp"
 #include "CfgWeapons.hpp"
-//#include "CfgVehicles.hpp"
+#include "CfgVehicles.hpp"
 
 class CfgSounds {
 	class GW_enhancements_Attachment {

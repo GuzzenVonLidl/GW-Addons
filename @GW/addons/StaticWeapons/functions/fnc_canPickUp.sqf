@@ -5,4 +5,4 @@ params [
 	["_target", objNull, [objNull]]
 ];
 
-(((_unit getVariable [QGVAR(type), ""]) isEqualTo "") && ((count (crew _target)) isEqualTo 0))
+(((_unit getVariable [QGVAR(type), ""]) isEqualTo "") && ((count (crew _target)) isEqualTo 0) && !({_target isKindOf _x} count GVAR(BlackList) isEqualTo 0))

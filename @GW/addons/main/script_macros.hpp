@@ -27,7 +27,7 @@
 #define MAPLOADED getClientStateNumber >= 9 || !isMultiplayer
 #define MISSIONLOADED getClientStateNumber >= 10 || !isMultiplayer
 
-#define	DEVBUILD (["GW_FRAMEWORK", "Core", "devBuild"] call BIS_fnc_getCfgData) == -2
+#define	DEVBUILD (["GW_FRAMEWORK", "Core", "devBuild"] call BIS_fnc_getCfgData) isEqualTo -2
 #define	DEVCONSOLEENABLED (["GW_FRAMEWORK", "Core", "DebugConsole"] call BIS_fnc_getCfgData) isEqualTo -2
 #define	DEVCONSOLE(VAR1)	"debug_console" callExtension (VAR1)
 

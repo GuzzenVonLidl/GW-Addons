@@ -6,8 +6,10 @@ params [
 
 private _type = (_unit getVariable [QGVAR(type), ""]);
 private _objectRemoved = true;
-private _pos = (player getRelPos [2, 0]);
 private _dir = (getDir _unit);
+private _pos = (player getRelPos [2, 0]);
+_pos set [2, ((getPosATL player) select 2)];
+
 
 {
 	if !(_x isEqualTo "GW_Item_StaticDummy") exitWith {

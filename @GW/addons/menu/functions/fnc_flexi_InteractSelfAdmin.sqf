@@ -5,7 +5,7 @@ _params = _this select 1;
 _menuName = "";
 _menuRsc = "popup";
 
-if (typeName _params == typeName []) then {
+if (typeName _params isEqualTo typeName []) then {
 	if (count _params < 1) exitWith {diag_log format["Error: Invalid params: %1, %2", _this, __FILE__];};
 	_menuName = _params select 0;
 	_menuRsc = if (count _params > 1) then {_params select 1} else {_menuRsc};
@@ -37,13 +37,6 @@ private _menus = [
 				"Spawn Menu >",
 				"", "", "",
 				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"spawn", 1]
-			],
-			[
-				"Modules >",
-				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"modules", 1],
-				-1, true,
-				isClass(missionConfigFile >> "GW_Modules")
 			]
 		]
 	]
@@ -54,23 +47,98 @@ if (_menuName isEqualTo "actions") then {
 		["actions","Actions Menu", _menuRsc],
 		[
 			[
-				"Select Static Line",
-				{ [] call GoL_ParadropType; },
-				"", "", "", -1, (true), ParadropType
+				"MHQ >",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"mhqlist", 1],
+				-1, true,
+				isClass(missionConfigFile >> "GW_Modules" >> "MHQ")
 			],
 			[
-				"Select H.A.L.O",
-				{ [] call GoL_ParadropType; },
-				"", "", "", -1, (true), !ParadropType
+				"Paradrop >",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"paradrop", 1]
 			],
 			[
-				"Move MHQ_1",
-				{ [mhq_1, player, 5] call FUNC(MoveVehicle); },
-				"", "", "", -1, (true),
+				"Modules >",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"modules", 1],
+				-1, true,
 				isClass(missionConfigFile >> "GW_Modules")
 			]
 		]
 	];
+};
+
+if (_menuName isEqualTo "mhqlist") then {
+	private _mhqMenu = [];
+	{
+		if !((_x getVariable ["GW_MHQ_info", []]) isEqualTo []) then {
+			_mhqMenu pushBack ["Move MHQ_1", compile format ["[%1, player, 5] call GW_Menu_fnc_MoveVehicle;", _x]];
+		};
+	} forEach vehicles;
+	_menus pushBack [["mhqlist", "MHQ List", _menuRsc],_mhqMenu];
+};
+
+if (_menuName isEqualTo "paradrop") then {
+	_menus pushBack [
+		["paradrop","Paradrop", _menuRsc],
+		[
+			[
+				"H.A.L.O",
+				{ [QGVAR(paradropMode), true] call CBA_fnc_GlobalEvent; },
+				[GVAR(ParadropHalo)] call FUNC(getCheckBoxIcon)
+			],
+			[
+				"Static Line",
+				{ [QGVAR(paradropMode), false] call CBA_fnc_GlobalEvent; },
+				[!GVAR(ParadropHalo)] call FUNC(getCheckBoxIcon)
+			]
+		]
+	];
+};
+
+if (_menuName isEqualTo "modules") then {
+	if ((getNumber(missionConfigFile >> "GW_Modules" >> "StartUp" >> "version")) isEqualTo 1) then {
+		_menus pushBack [
+			["modules","Modules Menu", _menuRsc],
+			[
+				[
+					"Weapon Lock",
+					{["GW_StartUp_Enabled", true] call CBA_fnc_globalEvent},
+					[false] call FUNC(getCheckBoxIcon),
+					"", "", -1, (true),
+					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && !(player getVariable ["GW_StartUp_weaponLock", false]))
+				],
+				[
+					"Weapon Lock",
+					{["GW_StartUp_Enabled", false] call CBA_fnc_globalEvent},
+					[true] call FUNC(getCheckBoxIcon),
+					"", "", -1, (true),
+					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && (player getVariable ["GW_StartUp_weaponLock", false]))
+				]
+			]
+		];
+	} else {
+		_menus pushBack [
+			["modules","Modules Menu", _menuRsc],
+			[
+				[
+					"Weapon Lock",
+					{["GW_StartUp_setSafetyMode", true] call CBA_fnc_globalEvent},
+					[false] call FUNC(getCheckBoxIcon),
+					"", "", -1, (true),
+					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && !GW_StartUp_Enabled)
+				],
+				[
+					"Weapon Lock",
+					{["GW_StartUp_setSafetyMode", false] call CBA_fnc_globalEvent},
+					[true] call FUNC(getCheckBoxIcon),
+					"", "", -1, (true),
+					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && GW_StartUp_Enabled)
+				]
+			]
+		];
+	};
 };
 
 if (_menuName isEqualTo "debug") then {
@@ -86,7 +154,7 @@ if (_menuName isEqualTo "debug") then {
 					(["Initialize", [player, [], true]] call BIS_fnc_EGSpectator);
 				};
 			}],
-			["Unit Count",{ ["Server"] call FUNC(countUnits); }],
+//			["Unit Count",{ ["Server"] call FUNC(countUnits); }],
 			[
 				"Server Monitor",
 				{ [] call EFUNC(MonitorServer,Toggle) },
@@ -134,14 +202,14 @@ if (_menuName isEqualTo "player") then {
 			[
 				"Toggle SetCaptive",
 				{player setCaptive true},
-				[true] call FUNC(getCheckBoxIcon),
+				[false] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true),
 				!(captive player)
 			],
 			[
 				"Toggle SetCaptive",
 				{player setCaptive false},
-				[false] call FUNC(getCheckBoxIcon),
+				[true] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true),
 				(captive player)
 			],
@@ -167,29 +235,6 @@ if (_menuName isEqualTo "spawn") then {
 		]
 	];
 };
-
-if (_menuName isEqualTo "modules") then {
-	_menus pushBack [
-		["modules","Modules Menu", _menuRsc],
-		[
-			[
-				"Weapon Lock",
-				{["GW_StartUp_Enabled", true] call CBA_fnc_globalEvent},
-				[false] call FUNC(getCheckBoxIcon),
-				"", "", -1, (true),
-				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && !(player getVariable ["GW_StartUp_weaponLock", false]))
-			],
-			[
-				"Weapon Lock",
-				{["GW_StartUp_Enabled", false] call CBA_fnc_globalEvent},
-				[true] call FUNC(getCheckBoxIcon),
-				"", "", -1, (true),
-				(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && (player getVariable ["GW_StartUp_weaponLock", false]))
-			]
-		]
-	];
-};
-
 
 {
 	if (((_x select 0) select 0) isEqualTo _menuName) exitWith {_menuDef = _x};

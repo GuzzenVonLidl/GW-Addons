@@ -2,7 +2,7 @@
 
 private _updated = [];
 
-if ((vehicle player) isEqualTo player) then {
+if (isNull (objectParent player)) then {
 	{
 		if ((vehicle _x) isEqualTo _x) then {
 			if ((player distance _x) < (getObjectViewDistance select 0)) then {

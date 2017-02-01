@@ -5,7 +5,7 @@ _params = _this select 1;
 _menuName = "";
 _menuRsc = "popup";
 
-if (typeName _params == typeName []) then {
+if (typeName _params isEqualTo typeName []) then {
 	if (count _params < 1) exitWith {diag_log format["Error: Invalid params: %1, %2", _this, __FILE__];};
 	_menuName = _params select 0;
 	_menuRsc = if (count _params > 1) then {_params select 1} else {_menuRsc};
@@ -16,14 +16,14 @@ if (typeName _params == typeName []) then {
 private _menuDef = [];
 private _menus = [
 	[
-		["main", "GOL Menu", _menuRsc],
+		["main", "Player Menu", _menuRsc],
 		[
 			[
 				"<t color='#B22400'>Parachute Jump </t>",
-				{ [] spawn GOL_paradrop },
+				{ [player] call GW_Menu_fnc_doParadrop },
 				QPATHTOF(DATA\parachute_icon.paa),
 				"","",-1,true,
-				(!((vehicle player) isEqualTo player) && (getPosATL (vehicle player) select 2 > 200))
+				(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > 200))
 			],
 			[
 				"<t color='#DF9100'>Player Menu ></t>",
@@ -71,9 +71,9 @@ if (_menuName isEqualTo "actions") then {
 			}],
 			[
 				"Eject",
-				{ player action ["Eject", (Vehicle player)] },
+				{ player action ["Eject", (Vehicle player)]; moveOut player; },
 				"","","",-1,true,
-				!((vehicle player) isEqualTo player)
+				!(isNull (objectParent player))
 			]
 		]
 	];

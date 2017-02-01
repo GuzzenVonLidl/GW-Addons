@@ -13,7 +13,9 @@
 */
 #include "script_component.hpp"
 
-GVAR(DynamicViewDistance_getAvgFPS) pushBack diag_fps;
+if !(visibleMap) then {
+	GVAR(DynamicViewDistance_getAvgFPS) pushBack diag_fps;
+};
 
 if ((count GVAR(DynamicViewDistance_getAvgFPS)) isEqualTo 10) then {
 	private ["_getAvg","_changeView","_changeTo","_diff","_changeToObject"];

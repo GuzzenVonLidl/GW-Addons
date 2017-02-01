@@ -1,5 +1,12 @@
 
 class CfgVehicles {
+	class Boat_F;
+	class Rubber_duck_base_F: Boat_F {
+		maxSpeed = 80;
+	};
+};
+
+/*
 	class B_Soldier_base_F;
 	class O_Soldier_base_F;
 	class I_Soldier_base_F;
@@ -31,4 +38,4 @@ class CfgVehicles {
 		"1Rnd_HE_Grenade_shell","SmokeShell","SmokeShellGreen","Chemlight_green","Chemlight_green","1Rnd_Smoke_Grenade_shell","1Rnd_Smoke_Grenade_shell","1Rnd_SmokeGreen_Grenade_shell",
 		"1Rnd_SmokeOrange_Grenade_shell","1Rnd_SmokePurple_Grenade_shell"};
 	};
-};
+*/

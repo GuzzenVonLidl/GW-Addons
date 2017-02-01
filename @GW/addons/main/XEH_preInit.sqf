@@ -23,4 +23,9 @@ GVARMAIN(superAdminList) = ["_SP_PLAYER_", GUZZENVONLIDL];
 	};
 }] call CBA_fnc_addEventHandler;
 
+[QGVARMAIN(sendMessage), {
+	params ["_message"];
+	systemChat _message;
+}] call CBA_fnc_addEventHandler;
+
 ADDON = true;

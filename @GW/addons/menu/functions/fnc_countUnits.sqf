@@ -32,10 +32,10 @@
 			private ["_players","_blufor","_opfor","_resistance","_civilian","_dead"];
 
 			_players = {isPlayer _x} count allUnits;
-			_blufor = {side _x == west && alive _x && !isPlayer _x} count allUnits;
-			_opfor = {side _x == east && alive _x && !isPlayer _x} count allUnits;
-			_resistance = {side _x == resistance && alive _x && !isPlayer _x} count allUnits;
-			_civilian = {side _x == CIVILIAN && alive _x && !isPlayer _x} count allUnits;
+			_blufor = {side _x isEqualTo west && alive _x && !isPlayer _x} count allUnits;
+			_opfor = {side _x isEqualTo east && alive _x && !isPlayer _x} count allUnits;
+			_resistance = {side _x isEqualTo resistance && alive _x && !isPlayer _x} count allUnits;
+			_civilian = {side _x isEqualTo CIVILIAN && alive _x && !isPlayer _x} count allUnits;
 			_dead = count allDead;
 			_server = "Server";
 
@@ -66,10 +66,10 @@
 
 					private ["_blufor","_opfor","_resistance","_civilian"];
 
-					_blufor = {side _x == west && alive _x && !isPlayer _x && local _x} count allUnits;
-					_opfor = {side _x == east && alive _x && !isPlayer _x && local _x} count allUnits;
-					_resistance = {side _x == resistance && alive _x && !isPlayer _x && local _x} count allUnits;
-					_civilian = {side _x == CIVILIAN && alive _x && !isPlayer _x && local _x} count allUnits;
+					_blufor = {side _x isEqualTo west && alive _x && !isPlayer _x && local _x} count allUnits;
+					_opfor = {side _x isEqualTo east && alive _x && !isPlayer _x && local _x} count allUnits;
+					_resistance = {side _x isEqualTo resistance && alive _x && !isPlayer _x && local _x} count allUnits;
+					_civilian = {side _x isEqualTo CIVILIAN && alive _x && !isPlayer _x && local _x} count allUnits;
 
 					GVL_Admin_Unit_Count_Array = [_blufor,_opfor,_resistance,_civilian, (name player)];
 					GVL_globalExecute = true;

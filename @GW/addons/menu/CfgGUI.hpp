@@ -13,7 +13,7 @@ class RscButtonMenu;
 class RscStandardDisplay;
 class GW_MainMenu_Client: RscButtonMenu {
 	action=QUOTE(1 call FUNC(flexi_selectMenu));
-	text="Client Settings";
+	text="Player Menu";
 	tooltip="Personal Settings";
 	x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX)";
 	y = "4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + safezoneY";
