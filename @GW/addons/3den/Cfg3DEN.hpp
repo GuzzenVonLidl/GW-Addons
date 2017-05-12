@@ -56,6 +56,7 @@ class Cfg3DEN {
 			};
 		};
 	 };
+
 	class Object {
 		class AttributeCategories {
             delete Identity;
@@ -71,6 +72,8 @@ class Cfg3DEN {
 
 	class EventHandlers {
 		class GW {
+//			OnMessage = "If ((_this select 0) isEqualTo 6) then {[5] call GW_3DEN_fnc_help};";
+			OnMessage = "if (((_this select 0) isEqualTo 6) && ((['GW_FRAMEWORK', 'Core', 'devBuild'] call BIS_fnc_getCfgData) isEqualTo -2)) then { ['Warning debug mode is enabled','I understand'] call BIS_fnc_3DENShowMessage; };";
 			onMissionLoad = "['load'] call GW_3DEN_fnc_init";
 			onMissionNew = "['new'] call GW_3DEN_fnc_init";
 			onMissionPreviewEnd = "['PreviewEnd'] call GW_3DEN_fnc_init";
@@ -78,7 +81,45 @@ class Cfg3DEN {
 			onTerrainNew = "call compile preProcessFileLineNumbers '\x\GW\addons\3den\XEH_preInit.sqf'; ['terrain'] call GW_3DEN_fnc_init";
 		};
 	};
+
+	class Tutorials {
+		class GW_Help_Editing {
+			displayName = "Advenced Editing";
+			class Sections {
+				class GW_Help_doActions {
+					displayName = "Do Actions";
+					class Steps {
+						class GW_Help_doActions_SelectPosition {
+							text = "Advanced Actions: <br/>Some actions may sometimes require a location and they are highlighted with a ""*"" in the end of its action";
+						};
+						class GW_Help_doActions_SelectPosition_2 {
+							text = "Step 1: <br/>To mark the location simply right click to open a menu and it will automaticly store its position in the memory";
+						};
+						class GW_Help_doActions_SelectPosition_3 {
+							text = "Step 2: <br/>Select the advanced action that you desire";
+						};
+					};
+				};
+				class GW_Help_Composition {
+					displayName = "Create A Composition";
+					class Steps {
+						class GW_Help_Composition_1 {
+							text = "Step 1: <br/>Select the objects you want to be copied";
+						};
+						class GW_Help_Composition_2 {
+							text = "Step 2: <br/>All objects will be copied from the location of where the player is located";
+						};
+						class GW_Help_Composition_3 {
+							text = "Step 3: <br/>Copy the composition from GW Tools and store it in a external text document and then later it can be added to the addon";
+						};
+					};
+				};
+			};
+		};
+	};
 };
+
+
 
 /*
 			onConnectingEnd = "['connectEnd',_this] call bis_fnc_3DENControlsHint;";

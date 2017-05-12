@@ -120,6 +120,38 @@
 	};
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(createZeus), {
+/*
+	_LogicCenter = createCenter sideLogic;
+	_moduleGroup = createGroup _LogicCenter;
+	_ZeuzModule = _moduleGroup createUnit ["ModuleCurator_F",[0,0,0],[],0,"NONE"];
+	_ZeuzModule setVariable ["Owner", "w1b1", true];
+	_ZeuzModule setVariable ["Name", "Zeuz_Beny", true];
+*/
+	params ["_unit"];
+
+	private _LogicCenter = createCenter sideLogic;
+	private _moduleGroup = createGroup _LogicCenter;
+	private _ZeuzModule = _moduleGroup createUnit ["ModuleCurator_F",[0,0,0],[],0,"NONE"];
+	_ZeuzModule setVariable ["Addons", 3, true];
+	_ZeuzModule setVariable ["birdType", "", true];
+	_ZeuzModule setVariable ["Forced", 0, true];
+	_ZeuzModule setVariable ["Name", format ["_%1", _unit], true];
+	_ZeuzModule setVariable ["showNotification", false, true];
+	_ZeuzModule setCuratorWaypointCost 0;
+	{
+		_ZeuzModule setCuratorCoef [_x,0];
+	} forEach ["place","edit","delete","destroy","group","synchronize"];
+	_unit assignCurator _ZeuzModule;
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(removeZeus), {
+	params ["_unit"];
+	private _zeus = (getAssignedCuratorLogic _unit);
+	unassignCurator _zeus;
+	deleteVehicle _zeus;
+}] call CBA_fnc_addEventHandler;
+
 [{
 	if (hasInterface) then {
 		//	[DIK code, [Shift, Ctrl, Alt]]

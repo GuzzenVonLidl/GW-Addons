@@ -1,25 +1,30 @@
 /*
-	Author: Revo
+	AUTHOR: GuzzenVonLidl
+	Gets Location in the area and then moves selected units to the valid house positions
 
-	Description:
-	Garrison one or multiple buildings in the area. Radius of the area and coverage can be defined in the preferences menu.
+	Usage:
+	[] call GW_3DEN_fnc_getObjetsToHide
 
-	Parameter(s):
-	-
-	Returns:
-	true
+	Parameters: None
+
+	Return Value: None
+
+	Public: NO
 */
 #include "script_component.hpp"
 
-private _getPos = (uiNamespace getVariable "bis_fnc_3DENEntityMenu_data") select 0;
+private _pos = call FUNC(getRightClick);
+
 private _radius = "Preferences" get3DENMissionAttribute "GW_GarrisonRadius";
 private _buildingPos = [];
 
 {
-	private _housePositions = ([_x] call BIS_fnc_buildingPositions);
-	ADD(_buildingPos,_housePositions);
-} forEach (nearestObjects [_getPos, ["house"], _radius]);
-private _buildingPos = [_buildingPos,[],{_getPos distance2d _x},"ASCEND",{!(_x isEqualTo [0,0,0])}] call BIS_fnc_sortBy;
+	if (!(isObjectHidden _x)) then {
+		private _housePositions = ([_x] call BIS_fnc_buildingPositions);
+		ADD(_buildingPos,_housePositions);
+	};
+} forEach (nearestObjects [_pos, ["house"], _radius]);
+private _buildingPos = [_buildingPos,[],{_pos distance2d _x},"ASCEND",{!(_x isEqualTo [0,0,0])}] call BIS_fnc_sortBy;
 
 {
 	private _unit = _x;

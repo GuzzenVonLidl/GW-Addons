@@ -4,12 +4,14 @@ params ["_unit"];
 cutText ["", "BLACK FADED",999];
 private _vehicle = (vehicle _unit);
 private _height = round((getPosASL _unit) select 2);
-private _velocity = [((velocity _vehicle) select 0),((velocity _vehicle) select 1), (((velocity _vehicle) select 2) -10)];
+private _velocity = [-((velocity _vehicle) select 0),-((velocity _vehicle) select 1), (((velocity _vehicle) select 2) -10)];
 private _backpack = (unitBackpack _unit);
-private _pos = (_vehicle getRelPos [(sizeOF(typeOf _vehicle)/2) + 1, 180]);
-_pos set [2, (getPos _vehicle) select 2];
+(boundingBoxReal _vehicle) params ["_p1","_p2"];
+private _maxLength = abs ((_p2 select 1) - (_p1 select 1));
 _unit action ["Eject", _vehicle];
 moveOut _unit;
+_pos = (_vehicle getRelPos [_maxLength + 2, 180]);
+_pos set [2, (getPos _vehicle) select 2];
 _unit setPosATL _pos;
 _unit setVelocity _velocity;
 

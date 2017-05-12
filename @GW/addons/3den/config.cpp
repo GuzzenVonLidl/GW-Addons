@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "\a3\3DEN\UI\resincl.inc"
 
 class CfgPatches {
 	class ADDON {
@@ -29,7 +30,7 @@ class CfgFunctions {
 				preStart = 1;
 				preInit = 1;
 				postInit = 0;
-				file = "\x\gw\addons\3den\functions\fnc_init.sqf";
+				file = "\x\gw\addons\3den\functions\fnc_Init.sqf";
 			};
 		};
 	};
@@ -45,7 +46,7 @@ class ctrlToolbox;
 class ctrlToolboxPicture;
 class ctrlStaticPicture;
 class ctrlMenuStrip;
-class ctrlMenu;
+class ctrlMenu;	//
 class ctrlControlsGroupNoScrollbars;
 class ctrlButtonPictureKeepAspect;
 class RscStructuredText;

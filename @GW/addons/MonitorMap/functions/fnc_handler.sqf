@@ -52,3 +52,7 @@ if !(GVAR(Enabled)) then { // Not running
 	GVAR(sigTerm) = true;
 	hint "Map Monitor Ending...";
 };
+
+[{
+	hintSilent "";
+}, [], 3] call CBA_fnc_waitAndExecute;

@@ -29,6 +29,6 @@
 			if ((count allDead) > 50) then {
 				[QGVARMAIN(sendMessage), format ["Warning: High dead count %1", (count allDead)], GVARMAIN(activeAdmins)] call CBA_fnc_targetEvent;
 			};
-		}, 5, []] call CBA_fnc_addPerFrameHandler;
+		}, 30, []] call CBA_fnc_addPerFrameHandler;
 	};
 }, [], 1] call CBA_fnc_waitAndExecute;

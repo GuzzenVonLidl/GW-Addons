@@ -72,7 +72,8 @@ if (_menuName isEqualTo "actions") then {
 if (_menuName isEqualTo "mhqlist") then {
 	private _mhqMenu = [];
 	{
-		if !((_x getVariable ["GW_MHQ_info", []]) isEqualTo []) then {
+//		if !((_x getVariable [QEGVAR(MHQ,Info), []]) isEqualTo []) then {
+		if (!isNil{(_x getVariable "GW_MHQ_Info")}) then {
 			_mhqMenu pushBack ["Move MHQ_1", compile format ["[%1, player, 5] call GW_Menu_fnc_MoveVehicle;", _x]];
 		};
 	} forEach vehicles;
@@ -212,6 +213,20 @@ if (_menuName isEqualTo "player") then {
 				[true] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true),
 				(captive player)
+			],
+			[
+				"Create personal Zeus",
+				{[QGVAR(createZeus), player] call CBA_fnc_serverEvent;},
+				[false] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
+				isNull (getAssignedCuratorLogic player)
+			],
+			[
+				"Remove Zeus",
+				{[QGVAR(removeZeus), player] call CBA_fnc_serverEvent;},
+				[true] call FUNC(getCheckBoxIcon),
+				"", "", -1, (true),
+				!(isNull (getAssignedCuratorLogic player))
 			],
 			["Open Virtual Aresnal", {['Open', true] call BIS_fnc_arsenal}]
 		]

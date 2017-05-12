@@ -10,8 +10,8 @@ class CfgCloudlets {
 		interval = 0.1;
 		lifeTime = 30;
 		lifeTimeVar = 3;
-		moveVelocity[] = {0.5,0.2,0.5};
-		moveVelocityVar[] = {0.5,0.2,0.5};
+		moveVelocity[] = {0.5,0.2,0.4};
+		moveVelocityVar[] = {0.5,0.2,0.4};
 		rubbing = 0.04;
 		size[] = {0.8,6,10};					// Default 0.1,2,6
 //		weight = 1.3;

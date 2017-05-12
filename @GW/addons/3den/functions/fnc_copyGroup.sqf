@@ -53,27 +53,27 @@ private _vehicles = [];
 	if (_x isKindOf "AllVehicles") then {
 		private _special = [];
 		if !(GETATTRIBUTE("init") isEqualTo "") then {
-			_special pushBack ["init", GETATTRIBUTE("init")];
-		};
-		if !(GETATTRIBUTE("enableSimulation")) then {
-			_special pushBack ["simulation", GETATTRIBUTE("enableSimulation")];
+			_special pushBack [0, GETATTRIBUTE("init")];
 		};
 		if !(GETATTRIBUTE("allowDamage")) then {
-			_special pushBack ["damage", GETATTRIBUTE("allowDamage")];
+			_special pushBack [1, GETATTRIBUTE("allowDamage")];
+		};
+		if !(GETATTRIBUTE("enableSimulation")) then {
+			_special pushBack [2, GETATTRIBUTE("enableSimulation")];
 		};
 		if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-			_special pushBack ["lock", GETATTRIBUTE("lock")];
-		};
-/*
-		if (GETATTRIBUTE("dynamicSimulation")) then {
-			_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
+			_special pushBack [3, GETATTRIBUTE("lock")];
 		};
 		if (GETATTRIBUTE("addToDynSimGrid")) then {
-			_special pushBack ["addToDyn", GETATTRIBUTE("addToDynSimGrid")];
+			_special pushBack [4, GETATTRIBUTE("addToDynSimGrid")];
 		};
-*/
+		if (GETATTRIBUTE("dynamicSimulation")) then {
+			_special pushBack [5, GETATTRIBUTE("dynamicSimulation")];
+		};
 		if (_x isKindOf "CAManBase") then {
-			_units pushBack [GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _special];
+			if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
+				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _special];
+			};
 		} else {
 			private _crewList = [];
 			private _crew = (fullCrew _x);
@@ -86,76 +86,92 @@ private _vehicles = [];
 					};
 				} forEach _crew;
 			};
-			_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),GETATTRIBUTE("rotation") select 2, _crewList, _special];
+			_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 		};
 	};
-} forEach get3DENSelected "object";
+} forEach (get3DENSelected "object");
 
 {
-	private ["_speed","_formation"];
 	private _waypointSettings = [];
 	TRACE_1("New Waypoint", _x);
 
-	_waypointSettings pushBack GETATTRIBUTE("position");
-	_waypointSettings pushBack GETATTRIBUTE("itemClass");
-	_waypointSettings pushBack GETATTRIBUTE("behaviour");
-	_waypointSettings pushBack GETATTRIBUTE("combatMode");
-	_waypointSettings pushBack GETATTRIBUTE("completionRadius");
-
-	switch GETATTRIBUTE("formation") do {
-		case 0: {
-			_formation = "NO CHANGE";
-		};
-		case 1: {
-			_formation = "WEDGE";
-		};
-		case 2: {
-			_formation = "VEE";
-		};
-		case 3: {
-			_formation = "LINE";
-		};
-		case 4: {
-			_formation = "COLUMN";
-		};
-		case 5: {
-			_formation = "FILE";
-		};
-		case 6: {
-			_formation = "STAG COLUMN";
-		};
-		case 7: {
-			_formation = "ECH LEFT";
-		};
-		case 8: {
-			_formation = "ECH RIGHT";
-		};
-		case 9: {
-			_formation = "DIAMOND";
-		};
+	if !(GETATTRIBUTE("itemClass") isEqualTo "Move") then {
+		_waypointSettings pushBack [0,GETATTRIBUTE("itemClass")];
 	};
-	_waypointSettings pushBack _formation;
-
-	switch GETATTRIBUTE("speedMode") do {
-		case 0: {
-			_speed = "UNCHANGED";
-		};
-		case 1: {
-			_speed = "LIMITED";
-		};
-		case 2: {
-			_speed = "NORMAL";
-		};
-		case 3: {
-			_speed = "FULL";
-		};
+	if !(GETATTRIBUTE("behaviour") isEqualTo "UNCHANGED") then {
+		_waypointSettings pushBack [1,GETATTRIBUTE("behaviour")];
 	};
-	_waypointSettings pushBack _speed;
-	_groupWaypoint pushBack _waypointSettings;
+	if !(GETATTRIBUTE("combatMode") isEqualTo "NO CHANGE") then {
+		_waypointSettings pushBack [2,GETATTRIBUTE("combatMode")];
+	};
+	if !(GETATTRIBUTE("completionRadius") isEqualTo 0) then {
+		_waypointSettings pushBack [3,GETATTRIBUTE("completionRadius")];
+	};
+
+	if !(GETATTRIBUTE("formation") isEqualTo 0) then {
+		private _formation = "NO CHANGE";
+		switch GETATTRIBUTE("formation") do {
+			case 1: {
+				_formation = "WEDGE";
+			};
+			case 2: {
+				_formation = "VEE";
+			};
+			case 3: {
+				_formation = "LINE";
+			};
+			case 4: {
+				_formation = "COLUMN";
+			};
+			case 5: {
+				_formation = "FILE";
+			};
+			case 6: {
+				_formation = "STAG COLUMN";
+			};
+			case 7: {
+				_formation = "ECH LEFT";
+			};
+			case 8: {
+				_formation = "ECH RIGHT";
+			};
+			case 9: {
+				_formation = "DIAMOND";
+			};
+		};
+		_waypointSettings pushBack [4,_formation];
+	};
+
+	if !(GETATTRIBUTE("speedMode") isEqualTo 0) then {
+		private _speed = "UNCHANGED";
+		switch GETATTRIBUTE("speedMode") do {
+			case 1: {
+				_speed = "LIMITED";
+			};
+			case 2: {
+				_speed = "NORMAL";
+			};
+			case 3: {
+				_speed = "FULL";
+			};
+		};
+		_waypointSettings pushBack [5,_speed];
+	};
+
+	if !(GETATTRIBUTE("timeout") isEqualTo [0,0,0]) then {
+		_waypointSettings pushBack [6,GETATTRIBUTE("timeout")];
+	};
+
+	if (!(GETATTRIBUTE("condition") isEqualTo "true") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
+		_waypointSettings pushBack [7,[GETATTRIBUTE("condition"), GETATTRIBUTE("onActivation")]];
+	};
+
+	_groupWaypoint pushBack ([(GETATTRIBUTE("position"))] + [_waypointSettings]);
 } forEach get3DENSelected "waypoint";
 
-copyToClipboard format ["%1 call GW_Common_fnc_spawnGroup;", [_units, _vehicles, _groupWaypoint]];
-systemChat format ["%1 units, %2 vehicles, %3 waypoints copied", (count _units), (count _vehicles), (count _groupWaypoint)];
+systemChat format ["%1 units, %2 vehicles, %3 waypoints copied - Copy Group", (count _units), (count _vehicles), (count _groupWaypoint)];
+copyToClipboard (str([_units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
+
 
 TRACE_1("Units", _units);
 TRACE_1("Waypoints", _groupWaypoint);

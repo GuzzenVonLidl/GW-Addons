@@ -16,16 +16,16 @@
 #define __ATTENUATION \
     class Attenuation { \
 		constant = 1; \
-		linear = 0; \
-		quadratic = 30; \
-		start = 1.5; \
+		linear = 1; \
+		quadratic = 200; \
+		start = 2.5; \
 		hardLimitStart = 2.5; \
-		hardLimitEnd = 10; \
+		hardLimitEnd = 15; \
 	};
 
 #define SMOKE_COLOR_RED    {0.95, 0.04, 0.04, 0.8}
 #define SMOKE_COLOR_GREEN  {0.03, 0.16, 0.10, 0.8}
-#define SMOKE_COLOR_YELLOW {0.95, 0.45, 0.01, 0.8}
+#define SMOKE_COLOR_YELLOW {0.90, 0.60, 0.00, 0.8}
 #define SMOKE_COLOR_PURPLE {0.46, 0.06, 0.30, 0.8}
 #define SMOKE_COLOR_BLUE   {0.04, 0.20, 1.00, 0.8}
 #define SMOKE_COLOR_ORANGE {0.90, 0.20, 0.01, 0.8}

@@ -1,6 +1,6 @@
 /*
 
-	[] call GW_3DEN_fnc_init
+	[] call GW_3DEN_fnc_actionInit
 
 */
 #include "script_component.hpp"

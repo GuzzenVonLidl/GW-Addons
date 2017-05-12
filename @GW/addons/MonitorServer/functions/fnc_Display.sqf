@@ -42,4 +42,7 @@ if (DEVCONSOLEENABLED) then {
 		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>FPS:<t align='right' color='#FFD30D'>%1</t>", (_x select 3)]), lineBreak, lineBreak];
 	} forEach _hcInfo;
 	hintSilent _temp;
+	[{
+		hintSilent "";
+	}, [], 5] call CBA_fnc_waitAndExecute;
 };

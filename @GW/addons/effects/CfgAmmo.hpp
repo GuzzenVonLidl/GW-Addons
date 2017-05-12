@@ -32,8 +32,8 @@ class CfgAmmo {
 
 	class G_40mm_Smoke: SmokeShell {
 		aiAmmoUsageFlags = "4 + 2 + 1 + 64";
-		coefGravity = 0.8;
-		deflecting = 5;
+		coefGravity = 0.7;
+		deflecting = 0;
 		simulation = "shotSmoke";
 		smokeColor[] = {1,1,1,1};
 		timeToLive = 45;

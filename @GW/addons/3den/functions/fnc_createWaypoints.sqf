@@ -1,13 +1,17 @@
 /*
-	Author: Revo
+	Author: GuzzenVonLidl
 
 	Description:
-	Garrison one or multiple buildings in the area. Radius of the area and coverage can be defined in the preferences menu.
+	Creates waypoints around highlighted group in a set radius around them
 
-	Parameter(s):
-	-
-	Returns:
-	true
+	Usage:
+	[] spawn GW_3den_fnc_createWaypoints;
+
+	Parameters: None
+
+	Return Value: None
+
+	Public: NO
 */
 #include "script_component.hpp"
 
@@ -26,7 +30,6 @@ for "_i" from 1 to _waypointCount do {
 			_waypoint set3DENAttribute ["formation", 5];	// File
 			_waypoint set3DENAttribute ["speedMode", 1];	// Slow
 			_waypoint set3DENAttribute ["behaviour", "SAFE"];
-
 		};
 	} else {
 		_waypoint = (group _leader) create3DENEntity ["Waypoint","CYCLE", _pos];

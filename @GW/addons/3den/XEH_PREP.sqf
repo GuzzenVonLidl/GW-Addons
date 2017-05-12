@@ -1,11 +1,14 @@
 
-PREP(copy);
 PREP(copyGroup);
-PREP(copyOld);
+PREP(copyGroupOld);
+PREP(copyStatic);
+PREP(copyStaticOld);
 PREP(createComposition);
-PREP(generateWaypoints);
+PREP(createWaypoints);
 PREP(garrisonNearest);
+PREP(getCorrectVersion);
+PREP(getObjectsToHide);
+PREP(getRightClick);
 PREP(Init);
 PREP(setAttribute);
-PREP(toggleObjects);
-PREP(useCorrectVersion);
+PREP(setObjectHidden);
