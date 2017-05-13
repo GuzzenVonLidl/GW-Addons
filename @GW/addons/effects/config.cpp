@@ -26,4 +26,4 @@ class CfgAddons {
 
 #include "CfgAmmo.hpp"
 #include "CfgCloudlets.hpp"
-#include "CfgLights.hpp"
+//#include "CfgLights.hpp"
