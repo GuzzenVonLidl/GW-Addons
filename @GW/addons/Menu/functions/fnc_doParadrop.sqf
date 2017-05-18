@@ -14,11 +14,7 @@ _pos = (_vehicle getRelPos [_maxLength + 2, 180]);
 _pos set [2, (getPos _vehicle) select 2];
 _unit setPosATL _pos;
 _unit setVelocity _velocity;
-
-_unit setVariable [QGVAR(parachuteClass), (typeOf _backpack)];
-_unit setVariable [QGVAR(parachuteMagazines), (getMagazineCargo _backpack)];
-_unit setVariable [QGVAR(parachuteWeapons), (getWeaponCargo _backpack)];
-_unit setVariable [QGVAR(parachuteItems), (getItemCargo _backpack)];
+_unit setVariable [QGVAR(getUnitLoadout), ((getUnitLoadout _unit) select 5)];
 removeBackPack _unit;
 
 [{
@@ -38,30 +34,35 @@ if (GVAR(ParadropHalo)) then {
 	}, [_unit]] call CBA_fnc_waitUntilAndExecute;
 };
 
+[{((((getPos player) select 2) < 1) && (alive player)) || !(alive player)}, {
+	params ["_unit"];
+	if (alive player) then {
+		_loadout = (_unit getVariable [QGVAR(getUnitLoadout), nil]);
+		if !((_loadout select 0) isEqualTo "") then {
+			_currentLoadout = (getUnitLoadout _unit);
+			_currentLoadout set [5, (_unit getVariable QGVAR(getUnitLoadout))];
+			_unit setUnitLoadout _currentLoadout;
+			_unit setVariable [QGVAR(getUnitLoadout), nil];
+		};
+	} else {
+		[{(alive player)}, {
+			[{
+				params ["_unit"];
+				_unit setVariable [QGVAR(getUnitLoadout), nil];
+			}, _this, 1] call CBA_fnc_waitAndExecute;
+		}, _this] call CBA_fnc_waitUntilAndExecute;
+	};
+
+}, [_unit]] call CBA_fnc_waitUntilAndExecute;
+
+/*
 [{(isTouchingGround player) || (((getPos player) select 2) < 1) && (alive player)}, {
 	params ["_unit"];
-	private _vehicle = (vehicle _unit);
-	private _backpackClass = (_unit getVariable [QGVAR(parachuteClass), ""]);
-	private _magazines = (_unit getVariable [QGVAR(parachuteMagazines), []]);
-	private _weapons = (_unit getVariable [QGVAR(parachuteWeapons), []]);
-	private _items = (_unit getVariable [QGVAR(parachuteItems), []]);
-
-	removeBackPack _unit;
-	if !(_backpackClass isEqualTo "") then {
-		_unit addBackpack _backpackClass;
-		clearAllItemsFromBackpack _unit;
-		for "_i" from 0 to (count (_magazines select 0) - 1) do {
-			(unitBackpack _unit) addMagazineCargoGlobal [((_magazines select 0) select _i),((_magazines select 1) select _i)];
-		};
-		for "_i" from 0 to (count (_weapons select 0) - 1) do {
-			(unitBackpack _unit) addWeaponCargoGlobal [((_weapons select 0) select _i),((_weapons select 1) select _i)];
-		};
-		for "_i" from 0 to (count (_items select 0) - 1) do {
-			(unitBackpack _unit) addItemCargoGlobal [((_items select 0) select _i),((_items select 1) select _i)];
-		};
-		_unit setVariable [QGVAR(parachuteClass), nil];
-		_unit setVariable [QGVAR(parachuteMagazines), nil];
-		_unit setVariable [QGVAR(parachuteWeapons), nil];
-		_unit setVariable [QGVAR(parachuteItems), nil];
+	_loadout = (_unit getVariable [QGVAR(getUnitLoadout), nil]);
+	if !((_loadout select 0) isEqualTo "") then {
+		_currentLoadout = (getUnitLoadout _unit);
+		_currentLoadout set [5, (_unit getVariable QGVAR(getUnitLoadout))];
+		_unit setUnitLoadout _currentLoadout;
 	};
 }, [_unit]] call CBA_fnc_waitUntilAndExecute;
+/*

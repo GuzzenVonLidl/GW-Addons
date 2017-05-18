@@ -46,7 +46,7 @@ class ctrlToolbox;
 class ctrlToolboxPicture;
 class ctrlStaticPicture;
 class ctrlMenuStrip;
-class ctrlMenu;	//
+class ctrlMenu;
 class ctrlControlsGroupNoScrollbars;
 class ctrlButtonPictureKeepAspect;
 class RscStructuredText;
