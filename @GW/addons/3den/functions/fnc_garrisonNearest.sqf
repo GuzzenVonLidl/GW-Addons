@@ -15,7 +15,7 @@
 
 private _pos = call FUNC(getRightClick);
 
-private _radius = "Preferences" get3DENMissionAttribute "GW_GarrisonRadius";
+private _radius = ("Preferences" get3DENMissionAttribute "GW_GarrisonRadius");
 private _buildingPos = [];
 
 {

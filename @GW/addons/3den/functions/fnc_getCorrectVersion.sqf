@@ -15,7 +15,10 @@
 
 params ["_copyGroup","_copyType"];
 
-if ((["GW_Modules", "Common", "version"] call BIS_fnc_getCfgData) >= 1.5) then {
+_isNil = (isNil {(["GW_Modules", "Common", "version"] call BIS_fnc_getCfgData)});
+_getVersion = (getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version"));
+
+if (_isNil || (_getVersion >= 1.5)) then {
 	if (_copyGroup) then {
 		[_copyType] call FUNC(copyGroup);
 	} else {

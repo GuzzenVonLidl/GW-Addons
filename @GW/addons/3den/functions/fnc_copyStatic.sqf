@@ -122,3 +122,8 @@ switch (_type) do {
 if !(_return isEqualTo 0) then {
 	copyToClipboard _return;
 };
+
+if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
+	_delete = (get3DENSelected "object") + (get3DENSelected "group");
+	delete3DENEntities _delete;
+};

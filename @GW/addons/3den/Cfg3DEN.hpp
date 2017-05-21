@@ -6,6 +6,15 @@ class Cfg3DEN {
 				class GW_Options {
 					displayName = "GW Settings";
 					class Attributes {
+						class GW_DeleteOnCopy {
+							displayName = "Delete on copy";
+							tooltip = "Delete all Units, waypoints and Objects upon copying";
+							property = "GW_DeleteOnCopy";
+							value = 0;
+							control = "Checkbox";
+							defaultValue = "false";
+							expression = "true";
+						};
 						class GW_GarrisonRadius {
 							displayName = "Garrison Radius";
 							tooltip = "Buildings to gather around unit clicked";

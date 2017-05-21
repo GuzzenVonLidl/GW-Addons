@@ -172,6 +172,10 @@ private _vehicles = [];
 systemChat format ["%1 units, %2 vehicles, %3 waypoints copied - Copy Group", (count _units), (count _vehicles), (count _groupWaypoint)];
 copyToClipboard (str([_units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
 
+if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
+	_delete = (get3DENSelected "object") + (get3DENSelected "waypoint") + (get3DENSelected "group");
+	delete3DENEntities _delete;
+};
 
 TRACE_1("Units", _units);
 TRACE_1("Waypoints", _groupWaypoint);

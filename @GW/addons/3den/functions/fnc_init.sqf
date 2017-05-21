@@ -19,6 +19,14 @@ if (is3DEN) then {
 		LOG("XEH_preInit reloaded");
 	};
 
-//	setViewDistance 5000;
-//	setObjectViewDistance [4500, 100];
+	setViewDistance 3000;
+	setObjectViewDistance [2500, 100];
+
+	[] spawn {
+		_time = 0;
+		while {true} do {
+			[] call FUNC(showStats);
+			uiSleep 0.1;
+		};
+	};
 };

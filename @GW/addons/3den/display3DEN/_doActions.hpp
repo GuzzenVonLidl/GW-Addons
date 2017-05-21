@@ -6,7 +6,7 @@ class GW_genericObjects {
 
 class GW_setObjects {
 	text = "Objects Only";
-	items[] = {"GW_simpleObject"};
+	items[] = {"GW_simpleObject","GW_relativeObjects"};
 };
 
 class GW_setGroup {
@@ -109,4 +109,9 @@ class GW_simpleObject_True {
 class GW_simpleObject_false {
 	text = "False";
 	action = "[4, false] call GW_3DEN_fnc_setAttribute;";
+};
+
+class GW_relativeObjects {
+	text = "Copy relative location of obj 2 from obj 1";
+	action = "[0] call GW_3DEN_fnc_doAction";
 };

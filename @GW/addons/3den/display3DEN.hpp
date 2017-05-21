@@ -35,5 +35,22 @@ class display3DEN {
 				#include "display3DEN\_Links.hpp"
 			};
 		};
+		class StatusBar: ctrlControlsGroupNoScrollbars {
+			class Controls {
+				class ValueX;
+				class GW_Session_Status: ValueX {
+					tooltip = "Mission Status";
+					idc = 668;
+					w = "100 * (pixelW * pixelGrid * 	0.50)";
+					x = "(safezoneW - 	60 * (pixelW * pixelGrid * 	0.50)) - (2 * 		5 + 30) * (pixelW * pixelGrid * 	0.50) * 3 - 		4 * (pixelH * pixelGrid * 	0.50) - 2 * (2 * pixelH) - 17 * (pixelW * pixelGrid * 	0.50) - (2 * pixelW)";
+					y = "(2 * pixelH)";
+					onLoad = "";
+					canModify = 0;
+				};
+			};
+		};
 	};
 };
+
+/*
+*/

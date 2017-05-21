@@ -1,10 +1,12 @@
 
 class CfgVehicles {
 	class Boat_F;
+	class Offroad_01_base_F;
 	class Rubber_duck_base_F: Boat_F {
-		maxSpeed = 80;
+		maxSpeed = 50;
 	};
 };
+
 
 /*
 	class B_Soldier_base_F;
