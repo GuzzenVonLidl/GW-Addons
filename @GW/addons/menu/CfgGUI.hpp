@@ -28,25 +28,16 @@ class GW_MainMenu_Admin: GW_MainMenu_Client {
 	y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + safezoneY";
 };
 
-class GW_MainMenu_Debug: GW_MainMenu_Client {
-	action=QUOTE(3 call FUNC(flexi_selectMenu));
-	text="Open Debug Console";
-	tooltip="Debug Console";
-	y = "7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + safezoneY";
-};
-
 class RscDisplayInterrupt: RscStandardDisplay {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
-		class GW_MainMenu_Debug: GW_MainMenu_Debug {};
 	};
 };
 class RscDisplayMPInterrupt: RscDisplayInterrupt {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
-		class GW_MainMenu_Debug: GW_MainMenu_Debug {};
 	};
 };
 class RscDisplayInterruptEditor3D: RscDisplayInterrupt {
@@ -54,7 +45,6 @@ class RscDisplayInterruptEditor3D: RscDisplayInterrupt {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
-		class GW_MainMenu_Debug: GW_MainMenu_Debug {};
 	};
 
 };
@@ -62,6 +52,5 @@ class RscDisplayInterruptEditorPreview: RscDisplayInterrupt {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
-		class GW_MainMenu_Debug: GW_MainMenu_Debug	{};
 	};
 };

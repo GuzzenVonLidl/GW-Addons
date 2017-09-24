@@ -22,7 +22,7 @@ class CfgAddons {
 		};
 	};
 };
-
+rptFileLimit = 1;
 #include "CfgDifficultyPresets.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgMissions.hpp"
@@ -40,6 +40,36 @@ class CfgMods {
 //		picture="\x\gw\addons\main\logos\logo_ca.paa";
 		tooltip="GW-Addons";
 		tooltipOwned="GW-Addons";
+	};
+	class A3: Mod_Base {
+		name = "A3";
+	};
+	class DLCBundle: Mod_Base {
+		name = "DLC1";
+	};
+	class Curator: Mod_Base {
+		name = "Zeus";
+	};
+	class Kart: Mod_Base {
+		name = "Karts";
+	};
+	class Heli: Mod_Base {
+		name = "Heli";
+	};
+	class Mark: Mod_Base {
+		name = "Mark";
+	};
+	class Expansion: Mod_Base {
+		name = "Apex";
+	};
+	class DLCBundle2: Mod_Base {
+		name = "DLC2";
+	};
+	class Jets: Mod_Base {
+		name = "Jets";
+	};
+	class Argo: Mod_Base {
+		name = "Argo";
 	};
 };
 

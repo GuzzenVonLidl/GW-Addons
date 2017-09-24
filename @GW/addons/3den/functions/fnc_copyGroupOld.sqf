@@ -3,7 +3,7 @@
 	Copy units, vehicles and waypoints
 
 	Usage:
-	[] call GW_3den_fnc_CopyGroup;
+	[] call GW_3den_fnc_CopyGroupOld;
 
 	Arguments: NO
 

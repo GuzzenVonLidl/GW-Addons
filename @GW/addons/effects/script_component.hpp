@@ -15,13 +15,12 @@
 
 #define __ATTENUATION \
     class Attenuation { \
-		constant = 1; \
-		linear = 1; \
+		constant = 0; \
+		linear = 0; \
 		quadratic = 200; \
-		start = 2.5; \
-		hardLimitStart = 2.5; \
+		hardLimitStart = 5; \
 		hardLimitEnd = 15; \
-	};
+};
 
 #define SMOKE_COLOR_RED    {0.95, 0.04, 0.04, 0.8}
 #define SMOKE_COLOR_GREEN  {0.03, 0.16, 0.10, 0.8}

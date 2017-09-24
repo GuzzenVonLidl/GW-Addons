@@ -1,14 +1,14 @@
 #define PREFIX GW
 #define MAJOR 0
-#define MINOR 4
-#define PATCHLVL 2
-#define BUILD 210517	// We will use the DATE for the BUILD# in the format DDMMYY
+#define MINOR 5
+#define PATCHLVL 1
+#define BUILD 240917	// We will use the DATE for the BUILD# in the format DDMMYY
 
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD
 #define VERSION_CONFIG version = VERSION; versionStr = QUOTE(VERSION); versionAr[] = {VERSION_AR}
 
-#define REQUIRED_VERSION 1.64
+#define REQUIRED_VERSION 1.76
 
 // Set a default debug mode for the component here (See documentation on how to default to each of the modes).
 /*

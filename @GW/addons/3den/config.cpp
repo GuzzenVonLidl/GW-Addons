@@ -15,43 +15,26 @@ class CfgPatches {
 	};
 };
 
-class CfgAddons {
-	class PreloadAddons {
-		class ADDON {
-			list[] = {ADDON};
-		};
-	};
-};
-
-class CfgFunctions {
-	class GW_3DEN {
-		class 3DEN {
-			class init {	// Required, CBA only launches on startup & previewEnd
-				preStart = 1;
-				preInit = 1;
-				postInit = 0;
-				file = "\x\gw\addons\3den\functions\fnc_Init.sqf";
-			};
-		};
-	};
-};
-
-class ctrlDefault;
-class ctrlCombo;
-class ctrlStatic;
-class ctrlEdit;
-class ctrlXSliderH;
+class ctrlButtonPictureKeepAspect;
+class ctrlButtonToolbar;
 class ctrlCheckbox;
+class ctrlCheckboxToolbar;
+class ctrlCombo;
+class ctrlControlsGroupNoScrollbars;
+class ctrlDefault;
+class ctrlEdit;
+class ctrlMenu;
+class ctrlMenuStrip;
+class ctrlStatic;
+class ctrlStaticPicture;
 class ctrlToolbox;
 class ctrlToolboxPicture;
-class ctrlStaticPicture;
-class ctrlMenuStrip;
-class ctrlMenu;
-class ctrlControlsGroupNoScrollbars;
-class ctrlButtonPictureKeepAspect;
-class RscStructuredText;
-class RscHTML;
+class ctrlXSliderH;
 class RscControlsGroup;
+class RscHTML;
+class RscStructuredText;
+class RscText;
+class Separator1;
 
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"

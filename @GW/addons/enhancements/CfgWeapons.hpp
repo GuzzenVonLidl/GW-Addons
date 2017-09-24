@@ -31,7 +31,6 @@ class CfgWeapons {
 
 	class ItemCore;
 	class InventoryFlashLightItem_Base_F;
-	class InventoryFirstAidKitItem_Base_F;
 	class GW_X3000: ItemCore {
 		scope = 2;
 		author = "GuzzenVonLidl";

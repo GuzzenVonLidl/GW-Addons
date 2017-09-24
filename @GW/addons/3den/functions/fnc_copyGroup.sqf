@@ -51,33 +51,12 @@ private _vehicles = [];
 
 {
 	if (_x isKindOf "AllVehicles") then {
-		private _special = [];
-		if !(GETATTRIBUTE("init") isEqualTo "") then {
-			_special pushBack [0, GETATTRIBUTE("init")];
-		};
-		if !(GETATTRIBUTE("allowDamage")) then {
-			_special pushBack [1, GETATTRIBUTE("allowDamage")];
-		};
-		if !(GETATTRIBUTE("enableSimulation")) then {
-			_special pushBack [2, GETATTRIBUTE("enableSimulation")];
-		};
-		if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-			_special pushBack [3, GETATTRIBUTE("lock")];
-		};
-		if (GETATTRIBUTE("addToDynSimGrid")) then {
-			_special pushBack [4, GETATTRIBUTE("addToDynSimGrid")];
-		};
-		if (GETATTRIBUTE("dynamicSimulation")) then {
-			_special pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-		};
-		if (_x isKindOf "CAManBase") then {
-			if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
-				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _special];
-			};
-		} else {
+		private _special = ([_x] call FUNC(getAttributes));
+
+		if !(_x isKindOf "CAManBase") then {	// Vehicles only
 			private _crewList = [];
 			private _crew = (fullCrew _x);
-			if (count _crew > 0) then {
+			if (count _crew isEqualTo 0) then {
 				{
 					if (_x select 4) then {	// Force FFV to cargo instead of turret
 						_crewList pushBack ["cargo", (_x select 2), (_x select 3)];
@@ -88,6 +67,12 @@ private _vehicles = [];
 			};
 			_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 		};
+
+		if (_x isKindOf "CAManBase") then {	// Infantry only
+			if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
+				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _special];
+			};
+		};
 	};
 } forEach (get3DENSelected "object");
 
@@ -95,9 +80,12 @@ private _vehicles = [];
 	private _waypointSettings = [];
 	TRACE_1("New Waypoint", _x);
 
-	if !(GETATTRIBUTE("itemClass") isEqualTo "Move") then {
-		_waypointSettings pushBack [0,GETATTRIBUTE("itemClass")];
+	private _type = (GETATTRIBUTE("itemClass"));
+	if (_type isEqualTo "SeekAndDestroy") then {
+		_type = "SAD";
 	};
+	_waypointSettings pushBack [0,_type];
+
 	if !(GETATTRIBUTE("behaviour") isEqualTo "UNCHANGED") then {
 		_waypointSettings pushBack [1,GETATTRIBUTE("behaviour")];
 	};
@@ -109,52 +97,12 @@ private _vehicles = [];
 	};
 
 	if !(GETATTRIBUTE("formation") isEqualTo 0) then {
-		private _formation = "NO CHANGE";
-		switch GETATTRIBUTE("formation") do {
-			case 1: {
-				_formation = "WEDGE";
-			};
-			case 2: {
-				_formation = "VEE";
-			};
-			case 3: {
-				_formation = "LINE";
-			};
-			case 4: {
-				_formation = "COLUMN";
-			};
-			case 5: {
-				_formation = "FILE";
-			};
-			case 6: {
-				_formation = "STAG COLUMN";
-			};
-			case 7: {
-				_formation = "ECH LEFT";
-			};
-			case 8: {
-				_formation = "ECH RIGHT";
-			};
-			case 9: {
-				_formation = "DIAMOND";
-			};
-		};
+		private _formation = ["NO CHANGE","WEDGE","VEE","LINE","COLUMN","FILE","STAG COLUMN","ECH LEFT","ECH RIGHT","DIAMOND"] select GETATTRIBUTE("formation");
 		_waypointSettings pushBack [4,_formation];
 	};
 
 	if !(GETATTRIBUTE("speedMode") isEqualTo 0) then {
-		private _speed = "UNCHANGED";
-		switch GETATTRIBUTE("speedMode") do {
-			case 1: {
-				_speed = "LIMITED";
-			};
-			case 2: {
-				_speed = "NORMAL";
-			};
-			case 3: {
-				_speed = "FULL";
-			};
-		};
+		private _speed = ["UNCHANGED","LIMITED","NORMAL","FULL"] select GETATTRIBUTE("speedMode");
 		_waypointSettings pushBack [5,_speed];
 	};
 
@@ -162,7 +110,8 @@ private _vehicles = [];
 		_waypointSettings pushBack [6,GETATTRIBUTE("timeout")];
 	};
 
-	if (!(GETATTRIBUTE("condition") isEqualTo "true") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
+//	if (!(GETATTRIBUTE("condition") isEqualTo "true") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
+	if (!(GETATTRIBUTE("condition") isEqualTo "call{true}") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
 		_waypointSettings pushBack [7,[GETATTRIBUTE("condition"), GETATTRIBUTE("onActivation")]];
 	};
 

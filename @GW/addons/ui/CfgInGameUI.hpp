@@ -1,10 +1,11 @@
 
 class CfgInGameUI  {
-	class Action {
-		size = 0;
+	class Actions {
+//		x = "(profilenamespace getvariable [""IGUI_GRID_MENU_X"", (1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + safezoneX)])";
+//		y = "(profilenamespace getvariable [""IGUI_GRID_MENU_Y"", (5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + safezoneY)])";
 	};
 	class DefaultAction {
-		size = 0;
+		size = 0;		// Hide crosshair text
 	};
 	class PeripheralVision {
 		cueTexture = "A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
@@ -17,18 +18,18 @@ class CfgInGameUI  {
 		top = 9999;
 	};
 	class Cursor {
-		outArrow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		select = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		attack = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		customMark = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		getIn = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		iconComplex = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		leader = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		mission = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		unitUnconscious = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		customMark = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		tactical = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		iconComplex = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		move = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		outArrow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		select = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		selected = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		attack = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		getIn = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		tactical = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		unitUnconscious = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		watch = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 	};
 };

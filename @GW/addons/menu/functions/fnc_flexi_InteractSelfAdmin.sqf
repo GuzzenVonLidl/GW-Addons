@@ -155,7 +155,6 @@ if (_menuName isEqualTo "debug") then {
 					(["Initialize", [player, [], true]] call BIS_fnc_EGSpectator);
 				};
 			}],
-//			["Unit Count",{ ["Server"] call FUNC(countUnits); }],
 			[
 				"Server Monitor",
 				{ [] call EFUNC(MonitorServer,Toggle) },

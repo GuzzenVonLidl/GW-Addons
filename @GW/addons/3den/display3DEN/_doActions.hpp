@@ -1,117 +1,105 @@
 
-class GW_genericObjects {
-	text = "Generic Objects";
-	items[] = {"GW_enableSimulation","GW_allowDamage","GW_hideObject"};
+class MENU_SUB(doActions,toggleTerrain) {
+	text = "Hide Terrain Objects";
+	action = "[1, true] call GW_3DEN_fnc_spawnModule";
 };
 
-class GW_setObjects {
-	text = "Objects Only";
-	items[] = {"GW_simpleObject","GW_relativeObjects"};
-};
-
-class GW_setGroup {
-	text = "Group Actions";
-	items[] = {"GW_unitStance","GW_GarrisonBuildings","GW_createWaypoints"};
-};
-
-class GW_unitStance {
-	items[] = {"GW_unitStance_up","GW_unitStance_middle","GW_unitStance_down","GW_unitStance_auto"};
-	text = "Unit Stance";
-};
-class GW_unitStance_up {
-	text = "Up";
-	action = "[5, 0] call GW_3DEN_fnc_setAttribute;";
-	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_1};
-	picture = "\a3\3den\Data\Attributes\Stance\up_ca.paa";
-};
-class GW_unitStance_middle {
-	text = "Middle";
-	action = "[5, 1] call GW_3DEN_fnc_setAttribute;";
-	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_2};
-	picture = "\a3\3den\Data\Attributes\Stance\middle_ca.paa";
-};
-class GW_unitStance_down {
-	text = "Down";
-	action = "[5, 2] call GW_3DEN_fnc_setAttribute;";
-	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_3};
-	picture = "\a3\3den\Data\Attributes\Stance\down_ca.paa";
-};
-class GW_unitStance_auto {
-	text = "Auto";
-	action = "[5, 3] call GW_3DEN_fnc_setAttribute;";
-	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_4};
-};
-
-class GW_GarrisonBuildings {
-	action = "call GW_3den_fnc_garrisonNearest";
-	Text = "Garrison Selected units *";
+class MENU_SUB(doActions,GarrisonBuildings) {
+	action = "[2, true] call GW_3DEN_fnc_spawnModule";
+	Text = "Garrison Selected units";
 	picture = "\a3\3den\Data\CfgWaypoints\guard_ca.paa";
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_5};
 };
-class GW_createWaypoints {
+
+class MENU_SUB(doActions,createWaypoints) {
 	action = "call GW_3den_fnc_createWaypoints";
-	Text = "Generate waypoints around group *";
+	Text = "Generate waypoints around group";
 	picture = "\a3\3den\Data\CfgWaypoints\cycle_ca.paa";
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_6};
 };
 
-class GW_enableSimulation {
-	items[] = {"GW_enableSimulation_true","GW_enableSimulation_false"};
-	text = "EnableSimulation";
+class MENU_SUB(doActions,extra) {
+	text = "Extra";
+	items[] = {
+		MENU_SUB(doActions_extra,addUnitToProjectileTracker)
+	};
 };
 
-class GW_enableSimulation_true {
-	text = "True";
-	action = "[1, true] call GW_3DEN_fnc_setAttribute;";
-};
-class GW_enableSimulation_false {
-	text = "False";
-	action = "[1, false] call GW_3DEN_fnc_setAttribute;";
+class MENU_SUB(doActions_extra,addUnitToProjectileTracker) {
+	action = QUOTE(2 call FUNC(doAction));
+	Text = "Unit added to Projectile Tracker";
 };
 
-class GW_allowDamage {
-	items[] = {"GW_allowDamage_true","GW_allowDamage_false"};
-	text = "AllowDamage";
+class MENU_SUB(doActions,pattern_Line) {
+	action = QUOTE(call FUNC(pattern_Line));
+	Text = "Line pattern";
 };
 
-class GW_allowDamage_true {
-	text = "True";
-	action = "[2, true] call GW_3DEN_fnc_setAttribute;";
-};
-class GW_allowDamage_false {
-	text = "False";
-	action = "[2, false] call GW_3DEN_fnc_setAttribute;";
+class MENU_SUB(doActions,pattern_Circular) {
+	action = QUOTE(call FUNC(pattern_Circular));
+	Text = "Circular pattern";
 };
 
-class GW_hideObject {
-	items[] = {"GW_hideObject_true","GW_hideObject_false"};
-	text = "HideObject";
+class MENU_SUB(doActions,pattern_offset) {
+	text = "Pattern Offset";
+	items[] = {
+		MENU_SUB(doActions_pattern_offset,offset_1),
+		MENU_SUB(doActions_pattern_offset,offset_2),
+		MENU_SUB(doActions_pattern_offset,offset_3),
+		MENU_SUB(doActions_pattern_offset,offset_4),
+		MENU_SUB(doActions_pattern_offset,offset_5),
+		MENU_SUB(doActions_pattern_offset,offset_10),
+		MENU_SUB(doActions_pattern_offset,offset_15),
+		MENU_SUB(doActions_pattern_offset,offset_20),
+		MENU_SUB(doActions_pattern_offset,offset_25),
+		MENU_SUB(doActions_pattern_offset,offset_50)
+	};
 };
 
-class GW_hideObject_true {
-	text = "True";
-	action = "[3, true] call GW_3DEN_fnc_setAttribute;";
+class MENU_SUB(doActions_pattern_offset,offset_1) {
+	action = "[3, 1] call GW_3DEN_fnc_doAction;";
+	Text = "1 M";
 };
-class GW_hideObject_false {
-	text = "False";
-	action = "[3, false] call GW_3DEN_fnc_setAttribute;";
+class MENU_SUB(doActions_pattern_offset,offset_2) {
+	action = "[3, 2] call GW_3DEN_fnc_doAction;";
+	Text = "2 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_3) {
+	action = "[3, 3] call GW_3DEN_fnc_doAction;";
+	Text = "3 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_4) {
+	action = "[3, 4] call GW_3DEN_fnc_doAction;";
+	Text = "4 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_5) {
+	action = "[3, 5] call GW_3DEN_fnc_doAction;";
+	Text = "5 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_10) {
+	action = "[3, 10] call GW_3DEN_fnc_doAction;";
+	Text = "10 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_15) {
+	action = "[3, 15] call GW_3DEN_fnc_doAction;";
+	Text = "15 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_20) {
+	action = "[3, 20] call GW_3DEN_fnc_doAction;";
+	Text = "20 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_25) {
+	action = "[3, 25] call GW_3DEN_fnc_doAction;";
+	Text = "25 M";
+};
+class MENU_SUB(doActions_pattern_offset,offset_50) {
+	action = "[3, 50] call GW_3DEN_fnc_doAction;";
+	Text = "50 M";
 };
 
-class GW_simpleObject {
-	items[] = {"GW_simpleObject_true","GW_simpleObject_false"};
-	text = "CreateSimpleObject";
-};
+// Help
 
-class GW_simpleObject_True {
-	text = "True";
-	action = "[4, True] call GW_3DEN_fnc_setAttribute;";
-};
-class GW_simpleObject_false {
-	text = "False";
-	action = "[4, false] call GW_3DEN_fnc_setAttribute;";
-};
-
-class GW_relativeObjects {
-	text = "Copy relative location of obj 2 from obj 1";
-	action = "[0] call GW_3DEN_fnc_doAction";
+class MENU_SUB(doActions,Help) {
+	text = "Help";
+	action = "[1] call GW_3DEN_fnc_showMessage;";
 };

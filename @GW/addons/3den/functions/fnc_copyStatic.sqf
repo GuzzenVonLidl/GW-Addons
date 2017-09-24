@@ -1,5 +1,15 @@
 /*
-	[] call GW_3DEN_fnc_Copy
+	Author: GuzzenVonLidl
+	Copy units, vehicles and waypoints
+
+	Usage:
+	[] call GW_3DEN_fnc_CopyStatic
+
+	Arguments:
+	#0:	NUMBER:		 Copy Mode, 1 - Static units || 2 - Objects and Vehicles Only
+	Return Value: NO
+
+	Public: NO
 */
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
@@ -21,42 +31,9 @@ private _return = 0;
 	switch (_type) do {
 		case 1: { // Units && Vehicles
 			if (_x isKindOf "AllVehicles") then {
-				if !(GETATTRIBUTE("init") isEqualTo "") then {
-					_special pushBack [0, GETATTRIBUTE("init")];
-				};
-				if !(GETATTRIBUTE("allowDamage")) then {
-					_special pushBack [1, GETATTRIBUTE("allowDamage")];
-				};
-				if !(GETATTRIBUTE("enableSimulation")) then {
-					_special pushBack [2, GETATTRIBUTE("enableSimulation")];
-				};
-				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-					_special pushBack [3, GETATTRIBUTE("lock")];
-				};
-				if (GETATTRIBUTE("addToDynSimGrid")) then {
-					_special pushBack [4, GETATTRIBUTE("addToDynSimGrid")];
-				};
-				if (GETATTRIBUTE("dynamicSimulation")) then {
-					_special pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-				};
+				private _special = ([_x] call FUNC(getAttributes));
 
-				if (_x isKindOf "CAManBase") then {
-					private _stance = "Auto";
-					switch ((_x get3DENAttribute "UnitPos") select 0) do {
-						case 0: {
-							_stance = "Up";
-						};
-						case 1: {
-							_stance = "Middle";
-						};
-						case 2: {
-							_stance = "Down";
-						};
-					};
-					if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
-						_units pushBack [GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _stance, _special];
-					};
-				} else {
+				if !(_x isKindOf "CAManBase") then {
 					private _crewList = [];
 					private _crew = (fullCrew _x);
 					if ((count _crew) isEqualTo 0) then {
@@ -73,29 +50,21 @@ private _return = 0;
 
 					_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 				};
+
+				if (_x isKindOf "CAManBase") then {
+					private _stance = ["Up","Middle","Down","Auto"] select ((_x get3DENAttribute "UnitPos") select 0);
+
+					if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
+						_units pushBack [GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _stance, _special];
+					};
+				};
 			};
 		};
 
 		case 2: { // Objects
 			if ((_x isKindOf "All") && !(_x isKindOf "CAManBase")) then {
-				if !(GETATTRIBUTE("init") isEqualTo "") then {
-					_special pushBack [0, GETATTRIBUTE("init")];
-				};
-				if !(GETATTRIBUTE("allowDamage")) then {
-					_special pushBack [1, GETATTRIBUTE("allowDamage")];
-				};
-				if !(GETATTRIBUTE("enableSimulation")) then {
-					_special pushBack [2, GETATTRIBUTE("enableSimulation")];
-				};
-				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-					_special pushBack [3, GETATTRIBUTE("lock")];
-				};
-				if (GETATTRIBUTE("addToDynSimGrid")) then {
-					_special pushBack [4, GETATTRIBUTE("addToDynSimGrid")];
-				};
-				if (GETATTRIBUTE("dynamicSimulation")) then {
-					_special pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-				};
+				private _special = ([_x] call FUNC(getAttributes));
+
 				(vectorDir _x) params ["_dirX","_dirY","_dirZ"];
 				(vectorUp _x) params ["_upX","_upY","_upZ"];
 
@@ -110,12 +79,12 @@ switch (_type) do {
 		_return = (str([_units, _vehicles]) + (" call GW_Common_fnc_spawnGroup;"));
 		TRACE_1("Units", _units);
 		TRACE_1("Vehicles", _vehicles);
-		systemChat format ["%1 units, %2 vehicles copied - Static", (count _units), (count _vehicles)];
+		systemChat format ["%1 units, %2 vehicles copied - Copy Static", (count _units), (count _vehicles)];
 	};
 	case 2: {
 		_return = (str(_objects) + (" call GW_Common_fnc_spawnObjects;"));
 		TRACE_1("Objects", _objects);
-		systemChat format ["%1 objects copied - Objects", (count _objects)];
+		systemChat format ["%1 objects copied - Copy Objects", (count _objects)];
 	};
 };
 

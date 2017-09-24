@@ -43,8 +43,7 @@ private _menus = [
 				"Performance >",
 				"","","",
 				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_performance", 1],
-				-1, true,
-				GVARMAIN(isSuperAdmin)
+				-1, true,true
 			],
 			["Save Settings", { [QGVAR(settings), "save"] call CBA_fnc_localEvent; } ],
 			["Load Settings", { [QGVAR(settings), "load"] call CBA_fnc_localEvent; } ]
@@ -62,55 +61,55 @@ if (_menuName isEqualTo "settings_viewDistance") then {
 			],
 			[
 				"1000",
-				"setViewDistance 1000; setObjectViewDistance 835;",
+				"setViewDistance 1000; setObjectViewDistance 800;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 1000)
 			],
 			[
 				"1200",
-				"setViewDistance 1200; setObjectViewDistance 925;",
+				"setViewDistance 1200; setObjectViewDistance 900;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 1200)
 			],
 			[
 				"1500",
-				"setViewDistance 1500; setObjectViewDistance 1060;",
+				"setViewDistance 1500; setObjectViewDistance 1050;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 1500)
 			],
 			[
 				"2000",
-				"setViewDistance 2000; setObjectViewDistance 1286;",
+				"setViewDistance 2000; setObjectViewDistance 1300;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 2000)
 			],
 			[
 				"3000",
-				"setViewDistance 3000; setObjectViewDistance 1736;",
+				"setViewDistance 3000; setObjectViewDistance 1750;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 3000)
 			],
 			[
 				"4000",
-				"setViewDistance 4000; setObjectViewDistance 2187;",
+				"setViewDistance 4000; setObjectViewDistance 2200;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 4000)
 			],
 			[
 				"6000",
-				"setViewDistance 6000; setObjectViewDistance 3088;",
+				"setViewDistance 6000; setObjectViewDistance 3100;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 6000)
 			],
 			[
 				"8000",
-				"setViewDistance 8000; setObjectViewDistance 3989;",
+				"setViewDistance 8000; setObjectViewDistance 4000;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 8000)
 			],
 			[
 				"10000",
-				"setViewDistance 10000; setObjectViewDistance 4890;",
+				"setViewDistance 10000; setObjectViewDistance 4900;",
 				"","","",-1,true,
 				(GVAR(viewDistance_Max) >= 10000)
 			]
@@ -159,10 +158,13 @@ if (GVAR(STHud_Enabled)) then {	// New
 				],
 				[
 					"Toggle Compass >",
-					{[] call FUNC(STHud_Toggle_Compass)},
+					{[!GVAR(Toggle_STHud_Compass)] call FUNC(STHud_Toggle_Compass)},
 					[GVAR(Toggle_STHud_Compass)] call FUNC(getCheckBoxIcon)
 				],
-				["Restart HUD",{STHUD_UIMode = 3;}]
+				["Restart HUD",{
+					STHUD_UIMode = 3;
+					[true] call FUNC(STHud_Toggle_Compass);
+				}]
 			]
 		];
 	};
@@ -200,17 +202,17 @@ if (_menuName isEqualTo "settings_performance") then {
 			],
 			[
 				"Dynamic viewDistance (DVD)",
-				{[QGVAR(DynamicViewDistance_enablePFH), true] call CBA_fnc_LocalEvent},
+				{[true] call EFUNC(Performance,Handler_DynamicViewDistance)},
 				[false] call FUNC(getCheckBoxIcon),
 				"","",-1,true,
-				!GVAR(DynamicViewDistance_Enabled)
+				!EGVAR(Performance,DynamicViewDistance_Enabled)
 			],
 			[
 				"Dynamic viewDistance (DVD)",
-				{[QGVAR(DynamicViewDistance_enablePFH), false] call CBA_fnc_LocalEvent},
+				{[false] call EFUNC(Performance,Handler_DynamicViewDistance)},
 				[true] call FUNC(getCheckBoxIcon),
 				"","",-1,true,
-				GVAR(DynamicViewDistance_Enabled)
+				EGVAR(Performance,DynamicViewDistance_Enabled)
 			],
 			[
 				"Target FPS for DVD >",
@@ -227,38 +229,38 @@ if (_menuName isEqualTo "settings_dvd_targetfps") then {
 		[
 			[
 				"20",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 20; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 20] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 20; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 20] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"25",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 25; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 25] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 25; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 25] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"30",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 30; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 30] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 30; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 30] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"35",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 35; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 35] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 35; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 35] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"40",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 40; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 40] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 40; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 40] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"45",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 45; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 45] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 45; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 45] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"50",
-				{ GVAR(DynamicViewDistance_AvgTargetDistance) = 50; },
-				[GVAR(DynamicViewDistance_AvgTargetDistance) isEqualTo 50] call FUNC(getCheckBoxIcon)
+				{ EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) = 50; },
+				[EGVAR(Performance,DynamicViewDistance_AvgTargetDistance) isEqualTo 50] call FUNC(getCheckBoxIcon)
 			]
 		]
 	];

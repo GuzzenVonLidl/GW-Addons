@@ -14,16 +14,10 @@ class CfgPatches {
 	};
 };
 
-class CfgAddons {
-	class PreloadAddons {
-		class ADDON {
-			list[] = {ADDON};
-		};
-	};
-};
-
+#include "CfgActions.hpp"
 #include "CfgDiary.hpp"
 #include "CfgInGameUI.hpp"
+#include "CfgUnitInsignia.hpp"
 #include "RscMisc.hpp"
 
 class CfgLensFlare {
@@ -32,7 +26,9 @@ class CfgLensFlare {
 };
 
 class CfgCoreData {
-	eyeFlareSun = "A3\data_f\masktextureflare01_co.paa";
+	eyeFlareSun = "A3\data_f\masktextureflare00_co.paa";	// Big
+//	eyeFlareSun = "A3\data_f\masktextureflare01_co.paa";	// Small
+//	eyeFlareSun = "A3\data_f\eyeflareSun_ca.paa";			// Default
 };
 
 class CfgIRLaserSettings {
@@ -41,13 +37,16 @@ class CfgIRLaserSettings {
 	maxViewDistance = 1000;
 };
 
-class CfgVehicles { //  VehiclesVisibleAtDistance_Visuals_C_PvPscene
-	class All;
-	class AllVehicles: All {
-		featureSize = 1000;
+class CfgVehicles {
+	class Plane;
+	class Plane_Base_F: Plane {
+		featureType = 2;
+	};
+	class Helicopter;
+	class Helicopter_Base_F: Helicopter {
+		featureType = 2;
 	};
 };
-// <--
 
 class hd_dot;
 class hd_dot_noShadow;
@@ -66,50 +65,5 @@ class CfgMovesBasic {
 };
 
 class CfgInventoryGlobalVariable {
-	maxSoldierLoad = 10000;
-};
-
-class CfgUnitInsignia {
-	class GOL {
-		displayName = "GOL Clan";
-		author = "GOL Clan";
-		texture = QPATHTOF(data\Insignia_logo_ca.paa);
-		textureVehicle = "";
-	};
-};
-
-class CfgActions {
-	class None;
-	class Rearm: None {
-		show = 0;
-	};
-	class LoadMagazine;
-	class LoadEmptyMagazine : LoadMagazine {
-		showWindow = 0;
-		textDefault = "";
-	};
-	class OpenBag: None {
-		shortcut = "Gear";
-	};
-
-	// to pistol
-	class HandGunOn: None {
-		show = 0;
-	};
-	// to rifle
-	class HandGunOff: None {
-		show = 0;
-	};
-
-	// to launcher, (also used for binoculars?)
-	class SwitchWeapon: None {
-		show = 0;
-	};
-	class SwitchMagazine: SwitchWeapon {
-		show = 1;
-	};
-	// no idea, probably unused
-	class HideWeapon: SwitchWeapon {
-		show = 0;
-	};
+	maxSoldierLoad = 1500;
 };

@@ -23,7 +23,7 @@ private _menus = [
 				{ [player] call GW_Menu_fnc_doParadrop },
 				QPATHTOF(DATA\parachute_icon.paa),
 				"","",-1,true,
-				(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > 200))
+				(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > GVAR(ParadropHaloHeight)))
 			],
 			[
 				"<t color='#DF9100'>Player Menu ></t>",
@@ -34,6 +34,13 @@ private _menus = [
 				"<t color='#1C4ED6'>Settings ></t>",
 				"","","",
 				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1]
+			],
+			[
+				"<t color='#1C4ED6'>Settings ></t>",
+				"","","",
+				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1],
+				-1,true,
+				GVAR(MissionMenu)
 			]
 		]
 	]

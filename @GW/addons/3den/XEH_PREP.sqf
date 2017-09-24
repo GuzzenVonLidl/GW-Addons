@@ -1,4 +1,6 @@
 
+
+PREP(addEH_onMessage);
 PREP(copyGroup);
 PREP(copyGroupOld);
 PREP(copyStatic);
@@ -6,11 +8,22 @@ PREP(copyStaticOld);
 PREP(createComposition);
 PREP(createWaypoints);
 PREP(doAction);
+PREP(doActionMisc);
 PREP(garrisonNearest);
+PREP(getAttributes);
 PREP(getCorrectVersion);
-PREP(getObjectsToHide);
-PREP(getRightClick);
-PREP(Init);
+PREP(getTool);
+//PREP(isNil);
+PREP(isNil3DENEntity);
+PREP(isToolsNil);
+PREP(pattern_Circular);
+PREP(pattern_Line);
+PREP(perFrame);
 PREP(setAttribute);
 PREP(setObjectHidden);
+PREP(showMessage);
 PREP(showStats);
+PREP(spawnModule);
+PREP(uiCallFunction);
+PREP(uiGetFunction);
+PREP(uiSaveFunction);

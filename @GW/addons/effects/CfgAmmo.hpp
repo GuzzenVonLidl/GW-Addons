@@ -37,6 +37,7 @@ class CfgAmmo {
 		simulation = "shotSmoke";
 		smokeColor[] = {1,1,1,1};
 		timeToLive = 45;
+		deflectionSlowDown = 0.3;
 	};
 
 	class G_40mm_SmokeRed: G_40mm_Smoke {
@@ -99,5 +100,10 @@ class CfgAmmo {
 	};
 	class ACE_F_Hand_Yellow: F_20mm_Yellow {
 		timeToLive = 60;
+	};
+
+	class BulletBase;
+	class B_65x39_Caseless: BulletBase {
+		cartridge = "FxCartridge_65";
 	};
 };

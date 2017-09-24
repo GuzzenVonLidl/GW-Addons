@@ -27,8 +27,6 @@
 #define MAPLOADED getClientStateNumber >= 9 || !isMultiplayer
 #define MISSIONLOADED getClientStateNumber >= 10 || !isMultiplayer
 
-#define	DEVBUILD (["GW_FRAMEWORK", "Core", "devBuild"] call BIS_fnc_getCfgData) isEqualTo -2
-#define	DEVCONSOLEENABLED (["GW_FRAMEWORK", "Core", "DebugConsole"] call BIS_fnc_getCfgData) isEqualTo -2
 #define	DEVCONSOLE(VAR1)	"debug_console" callExtension (VAR1)
 
 #define conBeep DEVCONSOLE("A")
@@ -41,3 +39,13 @@
 #define	TRUE -2
 #define PRIVATE 0
 #define PUBLIC 2
+
+#define NO_SIDE -1
+#define EAST 0			// (Russian)
+#define WEST 1			// (NATO)
+#define RESISTANCE 2	// Guerilla
+#define CIVILIAN 3
+#define NEUTRAL 4
+#define ENEMY 5
+#define FRIENDLY 6
+#define LOGIC 7

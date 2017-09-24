@@ -1,5 +1,15 @@
 /*
-	[] call GW_3DEN_fnc_Copy
+	Author: GuzzenVonLidl
+	Copy units, vehicles and waypoints
+
+	Usage:
+	[] call GW_3DEN_fnc_CopyStaticOld
+
+	Arguments:
+	#0:	NUMBER:		 Copy Mode, 1 - Static units || 2 - Objects and Vehicles Only
+	Return Value: NO
+
+	Public: NO
 */
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)

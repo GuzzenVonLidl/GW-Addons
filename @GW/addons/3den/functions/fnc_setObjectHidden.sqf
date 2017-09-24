@@ -31,7 +31,7 @@ params [
 ];
 
 private _filter = ["BUILDING","BUNKER","BUSH","BUSSTOP","CHAPEL","CHURCH","CROSS","FENCE","FOREST BORDER","FOREST SQUARE","FOREST TRIANGLE","FOREST","FORTRESS","FOUNTAIN","FUELSTATION","HOSPITAL","HOUSE","LIGHTHOUSE","LINES","POWER""POWERSOLAR","POWERWAVE","POWERWIND","QUAY","RAILWAY","ROCK","ROCKS","RUIN","SHIPWRECK","SMALL TREE","STACK","TOURISM","TRANSMITTER","TREE","VIEW-TOWER","WALL","WATERTOWER","HIDE"];
-private _objects = (nearestTerrainObjects [_location, _filter, _radius, false]);
+private _objects = (nearestTerrainObjects [_location, _filter, _radius, true]);
 
 {
 	if ((getObjectType _x) isEqualTo 1) then {

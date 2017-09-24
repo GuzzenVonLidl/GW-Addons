@@ -22,14 +22,6 @@ class CfgPatches {
 	};
 };
 
-class CfgAddons {
-	class PreloadAddons {
-		class ADDON {
-			list[] = {ADDON};
-		};
-	};
-};
-
 class asdg_SlotInfo;
 class asdg_FrontSideRail: asdg_SlotInfo {
 	class compatibleItems {
@@ -53,30 +45,45 @@ class CfgSounds {
 	};
 };
 
+class CfgAISkill {
+	aimingAccuracy[] = {0, 0.1, 1, 1};
+	aimingShake[]    = {0, 0.1, 1, 1};
+	aimingSpeed[]    = {0, 0.1, 1, 1};
+	commanding[]     = {0, 0.1, 1, 1};
+	courage[]        = {0, 0.1, 1, 1};
+	endurance[]      = {0, 0.1, 1, 1};
+	general[]        = {0, 0.1, 1, 1};
+	reloadSpeed[]    = {0, 0.1, 1, 1};
+	spotDistance[]   = {0, 0.1, 1, 0.7};
+	spotTime[]       = {0, 0.1, 1, 0.8};
+};
+
 /*
 
-class CfgMovesMaleSdr {
-	class States {
-		class AmovPercMstpSlowWrflDnon;
-		class AmovPercMstpSrasWrflDnon: AmovPercMstpSlowWrflDnon {
-			file="\A3\anims_f\Data\Anim\Sdr\Mov\Erc\stp\low\rfl\AmovPercMstpSlowWrflDnon";
-			collisionShape="A3\anims_f\data\geom\sdr\Perc_Wrfl_Low.p3d";
-		};
-	};
+class CfgAISkill {	// ACE 3
+	aimingAccuracy[] = {0,0, 1,0.8};  // {0,0,1,1};   v1.26 defaults
+	aimingShake[]    = {0,0, 1,0.6};  // {0,0,1,1};
+	aimingSpeed[]    = {0,0, 1,0.7};  // {0,0.5,1,1};
+	commanding[]     = {0,0, 1,0.8};  // {0,0,1,1};
+	courage[]        = {0,0, 1,0.7};  // {0,0,1,1};
+	endurance[]      = {0,0, 1,0.7};  // {0,0,1,1};
+	general[]        = {0,0, 1,0.9};  // {0,0,1,1};
+	//reloadSpeed[]  = {0,0, 1,0.8};  // {0,0,1,1};// apparently breaks rapid firing in single fire mode for players
+	spotDistance[]   = {0,0, 1,0.9};  // {0,0.2,1,0.4};
+	spotTime[]       = {0,0, 1,0.7};  // {0,0,1,0.7};
 };
 
-
-class CfgVehicles {	// custom radio backpack
-  	class ReammoBox;
-  	class Bag_Base;
-	class TFAR_Bag_Base;
-	class tf_anprc155;
-	class tf_anprc155_black: tf_anprc155 {
-		author = "GuzzenVonlidl";
-		displayName = "AN/PRC 155 Black";
-		descriptionShort = "AN/PRC 155 Black";
-		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {QPATHTOF(DATA\clf_nicecomm2_co_new.paa)};
-	};
+class CfgAISkill {	// Default
+	aimingAccuracy[] = {0, 0, 1, 1};
+	aimingShake[]	 = {0, 0, 1, 1};
+	aimingSpeed[]	 = {0, 0.5, 1, 1};
+	commanding[]	 = {0, 0, 1, 1};
+	courage[] 		 = {0, 0, 1, 1};
+	endurance[]		 = {0, 0, 1, 1};
+	general[]		 = {0, 0, 1, 1};
+	reloadSpeed[]	 = {0, 0, 1, 1};
+	spotDistance[]	 = {0, 0.2, 1, 0.4};
+	spotTime[] 		 = {0, 0, 1, 0.7};
 };
 */
+

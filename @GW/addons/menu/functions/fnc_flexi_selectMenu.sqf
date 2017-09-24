@@ -15,12 +15,4 @@ switch (_type) do {
 			["player",[],100, [QUOTE(call FUNC(flexi_InteractSelfAdmin)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
 		};
 	};
-	case 3: {
-		if (ISADMIN) then {
-			['keyDown', [findDisplay 49,59], ''] execVM 'a3\ui_f\scripts\GUI\RscDisplayInterrupt.sqf';
-		};
-	};
-
-	default {
-	};
 };

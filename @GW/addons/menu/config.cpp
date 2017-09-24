@@ -14,25 +14,5 @@ class CfgPatches {
 	};
 };
 
-class CfgAddons {
-	class PreloadAddons {
-		class ADDON {
-			list[] = {ADDON};
-		};
-	};
-};
-
 #include "CfgEventHandlers.hpp"
 #include "CfgGUI.hpp"
-
-
-class CfgFunctions {
-    class A3 {
-        class Debug {
-            class isDebugConsoleAllowed {
-                file = QPATHTOF(functions\DOUBLES(fnc,isDebugConsoleAllowed).sqf);
-                recompile = 1;
-            };
-        };
-    };
-};

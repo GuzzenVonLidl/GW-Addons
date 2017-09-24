@@ -1,72 +1,70 @@
 
 class RscControlsGroup;
 class RscText;
-/*
-class RscCompass: RscObject
-{
-    model = "\A3\ui_f\objects\compass.p3d";
-    direction[] = {0,0.5,0.5};
-    up[] = {0,1,0};
-    scale = "0.47 * 0.875 * (SafeZoneW Min SafeZoneH)";
-    positionBack[] = {0,-0.02,0.075};
-};
-
-*/
 class RscObject;
 class RscCompass : RscObject {
-    scale = 1;
+	scale = 1;
 };
 
 class RscPicture;
 class RscVignette {
-    colorText[] = {0, 0, 0, 0};
+	colorText[] = {0, 0, 0, 0};
+};
+
+/*
+class RscCompass: RscObject {
+	model = "\A3\ui_f\objects\compass.p3d";
+	direction[] = {0,0.5,0.5};
+	up[] = {0,1,0};
+	scale = "0.47 * 0.875 * (SafeZoneW Min SafeZoneH)";
+	positionBack[] = {0,-0.02,0.075};
 };
 
 // Ammo Count
 class RscInGameUI {
-    class RscUnitInfo {
-        class WeaponInfoControlsGroupLeft : RscControlsGroup {
-            class controls {
-                class CA_AmmoCount : RscText {
-                    sizeEx = 0;
-                };
-                class CA_MagCount : RscText {
-                    sizeEx = 0;
-                };
-                class CA_GrenadeCount : RscText {
-                    sizeEx = 0;
-                };
-            };
-        };
-    };
+	class RscUnitInfo {
+		class WeaponInfoControlsGroupLeft : RscControlsGroup {
+			class controls {
+				class CA_AmmoCount : RscText {
+					sizeEx = 0;
+				};
+				class CA_MagCount : RscText {
+					sizeEx = 0;
+				};
+				class CA_GrenadeCount : RscText {
+					sizeEx = 0;
+				};
+			};
+		};
+	};
 };
-
+*/
 // Desync
 class RscPendingInvitation {
-    textureConnectionQualityPoor = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureConnectionQualityBad = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureDesyncLow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureDesyncHigh = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    color[] = {1,1,1,1};
-    x = 0.939;
-    y = 0.852;
-    w = 0.054;
-    h = 0.072;
-    timeout = 10;
-    blinkingPeriod = 2;
+	textureConnectionQualityPoor = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureConnectionQualityBad = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureDesyncLow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureDesyncHigh = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	color[] = {1,1,1,1};
+	x = 0.939;
+	y = 0.852;
+	w = 0.054;
+	h = 0.072;
+	timeout = 10;
+	blinkingPeriod = 2;
 };
 class RscPendingInvitationInGame {
-    textureConnectionQualityPoor = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureConnectionQualityBad = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureDesyncLow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    textureDesyncHigh = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-    color[] = {1,1,1,1};
-    x = 0.939;
-    y = 0.852;
-    w = 0.054;
-    h = 0.072;
-    timeout = 10;
-    blinkingPeriod = 2;
+	textureConnectionQualityPoor = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureConnectionQualityBad = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureDesyncLow = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	textureDesyncHigh = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	color[] = {1,1,1,1};
+	x = 0.939;
+	y = 0.852;
+	w = 0.054;
+	h = 0.072;
+	timeout = 10;
+	blinkingPeriod = 2;
 };
 
 // New map look

@@ -16,14 +16,19 @@ class CfgPatches {
 	};
 };
 
-class CfgAddons {
-	class PreloadAddons {
-		class ADDON {
-			list[] = {ADDON};
-		};
-	};
-};
-
 #include "CfgAmmo.hpp"
 #include "CfgCloudlets.hpp"
 //#include "CfgLights.hpp"
+
+class cfgWeapons {
+	class Default {
+		fireLightDuration = 1;
+		fireLightIntensity = 0.5;
+	};
+	class Rifle;
+	class Rifle_Base_F: Rifle {
+		fireLightDuration = 0.015;
+		fireLightIntensity = 0.3;
+		fireLightDiffuse[] = {2,1.5,0};
+	};
+};
