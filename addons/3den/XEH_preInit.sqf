@@ -27,7 +27,7 @@ if (is3DEN) then {
 			addMissionEventHandler ["Draw3D", {
 				{
 					if (!([_x] call FUNC(isNil3DENEntity)) && ("Preferences" get3DENMissionAttribute "GW_Show3DMessage")) then {
-						drawIcon3D ["", [1,0,0,1], _x, 0, 0, 0, "Logic: HideTerrainTrigger", 1, 0.05, "PuristaMedium"];
+						drawIcon3D ["", [1,0,0,1], _x, 0, 0, 0, "Logic: HideTerrainTrigger", 1, 0.04, "PuristaMedium"];
 					};
 				} forEach GVAR(hiddenTriggers);
 			}];

@@ -5,8 +5,8 @@ class CfgCloudlets {
 		animationSpeedCoef = 1.1;
 		blockAIVisibility = 1;
 //		bounceOnSurface = -1;
-		CircleRadius = 1;
-		CircleVelocity[] = {0.3,0.3,0};
+		circleRadius = 1;
+		circleVelocity[] = {0.3,0.3,0};
 		interval = 0.1;
 		lifeTime = 30;
 		lifeTimeVar = 3;
@@ -14,9 +14,11 @@ class CfgCloudlets {
 		moveVelocityVar[] = {0.5,0.2,0.4};
 		rubbing = 0.04;
 		size[] = {0.8,6,10};					// Default 0.1,2,6
+		sizeVar = 0.7;
 //		weight = 1.3;
 	};
 };
+
 
 /*
 	class SmokeShellWhiteSmall;
