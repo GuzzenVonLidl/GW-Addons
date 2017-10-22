@@ -158,7 +158,7 @@ if (_menuName isEqualTo "debug") then {
 			[
 				"Server Monitor",
 				{ [] call EFUNC(MonitorServer,Toggle) },
-				[!EGVAR(MonitorServer,doEnabled)] call FUNC(getCheckBoxIcon)
+				[EGVAR(MonitorServer,doRecive)] call FUNC(getCheckBoxIcon)
 			],
 			[
 				"Map Monitor",
@@ -236,16 +236,37 @@ if (_menuName isEqualTo "spawn") then {
 	_menus pushBack [
 		["spawn","Spawn Menu", _menuRsc],
 		[
-/*
 			[
-				"Loadouts >",
+				"Loadouts - Squad >",
 				"", "", "",
 				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"loadouts", 1]
 			],
-*/
 			["Ammo Box - Squad",{ ["small_box","Box_NATO_Ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
 			["Ammo Box - Platoon",{ ["big_box","B_CargoNet_01_ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
 			["Medical Box - Big",{ ["med_box","Box_NATO_AmmoOrd_F", player] remoteExecCall [QFUNC(spawnBox), 2] }]
+		]
+	];
+};
+
+if (_menuName isEqualTo "loadouts") then {
+	_menus pushBack [
+		["loadouts","Loadouts", _menuRsc],
+		[
+			["Platoon Leader",{ [player, "pl"] call GW_Gear_Fnc_Handler; }],
+			["Forward Air Controller",{ [player, "fac"] call GW_Gear_Fnc_Handler; }],
+			["Squad Leader",{ [player, "sl"] call GW_Gear_Fnc_Handler; }],
+			["Squad Medic",{ [player, "sm"] call GW_Gear_Fnc_Handler; }],
+			["Fire Team Leader",{ [player, "ftl"] call GW_Gear_Fnc_Handler; }],
+			["Rifleman",{ [player, "r"] call GW_Gear_Fnc_Handler; }],
+			["Grenadier",{ [player, "g"] call GW_Gear_Fnc_Handler; }],
+			["Asst. Gunner",{ [player, "ag"] call GW_Gear_Fnc_Handler; }],
+			["Automatic Rifleman",{ [player, "ar"] call GW_Gear_Fnc_Handler; }],
+			["Crew memeber",{ [player, "crew"] call GW_Gear_Fnc_Handler; }],
+			["Pilot",{ [player, "p"] call GW_Gear_Fnc_Handler; }],
+			["Rifleman AT Medium",{ [player, "mat"] call GW_Gear_Fnc_Handler; }],
+			["Asst. Rifleman AT",{ [player, "amat"] call GW_Gear_Fnc_Handler; }],
+			["Medium Machine Gunner",{ [player, "mmg"] call GW_Gear_Fnc_Handler; }],
+			["Asst. Medium Machine Gunner",{ [player, "ammg"] call GW_Gear_Fnc_Handler; }]
 		]
 	];
 };

@@ -14,9 +14,14 @@
 
 params ["_unit","_muzzle","_weapon","_type","_ammo"];
 
+if (count GVAR(Array) > 1000) exitWith {
+	[] call FUNC(handler);
+	false
+};
+
 private _cartridge = (getText (configFile >> "CfgAmmo" >> _ammo >> "cartridge"));
 private _cartridgeModel = (getText (configFile >> "CfgVehicles" >> _cartridge >> "model"));
-private _position = getPosATL _unit;
+private _position = (getPosATL _unit);
 _position params ["_posX", "_posY", "_posZ"];
 _position = [_posX + (random 2) - 1, _posY + (random 2) - 1, _posZ];
 

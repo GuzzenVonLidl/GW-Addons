@@ -1,5 +1,102 @@
 
 class Cfg3DEN {
+	class Attributes {
+		class Combo;
+		class Controls;
+		class Title;
+		class Value;
+		class GW_SelectLoadout: Combo {
+			class Controls: Controls {
+				class Title: Title{};
+				class Value: Value {
+					class Items {
+						class loadout_none {
+							text = "NONE";
+							data = "";
+							value = -1;
+							default = 1;
+						};
+						class loadout_pl {
+							text = "Platoon leader";
+							data = "pl";
+							value = 0;
+						};
+						class loadout_fac {
+							text = "Forward Air Controller";
+							data = "fac";
+							value = 0;
+						};
+						class loadout_sl {
+							text = "Squad Leader";
+							data = "sl";
+							value = 0;
+						};
+						class loadout_sm {
+							text = "Squad Medic";
+							data = "sm";
+							value = 0;
+						};
+						class loadout_ftl {
+							text = "Fire team leader";
+							data = "ftl";
+							value = 0;
+						};
+						class loadout_r {
+							text = "Rifleman";
+							data = "r";
+							value = 0;
+						};
+						class loadout_g {
+							text = "Grenadier";
+							data = "g";
+							value = 0;
+						};
+						class loadout_ag {
+							text = "Asst. Gunner";
+							data = "ag";
+							value = 0;
+						};
+						class loadout_ar {
+							text = "Automatic Rifleman";
+							data = "ar";
+							value = 0;
+						};
+						class loadout_crew {
+							text = "Crew memeber";
+							data = "crew";
+							value = 0;
+						};
+						class loadout_p {
+							text = "Pilot";
+							data = "p";
+							value = 0;
+						};
+						class loadout_mat {
+							text = "Rifleman AT Medium";
+							data = "mat";
+							value = 0;
+						};
+						class loadout_amat {
+							text = "Asst. Rifleman AT";
+							data = "amat";
+							value = 0;
+						};
+						class loadout_mmg {
+							text = "Medium Machine Gunner";
+							data = "mmg";
+							value = 0;
+						};
+						class loadout_ammg {
+							text = "Asst. Medium Machine Gunner";
+							data = "ammg";
+							value = 0;
+						};
+					};
+				};
+			};
+		};
+	};
+
 	class Mission {
 		class Multiplayer {
 			class AttributeCategories {
@@ -167,7 +264,7 @@ class Cfg3DEN {
 
 	class Object {
 		class AttributeCategories {
-            delete Identity;
+			delete Identity;
 			class Inventory {
 				collapsed = 1;
 				class Attributes {
@@ -180,7 +277,7 @@ class Cfg3DEN {
 			};
 			class State {
 				collapsed = 1;
-	            class Attributes {
+				class Attributes {
 
 					class AllowDamage {
 						property = "allowDamage";
@@ -219,14 +316,14 @@ class Cfg3DEN {
 					};
 				};
 			};
-            class StateSpecial {
-	            class Attributes {
-		            delete AllowDamage;
-//		            delete EnableRevive;
-		            delete EnableSimulation;
-		            delete EnableStamina;
-		            delete HideObject;
-		            class GW_DisableHC {
+			class StateSpecial {
+				class Attributes {
+					delete AllowDamage;
+		            delete EnableRevive;
+					delete EnableSimulation;
+					delete EnableStamina;
+					delete HideObject;
+					class GW_DisableHC {
 						displayName = "Disable HC Transfer";
 						tooltip = "Disables Auto Transfer Group to Headless Client   (Requires GW Framework)";
 						property = "GW_DisableHC";
@@ -235,6 +332,29 @@ class Cfg3DEN {
 						defaultValue = "false";
 						condition = "objectBrain";
 					};
+					class GW_DisableGearInit {
+						displayName = "Disable Auto Gear";
+						tooltip = "Disables Auto Gear Select for Group (Requires GW Framework)";
+						property = "GW_DisableGearInit";
+						control = "Checkbox";
+						expression = "(group _this) setVariable ['GW_Gear_BlackList', _value, true];";
+						defaultValue = "false";
+						condition = "objectBrain";
+					};
+					class GW_LoadoutSelector {
+						displayName = "Loadout Selector";
+						tooltip = "Force a unit to be a specific role, This by passes the 'Auto Gear' (Requires GW Framework)";
+						property = "GW_LoadoutSelector";
+						control = "GW_SelectLoadout";
+						expression = "_this setVariable ['GW_Gear_Loadout', _value, true];";
+						condition = "objectBrain";
+					};
+				};
+			};
+			class GW_States {
+				displayName = "GW Framework";
+				collapsed = 0;
+				class Attributes {
 				};
 			};
 		};

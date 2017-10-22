@@ -13,10 +13,13 @@
 */
 #include "script_component.hpp"
 
-if (GVAR(doEnabled)) then {
-	[QGVAR(addServerRequest), player] call CBA_fnc_serverEvent;
-	GVAR(doEnabled) = false;
+if (GVAR(doRecive)) then {	// If enabled, Remove it
+	[QGVAR(removeServerRequest), player] call CBA_fnc_serverEvent;
+	GVAR(doRecive) = false;
+	[{
+		hintSilent "";
+	}, [], 3] call CBA_fnc_waitAndExecute;
 } else {
-	[QGVAR(removeUpdatesfromServer), player] call CBA_fnc_localEvent;
-	GVAR(doEnabled) = true;
+	[QGVAR(addServerRequest), player] call CBA_fnc_serverEvent;
+	GVAR(doRecive) = true;
 };

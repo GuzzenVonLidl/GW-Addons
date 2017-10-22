@@ -11,13 +11,9 @@ while {GVAR(Enabled)} do {
 		visibleMap || {shownGPS} || {GVAR(constantUpdate)} || {_sigTerm};
 	};
 
-	{ // forEach
-		private ["_obj", "_marker", "_alive", "_side", "_isPlayer"];
-		_obj = _x select 0;
-		_marker = _x select 1;
-		_alive = _x select 2;
-		_side = _x select 3;
-		_isPlayer = _x select 4;
+	{
+		_x params ["_obj", "_marker", "_alive", "_side", "_isPlayer"];
+
 		if ( // Object has changed state or script is ending
 			_sigTerm || // Script ending
 			{isNull _obj} || // Object deleted
@@ -48,83 +44,73 @@ while {GVAR(Enabled)} do {
 	if (_sigTerm) exitWith {
 		GVAR(sigTerm) = false;
 	};
+
 	if (visibleMap || GVAR(constantUpdate)) then { // Repaint map markers
-
-	/* Paint unit map markers */
-	{ // forEach
-		if (alive _x) then {
-			[_x] call FUNC(addFiredEH);
-			private ["_playerStat"];
-			_playerStat = _x getVariable QGVAR(playerStat);
-			if ((isNil "_playerStat") || {!([(isPlayer _x), (_playerStat select 1)] call FUNC(compareBool))}) then {
-				_x setVariable [QGVAR(playerStat), [(name _x), (isPlayer _x)], true];
-			};
-			if (!(_x in _doneObjs) && {(vehicle _x) isEqualTo _x}) then {
-				private ["_color", "_type", "_marker"];
-				_color = [side _x] call FUNC(getSideColor);
-				_type = if (isPlayer _x) then {"mil_arrow2"} else {"mil_arrow"};
-				_marker = [_markers, _x, _type, _color, [0.4, 0.4], MARKER_ALPHA] call FUNC(paintObjMarker);
-				if (_detailLevel >= 1) then {
-					if ((isPlayer _x) || {_detailLevel >= 3}) then {
-						_marker setMarkerTextLocal (name _x);
-					};
-				};
-			};
-		};
-	} forEach allUnits;
-
-	/* Paint dead map markers */
-	{ // forEach
-		if (!(_x in _doneObjs)) then {
-			private ["_marker", "_playerStat"];
-			_marker = [_markers, _x, "mil_arrow", "ColorBlack", [0.4, 0.4], MARKER_ALPHA] call FUNC(paintObjMarker);
-			_playerStat = _x getVariable QGVAR(playerStat);
-			if ((_detailLevel >= 1) && {!isNil "_playerStat"}) then {
-				if ((_playerStat select 1) || {_detailLevel >= 3}) then {
-					_marker setMarkerTextLocal (_playerStat select 0);
-				};
-			};
-		};
-	} forEach allDead;
-
-	/* Paint vehicle map markers */
-	{ // forEach
-		if (_x isKindOf "AllVehicles") then { // Protect against fake vehicles
+		{
 			if (alive _x) then {
-				if !(_x getVariable [QGVAR(firedEH), false]) then {
-					_x setVariable [QGVAR(firedEH),true];
-					_x addEventHandler ["Fired", {_this call FUNC(firedEH);}];
+				[_x] call FUNC(addFiredEH);
+				private ["_playerStat"];
+				_playerStat = _x getVariable QGVAR(playerStat);
+				if ((isNil "_playerStat") || {!([(isPlayer _x), (_playerStat select 1)] call FUNC(compareBool))}) then {
+					_x setVariable [QGVAR(playerStat), [(name _x), (isPlayer _x)], true];
 				};
-			//	[_x] call FUNC(addFiredEH);
-			};
-			if (!(_x in _doneObjs)) then {
-				private ["_type", "_color", "_marker"];
-				_type = switch (true) do {
-					case (_x isKindOf "StaticWeapon"): {"b_inf"}; // Static Weapon
-					case (_x isKindOf "Car"): {"b_motor_inf"}; // Motorized
-					case (_x isKindOf "Tank"): {"b_armor"}; // Armor
-					case (_x isKindOf "Helicopter"): {"b_air"}; // Helicopter
-					case (_x isKindOf "Plane"): {"b_plane"}; // Airplane
-					default {"b_unknown"}; // Anything else
-				};
-				if (alive _x) then {
-					_color = [side _x] call FUNC(getSideColor);
-				} else {
-					_color ="ColorBlack";
-				};
-				_marker = [_markers, _x, _type, _color, [0.8, 0.8], MARKER_ALPHA] call FUNC(paintObjMarker);
-				if (_detailLevel >= 1) then {
-					if (((count (crew _x)) > 0) && {isPlayer((crew _x) select 0)}) then {
-					_marker setMarkerTextLocal (name ((crew _x) select 0));
-					} else {
-						if (_detailLevel >= 2) then {
-							_marker setMarkerTextLocal ('"' + (typeOf(_x)) + '"');
+				if (!(_x in _doneObjs) && {(vehicle _x) isEqualTo _x}) then {
+					private ["_color", "_type", "_marker"];
+					_color = [_x] call FUNC(getSideColor);
+					_type = if (isPlayer _x) then {"mil_arrow2"} else {"mil_arrow"};
+					_marker = [_markers, _x, _type, _color, [0.4, 0.4], MARKER_ALPHA] call FUNC(paintObjMarker);
+					if (_detailLevel >= 1) then {
+						if ((isPlayer _x) || {_detailLevel >= 3}) then {
+							_marker setMarkerTextLocal (name _x);
 						};
 					};
 				};
 			};
-		};
-	} forEach vehicles;
+		} forEach allUnits;		/* Paint unit map markers */
+
+		{
+			if (!(_x in _doneObjs)) then {
+				private ["_marker", "_playerStat"];
+				_marker = [_markers, _x, "mil_arrow", "ColorBlack", [0.4, 0.4], MARKER_ALPHA] call FUNC(paintObjMarker);
+				_playerStat = _x getVariable QGVAR(playerStat);
+				if ((_detailLevel >= 1) && {!isNil "_playerStat"}) then {
+					if ((_playerStat select 1) || {_detailLevel >= 3}) then {
+						_marker setMarkerTextLocal (_playerStat select 0);
+					};
+				};
+			};
+		} forEach allDead;		/* Paint dead map markers */
+
+		{
+			if (_x isKindOf "AllVehicles") then {
+				private _color = "ColorBlack";
+				if (alive _x) then {
+					[_x] call FUNC(addFiredEH);
+					_color = [_x] call FUNC(getSideColor);
+				};
+				if (!(_x in _doneObjs)) then {
+					private ["_type", "_marker"];
+					_type = switch (true) do {
+						case (_x isKindOf "StaticWeapon"): {"b_inf"};
+						case (_x isKindOf "Car"): {"b_motor_inf"};
+						case (_x isKindOf "Tank"): {"b_armor"};
+						case (_x isKindOf "Helicopter"): {"b_air"};
+						case (_x isKindOf "Plane"): {"b_plane"};
+						default {"b_unknown"};
+					};
+					_marker = [_markers, _x, _type, _color, [0.8, 0.8], MARKER_ALPHA] call FUNC(paintObjMarker);
+					if (_detailLevel >= 1) then {
+						if (((count (crew _x)) > 0) && {isPlayer((crew _x) select 0)}) then {
+						_marker setMarkerTextLocal (name ((crew _x) select 0));
+						} else {
+							if (_detailLevel >= 2) then {
+								_marker setMarkerTextLocal ('"' + (typeOf(_x)) + '"');
+							};
+						};
+					};
+				};
+			};
+		} forEach vehicles;		/* Paint vehicle map markers */
 	};
 	uiSleep _interval;
 };

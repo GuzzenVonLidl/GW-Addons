@@ -3,6 +3,22 @@
 #define MENU_SUB_SUB(var1,var2) TRIPLES(ADDON,var1,var2)
 
 class display3DEN {
+	class ContextMenu: ctrlMenuStrip {
+		class Items {
+			class Log {
+				items[] += {"LogVectors"};
+			};
+
+			class LogVectors {
+				action = "['logClasses'] call bis_fnc_3DENEntityMenu;";
+				conditionShow = "selectedObject + selectedWaypoint + selectedLogic + selectedMarker";
+				data = "LogVectors";
+				text = "Log Vector Up and Dir to Clipboard";
+				value = 0;
+			};
+		};
+	};
+
 	class Controls {
 		class MenuStrip: ctrlMenuStrip {
 			class Items {

@@ -19,7 +19,7 @@ _distance = if (isNil "_endPos") then {
 };
 _distance = _distance / 2; // Due to marker mechanics
 _dir = ((_endPos select 0) - (_startPos select 0)) atan2 ((_endPos select 1) - (_startPos select 1));
-_color = [side _unit] call FUNC(getSideColor);
+_color = [_unit] call FUNC(getSideColor);
 /* Create line marker */
 _markerLine = createMarkerLocal [format["shot_line_%1_%2_%3", _unit, random(100), diag_tickTime], [
 	((_startPos select 0) + (_distance * sin(_dir))),

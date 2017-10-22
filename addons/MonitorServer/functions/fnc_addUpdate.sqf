@@ -17,28 +17,28 @@
 GVAR(infoFPS) = [];
 GVAR(infoHC) = [["Server",({local _x} count allUnits),({local _x} count allGroups),(round diag_fps)]];
 
-[QGVAR(getInfo), []] call CBA_fnc_GlobalEvent;
-
-[{
-	private _server = 0;
-	private _listHC = [];
-	private _listPlayers = [];
-	{
-		switch (_x select 0) do {
-			case 1: {
-				_server = (_x select 1);
-			};
-			case 2: {
-				_listHC pushBack (_x select 1);
-			};
-			default {
-				_listPlayers pushBack (_x select 1);
-			};
+private _server = 0;
+private _listHC = [];
+private _listPlayers = [];
+{
+	switch (_x select 0) do {
+		case 1: {
+			_server = (_x select 1);
 		};
-	} forEach GVAR(infoFPS);
-	private _fpsList = [_server, (_listHC call EFUNC(Common,findAverage)), round(_listPlayers call EFUNC(Common,findAverage))];
+		case 2: {
+			_listHC pushBack (_x select 1);
+		};
+		default {
+			_listPlayers pushBack (_x select 1);
+		};
+	};
+} forEach GVAR(infoFPS);
+private _fpsList = [_server, (_listHC call EFUNC(Common,findAverage)), round(_listPlayers call EFUNC(Common,findAverage))];
 
+if (is3DEN) then {
+	[_fpsList, GVAR(infoHC)] spawn FUNC(Display);
+} else {
 	{
 		[QGVAR(reciveServerInfo), [_fpsList, GVAR(infoHC)], _x] call CBA_fnc_targetEvent;
 	} forEach GVAR(adminUpdateList);
-}, _this, 1] call CBA_fnc_waitAndExecute;
+};

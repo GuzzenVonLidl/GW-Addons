@@ -24,7 +24,7 @@
 		   Default: 1 (second).
 
 	Syntax:
-		[(detailInt, intervalInt)] spawn FUNC(handler);
+		[2] spawn GW_MonitorMap_fnc_handler;
 
 	Example(s):
 		[] spawn FUNC(handler); // Default configuration

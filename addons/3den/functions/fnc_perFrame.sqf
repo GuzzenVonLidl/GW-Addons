@@ -40,9 +40,7 @@ while {!([_trigger] call FUNC(isNil3DENEntity)) && GVAR(hideObjectPerFrame)} do 
 	{
 		_x hideObjectGlobal false;
 		_hiddenArray deleteAt (_hiddenArray find _x);
-	} forEach (_hiddenArray select {
-		(isObjectHidden _x) && !(_x inArea _trigger)
-	});
+	} forEach (_hiddenArray select { (isObjectHidden _x) && !(_x inArea _trigger) });
 	sleep 0.1;
 };
 

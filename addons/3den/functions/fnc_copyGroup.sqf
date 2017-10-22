@@ -53,10 +53,12 @@ private _vehicles = [];
 	if (_x isKindOf "AllVehicles") then {
 		private _special = ([_x] call FUNC(getAttributes));
 
-		if !(_x isKindOf "CAManBase") then {	// Vehicles only
+		if !(_x isKindOf "CAManBase") then {
 			private _crewList = [];
 			private _crew = (fullCrew _x);
-			if (count _crew isEqualTo 0) then {
+			if ((count _crew) isEqualTo 0) then {
+				_crew = (fullCrew [_x, "", true]);
+			} else {
 				{
 					if (_x select 4) then {	// Force FFV to cargo instead of turret
 						_crewList pushBack ["cargo", (_x select 2), (_x select 3)];
@@ -65,7 +67,8 @@ private _vehicles = [];
 					};
 				} forEach _crew;
 			};
-			_vehicles pushBack [GETATTRIBUTE("itemClass"),GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
+
+			_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 		};
 
 		if (_x isKindOf "CAManBase") then {	// Infantry only

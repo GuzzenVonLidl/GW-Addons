@@ -15,13 +15,17 @@
 if (GVAR(Enabled)) then {
 	{
 		_x params ["_cartridge"];
-		private _timer = (_cartridge getVariable [QGVAR(RemovalTimer), 0]);
-		private _distance = ({(_x distance _cartridge) < 15} count allPlayers);
+		if !(isNull _cartridge) then {
+			private _timer = (_cartridge getVariable [QGVAR(RemovalTimer), 0]);
+			private _distance = ({(_x distance _cartridge) < 15} count allPlayers);
 
-		_cartridge setVariable [QGVAR(RemovalTimer), _timer - 1];
+			_cartridge setVariable [QGVAR(RemovalTimer), _timer - 1];
 
-		if ((_distance isEqualTo 0) && _timer isEqualTo 0) then {
-			deleteVehicle _cartridge;
+			if ((_distance isEqualTo 0) && _timer isEqualTo 0) then {
+				deleteVehicle _cartridge;
+			};
 		};
 	} foreach GVAR(Array);
+
+	GVAR(Array) = GVAR(Array) - (GVAR(Array) select {isNull _x})
 };

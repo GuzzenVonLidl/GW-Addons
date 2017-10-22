@@ -34,7 +34,7 @@ switch (_type) do {
 		};
 		_tool = create3DENEntity ["Trigger","EmptyDetector", SCREENPOS];
 		_tool set3DENAttribute ["IsRectangle","Ellipse"];
-		_tool set3DENAttribute ["size3",[25,25,10]];
+		_tool set3DENAttribute ["size3",[5,5,5]];
 //		_tool set3DENAttribute ["name", QGVAR(Logic_HideObjects)];
 		_tool set3DENAttribute ["text", "HideTrigger"];
 		_tool set3DENAttribute ["Condition","true"];
@@ -46,37 +46,8 @@ switch (_type) do {
 		#define	LOGIC QGVAR(Logic_Garrison)
 		#define	GET_LOGIC	([LOGIC] call FUNC(getTool))
 		#define	ISLOGICNIL	([LOGIC] call FUNC(isNil))
-		if (ISLOGICNIL) then {
-			[
-				"No position found for garrison units, Would you like to use a One of the Units as 'center' or use a Game Logic as center","No Center position Found!",
-				["Unit", {
-					if (count (get3DENSelected "object") isEqualTo 0) then {
-						["No units were selected!", 1, 5, false] call BIS_fnc_3DENNotification;
-					} else {
-						[((get3DENSelected "object") select 0)] call FUNC(garrisonNearest);
-					};
-					false
-				}],
-				["Logic", {
-					if (ISLOGICNIL) then {
-						_tool = create3DENEntity ["Logic","Logic", SCREENPOS];
-						_tool set3DENAttribute ["name", QGVAR(Logic_Garrison)];
-						if ("Preferences" get3DENMissionAttribute "GW_Show3DMessage") then {
-							GVAR(Logic_Garrison_ID) = addMissionEventHandler ["Draw3D", {
-								if !(ISLOGICNIL) then {
-									drawIcon3D ["", [1,0,0,1], GET_LOGIC, 0, 0, 0, "Logic: Garrison", 1, 0.05, "PuristaMedium"];
-								} else {
-									removeMissionEventHandler ["Draw3D", GVAR(Logic_Garrison_ID)];
-								};
-							}];
-						};
-					};
-					false
-				}]
-			] call BIS_fnc_3DENShowMessage;
-		} else {
-			[GET_LOGIC] call FUNC(garrisonNearest);
-		};
+
+		[getpos (selectRandom(get3DENSelected "object"))] call FUNC(garrisonNearest);
 	};
 
 	default {
