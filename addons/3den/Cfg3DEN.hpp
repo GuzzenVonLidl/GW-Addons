@@ -1,5 +1,19 @@
 
 class Cfg3DEN {
+	class Group {
+		class AttributeCategories {
+			class State {
+				class Attributes {
+					delete Behaviour;
+					delete CombatMode;
+//					delete DeleteWhenEmpty;
+//					delete DynamicSimulation;
+					delete Formation;
+					delete SpeedMode;
+				};
+			};
+		};
+	};
 	class Attributes {
 		class Combo;
 		class Controls;
@@ -180,7 +194,7 @@ class Cfg3DEN {
 							property = "GW_GarrisonRadius";
 							control = "EditShort";
 							expression = "";
-							defaultValue = "25";
+							defaultValue = "50";
 							typeName = "NUMBER";
 						};
 						class GW_PatternOffset {
@@ -232,6 +246,15 @@ class Cfg3DEN {
 							defaultValue = "false";
 							expression = "true";
 						};
+						class GW_useNewCopy {
+							displayName = "Autodetect New Copy";
+							tooltip = "DO NOT CHANGE THIS MANUALLY";
+							property = "GW_useNewCopy";
+							control = "Checkbox";
+							defaultValue = "false";
+							expression = "true";
+						};
+
 					};
 				};
 
@@ -337,7 +360,7 @@ class Cfg3DEN {
 						tooltip = "Disables Auto Gear Select for Group (Requires GW Framework)";
 						property = "GW_DisableGearInit";
 						control = "Checkbox";
-						expression = "(group _this) setVariable ['GW_Gear_BlackList', _value, true];";
+						expression = "_this setVariable ['GW_Gear_BlackList', _value];";
 						defaultValue = "false";
 						condition = "objectBrain";
 					};
@@ -346,7 +369,7 @@ class Cfg3DEN {
 						tooltip = "Force a unit to be a specific role, This by passes the 'Auto Gear' (Requires GW Framework)";
 						property = "GW_LoadoutSelector";
 						control = "GW_SelectLoadout";
-						expression = "_this setVariable ['GW_Gear_Loadout', _value, true];";
+						expression = "_this setVariable ['GW_Gear_Loadout', _value];";
 						condition = "objectBrain";
 					};
 				};
@@ -363,10 +386,10 @@ class Cfg3DEN {
 	class EventHandlers {
 		class GW {
 			OnMessage = QUOTE(call FUNC(addEH_onMessage));
-			onMissionLoad = "[] call GW_3DEN_fnc_init";
-			onMissionNew = "[] call GW_3DEN_fnc_init";
-			onMissionPreviewEnd = "[] call GW_3DEN_fnc_init";
-			onTerrainNew = "[] call GW_3DEN_fnc_init";
+			onMissionLoad = QUOTE(call FUNC(addEH_onMessage));
+			onMissionNew = QUOTE(call FUNC(addEH_onMessage));
+			onMissionPreviewEnd = QUOTE(call FUNC(addEH_onMessage));
+			onTerrainNew = QUOTE(call FUNC(addEH_onMessage));
 		};
 	};
 

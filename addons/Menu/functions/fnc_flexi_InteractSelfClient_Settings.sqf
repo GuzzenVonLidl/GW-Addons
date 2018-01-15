@@ -186,6 +186,7 @@ if (_menuName isEqualTo "settings_performance") then {
 	_menus pushBack [
 		["settings_performance","Experimental", _menuRsc],
 		[
+/*
 			[
 				"Caching System",
 				{[QGVAR(UnitCaching_enablePFH), true] call CBA_fnc_LocalEvent},
@@ -200,6 +201,7 @@ if (_menuName isEqualTo "settings_performance") then {
 				"","",-1,true,
 				GVAR(UnitCaching_Enabled)
 			],
+*/
 			[
 				"Dynamic viewDistance (DVD)",
 				{[true] call EFUNC(Performance,Handler_DynamicViewDistance)},

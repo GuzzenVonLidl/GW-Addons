@@ -3,7 +3,7 @@
 	Calculates if its day or night
 
 	Usage:
-	[] call GW_Common_Fnc_isNight;
+	[] call GW_Common_Fnc_getVersionFramework;
 
 	Arguments:
 

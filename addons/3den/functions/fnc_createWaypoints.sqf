@@ -37,4 +37,6 @@ collect3DENHistory {
 	};
 };
 
+[(str _this),QFUNC(createWaypoints)] call FUNC(uiSaveFunction);
+
 true

@@ -48,58 +48,6 @@ class CfgVehicles {
 		};
 	};
 
-	class B_Carryall_Base;
-	class B_Carryall_Test: B_Carryall_Base {
-		scope = 2;
-		author = "GuzzenVonLidl";
-		displayName = "Carryall Backpack (R3F)";
-		hiddenSelectionsTextures[] = {
-			QPATHTOF(B_Carryall\saclourd_R3F_CE.paa)
-		};
-	};
-
-	class B_FieldPack_Base;
-	class B_FieldPack_Test: B_FieldPack_Base {
-		scope = 2;
-		author = "GuzzenVonLidl";
-		displayName = "FieldPack (R3F)";
-		hiddenSelectionsTextures[] = {
-			QPATHTOF(B_FieldPack\sacmoyen_R3F_medic_CE.paa)
-		};
-	};
-
-/*
-
-	class Item_U_B_CombatUniform_mcam;
-	class Item_U_B_CombatUniform_caf: Item_U_B_CombatUniform_mcam {
-		scope = 2;
-		author = "GuzzenVonLidl";
-//		displayName = "TEST (MTP)";
-		displayName = "Combat Fatigues (CAF)";
-		hiddenSelectionsTextures[] = {
-			QPATHTOF(B_Soldier\clothing1_cia_co.paa)
-		};
-	};
-
-	class Item_U_B_CombatUniform_r3f: Item_U_B_CombatUniform_caf {
-		scope = 2;
-		author = "GuzzenVonLidl";
-		displayName = "Combat Fatigues (R3F)";
-		hiddenSelectionsTextures[] = {
-			QPATHTOF(B_Soldier\uniformeR3F_F12_co.paa)
-		};
-	};
-
-	class Item_U_B_CombatUniform_r3f_medic: Item_U_B_CombatUniform_r3f {
-		scope = 2;
-		author = "GuzzenVonLidl";
-		displayName = "Combat Fatigues Medic (R3F)";
-		hiddenSelectionsTextures[] = {
-			QPATHTOF(B_Soldier\uniformeR3F_F12_MEDIC_co.paa)
-		};
-	};
-*/
-
 	class I_APC_Wheeled_03_base_F;
 	class I_APC_Wheeled_03_cannon_F: I_APC_Wheeled_03_base_F {
 		scope = 2;

@@ -12,14 +12,16 @@ GVAR(DynamicViewDistance_getAvgFPS) = [];
 GVAR(UnitCaching_Enabled) = false;
 GVAR(UnitCaching_Objects) = [];
 
-[
-	QGVAR(Enabled), "LIST",
-	["Enable clean up", "Toggle clean up"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
-] call FUNCMAIN(settingsInit);
+if (call EFUNC(Common,canUseAddonVersion)) then {
+	[
+		QGVAR(Enabled), "LIST",
+		["Enable clean up", "Toggle clean up"],
+		QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
+	] call FUNCMAIN(settingsInit);
 
-[
-	QGVAR(UnitEnabled), "LIST",
-	["Gear removal", "Remove all equipment from dead unit execpt for uniform"],
-	QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
-] call FUNCMAIN(settingsInit);
+	[
+		QGVAR(UnitEnabled), "LIST",
+		["Gear removal", "Remove all equipment from dead unit execpt for uniform"],
+		QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
+	] call FUNCMAIN(settingsInit);
+};

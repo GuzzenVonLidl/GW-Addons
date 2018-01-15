@@ -1,7 +1,7 @@
 // #define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
-if (isServer) then {
+if (isServer && GVAR(enabled)) then {
 	[{
 		GVAR(CleanUp_PFH) = [{
 			[] call FUNC(handler);

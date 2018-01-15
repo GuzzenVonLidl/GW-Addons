@@ -22,7 +22,8 @@ class CfgAddons {
 		};
 	};
 };
-rptFileLimit = 1;
+
+rptFileLimit = 2;
 #include "CfgDifficultyPresets.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgMissions.hpp"

@@ -16,14 +16,17 @@
 #include "script_component.hpp"
 
 params ["_unit"];
-if (!(GVAR(Simulation)) || (time < 5) || !(local _unit) || (isPlayer _unit) || !((vehicleVarName _unit) isEqualType "") || !(alive _unit)) exitWith {false};
+if (!(GVAR(Simulation)) || (time < 5)) exitWith {false};
+if ((isPlayer _unit) || !((vehicleVarName _unit) isEqualType "") || !(alive _unit)) exitWith {false};
 
-if !((vehicle _unit) isEqualTo _unit) then {
+if ((isNull (objectParent _unit))) then { 	// isOnFoot
 	_unit enableSimulationGlobal false;
 
 	[{
 		params ["_unit"];
 		_unit enableSimulationGlobal true;
-		_unit setPosATL (getPosATL _unit);
+		if ((isNull (objectParent _unit))) then {	// isOnFoot
+			_unit setPosATL (getPosATL _unit);
+		};
 	}, _unit, (2 + (random 3))] call CBA_fnc_waitAndExecute;
 };

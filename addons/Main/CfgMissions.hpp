@@ -44,13 +44,14 @@ class CfgMissions {
 		delete MP_ZGM_m14_WEST;
 		delete MP_ZGM_m14_GUER;
 
-		// Apex
-		delete EXP_m01;
-		delete EXP_m02;
-		delete EXP_m03;
-		delete EXP_m04;
-		delete EXP_m05;
-		delete EXP_m06;
-		delete EXP_m07;
+		class Apex {
+			delete EXP_m01;
+			delete EXP_m02;
+			delete EXP_m03;
+			delete EXP_m04;
+			delete EXP_m05;
+			delete EXP_m06;
+			delete EXP_m07;
+		};
 	};
 };

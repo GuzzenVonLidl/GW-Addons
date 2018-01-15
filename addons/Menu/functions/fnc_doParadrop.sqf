@@ -12,6 +12,7 @@ _unit action ["Eject", _vehicle];
 moveOut _unit;
 _pos = (_vehicle getRelPos [_maxLength + 2, 180]);
 _pos set [2, (getPos _vehicle) select 2];
+_unit setDir (getDir _vehicle);
 _unit setPosATL _pos;
 _unit setVelocity _velocity;
 _unit setVariable [QGVAR(getUnitLoadout), ((getUnitLoadout _unit) select 5)];
@@ -52,7 +53,6 @@ if (GVAR(ParadropHalo)) then {
 			}, _this, 1] call CBA_fnc_waitAndExecute;
 		}, _this] call CBA_fnc_waitUntilAndExecute;
 	};
-
 }, [_unit]] call CBA_fnc_waitUntilAndExecute;
 
 /*

@@ -1,11 +1,11 @@
 
 class MENU_SUB(doActions,toggleTerrain) {
 	text = "Hide Terrain Objects";
-	action = "[1, true] call GW_3DEN_fnc_spawnModule";
+	action = QUOTE(4 call FUNC(doAction));
 };
 
 class MENU_SUB(doActions,GarrisonBuildings) {
-	action = "[2, true] call GW_3DEN_fnc_spawnModule";
+	action = QUOTE(5 call FUNC(doAction));
 	Text = "Garrison Selected units";
 	picture = "\a3\3den\Data\CfgWaypoints\guard_ca.paa";
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_5};
@@ -31,12 +31,12 @@ class MENU_SUB(doActions_extra,addUnitToProjectileTracker) {
 };
 
 class MENU_SUB(doActions,pattern_Line) {
-	action = QUOTE(call FUNC(pattern_Line));
+	action = QUOTE('LINE' call FUNC(setObjectPattern));
 	Text = "Line pattern";
 };
 
 class MENU_SUB(doActions,pattern_Circular) {
-	action = QUOTE(call FUNC(pattern_Circular));
+	action = QUOTE('CIRCULAR' call FUNC(setObjectPattern));
 	Text = "Circular pattern";
 };
 

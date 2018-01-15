@@ -13,9 +13,8 @@
 */
 #include "script_component.hpp"
 
-// Reset variables
-GVAR(infoFPS) = [];
-GVAR(infoHC) = [["Server",({local _x} count allUnits),({local _x} count allGroups),(round diag_fps)]];
+_infoHC = ([["Server",({local _x} count allUnits),({local _x} count allGroups),(round diag_fps)]] + GVAR(infoHC));
+GVAR(infoHC) = [];
 
 private _server = 0;
 private _listHC = [];
@@ -36,9 +35,14 @@ private _listPlayers = [];
 private _fpsList = [_server, (_listHC call EFUNC(Common,findAverage)), round(_listPlayers call EFUNC(Common,findAverage))];
 
 if (is3DEN) then {
-	[_fpsList, GVAR(infoHC)] spawn FUNC(Display);
+	[_fpsList, _infoHC] spawn FUNC(Display);
 } else {
 	{
-		[QGVAR(reciveServerInfo), [_fpsList, GVAR(infoHC)], _x] call CBA_fnc_targetEvent;
+		diag_log str _infoHC;
+		[QGVAR(reciveServerInfo), [_fpsList, _infoHC], _x] call CBA_fnc_targetEvent;
 	} forEach GVAR(adminUpdateList);
 };
+
+// Reset variables
+GVAR(infoFPS) = [];
+GVAR(infoHC) = [];

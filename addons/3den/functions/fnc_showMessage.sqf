@@ -15,7 +15,6 @@
 */
 #include "script_component.hpp"
 
-#define	OBJECT	(call GW_3DEN_fnc_getTool)
 params [
 	"_type",
 	"_alternetive"

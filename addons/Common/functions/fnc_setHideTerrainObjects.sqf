@@ -41,12 +41,14 @@ _trgArea pushBack ((triggerArea _trg) select 1);
 _trgArea pushBack ((triggerArea _trg) select 4);
 
 private _objects = (nearestTerrainObjects [_trg, _filter, (selectMax _trgArea), true]);
-private _inTrigger = (_objects inAreaArray _trg);
 
 {
 	if ((getObjectType _x) isEqualTo 1) then {
 		_x hideObjectGlobal _toggle;
+		_x allowDamage !_toggle;
 	};
-} forEach _inTrigger;
+} forEach (_objects inAreaArray _trg);
+
+deleteVehicle _trg;
 
 _objects

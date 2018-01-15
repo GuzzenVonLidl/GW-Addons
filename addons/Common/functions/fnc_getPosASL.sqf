@@ -3,8 +3,8 @@
 	Gets location of a marker, object or array ([0,0,0])
 
 	Usage:
-	[MHQ] call GW_Common_Fnc_GetPosASL;	// Object
-	["Hello"] call GW_Common_Fnc_GetPosASL;	// Marker
+	[MHQ] call GW_Common_fnc_getPosASL;	// Object
+	["Hello"] call GW_Common_fnc_getPosASL;	// Marker
 
 	Parameters:
 	#0:	OBJECT || STRING || ARRAY - Gets location from a place
@@ -22,19 +22,19 @@ private ["_returnValue"];
 switch (typeName _type) do {
 
 	case "STRING": {
-		_returnValue = getMarkerPos _type;
+		_returnValue = (getMarkerPos _type);
 	};
 
 	case "OBJECT": {
-		_returnValue = getPosASL _type;
+		_returnValue = (getPosASL _type);
 	};
 
 	case "GROUP": {
-		_returnValue = getPosASL (leader _type);
+		_returnValue = (getPosASL (leader _type));
 	};
 
 	case "LOCATION": {
-		_returnValue = position _type;
+		_returnValue = (position _type);
 	};
 
 	case "ARRAY": {

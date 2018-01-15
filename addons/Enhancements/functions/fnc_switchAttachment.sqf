@@ -11,18 +11,22 @@ if !(_attachments isEqualTo []) then {
 		_nextItem = (_attachments select 1);
 	};
 
-	private _lightActive = (player isFlashlightOn (currentWeapon player) || player isIRLaserOn (currentWeapon player));
+	private _isLightActive = (player isFlashlightOn (currentWeapon player));
+	private _isLaserActive = (player isIRLaserOn (currentWeapon player));
 	player removePrimaryWeaponItem _currentItem;
 	playSound "GW_enhancements_Attachment";
 	[{
 		params ["_currentItem","_nextItem","_lightActive"];
 		player addPrimaryWeaponItem _nextItem;
 
-		if (_lightActive) then {
-			player action ["IRLaserOn", player];
+		if (_isLightActive) then {
 			player action ["GunLightOn", player];
 		};
-		hint format ["%1", (configfile >> "CfgWeapons" >> _nextItem >> "displayName") call BIS_fnc_getCfgData];
+		if (_isLaserActive) then {
+			player action ["IRLaserOn", player];
+		};
+//		hint format ["%1", (configfile >> "CfgWeapons" >> _nextItem >> "displayName") call BIS_fnc_getCfgData];
+		hint format ["%1", getText(configfile >> "CfgWeapons" >> _nextItem >> "displayName")];
 		[{
 			hint "";
 		}, [], 3] call CBA_fnc_waitAndExecute;

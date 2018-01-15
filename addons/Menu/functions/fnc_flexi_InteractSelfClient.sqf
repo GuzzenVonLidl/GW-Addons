@@ -13,38 +13,38 @@ if (typeName _params isEqualTo typeName []) then {
 	_menuName = _params;
 };
 
+private _allmenus = [
+	[
+		"<t color='#B22400'>Parachute Jump </t>",
+		{ [player] call GW_Menu_fnc_doParadrop },
+		QPATHTOF(DATA\parachute_icon.paa),
+		"","",-1,true,
+		(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > GVAR(ParadropHaloHeight)))
+	],
+	[
+		"<t color='#DF9100'>Player Menu ></t>",
+		"","","",
+		[QUOTE(call FUNC(flexi_InteractSelfClient)),"actions", 1]
+	],
+	[
+		"<t color='#1C4ED6'>Settings ></t>",
+		"","","",
+		[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1]
+	]
+];
+
+if !(isNil QEGVAR(miscSettings,FlexiMenu)) then {
+	_allmenus = _allmenus + EGVAR(miscSettings,FlexiMenu);
+};
+
 private _menuDef = [];
 private _menus = [
 	[
 		["main", "Player Menu", _menuRsc],
-		[
-			[
-				"<t color='#B22400'>Parachute Jump </t>",
-				{ [player] call GW_Menu_fnc_doParadrop },
-				QPATHTOF(DATA\parachute_icon.paa),
-				"","",-1,true,
-				(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > GVAR(ParadropHaloHeight)))
-			],
-			[
-				"<t color='#DF9100'>Player Menu ></t>",
-				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient)),"actions", 1]
-			],
-			[
-				"<t color='#1C4ED6'>Settings ></t>",
-				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1]
-			],
-			[
-				"<t color='#1C4ED6'>Settings ></t>",
-				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1],
-				-1,true,
-				GVAR(MissionMenu)
-			]
-		]
+		_allmenus
 	]
 ];
+diag_log str _menus;
 
 if (_menuName isEqualTo "actions") then {
 	_menus pushBack [

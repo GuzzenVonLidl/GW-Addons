@@ -3,9 +3,9 @@
 	Gets location of a marker, object or array ([0,0,0])
 
 	Usage:
-	[MHQ] call GW_Common_Fnc_GetPosATL;	// Object
-	["Hello"] call GW_Common_Fnc_GetPosATL;	// Marker
-	[car1, 1] call GW_Common_Fnc_GetPosATL;	// Real z coordinate of an object, for placing stuff on roofs, etc.
+	[MHQ] call GW_Common_fnc_getPosATL;	// Object
+	["Hello"] call GW_Common_fnc_getPosATL;	// Marker
+	[car1, 1] call GW_Common_fnc_getPosATL;	// Real z coordinate of an object, for placing stuff on roofs, etc.
 
 	Parameters:
 	#0:	OBJECT || STRING || ARRAY - Gets location from a place
@@ -24,7 +24,7 @@ private ["_returnValue","_DebugName"];
 switch (typeName _type) do {
 
 	case "STRING": {
-		_returnValue = getMarkerPos _type;
+		_returnValue = (getMarkerPos _type);
 	};
 
 	case "OBJECT": {

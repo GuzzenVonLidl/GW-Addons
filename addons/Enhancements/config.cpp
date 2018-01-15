@@ -16,7 +16,7 @@ class CfgPatches {
 			"GVL_X2000_wide"
 		};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"GW_main", "CBA_common", "A3_UI_F"};
+		requiredAddons[] = {"CBA_common","GW_main","A3_Characters_F","A3_Weapons_F", "A3_Weapons_F_Beta", "A3_Weapons_F_Exp", "A3_Weapons_F_Mark", "A3_Weapons_F_Machineguns_Zafir","A3_Weapons_F_Mark_Machineguns_Zafir","A3_Weapons_F_Rifles_Khaybar"};
 		version = VERSION;
 		authors[] = {"GuzzenVonlidl"};
 	};
@@ -44,46 +44,3 @@ class CfgSounds {
 		titles[] = {};
 	};
 };
-
-class CfgAISkill {
-	aimingAccuracy[] = {0, 0.1, 1, 1};
-	aimingShake[]    = {0, 0.1, 1, 1};
-	aimingSpeed[]    = {0, 0.1, 1, 1};
-	commanding[]     = {0, 0.1, 1, 1};
-	courage[]        = {0, 0.1, 1, 1};
-	endurance[]      = {0, 0.1, 1, 1};
-	general[]        = {0, 0.1, 1, 1};
-	reloadSpeed[]    = {0, 0.1, 1, 1};
-	spotDistance[]   = {0, 0.1, 1, 0.7};
-	spotTime[]       = {0, 0.1, 1, 0.8};
-};
-
-/*
-
-class CfgAISkill {	// ACE 3
-	aimingAccuracy[] = {0,0, 1,0.8};  // {0,0,1,1};   v1.26 defaults
-	aimingShake[]    = {0,0, 1,0.6};  // {0,0,1,1};
-	aimingSpeed[]    = {0,0, 1,0.7};  // {0,0.5,1,1};
-	commanding[]     = {0,0, 1,0.8};  // {0,0,1,1};
-	courage[]        = {0,0, 1,0.7};  // {0,0,1,1};
-	endurance[]      = {0,0, 1,0.7};  // {0,0,1,1};
-	general[]        = {0,0, 1,0.9};  // {0,0,1,1};
-	//reloadSpeed[]  = {0,0, 1,0.8};  // {0,0,1,1};// apparently breaks rapid firing in single fire mode for players
-	spotDistance[]   = {0,0, 1,0.9};  // {0,0.2,1,0.4};
-	spotTime[]       = {0,0, 1,0.7};  // {0,0,1,0.7};
-};
-
-class CfgAISkill {	// Default
-	aimingAccuracy[] = {0, 0, 1, 1};
-	aimingShake[]	 = {0, 0, 1, 1};
-	aimingSpeed[]	 = {0, 0.5, 1, 1};
-	commanding[]	 = {0, 0, 1, 1};
-	courage[] 		 = {0, 0, 1, 1};
-	endurance[]		 = {0, 0, 1, 1};
-	general[]		 = {0, 0, 1, 1};
-	reloadSpeed[]	 = {0, 0, 1, 1};
-	spotDistance[]	 = {0, 0.2, 1, 0.4};
-	spotTime[] 		 = {0, 0, 1, 0.7};
-};
-*/
-

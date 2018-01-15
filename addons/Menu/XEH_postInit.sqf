@@ -94,6 +94,14 @@
 	deleteVehicle _zeus;
 }] call CBA_fnc_addEventHandler;
 
+[QGVAR(spawnBox), {
+	params ["_type","_class","_unit"];
+
+	_box = createVehicle [_class, [0,0,0], [], 0, "NONE"];
+	_box setPos (_unit getRelPos [3, 0]);
+	[_box, [_type, toLower(str(side _unit)), true]] call GW_Gear_Fnc_Handler;
+}] call CBA_fnc_addEventHandler;
+
 if (hasInterface) then {
 	//	[DIK code, [Shift, Ctrl, Alt]]
 	[QUOTE(PREFIX),"flexi_InteractSelfClient", "Client Menu", {[1] call FUNC(flexi_selectMenu);}, {}, [DIK_RWIN,[false,false,false]]] call CBA_fnc_addKeybind;

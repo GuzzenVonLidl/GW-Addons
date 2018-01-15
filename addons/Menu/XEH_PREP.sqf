@@ -9,7 +9,6 @@ PREP(doParadrop);
 
 // Misc
 PREP(MoveVehicle);
-PREP(spawnBox);
 PREP(STHud_Compass);
 
 

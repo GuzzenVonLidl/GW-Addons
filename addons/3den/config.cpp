@@ -9,7 +9,7 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"GW_main", "CBA_common", "A3_UI_F"};
+		requiredAddons[] = {"GW_main","CBA_common","A3_Data_F","A3_Misc_F","A3_Plants_F_Bush","A3_Roads_F","A3_Rocks_F","A3_Signs_F","A3_Soft_F","A3_Structures_F","A3_Structures_F_Households","A3_Structures_F_Ind","A3_Structures_F_Mil","A3_Structures_F_Wrecks","A3_UI_F"};
 		version = VERSION;
 		authors[] = {"GuzzenVonlidl"};
 	};
@@ -36,7 +36,35 @@ class RscStructuredText;
 class RscText;
 class Separator1;
 
+class CfgEditorSubcategories {
+	class EdSubcat_GW_Bushes {
+		displayName = "Bushes";
+	};
+	class EdSubcat_GW_clutter {
+		displayName = "Clutter";
+	};
+	class EdSubcat_GW_Plants {
+		displayName = "Plants";
+	};
+	class EdSubcat_GW_Trees {
+		displayName="Trees";
+	};
+	class EdSubcat_GW_Bushes_tanoa {
+		displayName = "Tanoa Bushes";
+	};
+	class EdSubcat_GW_Plants_tanoa {
+		displayName = "Tanoa Plants";
+	};
+	class EdSubcat_GW_clutter_tanoa {
+		displayName = "Tanoa Clutter";
+	};
+	class EdSubcat_GW_Trees_tanoa {
+		displayName="Tanoa Trees";
+	};
+};
+
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgGroups.hpp"
+#include "CfgVehicles.hpp"
 #include "display3DEN.hpp"

@@ -136,6 +136,13 @@ if (_menuName isEqualTo "modules") then {
 					[true] call FUNC(getCheckBoxIcon),
 					"", "", -1, (true),
 					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && GW_StartUp_Enabled)
+				],
+				[
+					"Heal All Players",
+					{[QEGVAR(ACE_Settings,fullHeal), player] call CBA_fnc_globalEvent},
+					[true] call FUNC(getCheckBoxIcon),
+					"", "", -1, (true),
+					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && GW_StartUp_Enabled)
 				]
 			]
 		];
@@ -175,43 +182,43 @@ if (_menuName isEqualTo "player") then {
 		[
 			[
 				"isActiveAdmin",
-				{ [QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = false;},
+				{ [QGVARMAIN(RemoveActiveAdmin), player] call CBA_fnc_localEvent;},
 				[true] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true), GVARMAIN(isActiveAdmin)
 			],
 			[
 				"isActiveAdmin",
-				{ [QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent; GVARMAIN(isActiveAdmin) = true;},
+				{ [QGVARMAIN(AddActiveAdmin), player] call CBA_fnc_localEvent;},
 				[false] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true), !GVARMAIN(isActiveAdmin)
 			],
+
 			[
 				"Toggle Godmode",
-				{player allowDamage false; player setVariable [QGVAR(allowDamage), false]},
-				[false] call FUNC(getCheckBoxIcon),
+				{
+					if (isDamageAllowed player) then {
+						player allowDamage false; player setVariable ["ACE_Medical_allowDamage", false];
+					} else {
+						player allowDamage true; player setVariable ["ACE_Medical_allowDamage", true];
+					};
+				},
+				[!(isDamageAllowed player)] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true),
-				(player getVariable [QGVAR(allowDamage), true])
+				true
 			],
-			[
-				"Toggle Godmode",
-				{player allowDamage true; player setVariable [QGVAR(allowDamage), true]},
-				[true] call FUNC(getCheckBoxIcon),
-				"", "", -1, (true),
-				!(player getVariable [QGVAR(allowDamage), true])
-			],
-			[
-				"Toggle SetCaptive",
-				{player setCaptive true},
-				[false] call FUNC(getCheckBoxIcon),
-				"", "", -1, (true),
-				!(captive player)
-			],
+
 			[
 				"Toggle SetCaptive",
-				{player setCaptive false},
-				[true] call FUNC(getCheckBoxIcon),
+				{
+					if (captive player) then {
+						player setCaptive false;
+					} else {
+						player setCaptive true;
+					};
+				},
+				[(captive player)] call FUNC(getCheckBoxIcon),
 				"", "", -1, (true),
-				(captive player)
+				true
 			],
 			[
 				"Create personal Zeus",
@@ -241,9 +248,13 @@ if (_menuName isEqualTo "spawn") then {
 				"", "", "",
 				[QUOTE(call FUNC(flexi_InteractSelfAdmin)),"loadouts", 1]
 			],
-			["Ammo Box - Squad",{ ["small_box","Box_NATO_Ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
-			["Ammo Box - Platoon",{ ["big_box","B_CargoNet_01_ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2] }],
-			["Medical Box - Big",{ ["med_box","Box_NATO_AmmoOrd_F", player] remoteExecCall [QFUNC(spawnBox), 2] }]
+			["Open Attachment Menu",{ ["player", [], -100, ["_this call GW_Gear_Fnc_replaceAttachments","main"]] call cba_fnc_fleximenu_openMenuByDef; }],
+			["Ammo Box - Squad",{[QGVAR(spawnBox), ["small_box","Box_NATO_Ammo_F", player]] call CBA_fnc_serverEvent;}],
+			["Ammo Box - Platoon",{[QGVAR(spawnBox), ["big_box","B_CargoNet_01_ammo_F", player]] call CBA_fnc_serverEvent;}],
+			["Medical Box - Big",{[QGVAR(spawnBox), ["med_box","Box_NATO_AmmoOrd_F", player]] call CBA_fnc_serverEvent;}]
+//			["Ammo Box - Squad",{ ["small_box","Box_NATO_Ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }],
+//			["Ammo Box - Platoon",{ ["big_box","B_CargoNet_01_ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }],
+//			["Medical Box - Big",{ ["med_box","Box_NATO_AmmoOrd_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }]
 		]
 	];
 };

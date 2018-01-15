@@ -33,7 +33,7 @@ class CfgCoreData {
 
 class CfgIRLaserSettings {
 	laserMaxRange = 100;
-	maxNumberOfRays = 48;
+	maxNumberOfRays = 24;
 	maxViewDistance = 1000;
 };
 

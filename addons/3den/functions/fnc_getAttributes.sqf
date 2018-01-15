@@ -1,11 +1,10 @@
 /*
 	AUTHOR: GuzzenVonLidl
-	Gets Location in the area and then moves selected units to the valid house positions
 
 	Usage:
-	[] call GW_3DEN_fnc_garrisonNearest
+	[] call GW_3DEN_fnc_getAttribute
 
-	Parameters: None
+	Parameters:
 
 	Return Value: None
 
@@ -13,8 +12,9 @@
 */
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_object get3DENAttribute Var) select 0)
+#define	GETATTRIBUTEGROUP(Var) (((group _object) get3DENAttribute Var) select 0)
 
-params ["_object"];
+params ["_object", ["_isGroupType", false]];
 private _array = [];
 
 if !(GETATTRIBUTE("init") isEqualTo "") then {
@@ -29,42 +29,33 @@ if !(GETATTRIBUTE("enableSimulation")) then {
 if !(GETATTRIBUTE("lock") isEqualTo 1) then {
 	_array pushBack [3, GETATTRIBUTE("lock")];
 };
-if (GETATTRIBUTE("addToDynSimGrid")) then {
+if !(GETATTRIBUTE("addToDynSimGrid")) then {
 	_array pushBack [4, GETATTRIBUTE("addToDynSimGrid")];
 };
 if (GETATTRIBUTE("dynamicSimulation")) then {
 	_array pushBack [5, GETATTRIBUTE("dynamicSimulation")];
 };
-if (GETATTRIBUTE("dynamicSimulation")) then {
-	_array pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-};
-if (GETATTRIBUTE("dynamicSimulation")) then {
-	_array pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-};
-if (GETATTRIBUTE("dynamicSimulation")) then {
-	_array pushBack [5, GETATTRIBUTE("dynamicSimulation")];
-};
 
-if !(_object isKindOf "CAManBase") then {	// Vehicles only
+if ((_object isKindOf "AllVehicles") && !(_object isKindOf "CAManBase")) then {	// Vehicles only
 	([_object] call bis_fnc_getVehicleCustomization) params ["_texture","_animations"];
-	if !(GETATTRIBUTE("ObjectTexture") isEqualTo "") then {
+	if !((_texture isEqualTo "") || (_texture isEqualTo [])) then {
 		_array pushBack [6, _texture];
 	};
-	if !(GETATTRIBUTE("VehicleCustomization") isEqualTo "") then {
+	if !(_animations isEqualTo []) then {
 		_array pushBack [7, _animations];
 	};
 	if !(GETATTRIBUTE("pylons") isEqualTo "") then {
-		_loadout = ([GETATTRIBUTE("pylons"), ";"] call BIS_fnc_splitString);
-		_array pushBack [8, _loadout];
+//		_loadout = ([GETATTRIBUTE("pylons"), ";"] call BIS_fnc_splitString);
+//		_array pushBack [8, _loadout];
 	};
 	if ((count (listVehicleSensors _object)) isEqualTo 0) then {
-		if !(GETATTRIBUTE("reportRemoteTargets") isEqualTo 0) then {
+		if (GETATTRIBUTE("reportRemoteTargets") isEqualTo 0) then {
 			_array pushBack [9, GETATTRIBUTE("reportRemoteTargets")];
 		};
-		if !(GETATTRIBUTE("receiveRemoteTargets") isEqualTo 0) then {
+		if (GETATTRIBUTE("receiveRemoteTargets") isEqualTo 0) then {
 			_array pushBack [10, GETATTRIBUTE("receiveRemoteTargets")];
 		};
-		if !(GETATTRIBUTE("reportOwnPosition") isEqualTo 0) then {
+		if (GETATTRIBUTE("reportOwnPosition") isEqualTo 0) then {
 			_array pushBack [11, GETATTRIBUTE("reportOwnPosition")];
 		};
 		if !(GETATTRIBUTE("RadarUsageAI") isEqualTo 0) then {
@@ -72,5 +63,23 @@ if !(_object isKindOf "CAManBase") then {	// Vehicles only
 		};
 	};
 };
+
+if (GETATTRIBUTEGROUP("GW_DisableHC")) then {
+	_array pushBack [13, GETATTRIBUTEGROUP("GW_DisableHC")];
+};
+if (GETATTRIBUTEGROUP("GW_DisableGearInit")) then {
+	_array pushBack [14, GETATTRIBUTEGROUP("GW_DisableGearInit")];
+};
+if !(GETATTRIBUTEGROUP("GW_LoadoutSelector") isEqualTo "") then {
+	_array pushBack [15, GETATTRIBUTEGROUP("GW_LoadoutSelector")];
+};
+
+/*
+if (_isGroupType) then {
+	if !(GETATTRIBUTEGROUP("speedMode") isEqualTo 1) then {
+		_array pushBack [16, (["LIMITED","NORMAL","FULL"] select GETATTRIBUTEGROUP("speedMode"))];
+	};
+};
+*/
 
 _array

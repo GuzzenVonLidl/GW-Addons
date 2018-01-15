@@ -43,10 +43,7 @@ GVAR(HeadlessList) = [];
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(sendInfoHC), {
-	params ["_headless","_fps"];
-	private ["_units","_groups"];
-	_units = ({(owner _x) isEqualTo (owner _headless)} count allUnits);
-	_groups = ({(groupOwner _x) isEqualTo (owner _headless)} count allGroups);
+	params ["_headless","_units","_groups","_fps"];
 	GVAR(infoHC) pushBack [_headless, _units, _groups, _fps];
 }] call CBA_fnc_addEventHandler;
 

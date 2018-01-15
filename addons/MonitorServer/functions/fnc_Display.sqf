@@ -26,7 +26,7 @@ if (GVARMAIN(canUseDevConsole)) then {
 	LOG(FORMAT_5("Players - Total: %1 | West: %2 | East: %3 | Indep: %4 | Headless: %5", (count allPlayers),COUNTPLAYERS(west),COUNTPLAYERS(east),COUNTPLAYERS(independent),COUNTPLAYERS(civilian),({_x isKindOf "HeadlessClient_F"} count allPlayers)));
 	LOG(FORMAT_3("FPS - Server: %1 Headless: %2 Players: %3", (_fps select 0),(_fps select 1),(_fps select 2)));
 	{
-		LOG(FORMAT_4("%1 - Groups: %2 | Units: %3 | FPS: %4", (_x select 0),(_x select 1),(_x select 2),(_x select 3)));
+		LOG(FORMAT_4("%1 - Units: %2 | Groups: %3 | FPS: %4", (_x select 0),(_x select 1),(_x select 2),(_x select 3)));
 	} forEach _hcInfo;
 } else {
 	hintSilent "";
@@ -38,8 +38,8 @@ if (GVARMAIN(canUseDevConsole)) then {
 
 	{
 		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>Machine:<t align='right' color='#FFD30D'>%1</t>", (_x select 0)]), lineBreak];
-		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>Groups:<t align='right' color='#FFD30D'>%1</t>", (_x select 1)]), lineBreak];
-		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>Units:<t align='right' color='#FFD30D'>%1</t>", (_x select 2)]), lineBreak];
+		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>Units:<t align='right' color='#FFD30D'>%1</t>", (_x select 1)]), lineBreak];
+		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>Groups:<t align='right' color='#FFD30D'>%1</t>", (_x select 2)]), lineBreak];
 		_temp = composeText [_temp,(parseText format["<t align='left' color='#FFFFFF'>FPS:<t align='right' color='#FFD30D'>%1</t>", (_x select 3)]), lineBreak, lineBreak];
 	} forEach _hcInfo;
 	hintSilent _temp;

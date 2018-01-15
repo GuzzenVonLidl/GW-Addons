@@ -14,7 +14,7 @@
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
 //#define	CUT_X(Var1) [Var1, 2] call BIS_fnc_cutDecimals
-#define	CUT_X(Var1) parseNumber(Var1 toFixed 2)
+#define	CUT_X(Var1) parseNumber(Var1 toFixed 3)
 #define	CUT_XYZ(Var1,Var2,Var3) [CUT_X(Var1),CUT_X(Var2),CUT_X(Var3)]
 
 params [
@@ -68,7 +68,8 @@ private _return = 0;
 				(vectorDir _x) params ["_dirX","_dirY","_dirZ"];
 				(vectorUp _x) params ["_upX","_upY","_upZ"];
 
-				_objects pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), [CUT_XYZ(_dirX,_dirY,_dirZ), CUT_XYZ(_upX,_upY,_upZ)], _special, GETATTRIBUTE("objectIsSimple")];
+				_objects pushBack [GETATTRIBUTE("itemClass"), (getPosWorld _x), [((_x call BIS_fnc_getPitchBank) + [(getDir _x)]), GETATTRIBUTE("rotation")], _special, GETATTRIBUTE("objectIsSimple")];
+//				_objects pushBack [GETATTRIBUTE("itemClass"), (getPosWorld _x), [CUT_XYZ(_dirX,_dirY,_dirZ), CUT_XYZ(_upX,_upY,_upZ)], _special, GETATTRIBUTE("objectIsSimple")];
 			};
 		};
 	};
@@ -88,11 +89,21 @@ switch (_type) do {
 	};
 };
 
-if !(_return isEqualTo 0) then {
-	copyToClipboard _return;
-};
-
 if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
 	_delete = (get3DENSelected "object") + (get3DENSelected "group");
 	delete3DENEntities _delete;
 };
+
+if ("Preferences" get3DENMissionAttribute "GW_CopyToClipboard") then {
+	copyToClipboard _return;
+};
+
+if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleLog") then {
+	"debug_console" callExtension (_return + "#1111");
+};
+
+if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleFile") then {
+	"debug_console" callExtension (_return + "~0001");
+};
+
+[(str _this),QFUNC(copyStatic)] call FUNC(uiSaveFunction);

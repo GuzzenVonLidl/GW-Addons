@@ -10,8 +10,8 @@ class display3DEN {
 			};
 
 			class LogVectors {
-				action = "['logClasses'] call bis_fnc_3DENEntityMenu;";
-				conditionShow = "selectedObject + selectedWaypoint + selectedLogic + selectedMarker";
+				action = "[] call GW_3DEN_fnc_logVector;";
+				conditionShow = "selectedObject";
 				data = "LogVectors";
 				text = "Log Vector Up and Dir to Clipboard";
 				value = 0;
@@ -46,7 +46,7 @@ class display3DEN {
 						MENU_SUB(Copy,Group),
 						MENU_SUB(Copy,OnlyMen),
 						MENU_SUB(Copy,AllObjects),
-						MENU_SUB(Copy,Loadout),
+//						MENU_SUB(Copy,Loadout),
 						"Separator",
 						MENU_SUB(Copy,Export)
 					};
@@ -66,6 +66,7 @@ class display3DEN {
 						"Separator",
 						MENU_SUB(doActions,pattern_Line),
 						MENU_SUB(doActions,pattern_Circular),
+						MENU_SUB(doActions,pattern_offset),
 						"Separator",
 						MENU_SUB(doActions,extra),
 						"Separator",
@@ -145,7 +146,7 @@ class display3DEN {
 
 				class MENU_SUB(DebugConsole,Exit) {
 					action = "'debug_console' callExtension ('X')";
-					Text = "Shotdown Console";
+					Text = "Shutdown Console";
 				};
 
 				#include "display3DEN\_copy.hpp"

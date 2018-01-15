@@ -19,4 +19,5 @@ if !(_function isEqualTo "") exitWith {
 	(uiNamespace setVariable [QGVAR(FunctionName), _function]);
 	true
 };
+
 false

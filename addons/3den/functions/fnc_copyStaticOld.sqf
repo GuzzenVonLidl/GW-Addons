@@ -3,7 +3,7 @@
 	Copy units, vehicles and waypoints
 
 	Usage:
-	[] call GW_3DEN_fnc_CopyStaticOld
+	[] call GW_3DEN_fnc_CopyStatic
 
 	Arguments:
 	#0:	NUMBER:		 Copy Mode, 1 - Static units || 2 - Objects and Vehicles Only
@@ -13,10 +13,14 @@
 */
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
+//#define	CUT_X(Var1) [Var1, 2] call BIS_fnc_cutDecimals
+#define	CUT_X(Var1) parseNumber(Var1 toFixed 2)
+#define	CUT_XYZ(Var1,Var2,Var3) [CUT_X(Var1),CUT_X(Var2),CUT_X(Var3)]
 
 params [
 	"_type"
 ];
+
 private _units = [];
 private _vehicles = [];
 private _objects = [];
@@ -25,43 +29,11 @@ private _return = 0;
 {
 	private _special = [];
 	switch (_type) do {
-		case 1: {	// Units
+		case 1: { // Units && Vehicles
 			if (_x isKindOf "AllVehicles") then {
-				if !(GETATTRIBUTE("init") isEqualTo "") then {
-					_special pushBack ["init", GETATTRIBUTE("init")];
-				};
-				if !(GETATTRIBUTE("enableSimulation")) then {
-					_special pushBack ["simulation", GETATTRIBUTE("enableSimulation")];
-				};
-				if !(GETATTRIBUTE("allowDamage")) then {
-					_special pushBack ["damage", GETATTRIBUTE("allowDamage")];
-				};
-				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-					_special pushBack ["lock", GETATTRIBUTE("lock")];
-				};
-/*
-				if (GETATTRIBUTE("addToDynSimGrid")) then {
-					_special pushBack ["addToDyn", GETATTRIBUTE("addToDynSimGrid")];
-				};
-				if (GETATTRIBUTE("dynamicSimulation")) then {
-					_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
-				};
-*/
-				if (_x isKindOf "CAManBase") then {
-					private _stance = "Auto";
-					switch ((_x get3DENAttribute "UnitPos") select 0) do {
-						case 0: {
-							_stance = "Up";
-						};
-						case 1: {
-							_stance = "Middle";
-						};
-						case 2: {
-							_stance = "Down";
-						};
-					};
-					_units pushBack [GETATTRIBUTE("position"), (GETATTRIBUTE("rotation") select 2), _stance, _special];
-				} else {
+				private _special = ([_x] call FUNC(getAttributes));
+
+				if !(_x isKindOf "CAManBase") then {
 					private _crewList = [];
 					private _crew = (fullCrew _x);
 					if ((count _crew) isEqualTo 0) then {
@@ -76,54 +48,51 @@ private _return = 0;
 						} forEach _crew;
 					};
 
-					_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), [(vectorDir _x), (vectorUp _x)], _crewList, _special];
+					_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
+				};
+
+				if (_x isKindOf "CAManBase") then {
+					private _stance = ["Up","Middle","Down","Auto"] select ((_x get3DENAttribute "UnitPos") select 0);
+
+					if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
+						_units pushBack [GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _stance, _special];
+					};
 				};
 			};
 		};
 
-		case 2: {	// Objects & Vehicles
+		case 2: { // Objects
 			if ((_x isKindOf "All") && !(_x isKindOf "CAManBase")) then {
-				if !(GETATTRIBUTE("init") isEqualTo "") then {
-					_special pushBack ["init", GETATTRIBUTE("init")];
-				};
-				if !(GETATTRIBUTE("enableSimulation")) then {
-					_special pushBack ["simulation", GETATTRIBUTE("enableSimulation")];
-				};
-				if !(GETATTRIBUTE("allowDamage")) then {
-					_special pushBack ["damage", GETATTRIBUTE("allowDamage")];
-				};
-				if !(GETATTRIBUTE("lock") isEqualTo 1) then {
-					_special pushBack ["lock", GETATTRIBUTE("lock")];
-				};
-/*
-				if (GETATTRIBUTE("dynamicSimulation")) then {
-					_special pushBack ["dynamic", GETATTRIBUTE("dynamicSimulation")];
-				};
-*/
-				_objects pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), [(vectorDir _x), (vectorUp _x)], _special, GETATTRIBUTE("objectIsSimple")];
-			};
-		};
+				private _special = ([_x] call FUNC(getAttributes));
 
-		case 3: {
-			["Composition is just pre placed objects. It is easily used but also created, make sure the objects you want to have in it is selected and have the player close because he is used as a ""center"" of all objects","About Composition"] call BIS_fnc_3DENShowMessage;
+				(vectorDir _x) params ["_dirX","_dirY","_dirZ"];
+				(vectorUp _x) params ["_upX","_upY","_upZ"];
+
+				_objects pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), [CUT_XYZ(_dirX,_dirY,_dirZ), CUT_XYZ(_upX,_upY,_upZ)], _special, GETATTRIBUTE("objectIsSimple")];
+			};
 		};
 	};
 } forEach (get3DENSelected "object");
 
 switch (_type) do {
 	case 1: {
-		_return = format ["%1 call GW_Common_fnc_spawnGroup;", [_units, _vehicles]];
+		_return = (str([_units, _vehicles]) + (" call GW_Common_fnc_spawnGroup;"));
 		TRACE_1("Units", _units);
 		TRACE_1("Vehicles", _vehicles);
-		systemChat format ["%1 units, %2 vehicles copied", (count _units), (count _vehicles)];
+		systemChat format ["%1 units, %2 vehicles copied - Copy Static", (count _units), (count _vehicles)];
 	};
 	case 2: {
-		_return = format ["%1 call GW_Common_fnc_spawnObjects;", _objects];
+		_return = (str(_objects) + (" call GW_Common_fnc_spawnObjects;"));
 		TRACE_1("Objects", _objects);
-		systemChat format ["%1 objects copied", (count _objects)];
+		systemChat format ["%1 objects copied - Copy Objects", (count _objects)];
 	};
 };
 
 if !(_return isEqualTo 0) then {
 	copyToClipboard _return;
+};
+
+if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
+	_delete = (get3DENSelected "object") + (get3DENSelected "group");
+	delete3DENEntities _delete;
 };

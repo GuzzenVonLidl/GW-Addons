@@ -2,8 +2,13 @@
 class CfgAILevelPresets {
 	class AILevelCustom {
 		displayName = "GOL";
-		precisionAI = 0.4;
+		precisionAI = 0.6;
 		skillAI = 0.8;
+	};
+	class AILevelCustomHigh {
+		displayName = "GOL Hard";
+		precisionAI = 1;
+		skillAI = 1;
 	};
 };
 
@@ -25,9 +30,14 @@ class CfgDifficultyPresets {
 			friendlyTags=0;
 			groupIndicators=0;
 			mapContent=0;
+			mapContentEnemy = 0;
+			mapContentFriendly = 0;
+			mapContentMines = 0;
+			mapContentPing = 0;
 			multipleSaves=0;
 			reducedDamage=0;
 			scoreTable=0;
+			squadRadar = 0;
 			staminaBar=0;
 			stanceIndicator=1;
 			tacticalPing = 0;

@@ -47,3 +47,7 @@ collect3DENHistory {
 		};
 	};
 };
+
+[(str _this),QFUNC(setAttribute)] call FUNC(uiSaveFunction);
+
+true

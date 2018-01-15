@@ -3,7 +3,7 @@
 	Copy units, vehicles and waypoints
 
 	Usage:
-	[] call GW_3den_fnc_CopyGroup;
+	[] call GW_3den_fnc_copyGroup;
 
 	Arguments: NO
 
@@ -41,7 +41,6 @@
 	Music							music
 	UI Overlay						title
 */
-#define DEBUG_MODE_FULL
 #include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
 
@@ -51,7 +50,7 @@ private _vehicles = [];
 
 {
 	if (_x isKindOf "AllVehicles") then {
-		private _special = ([_x] call FUNC(getAttributes));
+		private _special = [];
 
 		if !(_x isKindOf "CAManBase") then {
 			private _crewList = [];
@@ -68,11 +67,17 @@ private _vehicles = [];
 				} forEach _crew;
 			};
 
+			_special = ([_x, false] call FUNC(getAttributes));
 			_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 		};
 
 		if (_x isKindOf "CAManBase") then {	// Infantry only
 			if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
+				if ((count _units) isEqualTo 0) then {
+					_special = ([_x, true] call FUNC(getAttributes));
+				} else {
+					_special = ([_x, false] call FUNC(getAttributes));
+				};
 				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _special];
 			};
 		};
@@ -92,20 +97,22 @@ private _vehicles = [];
 	if !(GETATTRIBUTE("behaviour") isEqualTo "UNCHANGED") then {
 		_waypointSettings pushBack [1,GETATTRIBUTE("behaviour")];
 	};
+
 	if !(GETATTRIBUTE("combatMode") isEqualTo "NO CHANGE") then {
 		_waypointSettings pushBack [2,GETATTRIBUTE("combatMode")];
 	};
+
 	if !(GETATTRIBUTE("completionRadius") isEqualTo 0) then {
 		_waypointSettings pushBack [3,GETATTRIBUTE("completionRadius")];
 	};
 
 	if !(GETATTRIBUTE("formation") isEqualTo 0) then {
-		private _formation = ["NO CHANGE","WEDGE","VEE","LINE","COLUMN","FILE","STAG COLUMN","ECH LEFT","ECH RIGHT","DIAMOND"] select GETATTRIBUTE("formation");
+		_formation = ["NO CHANGE","WEDGE","VEE","LINE","COLUMN","FILE","STAG COLUMN","ECH LEFT","ECH RIGHT","DIAMOND"] select GETATTRIBUTE("formation");
 		_waypointSettings pushBack [4,_formation];
 	};
 
 	if !(GETATTRIBUTE("speedMode") isEqualTo 0) then {
-		private _speed = ["UNCHANGED","LIMITED","NORMAL","FULL"] select GETATTRIBUTE("speedMode");
+		_speed = ["UNCHANGED","LIMITED","NORMAL","FULL"] select GETATTRIBUTE("speedMode");
 		_waypointSettings pushBack [5,_speed];
 	};
 
@@ -114,20 +121,36 @@ private _vehicles = [];
 	};
 
 //	if (!(GETATTRIBUTE("condition") isEqualTo "true") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
-	if (!(GETATTRIBUTE("condition") isEqualTo "call{true}") || !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
+	if ((!(GETATTRIBUTE("condition") isEqualTo "call{true}") || !(GETATTRIBUTE("condition") isEqualTo "true")) && !(GETATTRIBUTE("onActivation") isEqualTo "")) then {
 		_waypointSettings pushBack [7,[GETATTRIBUTE("condition"), GETATTRIBUTE("onActivation")]];
 	};
 
 	_groupWaypoint pushBack ([(GETATTRIBUTE("position"))] + [_waypointSettings]);
 } forEach get3DENSelected "waypoint";
 
-systemChat format ["%1 units, %2 vehicles, %3 waypoints copied - Copy Group", (count _units), (count _vehicles), (count _groupWaypoint)];
-copyToClipboard (str([_units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
+
+_return = (str([_units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
 
 if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
 	_delete = (get3DENSelected "object") + (get3DENSelected "waypoint") + (get3DENSelected "group");
 	delete3DENEntities _delete;
 };
+
+if ("Preferences" get3DENMissionAttribute "GW_CopyToClipboard") then {
+	copyToClipboard _return;
+};
+
+if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleLog") then {
+	"debug_console" callExtension (_return + "#1111");
+};
+
+if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleFile") then {
+	"debug_console" callExtension (_return + "~0001");
+};
+
+[[],QFUNC(copyGroup)] call FUNC(uiSaveFunction);
+
+systemChat format ["%1 units, %2 vehicles, %3 waypoints copied - Copy Group", (count _units), (count _vehicles), (count _groupWaypoint)];
 
 TRACE_1("Units", _units);
 TRACE_1("Waypoints", _groupWaypoint);

@@ -4,8 +4,6 @@ params ["_type"];
 
 (findDisplay 49) closeDisplay 0;
 
-//	private _isAdmin = (GVARMAIN(isAdmin) || (serverCommandAvailable "#logout"));
-
 switch (_type) do {
 	case 1: {
 		["player",[],100, [QUOTE(call FUNC(flexi_InteractSelfClient)),"main"]] call cba_fnc_fleximenu_openMenuByDef;

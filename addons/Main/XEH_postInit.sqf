@@ -3,12 +3,7 @@
 [{
 	if (hasInterface) then {
 		if ((getPlayerUID player) in GVARMAIN(adminList)) then {
-			GVARMAIN(isAdmin) = true;
-			if (GVARMAIN(isActiveAdmin)) then {
-				[QGVARMAIN(AddAdmin), player] call CBA_fnc_serverEvent;
-			} else {
-				[QGVARMAIN(RemoveAdmin), player] call CBA_fnc_serverEvent;
-			};
+			[QGVARMAIN(AddAdmin), player] call CBA_fnc_localEvent;
 			if ((getPlayerUID player) in GVARMAIN(superAdminList)) then {
 				GVARMAIN(isSuperAdmin) = true;
 			};
@@ -33,31 +28,56 @@
 	};
 }, [], 1] call CBA_fnc_waitAndExecute;
 
-[QGVARMAIN(AddToAdminList), {
+[QGVARMAIN(sendMessage), {
+	params ["_message"];
+	systemChat _message;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(AddAdmin), {
+	params ["_admin"];
+	GVARMAIN(isAdmin) = true;
+	[QGVARMAIN(AddAdminServer), _admin] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(AddAdminServer), {
 	params ["_admin"];
 	GVARMAIN(adminList) pushBackUnique _admin;
 }] call CBA_fnc_addEventHandler;
 
-[QGVARMAIN(RemoveFromAdminList), {
+[QGVARMAIN(RemoveAdmin), {
+	params ["_admin"];
+	GVARMAIN(isAdmin) = false;
+	[QGVARMAIN(RemoveAdminServer), _admin] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(RemoveAdminServer), {
 	params ["_admin"];
 	if (_admin in GVARMAIN(adminList)) then {
 		GVARMAIN(adminList) deleteAt (GVARMAIN(adminList) find _admin);
 	};
 }] call CBA_fnc_addEventHandler;
 
-[QGVARMAIN(AddAdmin), {
+
+[QGVARMAIN(AddActiveAdmin), {
+	params ["_admin"];
+	GVARMAIN(isActiveAdmin) = true;
+	[QGVARMAIN(AddActiveAdminServer), _admin] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(AddActiveAdminServer), {
 	params ["_admin"];
 	GVARMAIN(activeAdmins) pushBackUnique _admin;
 }] call CBA_fnc_addEventHandler;
 
-[QGVARMAIN(RemoveAdmin), {
+[QGVARMAIN(RemoveActiveAdmin), {
+	params ["_admin"];
+	GVARMAIN(isActiveAdmin) = false;
+	[QGVARMAIN(RemoveActiveAdminServer), _admin] call CBA_fnc_serverEvent;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(RemoveActiveAdminServer), {
 	params ["_admin"];
 	if (_admin in GVARMAIN(activeAdmins)) then {
 		GVARMAIN(activeAdmins) deleteAt (GVARMAIN(activeAdmins) find _admin);
 	};
-}] call CBA_fnc_addEventHandler;
-
-[QGVARMAIN(sendMessage), {
-	params ["_message"];
-	systemChat _message;
 }] call CBA_fnc_addEventHandler;

@@ -16,15 +16,17 @@ class CfgPatches {
 
 #include "CfgEventHandlers.hpp"
 
-class ACE_Settings {
-	class ACE_Medical_Actions {
-		class Basic {
-			class Bandage;
-			class CPR: Bandage {
-				condition = "!([(_this select 1)] call ace_common_fnc_isAwake)";
-				callbackSuccess = QUOTE(FUNC(treatmentAdvanced_CPR));
-				callbackProgress = "!([((_this select 0) select 1)] call ace_common_fnc_isAwake)";
-			};
+class ACE_Medical_Actions {
+	class Basic {
+		class Bandage;
+		class CPR: Bandage {
+			callbackSuccess = QUOTE(FUNC(treatmentAdvanced_CPR));
+		};
+	};
+	class Advanced {
+		class fieldDressing;
+		class CPR: fieldDressing {
+			callbackSuccess = QUOTE(FUNC(treatmentAdvanced_CPR));
 		};
 	};
 };

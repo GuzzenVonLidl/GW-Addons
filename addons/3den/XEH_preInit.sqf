@@ -2,51 +2,73 @@
 
 #include "XEH_PREP.sqf"
 
-if (is3DEN) then {
-	GVAR(hideObjectPerFrame) = true;
-	GVAR(hiddenTriggers) = [];
-	1 call FUNC(doActionMisc);
-	'init' call bis_fnc_3DENStatusBar;
+if !(is3DEN) exitWith {};
+
+GVAR(hiddenTriggers) = [];
+1 call FUNC(doActionMisc);
+'init' call bis_fnc_3DENStatusBar;
 //	'init' call bis_fnc_3DENControlsHint;
 //	'init' call bis_fnc_3DENInterface;
 
-	"BIS_fnc_isDebugConsoleAllowed" call BIS_fnc_recompile;
+"BIS_fnc_isDebugConsoleAllowed" call BIS_fnc_recompile;
+
+[QGVAR(updateNewCopy), {
+	_getVersion = (getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version"));
+	if !(_getVersion isEqualTo 0) then {
+		_useNewCopy = false;
+		if (_getVersion >= 1.6) then {
+			_useNewCopy = true;
+		};
+		if !(_useNewCopy isEqualTo ("Preferences" get3DENMissionAttribute "GW_useNewCopy")) then {
+			"Preferences" set3DENMissionAttribute ["GW_useNewCopy", _useNewCopy];
+		};
+	};
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(updateNewCopy), []] call CBA_fnc_localEvent;
 
 //	setViewDistance 3000;
 //	setObjectViewDistance [2500, 100];
 
-	[] spawn {
-		while {is3DEN} do {
-			[] call FUNC(showStats);
-			uiSleep 0.1;
+addMissionEventHandler ["Draw3D", {
+	_layer = ((all3DENEntities select 6) select {((_x get3DENAttribute "name") select 0) isEqualTo "Triggers (Hide)"});
+	if (("Preferences" get3DENMissionAttribute "GW_Show3DMessage") && !(_layer isEqualTo [])) then {
+		if ((((_layer select 0) get3DENAttribute "Visibility") select 0) && (((_layer select 0) get3DENAttribute "Transformation") select 0)) then {
+			{
+				if (!([_x] call FUNC(isNil3DENEntity)) && ((get3DENCamera distance _x) < 600)) then {
+					drawIcon3D ["", [1,0,0,1], _x, 0, 0, 0, "Logic: HideTerrainTrigger", 1, 0.04, "PuristaMedium"];
+				};
+			} forEach GVAR(hiddenTriggers);
 		};
 	};
+}];
 
-	[] spawn {
-		if ("Preferences" get3DENMissionAttribute "GW_Show3DMessage") then {
-			addMissionEventHandler ["Draw3D", {
-				{
-					if (!([_x] call FUNC(isNil3DENEntity)) && ("Preferences" get3DENMissionAttribute "GW_Show3DMessage")) then {
-						drawIcon3D ["", [1,0,0,1], _x, 0, 0, 0, "Logic: HideTerrainTrigger", 1, 0.04, "PuristaMedium"];
-					};
-				} forEach GVAR(hiddenTriggers);
-			}];
+// On Load
+{
+	_radius = ((_x get3DENAttribute "size3") select 0);
+	_objects = (nearestTerrainObjects [_x, HIDEOBJECTFILTER, (selectMax _radius), false]);
+
+	{
+		if !(isObjectHidden _x) then {
+			_x hideObjectGlobal true;
 		};
+	} forEach (_objects inAreaArray _x);
+} forEach ((all3DENEntities select 2) select {(((_x get3DENAttribute "text") select 0) isEqualTo "HideTrigger")});
 
-		// On Load
+[] spawn {
+	while {is3DEN} do {
 		{
 			[_x] spawn FUNC(perFrame);
-		} forEach ((all3DENEntities select 2) select {(((_x get3DENAttribute "text") select 0) isEqualTo "HideTrigger")});
+			GVAR(hiddenTriggers) pushBackUnique _x;
+		} forEach ((all3DENEntities select 2) select {(((_x get3DENAttribute "text") select 0) isEqualTo "HideTrigger") && !(_x in GVAR(hiddenTriggers))});
 
-		while {is3DEN} do {
-			{
-				if (_x in (get3DENSelected "trigger")) then {
-					[_x] spawn FUNC(perFrame);
-				};
-				GVAR(hiddenTriggers) pushBackUnique _x;
-			} forEach ((all3DENEntities select 2) select {(((_x get3DENAttribute "text") select 0) isEqualTo "HideTrigger") && !(_x in GVAR(hiddenTriggers))});
+		uiSleep 1;
+	};
+};
 
-			uiSleep 1;
-		};
+[] spawn {
+	while {is3DEN} do {
+		[] call FUNC(showStats);
+		uiSleep 0.1;
 	};
 };

@@ -1,9 +1,12 @@
 
 PREP(addToCurators);
 PREP(ambientDoors);
+PREP(canUseAddonVersion);
 PREP(createExampleMarker);
 PREP(findAverage);
+PREP(findMatch);
 PREP(findParamArray);
+PREP(getfullMoonDates);
 PREP(getParamArray);
 PREP(getPosASL);
 PREP(getPosATL);
@@ -13,6 +16,7 @@ PREP(getRandPosMarker);
 PREP(getSunAngle);
 PREP(getVersionAddon);
 PREP(getVersionFramework);
+PREP(hint);
 PREP(isBlacklisted);
 //PREP(isDebugConsoleAllowed); // CfgFunction
 PREP(isDevBuild);

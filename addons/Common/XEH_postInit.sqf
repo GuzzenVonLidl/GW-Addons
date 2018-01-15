@@ -13,7 +13,7 @@ if (hasInterface) then {
 	}, {}, [-1,[false,false,false]]] call CBA_fnc_addKeybind;
 };
 
-if (isServer) then {
+if (isServer && (call FUNC(canUseAddonVersion))) then {
 	[{
 		["AllVehicles", "init", {
 			[{

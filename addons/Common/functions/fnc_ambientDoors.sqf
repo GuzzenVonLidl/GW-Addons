@@ -19,14 +19,13 @@
 
 params ["_location",["_radius", 50], ["_thresHold", 0.6], ["_isInstant", (time < 1)]];
 
-private _MaxDoorsInHouse = 22;  		//<----------------------- Maximal number of doors in da house - current 22 doors - CAN CHANGE!!!!
-private _MaxHatchesInHouse = 6;  		//<----------------------- Maximal number of hatches in da house - current 6 hatches - CAN CHANGE!!!!
-private _classes = ["House","ThingX","Wall_F"];
+private _MaxDoorsInHouse = 22;
+private _MaxHatchesInHouse = 6;
 private _objects = [];
 
 {
 	_objects = (_objects + ((_location call CBA_fnc_getPos) nearObjects [_x,_radius]));
-} forEach _classes;
+} forEach ["House","ThingX","Wall_F"];
 
 {
 	_x params ["_door"];
