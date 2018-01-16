@@ -36,6 +36,7 @@
 [QGVARMAIN(AddAdmin), {
 	params ["_admin"];
 	GVARMAIN(isAdmin) = true;
+	missionNamespace setVariable [QGVARMAIN(isAdmin), true];
 	[QGVARMAIN(AddAdminServer), _admin] call CBA_fnc_serverEvent;
 }] call CBA_fnc_addEventHandler;
 
@@ -56,7 +57,6 @@
 		GVARMAIN(adminList) deleteAt (GVARMAIN(adminList) find _admin);
 	};
 }] call CBA_fnc_addEventHandler;
-
 
 [QGVARMAIN(AddActiveAdmin), {
 	params ["_admin"];

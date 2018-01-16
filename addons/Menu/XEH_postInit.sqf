@@ -72,10 +72,11 @@
 	private _LogicCenter = createCenter sideLogic;
 	private _moduleGroup = createGroup _LogicCenter;
 	private _ZeuzModule = _moduleGroup createUnit ["ModuleCurator_F",[0,0,0],[],0,"NONE"];
-	_ZeuzModule setVariable ["Addons", 3, true];
-	_ZeuzModule setVariable ["birdType", "", true];
-	_ZeuzModule setVariable ["Forced", 0, true];
+	_ZeuzModule setVariable ["Owner", (str _unit), true];
 	_ZeuzModule setVariable ["Name", format ["_%1", _unit], true];
+	_ZeuzModule setVariable ["Addons", 3, true];
+	_ZeuzModule setVariable ["Forced", 0, true];
+	_ZeuzModule setVariable ["birdType", "", true];
 	_ZeuzModule setVariable ["showNotification", false, true];
 	_ZeuzModule setCuratorWaypointCost 0;
 	{

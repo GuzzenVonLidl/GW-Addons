@@ -32,26 +32,26 @@
 			[QGVAR(removeGroup), _x] call CBA_fnc_GlobalEvent;
 		};
 	} forEach allGroups;
-}, []] call CBA_Fnc_execNextFrame;
+}, [], 1] call CBA_fnc_waitAndExecute;
 
 //} forEach ((allMissionObjects "WeaponHolder") + (allMissionObjects "GroundWeaponHoder") + (allMissionObjects "WeaponHolderSimulated"));
 [{
 	{
 		[2, _x] call FUNC(HandlerCleanUpCounter);
 	} forEach (allMissionObjects "WeaponHolder");
-}, [], 1] call CBA_fnc_waitAndExecute;
-
-[{
-	{
-		[2, _x] call FUNC(HandlerCleanUpCounter);
-	} forEach (allMissionObjects "GroundWeaponHoder");
 }, [], 2] call CBA_fnc_waitAndExecute;
 
 [{
 	{
 		[2, _x] call FUNC(HandlerCleanUpCounter);
-	} forEach (allMissionObjects "WeaponHolderSimulated");
+	} forEach (allMissionObjects "GroundWeaponHoder");
 }, [], 3] call CBA_fnc_waitAndExecute;
+
+[{
+	{
+		[2, _x] call FUNC(HandlerCleanUpCounter);
+	} forEach (allMissionObjects "WeaponHolderSimulated");
+}, [], 4] call CBA_fnc_waitAndExecute;
 
 /*
 {

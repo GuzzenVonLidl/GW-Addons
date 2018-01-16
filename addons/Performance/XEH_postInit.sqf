@@ -1,17 +1,19 @@
 // #define DEBUG_MODE_FULL
 #include "script_component.hpp"
 
-if (isServer && !(isClass(missionConfigFile >> "GW_Modules" >> "Performance")) && (call EFUNC(Common,canUseAddonVersion))) then {
+if (isClass(missionConfigFile >> "GW_Modules" >> "Performance")) exitWith {false};
 
+[QGVAR(removeGroup), {
+	deleteGroup _this;
+}] call CBA_fnc_addEventHandler;
+
+if (isServer) then {
 	["CAManBase", "init", {
-		[{
-			_this call FUNC(Simulation);
-		}, _this] call CBA_Fnc_execNextFrame;
+		_this call FUNC(Simulation);
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
+
 	["CAManBase", "KILLED", {
-		[{
-			_this call FUNC(HandlerKilled);
-		}, _this] call CBA_Fnc_execNextFrame;
+		_this call FUNC(HandlerKilled);
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
 
 	GVAR(CleanUp_PFH) = [{
@@ -34,7 +36,3 @@ if (isServer && !(isClass(missionConfigFile >> "GW_Modules" >> "Performance")) &
 	}] call CBA_fnc_addEventHandler;
 
 };
-
-[QGVAR(removeGroup), {
-	deleteGroup _this;
-}] call CBA_fnc_addEventHandler;

@@ -18,7 +18,7 @@ if (isServer && (call FUNC(canUseAddonVersion))) then {
 		["AllVehicles", "init", {
 			[{
 				_this call FUNC(addToCurators);
-			}, _this] call CBA_Fnc_execNextFrame;
+			}, _this, (random [1, 3, 5])] call CBA_fnc_waitAndExecute;
 		}, true, [], true] call CBA_fnc_addClassEventHandler;
 	}, [], 1] call CBA_fnc_waitAndExecute;
 };

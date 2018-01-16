@@ -140,9 +140,7 @@ if (_menuName isEqualTo "modules") then {
 				[
 					"Heal All Players",
 					{[QEGVAR(ACE_Settings,fullHeal), player] call CBA_fnc_globalEvent},
-					[true] call FUNC(getCheckBoxIcon),
-					"", "", -1, (true),
-					(isClass(missionConfigFile >> "GW_Modules" >> "StartUp") && GW_StartUp_Enabled)
+					"","", "", -1, (true),true
 				]
 			]
 		];
@@ -252,9 +250,6 @@ if (_menuName isEqualTo "spawn") then {
 			["Ammo Box - Squad",{[QGVAR(spawnBox), ["small_box","Box_NATO_Ammo_F", player]] call CBA_fnc_serverEvent;}],
 			["Ammo Box - Platoon",{[QGVAR(spawnBox), ["big_box","B_CargoNet_01_ammo_F", player]] call CBA_fnc_serverEvent;}],
 			["Medical Box - Big",{[QGVAR(spawnBox), ["med_box","Box_NATO_AmmoOrd_F", player]] call CBA_fnc_serverEvent;}]
-//			["Ammo Box - Squad",{ ["small_box","Box_NATO_Ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }],
-//			["Ammo Box - Platoon",{ ["big_box","B_CargoNet_01_ammo_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }],
-//			["Medical Box - Big",{ ["med_box","Box_NATO_AmmoOrd_F", player] remoteExecCall [QFUNC(spawnBox), 2]; }]
 		]
 	];
 };
