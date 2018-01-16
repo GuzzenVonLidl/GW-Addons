@@ -49,17 +49,8 @@ class CfgEditorSubcategories {
 	class EdSubcat_GW_Trees {
 		displayName="Trees";
 	};
-	class EdSubcat_GW_Bushes_tanoa {
-		displayName = "Tanoa Bushes";
-	};
-	class EdSubcat_GW_Plants_tanoa {
-		displayName = "Tanoa Plants";
-	};
-	class EdSubcat_GW_clutter_tanoa {
-		displayName = "Tanoa Clutter";
-	};
 	class EdSubcat_GW_Trees_tanoa {
-		displayName="Tanoa Trees";
+		displayName="Trees Tanoa";
 	};
 };
 

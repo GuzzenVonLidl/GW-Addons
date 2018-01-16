@@ -3,20 +3,14 @@
 #define	TREE_FIR	icon="a3\ui_f\data\Map\LocationTypes\vegetationFir_CA.paa"
 #define	TREE_PALM	icon="a3\ui_f\data\Map\LocationTypes\vegetationPalm_CA.paa"
 
-#define	TREE(VAR1)	DOUBLES(Tree,VAR1)
+#define	ALTIS_LOC(VAR1,VAR2)	model = ##a3\plants_f\####VAR1####\####VAR2####.p3d
+#define	MALDEN_LOC(VAR1,VAR2)	model = ##Argo\Addons\vegetation_f_argo\####VAR1####\####VAR2####.p3d
+#define	TANOA_LOC(VAR1,VAR2)	model = ##Expansion\Addons\vegetation_f_exp\####VAR1####\####VAR2####.p3d
 
 #define	TAGBUSH(Var1)	TRIPLES(PREFIX,Bush,Var1)
 #define	TAGclutter(Var1)	TRIPLES(PREFIX,clutter,Var1)
 #define	TAGPlant(Var1)	TRIPLES(PREFIX,Plants,Var1)
 #define	TAGTREE(Var1)	TRIPLES(PREFIX,Tree,Var1)
-
-#define	Bush_LOC(VAR1)	model = ##a3\plants_f\Bush\####VAR1####.p3d
-#define	Clutter_LOC(VAR1)	model = ##a3\plants_f\clutter\####VAR1####.p3d
-#define	Plant_LOC(VAR1)	model = ##a3\plants_f\Plant\####VAR1####.p3d
-#define	TREE_LOC(VAR1)	model = ##a3\plants_f\Tree\####VAR1####.p3d
-
-#define	MALDEN_LOC(VAR1,VAR2)	model = ##Argo\Addons\vegetation_f_argo\####VAR1####\####VAR2####.p3d
-#define	TANOA_LOC(VAR1,VAR2)	model = ##Expansion\Addons\vegetation_f_exp\####VAR1####\####VAR2####.p3d
 
 class CfgVehicles {
 	class Static;
@@ -41,39 +35,39 @@ class CfgVehicles {
 	class TAGBUSH(b_ArundoD2s_F): GW_BaseObject {
 		editorSubcategory="EdSubcat_GW_Bushes";
 		displayName="ArundoD2s";
-		Bush_LOC(b_ArundoD2s_F);
+		ALTIS_LOC(Bush,b_ArundoD2s_F);
 	};
 	class TAGBUSH(b_ArundoD3s_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="ArundoD3s";
-		Bush_LOC(b_ArundoD3s_F);
+		ALTIS_LOC(Bush,b_ArundoD3s_F);
 	};
 	class TAGBUSH(b_FicusC1s_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="FicusC1s_F";
-		Bush_LOC(b_FicusC1s_F);
+		ALTIS_LOC(Bush,b_FicusC1s_F);
 	};
 	class TAGBUSH(b_ficusC2d_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="ficusC2d_F";
-		Bush_LOC(b_ficusC2d_F);
+		ALTIS_LOC(Bush,b_ficusC2d_F);
 	};
 	class TAGBUSH(b_FicusC2s_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="FicusC2s_F";
-		Bush_LOC(b_FicusC2s_F);
+		ALTIS_LOC(Bush,b_FicusC2s_F);
 	};
 	class TAGBUSH(b_NeriumO2d_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="NeriumO2d_F";
-		Bush_LOC(b_NeriumO2d_F);
+		ALTIS_LOC(Bush,b_NeriumO2d_F);
 	};
 	class TAGBUSH(b_NeriumO2s_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="NeriumO2s_F";
-		Bush_LOC(b_NeriumO2s_F);
+		ALTIS_LOC(Bush,b_NeriumO2s_F);
 	};
 	class TAGBUSH(b_NeriumO2s_white_F): TAGBUSH(b_ArundoD2s_F) {
 		displayName="NeriumO2s_white_F";
-		Bush_LOC(b_NeriumO2s_white_F);
+		ALTIS_LOC(Bush,b_NeriumO2s_white_F);
 	};
 	class TAGBUSH(b_Thistle_Thorn_Green): TAGBUSH(b_ArundoD2s_F) {
 		displayName="Thistle_Thorn_Green";
-		Bush_LOC(b_Thistle_Thorn_Green);
+		ALTIS_LOC(Bush,b_Thistle_Thorn_Green);
 	};
 	// Tanoa
 	// Malden
@@ -90,188 +84,187 @@ class CfgVehicles {
 	class TAGclutter(c_bigFallenBranches_pine): TAGBUSH(b_ArundoD2s_F) {
 		editorSubcategory="EdSubcat_GW_clutter";
 		displayName="bigFallenBranches_pine";
-		Clutter_LOC(c_bigFallenBranches_pine);
+		ALTIS_LOC(clutter,c_bigFallenBranches_pine);
 	};
 	class TAGclutter(c_bigFallenBranches_pine02): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="bigFallenBranches_pine02";
-		Clutter_LOC(c_bigFallenBranches_pine02);
+		ALTIS_LOC(clutter,c_bigFallenBranches_pine02);
 	};
 	class TAGclutter(c_bigFallenBranches_pine03): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="bigFallenBranches_pine03";
-		Clutter_LOC(c_bigFallenBranches_pine03);
+		ALTIS_LOC(clutter,c_bigFallenBranches_pine03);
 	};
 	class TAGclutter(c_BranchBig): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="BranchBig";
-		Clutter_LOC(c_BranchBig);
+		ALTIS_LOC(clutter,c_BranchBig);
 	};
 	class TAGclutter(c_Carduus): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Carduus";
-		Clutter_LOC(c_Carduus);
+		ALTIS_LOC(clutter,c_Carduus);
 	};
 	class TAGclutter(c_Flower_Cakile): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Flower_Cakile";
-		Clutter_LOC(c_Flower_Cakile);
+		ALTIS_LOC(clutter,c_Flower_Cakile);
 	};
 	class TAGclutter(c_Flower_Low_Yellow2): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Flower_Low_Yellow2";
-		Clutter_LOC(c_Flower_Low_Yellow2);
+		ALTIS_LOC(clutter,c_Flower_Low_Yellow2);
 	};
 	class TAGclutter(c_Grass_BrushHigh_Green): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_BrushHigh_Green";
-		Clutter_LOC(c_Grass_BrushHigh_Green);
+		ALTIS_LOC(clutter,c_Grass_BrushHigh_Green);
 	};
 	class TAGclutter(c_Grass_Bunch_Small): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_Bunch_Small";
-		Clutter_LOC(c_Grass_Bunch_Small);
+		ALTIS_LOC(clutter,c_Grass_Bunch_Small);
 	};
 	class TAGclutter(c_Grass_Dry): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_Dry";
-		Clutter_LOC(c_Grass_Dry);
+		ALTIS_LOC(clutter,c_Grass_Dry);
 	};
 	class TAGclutter(c_Grass_Green): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_Green";
-		Clutter_LOC(c_Grass_Green);
+		ALTIS_LOC(clutter,c_Grass_Green);
 	};
 	class TAGclutter(c_Grass_Tall_Dead): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_Tall_Dead";
-		Clutter_LOC(c_Grass_Tall_Dead);
+		ALTIS_LOC(clutter,c_Grass_Tall_Dead);
 	};
 	class TAGclutter(c_Grass_TuftDry): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Grass_TuftDry";
-		Clutter_LOC(c_Grass_TuftDry);
+		ALTIS_LOC(clutter,c_Grass_TuftDry);
 	};
 	class TAGclutter(c_GrassCrooked): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassCrooked";
-		Clutter_LOC(c_GrassCrooked);
+		ALTIS_LOC(clutter,c_GrassCrooked);
 	};
 	class TAGclutter(c_GrassDead_Tuft_Stony): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassDead_Tuft_Stony";
-		Clutter_LOC(c_GrassDead_Tuft_Stony);
+		ALTIS_LOC(clutter,c_GrassDead_Tuft_Stony);
 	};
 	class TAGclutter(c_GrassDesert_GroupHard): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassDesert_GroupHard";
-		Clutter_LOC(c_GrassDesert_GroupHard);
+		ALTIS_LOC(clutter,c_GrassDesert_GroupHard);
 	};
 	class TAGclutter(c_GrassGreen_GroupHard): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassGreen_GroupHard";
-		Clutter_LOC(c_GrassGreen_GroupHard);
+		ALTIS_LOC(clutter,c_GrassGreen_GroupHard);
 	};
 	class TAGclutter(c_GrassGreen_GroupSoft): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassGreen_GroupSoft";
-		Clutter_LOC(c_GrassGreen_GroupSoft);
+		ALTIS_LOC(clutter,c_GrassGreen_GroupSoft);
 	};
 	class TAGclutter(c_GrassLong_DryBunch): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassLong_DryBunch";
-		Clutter_LOC(c_GrassLong_DryBunch);
+		ALTIS_LOC(clutter,c_GrassLong_DryBunch);
 	};
 	class TAGclutter(c_GrassTall): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="GrassTall";
-		Clutter_LOC(c_GrassTall);
+		ALTIS_LOC(clutter,c_GrassTall);
 	};
 	class TAGclutter(c_Rubble_Clutter1): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter1";
-		Clutter_LOC(c_Rubble_Clutter1);
+		ALTIS_LOC(clutter,c_Rubble_Clutter1);
 	};
 	class TAGclutter(c_Rubble_Clutter2): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter2";
-		Clutter_LOC(c_Rubble_Clutter2);
+		ALTIS_LOC(clutter,c_Rubble_Clutter2);
 	};
 	class TAGclutter(c_Rubble_Clutter3): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter3";
-		Clutter_LOC(c_Rubble_Clutter3);
+		ALTIS_LOC(clutter,c_Rubble_Clutter3);
 	};
 	class TAGclutter(c_Rubble_Clutter4): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter4";
-		Clutter_LOC(c_Rubble_Clutter4);
+		ALTIS_LOC(clutter,c_Rubble_Clutter4);
 	};
 	class TAGclutter(c_Rubble_Clutter5): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter5";
-		Clutter_LOC(c_Rubble_Clutter5);
+		ALTIS_LOC(clutter,c_Rubble_Clutter5);
 	};
 	class TAGclutter(c_Rubble_Clutter6): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Rubble_Clutter6";
-		Clutter_LOC(c_Rubble_Clutter6);
+		ALTIS_LOC(clutter,c_Rubble_Clutter6);
 	};
 	class TAGclutter(c_sharpStones_erosion): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="sharpStones_erosion";
-		Clutter_LOC(c_sharpStones_erosion);
+		ALTIS_LOC(clutter,c_sharpStones_erosion);
 	};
 	class TAGclutter(c_sharpStones_erosion_v2): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="sharpStones_erosion_v2";
-		Clutter_LOC(c_sharpStones_erosion_v2);
+		ALTIS_LOC(clutter,c_sharpStones_erosion_v2);
 	};
 	class TAGclutter(c_StrGrassDry_group): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrGrassDry_group";
-		Clutter_LOC(c_StrGrassDry_group);
+		ALTIS_LOC(clutter,c_StrGrassDry_group);
 	};
 	class TAGclutter(c_StrGrassDryMedium_group): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrGrassDryMedium_group";
-		Clutter_LOC(c_StrGrassDryMedium_group);
+		ALTIS_LOC(clutter,c_StrGrassDryMedium_group);
 	};
 	class TAGclutter(c_StrGrassGreen_group): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrGrassGreen_group";
-		Clutter_LOC(c_StrGrassGreen_group);
+		ALTIS_LOC(clutter,c_StrGrassGreen_group);
 	};
 	class TAGclutter(c_StrPlantGermader_group): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrPlantGermader_group";
-		Clutter_LOC(c_StrPlantGermader_group);
+		ALTIS_LOC(clutter,c_StrPlantGermader_group);
 	};
 	class TAGclutter(c_StrPlantGreenShrub): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrPlantGreenShrub";
-		Clutter_LOC(c_StrPlantGreenShrub);
+		ALTIS_LOC(clutter,c_StrPlantGreenShrub);
 	};
 	class TAGclutter(c_StrThornGray): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrThornGray";
-		Clutter_LOC(c_StrThornGray);
+		ALTIS_LOC(clutter,c_StrThornGray);
 	};
 	class TAGclutter(c_StrThornGreen): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrThornGreen";
-		Clutter_LOC(c_StrThornGreen);
+		ALTIS_LOC(clutter,c_StrThornGreen);
 	};
 	class TAGclutter(c_StrThornKhaki): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="StrThornKhaki";
-		Clutter_LOC(c_StrThornKhaki);
+		ALTIS_LOC(clutter,c_StrThornKhaki);
 	};
 	class TAGclutter(c_Thistle_Thorn_Brown): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Thistle_Thorn_Brown";
-		Clutter_LOC(c_Thistle_Thorn_Brown);
+		ALTIS_LOC(clutter,c_Thistle_Thorn_Brown);
 	};
 	class TAGclutter(c_Thistle_Thorn_Desert): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Thistle_Thorn_Desert";
-		Clutter_LOC(c_Thistle_Thorn_Desert);
+		ALTIS_LOC(clutter,c_Thistle_Thorn_Desert);
 	};
 	class TAGclutter(c_Thistle_Thorn_Gray): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Thistle_Thorn_Gray";
-		Clutter_LOC(c_Thistle_Thorn_Gray);
+		ALTIS_LOC(clutter,c_Thistle_Thorn_Gray);
 	};
 	class TAGclutter(c_Thistle_Thorn_Green): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="Thistle_Thorn_Green";
-		Clutter_LOC(c_Thistle_Thorn_Green);
+		ALTIS_LOC(clutter,c_Thistle_Thorn_Green);
 	};
 
 // Tanoa
 	class TAGclutter(c_forest_BiglLeaves): TAGclutter(c_bigFallenBranches_pine) {
-		editorSubcategory="EdSubcat_GW_clutter_tanoa";
 		displayName="forest_BiglLeaves";
 		TANOA_LOC(clutter\forest,c_forest_BiglLeaves);
 	};
-	class TAGclutter(c_forest_BiglLeaves2): TAGclutter(c_forest_BiglLeaves) {
+	class TAGclutter(c_forest_BiglLeaves2): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="forest_BiglLeaves2";
 		TANOA_LOC(clutter\forest,c_forest_BiglLeaves2);
 	};
-	class TAGclutter(c_forest_fern): TAGclutter(c_forest_BiglLeaves) {
+	class TAGclutter(c_forest_fern): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="forest_fern";
 		TANOA_LOC(clutter\forest,c_forest_fern);
 	};
-	class TAGclutter(c_forest_roots): TAGclutter(c_forest_BiglLeaves) {
+	class TAGclutter(c_forest_roots): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="forest_roots";
 		TANOA_LOC(clutter\forest,c_forest_roots);
 	};
-	class TAGclutter(c_forest_violet_leaves): TAGclutter(c_forest_BiglLeaves) {
+	class TAGclutter(c_forest_violet_leaves): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="forest_violet_leaves";
 		TANOA_LOC(clutter\forest,c_forest_violet_leaves);
 	};
-	class TAGclutter(c_forest_violet_leaves2): TAGclutter(c_forest_BiglLeaves) {
+	class TAGclutter(c_forest_violet_leaves2): TAGclutter(c_bigFallenBranches_pine) {
 		displayName="forest_violet_leaves2";
 		TANOA_LOC(clutter\forest,c_forest_violet_leaves2);
 	};
@@ -283,7 +276,7 @@ class CfgVehicles {
 	class TAGPlant(p_Reeds_F): TAGBUSH(b_ArundoD2s_F) {
 		editorSubcategory="EdSubcat_GW_Plants";
 		displayName="Reeds_F";
-		Plant_LOC(p_Reeds_F);
+		ALTIS_LOC(Plant,p_Reeds_F);
 	};
 
 //	Tanoa
@@ -398,70 +391,73 @@ class CfgVehicles {
 		TREE_FIR;
 		editorSubcategory="EdSubcat_GW_Trees";
 		displayName="FIR PinusP3s_F";
-		TREE_LOC(t_PinusP3s_F);
+		ALTIS_LOC(Tree,t_PinusP3s_F);
 	};
 	class TAGTREE(t_PinusS1s_F): TAGTREE(t_PinusP3s_F) {
 		displayName="FIR PinusS1s_F";
-		TREE_LOC(t_PinusS1s_F);
+		ALTIS_LOC(Tree,t_PinusS1s_F);
 	};
 	class TAGTREE(PinusS2s_b_F): TAGTREE(t_PinusP3s_F) {
 		displayName="FIR PinusS2s_b_F";
-		TREE_LOC(t_PinusS2s_b_F);
+		ALTIS_LOC(Tree,t_PinusS2s_b_F);
 	};
 	class TAGTREE(PinusS2s_F): TAGTREE(t_PinusP3s_F) {
 		displayName="FIR PinusS2s_F";
-		TREE_LOC(t_PinusS2s_F);
-	};
-	class TAGTREE(t_PhoenixC1s_F): TAGTREE(t_PinusP3s_F) {
-		displayName="Leaf PhoenixC1s_F";
-		TREE_LOC(t_PhoenixC1s_F);
-	};
-	class TAGTREE(t_PhoenixC3s_F): TAGTREE(t_PinusP3s_F) {
-		displayName="Leaf PhoenixC3s_F";
-		TREE_LOC(t_PhoenixC3s_F);
+		ALTIS_LOC(Tree,t_PinusS2s_F);
 	};
 
 //	Tree - Leaf
 	class TAGTREE(t_BroussonetiaP1s_F): TAGTREE(t_PinusP3s_F) {
 		TREE_LEAF;
 		displayName="Leaf BroussonetiaP1s_F";
-		TREE_LOC(t_BroussonetiaP1s_F);
+		ALTIS_LOC(Tree,t_BroussonetiaP1s_F);
 	};
 	class TAGTREE(t_FicusB1s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf FicusB1s_F";
-		TREE_LOC(t_FicusB1s_F);
+		ALTIS_LOC(Tree,t_FicusB1s_F);
 	};
 	class TAGTREE(t_FicusB2s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf FicusB2s_F";
-		TREE_LOC(t_FicusB2s_F);
+		ALTIS_LOC(Tree,t_FicusB2s_F);
 	};
 	class TAGTREE(t_FraxinusAV2s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf FraxinusAV2s_F";
-		TREE_LOC(t_FraxinusAV2s_F);
+		ALTIS_LOC(Tree,t_FraxinusAV2s_F);
+	};
+	class TAGTREE(t_OleaE1s_F): TAGTREE(t_BroussonetiaP1s_F) {
+		displayName="Palm OleaE1s_F";
+		ALTIS_LOC(Tree,t_OleaE1s_F);
+	};
+	class TAGTREE(t_OleaE2s_F): TAGTREE(t_BroussonetiaP1s_F) {
+		displayName="Palm OleaE2s_F";
+		ALTIS_LOC(Tree,t_OleaE2s_F);
 	};
 	class TAGTREE(t_poplar2f_dead_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf poplar2f_dead_F";
-		TREE_LOC(t_poplar2f_dead_F);
+		ALTIS_LOC(Tree,t_poplar2f_dead_F);
 	};
 	class TAGTREE(t_PopulusN3s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf PopulusN3s_F";
-		TREE_LOC(t_PopulusN3s_F);
+		ALTIS_LOC(Tree,t_PopulusN3s_F);
 	};
 	class TAGTREE(t_QuercusIR2s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf QuercusIR2s_F";
-		TREE_LOC(t_QuercusIR2s_F);
+		ALTIS_LOC(Tree,t_QuercusIR2s_F);
 	};
 
 //	Tree - Palm
-	class TAGTREE(t_OleaE1s_F): TAGTREE(t_BroussonetiaP1s_F) {
+	class TAGTREE(t_PhoenixC1s_F): TAGTREE(t_BroussonetiaP1s_F) {
 		TREE_PALM;
-		displayName="Palm OleaE1s_F";
-		TREE_LOC(t_OleaE1s_F);
+		displayName="Leaf PhoenixC1s_F";
+		ALTIS_LOC(Tree,t_PhoenixC1s_F);
 	};
-	class TAGTREE(t_OleaE2s_F): TAGTREE(t_OleaE1s_F) {
-		displayName="Palm OleaE2s_F";
-		TREE_LOC(t_OleaE2s_F);
+	class TAGTREE(t_PhoenixC3s_F): TAGTREE(t_PhoenixC1s_F) {
+		displayName="Leaf PhoenixC3s_F";
+		ALTIS_LOC(Tree,t_PhoenixC3s_F);
 	};
+
+
+
 
 
 
@@ -597,14 +593,15 @@ class CfgVehicles {
 
 
 // Malden
-	class TAGTREE(t_Cupressus_stricta_2S_F): TAGTREE(t_BroussonetiaP1s_F) {
-		displayName="Leaf Cupressus_stricta_2S_F";
+	class TAGTREE(t_Cupressus_stricta_2S_F): TAGTREE(t_PinusP3s_F) {
+		displayName="FIR Cupressus_stricta_2S_F";
 		MALDEN_LOC(Trees,t_Cupressus_stricta_2S_F);
 	};
-	class TAGTREE(t_Cupressus_stricta_3S_F): TAGTREE(t_BroussonetiaP1s_F) {
-		displayName="Leaf Cupressus_stricta_3S_F";
+	class TAGTREE(t_Cupressus_stricta_3S_F): TAGTREE(t_PinusP3s_F) {
+		displayName="FIR Cupressus_stricta_3S_F";
 		MALDEN_LOC(Trees,t_Cupressus_stricta_3S_F);
 	};
+
 	class TAGTREE(t_Ficus_3D_F): TAGTREE(t_BroussonetiaP1s_F) {
 		displayName="Leaf Ficus_3D_F";
 		MALDEN_LOC(Trees,t_Ficus_3D_F);
@@ -618,5 +615,4 @@ class CfgVehicles {
 		displayName="Palm PhoenixRupicola3s_F";
 		MALDEN_LOC(Trees,t_PhoenixRupicola3s_F);
 	};
-
 };
