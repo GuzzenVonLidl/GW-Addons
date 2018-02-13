@@ -40,11 +40,12 @@ _trgArea pushBack ((triggerArea _trg) select 0);
 _trgArea pushBack ((triggerArea _trg) select 1);
 _trgArea pushBack ((triggerArea _trg) select 4);
 
-private _objects = (nearestTerrainObjects [_trg, _filter, (selectMax _trgArea), true]);
+private _objects = (nearestTerrainObjects [_trg, _filter, (selectMax _trgArea), false]);
 
 {
 	if ((getObjectType _x) isEqualTo 1) then {
 		_x hideObjectGlobal _toggle;
+		_x enableSimulationGlobal !_toggle;
 		_x allowDamage !_toggle;
 	};
 } forEach (_objects inAreaArray _trg);
