@@ -30,6 +30,7 @@ class ctrlStaticPicture;
 class ctrlToolbox;
 class ctrlToolboxPicture;
 class ctrlXSliderH;
+class RscButtonMenu;
 class RscControlsGroup;
 class RscHTML;
 class RscStructuredText;
@@ -59,3 +60,16 @@ class CfgEditorSubcategories {
 #include "CfgGroups.hpp"
 #include "CfgVehicles.hpp"
 #include "display3DEN.hpp"
+
+class RscDisplayArsenal {
+	class controls {
+		class GW_Export : RscButtonMenu {
+			x ="0.425 * safezoneW + safezoneX";
+			y = "0.93 * safezoneH + safezoneY";
+			w = "0.125 * safezoneW";
+			h ="0.02 * safezoneH";
+			text = "Export to GW Format";
+			action = "[] call GW_3den_fnc_copyLoadout";
+		};
+	};
+};

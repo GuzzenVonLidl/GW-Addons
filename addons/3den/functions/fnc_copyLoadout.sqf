@@ -8,91 +8,49 @@
 	Arguments: NO
 
 	Return Value: YES <ARRAY>
-	#0:	ARRAY - Units 		[pos,dir]
-	#1:	ARRAY - Vehicles	[class,pos,dir]
-	#2:	ARRAY - Waypoints	[pos,type,behaviour,combatMode,completionRadius,formation,speedMode]
 
 	Public: NO
-
-	https://community.bistudio.com/wiki/get3DENSelected
-	https://community.bistudio.com/wiki/Eden_Editor:_Setting_Attributes#Trigger
-
-	Type							itemClass
-	Description						description
-	Order							order
-	Identified						name
-	Position						position
-	Placement Radius				placementRadius
-	Completion Radius				completionRadius
-	Combat Mode						combatMode
-	Behavior						behaviour
-	Formation						formation
-	SpeedMode						speedMode
-	Condition						condition
-	On Activation					onActivation
-	Script							script
-	Map Visibility					show2D
-	Scene Visibility				show3D
-	Timer Values					timeout
-	Effect Condition				effectCondition
-	Sound							sound
-	Voice							voice
-	Environment						soundEnvironment
-	Music							music
-	UI Overlay						title
 */
 #include "script_component.hpp"
-#define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
-
-private _units = [];
-
-{
-
-} forEach (get3DENSelected "object");
-
-//	_array pushBack str(getUnitLoadout _x);
-_br = toString [13,10];
-_string = "";
-{
-	_string = _string + str(getUnitLoadout _x);
-	_string = _string + _br;
-} forEach (get3DENSelected "object");
-copyToClipboard _string;
-_string;
+#define	GETATTRIBUTE(Var1) ((_x get3DENAttribute Var1) select 0)
+#define	GETMAGAZINE(Var1) (getArray(configfile >> "CfgWeapons" >> Var1 >> "magazines"))
 
 
+//_return = [];
+private _arr = [player];
+private _lineBreak = (toString [10]);
+private _tab = toString [9];
+private _return = toArray(format ["// Weapon / Attach / Compatible Mags %1", _lineBreak]);
 
-_goggles = "";
-_helmet = "";
-_uniform = "";
-_vest = "";
-_backpack = "";
+_return = _return + toArray(format ["[ %1 %2", _lineBreak, _tab]);
 
-_br = toString [13,10];
-_string = "";
-{
-	_goggles = goggles _x;
-	_helmet = headgear _x;
-	_uniform = uniform _x;
-	_vest = vest _x;
-	_backpack = backpack _x;
-
-	_string = _string + str[_goggles,_helmet,_uniform,_vest,_backpack];
-	_string = _string + _br;
-} forEach (get3DENSelected "object");
-copyToClipboard _string;
-_string;
-
-if ("Preferences" get3DENMissionAttribute "GW_CopyToClipboard") then {
-	copyToClipboard _return;
+if (is3DEN) then {
+	_arr = (get3DENSelected "object");
 };
 
-if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleLog") then {
-	"debug_console" callExtension (_return + "#1111");
-};
+{
+	_return = _return + toArray(format ["%1, // Primary %2 %3", ([primaryWeapon _x] + [(primaryWeaponItems _x)] + [GETMAGAZINE(primaryWeapon _x)]), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1, // Secondary %2 %3", ([secondaryWeapon _x] + [(secondaryWeaponItems _x)] + [GETMAGAZINE(secondaryWeapon _x)]), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1, // Handgun %2 %3", ([handgunWeapon _x] + [(handgunItems _x)] + [GETMAGAZINE(handgunWeapon _x)]), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1, // Cloths %2 %3", ([(goggles _x),(headgear _x),(uniform _x),(vest _x),(backpack _x)]), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1, // Items Uniform %2 %3", (uniformItems _x), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1, // Items Vest %2 %3", (vestItems _x), _lineBreak, _tab]);
+	_return = _return + toArray(format ["%1 // Items Backpack %2", (backpackItems _x), _lineBreak]);
+} forEach _arr;
+_return = _return + toArray(format ["]; %1", _lineBreak]);
 
-if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleFile") then {
-	"debug_console" callExtension (_return + "~0001");
-};
+if (is3DEN) then {
+	if ("Preferences" get3DENMissionAttribute "GW_CopyToClipboard") then {
+		copyToClipboard (toString(_return));
+	};
 
-//	[[],QFUNC(copyLoadout)] call FUNC(uiSaveFunction);
+	if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleLog") then {
+		"debug_console" callExtension (_return + "#1111");
+	};
+
+	if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleFile") then {
+		"debug_console" callExtension (_return + "~0001");
+	};
+} else {
+	copyToClipboard (toString(_return));
+};

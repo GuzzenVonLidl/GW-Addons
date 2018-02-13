@@ -22,6 +22,9 @@ class display3DEN {
 	class Controls {
 		class MenuStrip: ctrlMenuStrip {
 			class Items {
+				class ViewRandom {
+					shortcuts[] = {};
+				};
 				items[] += {"GW_Menu"};
 				class GW_Menu {
 					text = "GW Tools";
@@ -46,7 +49,7 @@ class display3DEN {
 						MENU_SUB(Copy,Group),
 						MENU_SUB(Copy,OnlyMen),
 						MENU_SUB(Copy,AllObjects),
-//						MENU_SUB(Copy,Loadout),
+						MENU_SUB(Copy,Loadout),
 						"Separator",
 						MENU_SUB(Copy,Export)
 					};
