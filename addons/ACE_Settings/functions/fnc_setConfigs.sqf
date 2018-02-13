@@ -17,7 +17,7 @@ _allConfigs = call FUNC(getConfigs);
 
 {
 	_x params ["_var","_value","","_priority"];
-	[_var, _value, _priority, "mission"] call CBA_settings_fnc_set;
+	[_var, _value, _priority, "mission", true] call CBA_settings_fnc_set;
 } forEach _allConfigs;
 
 true
