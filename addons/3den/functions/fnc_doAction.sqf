@@ -57,6 +57,7 @@ switch (_case) do {
 //		_tool set3DENAttribute ["name", QGVAR(Logic_HideObjects)];
 		_tool set3DENAttribute ["text", "HideTrigger"];
 		_tool set3DENAttribute ["Condition","true"];
+		_tool set3DENAttribute ["isServerOnly","true"];
 		_tool set3DENAttribute ["onActivation","[thisTrigger, true] call GW_Common_fnc_setHideTerrainObjects"];
 		[_tool] spawn FUNC(perFrame);
 
