@@ -92,6 +92,9 @@ private _vehicles = [];
 	if (_type isEqualTo "SeekAndDestroy") then {
 		_type = "SAD";
 	};
+	if (_type isEqualTo "Transport UNLOAD") then {
+		_type = "TR UNLOAD";
+	};
 	_waypointSettings pushBack [0,_type];
 
 	if !(GETATTRIBUTE("behaviour") isEqualTo "UNCHANGED") then {
