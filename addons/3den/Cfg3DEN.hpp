@@ -135,6 +135,15 @@ class Cfg3DEN {
 							defaultValue = "false";
 							expression = "true";
 						};
+						class GW_isConfigured_ACE {
+							displayName = "is ACE Configured";
+							tooltip = "Checks if mission is given default values, Uncheck this if you need to reset settings";
+							property = "GW_isConfigured_ACE";
+							value = 1;
+							control = "Checkbox";
+							defaultValue = "false";
+							expression = "true";
+						};
 						class GW_isDebug {
 							displayName = "Enable Debug";
 							tooltip = "";

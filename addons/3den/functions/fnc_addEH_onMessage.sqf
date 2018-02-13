@@ -4,19 +4,28 @@ params ["_switch"];
 
 switch (_switch) do {
 	case 0: {	//	Mission saved
-		if (isClass(missionConfigFile >> "GW_FRAMEWORK") && is3DEN && !("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured")) then {
-			[] call EFUNC(Common,setEditor);	// Configures Settings
-			[] call EFUNC(Common,setFramework);	// Reset Addons Option Settings
-//			[] call EFUNC(Common,setName);		//
+		if (isClass(missionConfigFile >> "GW_FRAMEWORK") && is3DEN) then {
+			if !("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured") then {
+				[] call EFUNC(Common,setEditor);	// Configures Settings
+				[] call EFUNC(Common,setFramework);	// Reset Addons Option Settings
+	//			[] call EFUNC(Common,setName);		//
 
-			["mission"] call CBA_settings_fnc_clear;
-			["server"] call CBA_settings_fnc_clear;
-//			["client"] call CBA_settings_fnc_clear;
+				["mission"] call CBA_settings_fnc_clear;
+				["server"] call CBA_settings_fnc_clear;
+	//			["client"] call CBA_settings_fnc_clear;
 
-			"GW_MissionPreferences" set3DENMissionAttribute ["GW_isConfigured", true];
-			LOG("fnc_addEH_onMessage: GW_isConfigured");
 
-			[QGVAR(updateNewCopy), []] call CBA_fnc_localEvent;
+				"GW_MissionPreferences" set3DENMissionAttribute ["GW_isConfigured", true];
+				LOG("fnc_addEH_onMessage: GW_isConfigured");
+
+				[QGVAR(updateNewCopy), []] call CBA_fnc_localEvent;
+			};
+			if (!("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured_ACE") && GVARMAIN(mod_ACE3)) then {
+				if !(([getText(configFile >> "CfgPatches" >> "ACE_main" >> "version"), 0, 3] call BIS_fnc_trimString) isEqualTo "3.11") then {	// No CBA Settings
+					[] call GW_ACE_Settings_fnc_setConfigs;
+				};
+				"GW_MissionPreferences" set3DENMissionAttribute ["GW_isConfigured_ACE", true];
+			};
 		};
 	};
 	case 1: {	//	Mission autosaved
