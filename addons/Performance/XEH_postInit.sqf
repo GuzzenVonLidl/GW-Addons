@@ -8,9 +8,11 @@ if (isClass(missionConfigFile >> "GW_Modules" >> "Performance")) exitWith {false
 }] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
+/*
 	["CAManBase", "init", {
 		_this call FUNC(Simulation);
 	}, true, [], true] call CBA_fnc_addClassEventHandler;
+*/
 
 	["CAManBase", "KILLED", {
 		_this call FUNC(HandlerKilled);

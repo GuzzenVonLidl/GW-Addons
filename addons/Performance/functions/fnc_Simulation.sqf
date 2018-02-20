@@ -16,8 +16,8 @@
 #include "script_component.hpp"
 
 params ["_unit"];
-if (!(GVAR(Simulation)) || (time < 5)) exitWith {false};
-if ((isPlayer _unit) || !((vehicleVarName _unit) isEqualType "") || !(alive _unit)) exitWith {false};
+if (!(GVAR(Simulation)) || (time < 5) || (isPlayer _unit)) exitWith {false};
+if (!((vehicleVarName _unit) isEqualType "") || !(alive _unit)) exitWith {false};
 
 if ((isNull (objectParent _unit))) then { 	// isOnFoot
 	_unit enableSimulationGlobal false;

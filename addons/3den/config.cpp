@@ -68,7 +68,7 @@ class RscDisplayArsenal {
 			y = "0.93 * safezoneH + safezoneY";
 			w = "0.125 * safezoneW";
 			h ="0.02 * safezoneH";
-			text = "Export to GW Format";
+			text = "Export GW Loadout";
 			action = "[] call GW_3den_fnc_copyLoadout";
 		};
 	};

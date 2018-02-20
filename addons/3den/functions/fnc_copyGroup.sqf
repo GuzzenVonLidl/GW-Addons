@@ -131,8 +131,7 @@ private _vehicles = [];
 	_groupWaypoint pushBack ([(GETATTRIBUTE("position"))] + [_waypointSettings]);
 } forEach get3DENSelected "waypoint";
 
-
-_return = (str([_units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
+_return = (str([_units, _vehicles, _groupWaypoint]) + (" spawn GW_Common_fnc_spawnGroup;"));
 
 if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
 	_delete = (get3DENSelected "object") + (get3DENSelected "waypoint") + (get3DENSelected "group");

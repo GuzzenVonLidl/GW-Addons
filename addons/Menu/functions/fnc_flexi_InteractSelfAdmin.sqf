@@ -139,7 +139,11 @@ if (_menuName isEqualTo "modules") then {
 				],
 				[
 					"Heal All Players",
-					{[QEGVAR(ACE_Settings,fullHeal), player] call CBA_fnc_globalEvent},
+					{
+						{
+							[QEGVAR(ACE_Settings,fullHeal), _x, _x] call CBA_fnc_targetEvent;
+						} forEach allPlayers;
+					},
 					"","", "", -1, (true),true
 				]
 			]

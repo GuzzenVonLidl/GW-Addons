@@ -77,6 +77,40 @@ class CfgVehicles {
 		};
 	};
 
+	class I_APC_tracked_03_base_F;
+	class I_APC_tracked_03_cannon_F: I_APC_tracked_03_base_F {
+		scope = 2;
+		class TextureSources {
+			class DefaultCamo {
+				author = "Bohemia Interactive";
+				displayName = "Default Camo";
+				factions[] = {"IND_F"};
+				textures[] = {
+					"A3\armor_f_epb\apc_tracked_03\data\apc_tracked_03_ext_indp_co.paa",
+					"a3\armor_f_epb\apc_tracked_03\data\apc_tracked_03_ext2_indp_co.paa"
+				};
+			};
+			class DesertCamo {
+				author = "Grace";
+				displayName = "Desert Camo";
+				factions[] = {"IND_F"};
+				textures[] = {
+					QPATHTOF(I_APC_tracked_03_cannon_F\apc_tracked_03_ext_uk_co.paa),
+					QPATHTOF(I_APC_tracked_03_cannon_F\apc_tracked_03_ext2_uk_co.paa)
+				};
+			};
+			class WoodlandCamo {
+				author = "Grace";
+				displayName = "Woodland Camo";
+				factions[] = {"IND_F"};
+				textures[] = {
+					QPATHTOF(I_APC_tracked_03_cannon_F\apc_tracked_03_ext_uk_co_wd.paa),
+					QPATHTOF(I_APC_tracked_03_cannon_F\apc_tracked_03_ext2_uk_co_wd.paa)
+				};
+			};
+		};
+	};
+
 	class I_MBT_03_base_F;
 	class I_MBT_03_cannon_F: I_MBT_03_base_F {
 		scope = 2;

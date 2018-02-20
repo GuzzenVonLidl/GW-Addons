@@ -25,8 +25,5 @@ if ((getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version")) >= 
 			["Gear removal", "Remove all equipment from dead unit execpt for uniform"],
 			QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
 		] call FUNCMAIN(settingsInit);
-
-		[QGVAR(Enabled), (QGVAR(Enabled) call CBA_settings_fnc_get), 1, "mission"] call CBA_settings_fnc_set;
-		[QGVAR(UnitEnabled), (QGVAR(UnitEnabled) call CBA_settings_fnc_get), 1, "mission"] call CBA_settings_fnc_set;
 	};
 };
