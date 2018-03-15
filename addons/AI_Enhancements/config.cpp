@@ -28,6 +28,13 @@ class CfgAISkill {
 	spotTime[]       = {0, 0.1, 1, 1};
 };
 
+class close;
+class fullauto_medium;
+class manual;
+class medium;
+class short;
+class single;
+
 class Mode_SemiAuto {
 	aiDispersionCoefX = 1.5;
 	aiDispersionCoefY = 2;
@@ -74,7 +81,6 @@ class Mode_FullAuto_LMG: Mode_FullAuto {
 	showToPlayer = 0;
 };
 
-
 #include "CfgVehicles.hpp"
 
 class CfgWeapons {
@@ -82,7 +88,6 @@ class CfgWeapons {
 };
 
 /*
-
 class CfgAISkill {	// ACE 3
 	aimingAccuracy[] = {0,0, 1,0.8};  // {0,0,1,1};   v1.26 defaults
 	aimingShake[]    = {0,0, 1,0.6};  // {0,0,1,1};
@@ -109,4 +114,3 @@ class CfgAISkill {	// Default
 	spotTime[] 		 = {0, 0, 1, 0.7};
 };
 */
-

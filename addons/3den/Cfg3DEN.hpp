@@ -85,26 +85,6 @@ class Cfg3DEN {
 							data = "p";
 							value = 0;
 						};
-						class loadout_mat {
-							text = "Rifleman AT Medium";
-							data = "mat";
-							value = 0;
-						};
-						class loadout_amat {
-							text = "Asst. Rifleman AT";
-							data = "amat";
-							value = 0;
-						};
-						class loadout_mmg {
-							text = "Medium Machine Gunner";
-							data = "mmg";
-							value = 0;
-						};
-						class loadout_ammg {
-							text = "Asst. Medium Machine Gunner";
-							data = "ammg";
-							value = 0;
-						};
 					};
 				};
 			};
@@ -310,7 +290,6 @@ class Cfg3DEN {
 			class State {
 				collapsed = 1;
 				class Attributes {
-
 					class AllowDamage {
 						property = "allowDamage";
 						control = "Checkbox";

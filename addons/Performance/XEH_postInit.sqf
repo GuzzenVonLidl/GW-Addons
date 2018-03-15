@@ -4,7 +4,9 @@
 if (isClass(missionConfigFile >> "GW_Modules" >> "Performance")) exitWith {false};
 
 [QGVAR(removeGroup), {
-	deleteGroup _this;
+	if (_this getVariable [QGVAR(autoDelete), true]) then {
+		deleteGroup _this;
+	};
 }] call CBA_fnc_addEventHandler;
 
 if (isServer) then {

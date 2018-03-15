@@ -41,15 +41,11 @@ class arifle_Katiba_C_F: arifle_Katiba_Base_F {
 		CARBINE_FIREMODE_FULLAUTO;
 	};
 };
-class LMG_Zafir_F: Rifle_Long_Base_F {
-	modes[] = {"FullAuto", "Single", "FullAuto_LMG"};
-	class Single: Mode_SemiAuto {
-		LMG_FIREMODE_SINGLE;
-	};
-	class FullAuto: Mode_FullAuto {
-		LMG_FIREMODE_FULLAUTO_Medium;
-	};
-	class FullAuto_LMG: FullAuto {
-		LMG_FIREMODE_FULLAUTO_LONG;
-	};
-};
+
+
+#include "Weapons_Rifle.hpp"
+#include "Weapons_Rifle_GL.hpp"
+#include "Weapons_Rifle_Carbine.hpp"
+#include "Weapons_AutomaticRifle.hpp"
+#include "Weapons_Secondary.hpp"
+#include "Weapons_HandGuns.hpp"

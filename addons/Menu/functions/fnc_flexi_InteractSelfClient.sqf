@@ -44,7 +44,6 @@ private _menus = [
 		_allmenus
 	]
 ];
-diag_log str _menus;
 
 if (_menuName isEqualTo "actions") then {
 	_menus pushBack [

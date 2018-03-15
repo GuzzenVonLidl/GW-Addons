@@ -42,9 +42,9 @@
 	aiDispersionCoefY = VAR2
 
 #define	SETRATEOFFIRE(VAR1,VAR2,VAR3) \
-		aiRateOfFire = VAR1; \
-		aiRateOfFireDispersion = VAR2; \
-		aiRateOfFireDistance = VAR3
+	aiRateOfFire = VAR1; \
+	aiRateOfFireDispersion = VAR2; \
+	aiRateOfFireDistance = VAR3
 
 
 //	SETDISPERSION(4,8);

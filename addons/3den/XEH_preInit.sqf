@@ -2,7 +2,9 @@
 
 #include "XEH_PREP.sqf"
 
-if !(is3DEN) exitWith {};
+if !(is3DEN) exitWith {false};
+
+clearRadio;
 
 GVAR(hiddenTriggers) = [];
 1 call FUNC(doActionMisc);
