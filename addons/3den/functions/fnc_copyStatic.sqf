@@ -77,7 +77,7 @@ private _return = 0;
 
 switch (_type) do {
 	case 1: {
-		_return = (str([_units, _vehicles]) + (" call GW_Common_fnc_spawnGroup;"));
+		_return = (str([_units, _vehicles, []]) + (" call GW_Common_fnc_spawnGroup;"));
 		TRACE_1("Units", _units);
 		TRACE_1("Vehicles", _vehicles);
 		systemChat format ["%1 units, %2 vehicles copied - Copy Static", (count _units), (count _vehicles)];
