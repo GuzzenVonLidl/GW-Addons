@@ -109,6 +109,6 @@ class MENU_SUB(set3DENAttributes,allowDamage_false) {
 // Help
 
 class MENU_SUB(set3DENAttributes,Help) {
-	text = "Help";
+	text = "Help...";
 	action = "[2] call GW_3DEN_fnc_showMessage;";
 };

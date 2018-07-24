@@ -1,6 +1,11 @@
 
 
 PREP(addEH_onMessage);
+PREP(AutoTest);
+PREP(AutoTest_Common);
+PREP(AutoTest_Events);
+PREP(AutoTest_Mission);
+PREP(configViewerExport);
 PREP(copyGroup);
 PREP(copyGroupOld);
 PREP(copyLoadout);

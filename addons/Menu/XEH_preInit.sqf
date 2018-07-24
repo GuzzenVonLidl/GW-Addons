@@ -18,13 +18,24 @@ GVAR(ParadropHalo) = true;
 GVAR(ParadropHaloHeight) = 150;
 GVAR(ParadropStaticHeight) = 125;
 
+
+GVAR(STHud_EnabledOld) = isClass(configFile >> "CfgPatches" >> "ST_STHud");
 GVAR(STHud_Enabled) = isClass(configFile >> "CfgPatches" >> "STUI_Core");
+
+if (GVAR(STHud_EnabledOld)) then {
+	STGI_Update = (compileFinal "");
+	STGI_Reload = (compileFinal "");
+};
+
 if (GVAR(STHud_Enabled)) then {
 	STHUD_UIMode = 3;
 	STHud_NoSquadBarMode = true; // Default: false
-	STHud_ShowBearingInVehicle = false; // Default: true
+	STHud_ShowBearingInVehicle = true; // Default: true
 	STUI_Occlusion = true; // Default: true
 	STUI_RemoveDeadViaProximity = true; // Default: true
+
+	STGI_Update = (compileFinal "");
+	STGI_Reload = (compileFinal "");
 
 	GVAR(Toggle_STHud_Compass) = true;
 	STHud_Compass = FUNC(STHud_Compass);

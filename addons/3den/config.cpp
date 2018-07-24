@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "\a3\3DEN\UI\macros.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 
 class CfgPatches {
@@ -22,17 +23,23 @@ class ctrlCheckboxToolbar;
 class ctrlCombo;
 class ctrlControlsGroupNoScrollbars;
 class ctrlDefault;
+class ctrlDefaultText;
 class ctrlEdit;
+class ctrlListBox;
+class ctrlListNBox;
 class ctrlMenu;
 class ctrlMenuStrip;
+class ctrlSliderH;
+class ctrlSliderV;
 class ctrlStatic;
 class ctrlStaticPicture;
 class ctrlToolbox;
 class ctrlToolboxPicture;
-class ctrlXSliderH;
+class ctrlTree;
 class RscButtonMenu;
 class RscControlsGroup;
 class RscHTML;
+class RscPicture;
 class RscStructuredText;
 class RscText;
 class Separator1;
@@ -53,6 +60,9 @@ class CfgEditorSubcategories {
 	class EdSubcat_GW_Trees_tanoa {
 		displayName="Trees Tanoa";
 	};
+	class EdSubcat_GW_Road {
+		displayName="Road Segments";
+	};
 };
 
 #include "Cfg3DEN.hpp"
@@ -70,6 +80,21 @@ class RscDisplayArsenal {
 			h ="0.02 * safezoneH";
 			text = "Export GW Loadout";
 			action = "[] call GW_3den_fnc_copyLoadout";
+		};
+	};
+};
+
+class RscDisplayConfigViewer {
+	class controls {
+		class ConfigViewer_export: RscButtonMenu {
+			idc=7301;
+			text = "Export";
+			x="32.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX)";
+			y="safezoneY + safezoneH - 2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			w="11.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			onButtonClick = "[] call GW_3den_fnc_configViewerExport;";
+			tooltip = "Copy the content of the current config to the clipboard";
 		};
 	};
 };

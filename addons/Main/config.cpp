@@ -98,3 +98,5 @@ class CfgDLCNotifications {
 		overviewFootnote = "";
 	};
 };
+
+cba_settings_whitelist[] = {"_SP_PLAYER_", GUZZENVONLIDL, ARROW, OKSMAN, R4IDER, RAPTOR, FILTHY, JASON, PARKER};

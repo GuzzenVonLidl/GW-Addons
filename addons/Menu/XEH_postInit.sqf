@@ -21,7 +21,7 @@
 				if (GVAR(STHud_Enabled)) then {
 					profileNamespace setVariable [QGVAR(clientSettingsV3), [[viewDistance, getTerrainGrid, getObjectViewDistance], [STHUD_UIMode, GVAR(Toggle_STHud_Compass)]]];
 				} else {
-					profileNamespace setVariable [QGVAR(clientSettingsV3), [[viewDistance, getTerrainGrid, getObjectViewDistance], []]];
+					profileNamespace setVariable [QGVAR(clientSettingsV3), [[viewDistance, getTerrainGrid, getObjectViewDistance], [ST_STHud_ShownUI, ST_STHud_ShowCompass]]];
 				};
 //				saveProfileNamespace;
 			};
@@ -45,10 +45,16 @@
 					setTerrainGrid _terrain;
 				};
 
-				if (GVAR(STHud_Enabled) && !(_profileUI isEqualTo [])) then {
+				if !(_profileUI isEqualTo []) then {
 					_profileUI params ["_uiMode","_enableHud"];
-					STHUD_UIMode = _uiMode;
-					[_enableHud] call FUNC(STHud_Toggle_Compass);
+					if (GVAR(STHud_EnabledOld)) then {
+						ST_STHud_ShowCompass = _enableHud;
+						_uiMode call fn_sthud_usermenu_changeMode;
+					};
+					if (GVAR(STHud_Enabled)) then {
+						STHUD_UIMode = _uiMode;
+						[_enableHud] call FUNC(STHud_Toggle_Compass);
+					};
 				};
 			};
 		};

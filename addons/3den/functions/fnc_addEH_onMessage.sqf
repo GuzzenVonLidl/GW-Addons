@@ -38,32 +38,40 @@ switch (_switch) do {
 	case 5: {	//	Mission exported to SP
 	};
 	case 6: {	//	Mission exported to MP
-		if (call EFUNC(Common,isDevBuild)) then {
-			['Warning debug mode is enabled','I understand'] call BIS_fnc_3DENShowMessage;
-		} else {
-			if (isClass(missionConfigFile >> "GW_Modules" >> "MHQ")) then {
-				_error = false;
-				{
-					if ((((_x get3DENAttribute "name") select 0) find "mhq") isEqualTo 0) then {
-						if !((([configfile >> "CfgVehicles" >> ((_x get3DENAttribute "ItemClass") select 0), true] call BIS_fnc_returnParents) find "Kart_01_Base_F") isEqualTo -1) then {
-							_error = true;
-						};
-					};
-				} forEach (all3DENEntities select 0);
-
-				if (_error) then {
-					_title = "MHQ Warning";
-					_text = "MHQ is currently a GO-Kart, Please change this so it wont break immersion";
-					if !(profileNameSteam find ".Chris" isEqualTo -1) then {
-						_text = "MHQ is currently a GO-Kart,                    Chris you lazy bastard fix this right now!      While your at it, Change the time of day and weather";
-					};
-					[_text,_title] call BIS_fnc_3DENShowMessage;
-				};
-				_error
+		if ((getNumber (missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "version")) >= 0.7) then {
+			edit3DENMissionAttributes 'GW_MissionPreferences';
+			if !(GVAR(ExportErrorCount) isEqualTo 0) then {
+				["Errors needs to be fixed before uploading the final version of this mission", 1, 15, true] call BIS_fnc_3DENNotification;
+//				GVAR(ExportErrorCount) = 0;
 			};
-			if (isClass(missionConfigFile >> "GW_Modules" >> "Respawn")) then {
-				if !("spectator" in (all3DENEntities select 5)) then {
-					["Warning Spectator marker is missing, Create a new marker and name it 'spectator', place it on land and out of AO",'I understand'] call BIS_fnc_3DENShowMessage;
+		} else {
+			if (call EFUNC(Common,isDevBuild)) then {
+				['Warning debug mode is enabled','I understand'] call BIS_fnc_3DENShowMessage;
+			} else {
+				if (isClass(missionConfigFile >> "GW_Modules" >> "MHQ")) then {
+					_error = false;
+					{
+						if ((((_x get3DENAttribute "name") select 0) find "mhq") isEqualTo 0) then {
+							if !((([configfile >> "CfgVehicles" >> ((_x get3DENAttribute "ItemClass") select 0), true] call BIS_fnc_returnParents) find "Kart_01_Base_F") isEqualTo -1) then {
+								_error = true;
+							};
+						};
+					} forEach (all3DENEntities select 0);
+
+					if (_error) then {
+						_title = "MHQ Warning";
+						_text = "MHQ is currently a GO-Kart, Please change this so it wont break immersion";
+						if !(profileNameSteam find ".Chris" isEqualTo -1) then {
+							_text = "MHQ is currently a GO-Kart,                    Chris you lazy bastard fix this right now!      While your at it, Change the time of day and weather";
+						};
+						[_text,_title] call BIS_fnc_3DENShowMessage;
+					};
+					_error
+				};
+				if (isClass(missionConfigFile >> "GW_Modules" >> "Respawn")) then {
+					if !("spectator" in (all3DENEntities select 5)) then {
+						["Warning Spectator marker is missing, Create a new marker and name it 'spectator', place it on land and out of AO",'I understand'] call BIS_fnc_3DENShowMessage;
+					};
 				};
 			};
 		};

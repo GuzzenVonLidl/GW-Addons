@@ -30,12 +30,18 @@
 
 params [
 	"_trg",
-	"_toggle"
+	"_toggle",
+	["_exclude", []]
 ];
 
 if !(isServer) exitWith {false};
 
 private _filter = ["BUILDING","BUNKER","BUSH","BUSSTOP","CHAPEL","CHURCH","CROSS","FENCE","FOREST BORDER","FOREST SQUARE","FOREST TRIANGLE","FOREST","FORTRESS","FOUNTAIN","FUELSTATION","HOSPITAL","HOUSE","LIGHTHOUSE","LINES","POWER""POWERSOLAR","POWERWAVE","POWERWIND","QUAY","RAILWAY","ROCK","ROCKS","RUIN","SHIPWRECK","SMALL TREE","STACK","TOURISM","TRANSMITTER","TREE","VIEW-TOWER","WALL","WATERTOWER","HIDE"];
+
+{
+	_exl = toUpper(_x);
+	_filter deleteAt (_filter find _exl);
+} forEach _exclude;
 
 private _trgArea = [];
 _trgArea pushBack ((triggerArea _trg) select 0);

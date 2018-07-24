@@ -1,8 +1,8 @@
 #define PREFIX GW
 #define MAJOR 0
-#define MINOR 7
-#define PATCHLVL 1
-#define BUILD 100418	// We will use the DATE for the BUILD# in the format DDMMYY
+#define MINOR 8
+#define PATCHLVL 0
+#define BUILD 240718	// We will use the DATE for the BUILD# in the format DDMMYY
 
 #define VERSION MAJOR.MINOR.PATCHLVL.BUILD
 #define VERSION_AR MAJOR,MINOR,PATCHLVL,BUILD

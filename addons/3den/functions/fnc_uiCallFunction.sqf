@@ -12,12 +12,15 @@
 */
 #include "script_component.hpp"
 
-params [["_params", (uiNamespace getVariable [QGVAR(FunctionParams), ""])],["_function", (uiNamespace getVariable [QGVAR(FunctionName), ""])]];
+private _params = (uiNamespace getVariable [QGVAR(FunctionParams), ""]);
+private _function = (uiNamespace getVariable [QGVAR(FunctionName), ""]);
 
-if !(_function isEqualTo "") exitWith {
+if (_function isEqualTo "") then {
+	false;
+} else {
 	_compile = (compile (format ["%1", (toString(toArray(format ["%1 call %2", _params, _function])))]));
 
-	[] call _compile;
-	true
+	systemChat (str _compile);
+	call _compile;
+	true;
 };
-false

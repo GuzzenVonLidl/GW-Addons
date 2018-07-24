@@ -21,9 +21,12 @@ params [
 private _hiddenArray = [];
 while {!([_trigger] call FUNC(isNil3DENEntity))} do {
 	if (_trigger in (get3DENSelected "trigger")) then {
+		_str = ((_trigger get3DENAttribute "onActivation") select 0);
+		_newStr = [_str, (_str find "[""") + 1, (_str find """]")] call BIS_fnc_trimString;
+		_exclude = (_newStr splitString '","');
 
 		private _radius = ((_trigger get3DENAttribute "size3") select 0);
-		private _objects = (nearestTerrainObjects [_trigger, HIDEOBJECTFILTER, (selectMax _radius), false]);
+		private _objects = (nearestTerrainObjects [_trigger, (HIDEOBJECTFILTER - _exclude), (selectMax _radius), false]);
 
 		{
 			if !(isObjectHidden _x) then {

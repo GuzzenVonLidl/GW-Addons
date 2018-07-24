@@ -37,7 +37,7 @@ private _menus = [
 				"","","",
 				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud", 1],
 				-1, true,
-				GVAR(STHud_Enabled)
+				(GVAR(STHud_Enabled) || GVAR(STHud_EnabledOld))
 			],
 			[
 				"Performance >",
@@ -146,6 +146,41 @@ if (_menuName isEqualTo "settings_grass") then {
 	];
 };
 
+
+if (GVAR(STHud_EnabledOld)) then {
+	if (_menuName isEqualTo "settings_sthud") then {
+		_menus pushBack [
+			["settings_sthud","ST HUD", _menuRsc],
+			[
+				[
+					"Display Mode >",
+					"","","",
+					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
+				],
+				["Toggle compass",{ST_STHud_ShowCompass = !ST_STHud_ShowCompass;}],
+				["Restart HUD",{
+					if (count (units (group player)) > 1) then {
+						ST_STHud_ToRestart = true;
+						call ST_STHud_Reload;
+					};
+				}]
+			]
+		];
+	};
+
+	if (_menuName isEqualTo "settings_sthud_subMenu") then {
+		_menus pushBack [
+			["settings_sthud_subMenu","Display Mode", _menuRsc],
+			[
+				["Normal",{3 call fn_sthud_usermenu_changeMode;}],
+				["HUD only",{1 call fn_sthud_usermenu_changeMode;}],
+				["Names only",{2 call fn_sthud_usermenu_changeMode;}],
+				["Off",{0 call fn_sthud_usermenu_changeMode;}]
+			]
+		];
+	};
+};
+
 if (GVAR(STHud_Enabled)) then {	// New
 	if (_menuName isEqualTo "settings_sthud") then {
 		_menus pushBack [
@@ -157,7 +192,7 @@ if (GVAR(STHud_Enabled)) then {	// New
 					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
 				],
 				[
-					"Toggle Compass >",
+					"Toggle Compass",
 					{[!GVAR(Toggle_STHud_Compass)] call FUNC(STHud_Toggle_Compass)},
 					[GVAR(Toggle_STHud_Compass)] call FUNC(getCheckBoxIcon)
 				],

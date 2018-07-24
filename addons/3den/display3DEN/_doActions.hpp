@@ -1,43 +1,26 @@
 
-class MENU_SUB(doActions,toggleTerrain) {
-	text = "Hide Terrain Objects";
-	action = QUOTE(4 call FUNC(doAction));
-};
-
 class MENU_SUB(doActions,GarrisonBuildings) {
 	action = QUOTE(5 call FUNC(doAction));
-	Text = "Garrison Selected units";
+	Text = "Garrison Selected units...";
 	picture = "\a3\3den\Data\CfgWaypoints\guard_ca.paa";
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_5};
 };
 
 class MENU_SUB(doActions,createWaypoints) {
 	action = "call GW_3den_fnc_createWaypoints";
-	Text = "Generate waypoints around group";
+	Text = "Generate waypoints around group...";
 	picture = "\a3\3den\Data\CfgWaypoints\cycle_ca.paa";
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_6};
 };
 
-class MENU_SUB(doActions,extra) {
-	text = "Extra";
-	items[] = {
-		MENU_SUB(doActions_extra,addUnitToProjectileTracker)
-	};
-};
-
-class MENU_SUB(doActions_extra,addUnitToProjectileTracker) {
-	action = QUOTE(2 call FUNC(doAction));
-	Text = "Unit added to Projectile Tracker";
-};
-
 class MENU_SUB(doActions,pattern_Line) {
 	action = QUOTE('LINE' call FUNC(setObjectPattern));
-	Text = "Line pattern";
+	Text = "Line pattern...";
 };
 
 class MENU_SUB(doActions,pattern_Circular) {
 	action = QUOTE('CIRCULAR' call FUNC(setObjectPattern));
-	Text = "Circular pattern";
+	Text = "Circular pattern...";
 };
 
 class MENU_SUB(doActions,pattern_offset) {
@@ -100,6 +83,6 @@ class MENU_SUB(doActions_pattern_offset,offset_50) {
 // Help
 
 class MENU_SUB(doActions,Help) {
-	text = "Help";
+	text = "Help...";
 	action = "[1] call GW_3DEN_fnc_showMessage;";
 };

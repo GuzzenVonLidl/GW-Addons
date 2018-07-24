@@ -12,7 +12,7 @@
 */
 #include "script_component.hpp"
 
-params [["_params", (uiNamespace getVariable [QGVAR(FunctionParams), ""])],["_function", (uiNamespace getVariable [QGVAR(FunctionName), ""])]];
+params [["_params", ""],["_function", ""]];
 
 if !(_function isEqualTo "") exitWith {
 	(uiNamespace setVariable [QGVAR(FunctionParams), _params]);

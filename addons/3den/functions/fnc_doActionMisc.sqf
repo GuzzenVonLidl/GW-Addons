@@ -11,16 +11,26 @@
 	Public: NO
 */
 #include "script_component.hpp"
+#include "\a3\3DEN\UI\resincl.inc"
 
-params ["_case","_value"];
+params ["_case", ["_value", 0]];
 private _editorObject = ((get3DENSelected "object") select 0);
 
 [(str _this),QFUNC(doActionMisc)] call FUNC(uiSaveFunction);
 
 switch (_case) do {
+
 	case 0: {
-		do3DENAction "ToggleMapIDs";
+		if ((get3DENActionState "ToggleMap") isEqualTo 1) then {
+			do3DENAction "ToggleMapIDs";
+		} else {
+			if ((get3DENActionState "ToggleMap") isEqualTo 0) then {
+				(finddisplay IDD_DISPLAY3DEN displayctrl 10307) cbsetchecked ((get3DENActionState "ToggleMapIDs") isEqualTo 1);
+			};
+			["Map needs to be open to take effect", 1, 2, true] call BIS_fnc_3DENNotification;
+		};
 	};
+
 	case 1: {	// Reset Toggle
 		{
 			if ((get3DENActionState _x) isEqualTo 1) then {
@@ -28,20 +38,15 @@ switch (_case) do {
 			};
 		} forEach ["MoveGridToggle","RotateGridToggle","ScaleGridToggle"];
 	};
+
 	case 2: {
 		[] call BIS_fnc_diagFindMissingAuthors;
-		systemChat "Export Missing Authors";
+		["Export Missing Authors", 0, 10, true] call BIS_fnc_3DENNotification;
 	};
 
 	case 3: {
 		[true] call BIS_fnc_diagMissionWeapons;
-		systemChat "Export Weapons and Magazines used in mission";
-	};
-
-	case 4: { // Get relative location of obj 2 from obj 1
-		_type = _editorObject worldToModel (position ((get3DENSelected "object") select 1));
-		systemChat str _type;
-		copyToClipboard str _type;
+		["Export Weapons and Magazines used in mission", 0, 10, true] call BIS_fnc_3DENNotification;
 	};
 
 	default {

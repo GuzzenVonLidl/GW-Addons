@@ -747,4 +747,35 @@ class CfgVehicles {
 		displayName="Palm PhoenixRupicola3s_F";
 		MALDEN_LOC(Trees,t_PhoenixRupicola3s_F);
 	};
+
+	class GW_Road_Short: GW_BaseObject {
+		author="GuzzenVonlidl";
+		editorSubcategory="EdSubcat_GW_Road";
+		displayName="Dirt Road Short";
+		model="a3\roads_f\roads_new\path_W7_A0_105_R4000.p3d";
+		class SimpleObject {
+			animate[] = {};
+			eden = 1;
+			hide[] = {};
+			init = "";
+			verticalOffset = 0;
+			verticalOffsetWorld = 0;
+		};
+	};
+	class GW_Road_Long: GW_Road_Short {
+		displayName="Dirt Road Long";
+		model="a3\roads_f\roads_new\path_W7_A4_412_R200.p3d";
+	};
+	class GW_Road_Curve: GW_Road_Short {
+		displayName="Dirt Road Curve";
+		model="a3\roads_f\roads_new\path_W7_A33_423_R12.p3d";
+	};
+	class GW_Road_Curve_Long: GW_Road_Short {
+		displayName="Dirt Road Curve Long";
+		model="a3\roads_f\roads_new\path_W7_A32_815_R22.p3d";
+	};
+	class GW_Road_End: GW_Road_Short {
+		displayName="Dirt Road End";
+		model="a3\roads_f\roads_new\path_W7_L7_term.p3d";
+	};
 };

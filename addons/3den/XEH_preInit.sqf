@@ -1,12 +1,16 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.sqf"
-
 if !(is3DEN) exitWith {false};
+
+#include "XEH_PREP.sqf"
 
 clearRadio;
 
+GVAR(AutoTestEvents) = [];
+GVAR(ExportErrorCount) = 0;
 GVAR(hiddenTriggers) = [];
+GVAR(MHQ_Object) = objNull;
+
 1 call FUNC(doActionMisc);
 'init' call bis_fnc_3DENStatusBar;
 //	'init' call bis_fnc_3DENControlsHint;

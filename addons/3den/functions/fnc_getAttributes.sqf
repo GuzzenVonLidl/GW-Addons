@@ -45,8 +45,8 @@ if ((_object isKindOf "AllVehicles") && !(_object isKindOf "CAManBase")) then {	
 		_array pushBack [7, _animations];
 	};
 	if !(GETATTRIBUTE("pylons") isEqualTo "") then {
-//		_loadout = ([GETATTRIBUTE("pylons"), ";"] call BIS_fnc_splitString);
-//		_array pushBack [8, _loadout];
+		_loadout = ([GETATTRIBUTE("pylons"), ";"] call BIS_fnc_splitString);
+		_array pushBack [8, _loadout];
 	};
 	if ((count (listVehicleSensors _object)) isEqualTo 0) then {
 		if (GETATTRIBUTE("reportRemoteTargets") isEqualTo 0) then {

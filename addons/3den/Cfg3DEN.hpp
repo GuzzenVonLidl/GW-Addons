@@ -14,11 +14,73 @@ class Cfg3DEN {
 			};
 		};
 	};
+
 	class Attributes {
 		class Combo;
 		class Controls;
-		class Title;
+		class Default;
 		class Value;
+		class Title : Default {
+			class Controls {
+				class Title;
+			};
+		};
+		class Toolbox;
+
+		class GW_AutoTest_Box : Toolbox {
+			attributeLoad = "_this call GW_3den_fnc_AutoTest";
+//			attributeLoad = "_this call GW_fnc_AutoTest";
+			attributeSave = "";
+			w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
+			h = 23 * SIZE_M * GRID_H;
+			class ScrollBar {
+				arrowEmpty = "#(argb,8,8,3)color(1,1,1,1)";
+				arrowFull = "#(argb,8,8,3)color(1,1,1,1)";
+				border = "#(argb,8,8,3)color(1,1,1,1)";
+				color[] = {1,1,1,0.6};
+				colorActive[] = {1,1,1,1};
+				colorDisabled[] = {1,1,1,0.3};
+				thumb = "#(argb,8,8,3)color(1,1,1,1)";
+			};
+			class Controls {
+				class ActionListBackground : ctrlStatic {
+					idc = -1;
+					x = SIZE_M * GRID_H;
+					y = GRID_H;
+					w = ((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W)) * GRID_W;
+					h = 23 * SIZE_M * GRID_H;
+					colorBackground[] = {0.33,0.33,0.33,0.5};
+				};
+				class ActionList: ctrlListBox {
+					idc = 15675;
+					x = SIZE_M * GRID_H;
+					y = GRID_H;
+					w = ((ATTRIBUTE_TITLE_W + (ATTRIBUTE_CONTENT_W - 25))) * GRID_W;
+					h = 23 * SIZE_M * GRID_H;
+					columns[] = {0,0.05};
+                    drawSideArrows = 0;
+                    idcLeft = -1;
+                    idcRight = -1;
+					disableOverflow = 1;
+//					onLBDblClick = "_this spawn GW_3den_fnc_AutoTest_Events; false";
+					onLBSelChanged = "_this spawn {(_this select 0) lbSetCurSel -1}; false";
+				};
+				class ActionListButton: ctrlListBox {
+					idc = 15676;
+					x = (SIZE_M + 79) * GRID_H;
+					y = GRID_H;
+					w = "(15 * (pixelW * pixelGrid * 0.50))";
+					h = 23 * SIZE_M * GRID_H;
+					columns[] = {0,0.05};
+                    drawSideArrows = 0;
+                    idcLeft = -1;
+                    idcRight = -1;
+					disableOverflow = 1;
+					onLBSelChanged = "_this spawn GW_3den_fnc_AutoTest_Events;";
+				};
+			};
+		};
+
 		class GW_SelectLoadout: Combo {
 			class Controls: Controls {
 				class Title: Title{};
@@ -105,6 +167,7 @@ class Cfg3DEN {
 			class AttributeCategories {
 				class GW_Options {
 					displayName = "General Settings";
+					collapsed = 0;
 					class Attributes {
 						class GW_isConfigured {
 							displayName = "is Auto Configured";
@@ -132,6 +195,18 @@ class Cfg3DEN {
 							control = "Checkbox";
 							defaultValue = "false";
 							expression = "true";
+						};
+					};
+				};
+				class GW_AutoTestFakeNameing {
+					displayName = "AutoTest";
+					collapsed = 0;
+					class Attributes {
+						class GW_AutoTest_Box {
+							property = "GW_AutoTest_Box";
+							control = "GW_AutoTest_Box";
+							defaultValue = "true";
+//							condition = "true";
 						};
 					};
 				};
@@ -219,8 +294,6 @@ class Cfg3DEN {
 						};
 						class GW_PrintToConsoleLog {
 							displayName = "Print to Remote Debug Console";
-//							displayName = "Prints Copied code to Remote Debug Console";
-//							tooltip = "(WARNING: Advenced Users Only)";
 							tooltip = "Opens a remote console to display all code copied, Perfect for multi-monitor";
 							property = "GW_PrintToConsoleLog";
 							control = "Checkbox";
@@ -330,7 +403,7 @@ class Cfg3DEN {
 			class StateSpecial {
 				class Attributes {
 					delete AllowDamage;
-		            delete EnableRevive;
+					delete EnableRevive;
 					delete EnableSimulation;
 					delete EnableStamina;
 					delete HideObject;
