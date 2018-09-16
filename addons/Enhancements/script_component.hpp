@@ -12,3 +12,13 @@
 #endif
 
 #include "\x\gw\addons\main\script_macros.hpp"
+
+
+#define MAXLOAD140 \
+    maximumLoad = 140;
+
+#define MAXLOAD280 \
+    maximumLoad = 280;
+
+#define MAXLOAD320 \
+    maximumLoad = 320;
