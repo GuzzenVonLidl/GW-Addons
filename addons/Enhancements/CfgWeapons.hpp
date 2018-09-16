@@ -65,6 +65,7 @@ class CfgWeapons {
 					hardLimitEnd = 300;
 				};
 				scale[] = {0};
+//				scale[]={1,1,0.5};
 			};
 		};
 		inertia = 0.1;
