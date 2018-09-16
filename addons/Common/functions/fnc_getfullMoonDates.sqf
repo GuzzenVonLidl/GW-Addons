@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: Bohemia Interactive
 	Returns array of dates for given year when moon is at its fullest
@@ -12,7 +13,6 @@
 
 	Public: No
 */
-#include "script_Component.hpp"
 
 params [
 	["_year", 2035, [0]]

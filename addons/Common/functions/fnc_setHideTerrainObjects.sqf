@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 	Hides island objects and does not affect editor/zeus objects
@@ -26,7 +27,6 @@
 	} forEach (allMissionObjects "EmptyDetector") select {(["tomato", str _x] call BIS_fnc_inString)};;
 
 */
-#include "script_component.hpp"
 
 params [
 	"_trg",

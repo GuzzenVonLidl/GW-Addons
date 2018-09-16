@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Synchronise unit, vehicles & objects with all curators in mission
@@ -13,6 +14,5 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 ((getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version")) >= 1.6)

@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Shows a hint with custom text and then disapears after specified time
@@ -13,14 +14,16 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params ["_string","_delay"];
 
 hintSilent _string;
+GVAR(HintInt) = GVAR(HintInt) + 1;
 
 [{
-	hintSilent "";
-}, [], _delay] call CBA_fnc_waitAndExecute;
+	if (GVAR(HintInt) isEqualTo _this) then {
+		hintSilent "";
+	};
+}, GVAR(HintInt), _delay] call CBA_fnc_waitAndExecute;
 
 true

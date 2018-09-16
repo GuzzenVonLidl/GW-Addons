@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Opens random doors in a area
@@ -15,7 +16,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params ["_location",["_radius", 50], ["_thresHold", 0.6], ["_isInstant", (time < 1)]];
 

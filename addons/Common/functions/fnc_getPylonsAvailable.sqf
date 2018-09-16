@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Returns name of all available pylons for the object
@@ -14,7 +15,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params [["_object", objNull]];
 

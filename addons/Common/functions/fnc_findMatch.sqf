@@ -1,7 +1,6 @@
+#include "script_Component.hpp"
 // pick unit that matches given name
 // reports null when no or more than one unit was found
-
-#include "script_Component.hpp"
 
 params ["_name"];
 
@@ -18,5 +17,3 @@ if (count _matches == 1) exitWith {
 };
 
 objNull
-
-

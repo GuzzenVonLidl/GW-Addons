@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: Unknown
 	Dummy function for now
@@ -12,7 +13,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params [["_timeToSkipTo", 12]];
 

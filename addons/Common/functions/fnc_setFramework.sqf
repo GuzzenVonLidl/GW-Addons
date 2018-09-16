@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Resets Settings Menu
@@ -12,7 +13,6 @@
 	Public: NO
 
 */
-#include "script_Component.hpp"
 
 {
 	TRACE_1("CBA Settings", _x);

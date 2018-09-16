@@ -13,6 +13,7 @@ PREP(getPosATL);
 PREP(getPylonsAvailable);
 PREP(getRandPos);
 PREP(getRandPosMarker);
+PREP(getSide);
 PREP(getSunAngle);
 PREP(getVersionAddon);
 PREP(getVersionFramework);
@@ -22,8 +23,8 @@ PREP(isBlacklisted);
 PREP(isDevBuild);
 PREP(isNight);
 PREP(isNightSoon);
-PREP(setEditor);
-PREP(setFramework);
+PREP(setEditor);		// Legacy
+PREP(setFramework);		// Legacy
 PREP(setHideTerrainObjects);
-PREP(setName);
+PREP(setName);			// Legacy
 //PREP(setTimeBySunAngle);

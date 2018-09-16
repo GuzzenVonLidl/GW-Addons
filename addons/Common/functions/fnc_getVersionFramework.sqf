@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Calculates if its day or night
@@ -11,6 +12,5 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 getText(missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "Version")

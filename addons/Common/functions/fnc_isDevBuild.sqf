@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 
@@ -12,6 +13,5 @@
 	Public: Yes
 
 */
-#include "script_Component.hpp"
 
 (getMissionConfigValue ["GW_isDebug", false]) || (getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "devBuild") isEqualTo -2)

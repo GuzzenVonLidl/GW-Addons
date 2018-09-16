@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 
@@ -11,21 +12,21 @@
 	Public: NO
 
 */
-#include "script_Component.hpp"
 
 _allPlayers = {((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)} count ((all3DENEntities select 0) + (all3DENEntities select 3));
 
 set3DENMissionAttributes [
-	["Multiplayer", "MinPlayers", 1],
-	["Multiplayer", "MaxPlayers", _allPlayers],
+	["Scenario", "Saving", false],
+	["GarbageCollection", "DynSimEnabled", false],
+	["Multiplayer", "AIKills", false],
 	["Multiplayer", "DisabledAI", true],
+	["Multiplayer", "EnableTeamSwitch", false],
 	["Multiplayer", "JoinUnassigned", true],
+	["Multiplayer", "MaxPlayers", _allPlayers],
+	["Multiplayer", "MinPlayers", 1],
 	["Multiplayer", "Respawn", 3],
 	["Multiplayer", "RespawnDelay", 30],
-	["Multiplayer", "RespawnDialog", false],
-	["Multiplayer", "EnableTeamSwitch", false],
-	["Multiplayer", "AIKills", false],
-	["GarbageCollection", "DynSimEnabled", false]
+	["Multiplayer", "RespawnDialog", false]
 ];
 
 LOG("Settings Configured");

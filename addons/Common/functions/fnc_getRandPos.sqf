@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 	Hides island objects and does not affect editor/zeus objects
@@ -24,7 +25,6 @@
 	"ROAD"	-  Find random position, including roads
 
 */
-#include "script_Component.hpp"
 
 #define	FINDPARAM(Var1)	([Var1, _extra] call FUNC(findParamArray))
 #define	GETPARAM(Var1)	([Var1, _extra] call FUNC(getParamArray))

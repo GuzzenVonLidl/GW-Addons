@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: Unknown
 	Gets sun angle based on time of day and latitude
@@ -11,7 +12,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 private ["_lat","_day","_hour","_sunangle"];
 

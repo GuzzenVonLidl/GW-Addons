@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 	Gets location of a marker, object or array ([0,0,0])
@@ -16,7 +17,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params ["_type", ["_extream", 0, [0]]];
 private ["_returnValue","_DebugName"];

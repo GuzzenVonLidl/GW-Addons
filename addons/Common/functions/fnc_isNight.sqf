@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Calculates if its day or night
@@ -11,7 +12,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 private _sunAngle = (call FUNC(getSunAngle));
 private _night = false;

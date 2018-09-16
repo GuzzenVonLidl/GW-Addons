@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	get average number from array
@@ -12,7 +13,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 private ["_total"];
 

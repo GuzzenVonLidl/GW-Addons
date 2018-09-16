@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Synchronise unit, vehicles & objects with all curators in mission
@@ -13,7 +14,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 params ["_unit"];
 if (_unit isKindOf "HeadlessClient_F") exitWith {false};

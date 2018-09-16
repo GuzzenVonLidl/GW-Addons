@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 
@@ -11,7 +12,6 @@
 	Public: NO
 
 */
-#include "script_Component.hpp"
 
 private _3denArray = [];
 private _allPlayers = {((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)} count ((all3DENEntities select 0) + (all3DENEntities select 3));
