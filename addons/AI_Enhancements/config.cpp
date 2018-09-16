@@ -82,10 +82,7 @@ class Mode_FullAuto_LMG: Mode_FullAuto {
 };
 
 #include "CfgVehicles.hpp"
-
-class CfgWeapons {
-	#include "CfgWeapons.hpp"
-};
+#include "CfgWeapons.hpp"
 
 /*
 class CfgAISkill {	// ACE 3

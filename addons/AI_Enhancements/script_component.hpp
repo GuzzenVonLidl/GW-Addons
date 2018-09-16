@@ -87,3 +87,18 @@
 	SETRATEOFFIRE(0.1,2,900); \
 	SETMAXRANGETABLE(1000,500,100); \
 	burst = 10
+
+
+
+
+#define RIFLE_DISPERSION \
+    aiDispersionCoefX = 15; \
+    aiDispersionCoefY = 16;
+
+#define MGUN_DISPERSION \
+    aiDispersionCoefX = 20; \
+    aiDispersionCoefY = 21;
+
+#define NADE_DISPERSION \
+    aiDispersionCoefX = 25; \
+    aiDispersionCoefY = 26;
