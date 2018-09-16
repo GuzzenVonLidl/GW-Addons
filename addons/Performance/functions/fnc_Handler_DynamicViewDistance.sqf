@@ -51,8 +51,8 @@ if (_toggle) then {
 							setTerrainGrid 50;
 						};
 					} else {
-						if !(getTerrainGrid isEqualTo 45) then {
-							setTerrainGrid 45;
+						if !(getTerrainGrid isEqualTo 25) then {
+							setTerrainGrid 25;
 						};
 					};
 				};

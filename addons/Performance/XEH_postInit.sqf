@@ -26,17 +26,18 @@ if (isServer) then {
 		};
 	}, GVAR(Delay), []] call CBA_fnc_addPerFrameHandler;
 
-	GVAR(bodyCleanup) = addMissionEventHandler ["HandleDisconnect", {
-		params ["_unit"];
-		if (EGVAR(startUp,Enabled)) then {
-			deleteVehicle _unit;
-		};
-	}];
+	if (isClass(missionConfigFile >> "GW_Modules" >> "Performance")) then {
+		GVAR(bodyCleanup) = addMissionEventHandler ["HandleDisconnect", {
+			params ["_unit"];
+			if (EGVAR(startUp,Enabled)) then {
+				deleteVehicle _unit;
+			};
+		}];
 
-	[QEGVAR(startUp,setSafetyMode), {
-		if (isNil QGVAR(bodyCleanup)) then {
-			removeMissionEventHandler ["HandleDisconnect", GVAR(bodyCleanup)];
-		};
-	}] call CBA_fnc_addEventHandler;
-
+		[QEGVAR(startUp,setSafetyMode), {
+			if (isNil QGVAR(bodyCleanup)) then {
+				removeMissionEventHandler ["HandleDisconnect", GVAR(bodyCleanup)];
+			};
+		}] call CBA_fnc_addEventHandler;
+	};
 };

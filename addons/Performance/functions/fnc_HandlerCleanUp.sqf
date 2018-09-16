@@ -27,14 +27,11 @@
 
 [{
 	{
-		if (count (units _x) isEqualTo 0) then {
-			TRACE_1("Deleting group", _x);
-			[QGVAR(removeGroup), _x] call CBA_fnc_GlobalEvent;
-		};
-	} forEach allGroups;
+		TRACE_1("Deleting group", _x);
+		[QGVAR(removeGroup), _x] call CBA_fnc_GlobalEvent;
+	} forEach (allGroups select {(count (units _x) isEqualTo 0)});
 }, [], 1] call CBA_fnc_waitAndExecute;
 
-//} forEach ((allMissionObjects "WeaponHolder") + (allMissionObjects "GroundWeaponHoder") + (allMissionObjects "WeaponHolderSimulated"));
 [{
 	{
 		[2, _x] call FUNC(HandlerCleanUpCounter);

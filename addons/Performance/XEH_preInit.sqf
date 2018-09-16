@@ -12,18 +12,16 @@ GVAR(DynamicViewDistance_getAvgFPS) = [];
 GVAR(UnitCaching_Enabled) = false;
 GVAR(UnitCaching_Objects) = [];
 
-if ((getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version")) >= 1.6) then {
-	[] spawn {
-		[
-			QGVAR(Enabled), "LIST",
-			["Enable clean up", "Toggle clean up"],
-			QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
-		] call FUNCMAIN(settingsInit);
+if ((getNumber(missionConfigFile >> "GW_Modules" >> "Common" >> "version")) >= 1.6) then {
+	[
+		QGVAR(Enabled), "LIST",
+		["Enable clean up", "Toggle clean up"],
+		QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
+	] call CBA_settings_fnc_init;
 
-		[
-			QGVAR(UnitEnabled), "LIST",
-			["Gear removal", "Remove all equipment from dead unit execpt for uniform"],
-			QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
-		] call FUNCMAIN(settingsInit);
-	};
+	[
+		QGVAR(UnitEnabled), "LIST",
+		["Gear removal", "Remove all equipment from dead unit execpt for uniform"],
+		QUOTE(ADDON), [[true,false], ["enabled","disabled"], 0], true
+	] call CBA_settings_fnc_init;
 };
