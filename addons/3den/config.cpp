@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+//#include "\a3\3DEN\UI\dikCodes.inc"
 #include "\a3\3DEN\UI\macros.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 

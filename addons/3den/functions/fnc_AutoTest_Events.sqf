@@ -33,5 +33,6 @@ switch (_event) do {
 		move3DENCamera [[(_pos select 0), (_pos select 1), 10], true];
 	};
 	case 5: {
+		do3DENAction "FolderMission";
 	};
 };

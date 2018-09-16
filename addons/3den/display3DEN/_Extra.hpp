@@ -47,9 +47,7 @@ class MENU(ClearChat) {
 	Text = "Clear ChatLog... (SystemChat)";
 };
 
-// Help
-
-class MENU_SUB(Extra,Help) {
+class MENU_SUB(Extra,Help) {	// Help
 	text = "Help...";
 	action = "[4] call GW_3DEN_fnc_showMessage;";
 };

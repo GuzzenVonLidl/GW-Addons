@@ -170,16 +170,16 @@ class Display3DEN {
 							onCheckedChanged = QUOTE(0 call FUNC(doActionMisc));
 							onLoad = "";
 							tooltip = "Map ID";
-							textureChecked = QPATHTOF(UI\icon_ID_on_ca.paa);
-							textureUnchecked = QPATHTOF(UI\icon_ID_off_ca.paa);
-							textureFocusedChecked = QPATHTOF(UI\icon_ID_on_ca.paa);
-							textureFocusedUnchecked = QPATHTOF(UI\icon_ID_off_ca.paa);
-							textureHoverChecked = QPATHTOF(UI\icon_ID_on_ca.paa);
-							textureHoverUnchecked = QPATHTOF(UI\icon_ID_off_ca.paa);
-							texturePressedChecked = QPATHTOF(UI\icon_ID_on_ca.paa);
-							texturePressedUnchecked = QPATHTOF(UI\icon_ID_off_ca.paa);
-							textureDisabledChecked = QPATHTOF(UI\icon_ID_on_ca.paa);
-							textureDisabledUnchecked = QPATHTOF(UI\icon_ID_off_ca.paa);
+							textureChecked = QPATHTOF(Data\icon_ID_on_ca.paa);
+							textureUnchecked = QPATHTOF(Data\icon_ID_off_ca.paa);
+							textureFocusedChecked = QPATHTOF(Data\icon_ID_on_ca.paa);
+							textureFocusedUnchecked = QPATHTOF(Data\icon_ID_off_ca.paa);
+							textureHoverChecked = QPATHTOF(Data\icon_ID_on_ca.paa);
+							textureHoverUnchecked = QPATHTOF(Data\icon_ID_off_ca.paa);
+							texturePressedChecked = QPATHTOF(Data\icon_ID_on_ca.paa);
+							texturePressedUnchecked = QPATHTOF(Data\icon_ID_off_ca.paa);
+							textureDisabledChecked = QPATHTOF(Data\icon_ID_on_ca.paa);
+							textureDisabledUnchecked = QPATHTOF(Data\icon_ID_off_ca.paa);
 							x = "4 * (5 * (pixelW * pixelGrid * 0.50))";
 						};
 						class Workspace: ctrlCombo {

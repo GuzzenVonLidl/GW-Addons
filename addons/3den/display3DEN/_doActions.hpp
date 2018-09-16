@@ -80,9 +80,7 @@ class MENU_SUB(doActions_pattern_offset,offset_50) {
 	Text = "50 M";
 };
 
-// Help
-
-class MENU_SUB(doActions,Help) {
+class MENU_SUB(doActions,Help) {	// Help
 	text = "Help...";
 	action = "[1] call GW_3DEN_fnc_showMessage;";
 };

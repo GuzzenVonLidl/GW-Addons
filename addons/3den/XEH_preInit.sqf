@@ -13,10 +13,6 @@ GVAR(MHQ_Object) = objNull;
 
 1 call FUNC(doActionMisc);
 'init' call bis_fnc_3DENStatusBar;
-//	'init' call bis_fnc_3DENControlsHint;
-//	'init' call bis_fnc_3DENInterface;
-
-"BIS_fnc_isDebugConsoleAllowed" call BIS_fnc_recompile;
 
 [QGVAR(updateNewCopy), {
 	_getVersion = (getNumber (missionConfigFile >> "GW_Modules" >> "Common" >> "version"));
@@ -33,9 +29,6 @@ GVAR(MHQ_Object) = objNull;
 
 [QGVAR(updateNewCopy), []] call CBA_fnc_localEvent;
 
-//	setViewDistance 3000;
-//	setObjectViewDistance [2500, 100];
-
 addMissionEventHandler ["Draw3D", {
 	_layer = ((all3DENEntities select 6) select {((_x get3DENAttribute "name") select 0) isEqualTo "Triggers (Hide)"});
 	if (("Preferences" get3DENMissionAttribute "GW_Show3DMessage") && !(_layer isEqualTo [])) then {
@@ -49,8 +42,7 @@ addMissionEventHandler ["Draw3D", {
 	};
 }];
 
-// On Load
-{
+{	// On Load
 	_radius = ((_x get3DENAttribute "size3") select 0);
 	_objects = (nearestTerrainObjects [_x, HIDEOBJECTFILTER, (selectMax _radius), false]);
 

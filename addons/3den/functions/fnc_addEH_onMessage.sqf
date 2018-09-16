@@ -4,15 +4,40 @@ params ["_switch"];
 
 switch (_switch) do {
 	case 0: {	//	Mission saved
-		if (isClass(missionConfigFile >> "GW_FRAMEWORK") && is3DEN) then {
-			if !("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured") then {
-				[] call EFUNC(Common,setEditor);	// Configures Settings
-				[] call EFUNC(Common,setFramework);	// Reset Addons Option Settings
-	//			[] call EFUNC(Common,setName);		//
+		if (isClass(missionConfigFile >> "GW_FRAMEWORK")) then {
+			set3DENMissionAttributes [
+				["Scenario", "Author", getText(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "Author")],
+				["Scenario", "IntelBriefingName", getText(missionConfigFile >> "briefingName")],
+				["Scenario", "OnLoadMission", ""],
+				["Scenario", "LoadScreen", ""],
+				["Multiplayer", "GameType", ""]
+			];
 
-				["mission"] call CBA_settings_fnc_clear;
-				["server"] call CBA_settings_fnc_clear;
-	//			["client"] call CBA_settings_fnc_clear;
+			if !("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured") then {
+				set3DENMissionAttributes [
+					["Scenario", "Saving", false],
+					["GarbageCollection", "DynSimEnabled", false],
+					["Multiplayer", "AIKills", false],
+					["Multiplayer", "DisabledAI", true],
+					["Multiplayer", "EnableTeamSwitch", false],
+					["Multiplayer", "JoinUnassigned", true],
+					["Multiplayer", "MaxPlayers", ({((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)} count ((all3DENEntities select 0) + (all3DENEntities select 3)))],
+					["Multiplayer", "MinPlayers", 1],
+					["Multiplayer", "Respawn", 3],
+					["Multiplayer", "RespawnDelay", 30],
+					["Multiplayer", "RespawnDialog", false]
+				];
+
+				LOG("Settings Configured");
+
+				{	// Reset Addons Option Settings
+					TRACE_1("CBA Settings", _x);
+					[_x, (_x call CBA_settings_fnc_get), 1, "mission", false] call CBA_settings_fnc_set;
+				} forEach GVARMAIN(settings3denArray);
+
+				LOG("Settings Cleared and Saved");
+
+	//			[] call EFUNC(Common,setName);		//
 
 				"GW_MissionPreferences" set3DENMissionAttribute ["GW_isConfigured", true];
 				LOG("fnc_addEH_onMessage: GW_isConfigured");

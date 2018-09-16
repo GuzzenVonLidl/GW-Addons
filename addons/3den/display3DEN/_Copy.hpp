@@ -1,6 +1,5 @@
 
 class MENU_SUB(Copy,Group) {
-
 	text = "Group with waypoints...";
 	action = "[true] call GW_3DEN_fnc_getCorrectVersion;";
 	shortcuts[] = {INPUT_SHIFT_OFFSET + DIK_1};

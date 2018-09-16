@@ -17,6 +17,13 @@ if (("Intel" get3DENMissionAttribute "IntelTime") isEqualTo 12) then {
 	_output pushBack [_warning, "Please consider changing the time of day, Currently set to 12:00", "Please also consider changin the weather from default", [2]];
 };
 
+if ((west getFriend independent) isEqualTo 1) then {
+	_output pushBack [_warning,"Independent is friendly to BLUFOR", "", [1]];
+};
+if ((east getFriend independent) isEqualTo 1) then {
+	_output pushBack [_warning,"Independent is friendly to OPFOR", "", [1]];
+};
+
 _allPlayable = ((all3DENEntities select 0) select {((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)});
 _west = (_allPlayable select {(side _x) isEqualTo blufor});
 _east = (_allPlayable select {(side _x) isEqualTo opfor});
@@ -106,6 +113,26 @@ if (_aiCount > 100) then {
 		_output pushBack [_warning,format["You have placed %1 AI. You may wish to consider the performance impact.",_aiCount], "", [-1]];
 	} else {
 		_output pushBack [_error,format["%1 Units placed in the senario. You may wish to consider the performance impact.",_aiCount], "", [-1]];
+	};
+};
+
+if !(isNil QEGVAR(Common,Faction)) then {
+	switch (EGVAR(Common,Faction)) do {
+		case "west": {
+			if !((count _west) isEqualTo 0) then {
+				_output pushBack [_warning,"AI spawn side set to West, West Players Detected", "", [-1]];
+			};
+		};
+		case "east": {
+			if !((count _east) isEqualTo 0) then {
+				_output pushBack [_warning,"AI spawn side set to East, East Players Detected", "", [-1]];
+			};
+		};
+		case "independent": {
+			if !((count _indep) isEqualTo 0) then {
+				_output pushBack [_warning,"AI spawn side set to Independent, Independent Players Detected", "", [-1]];
+			};
+		};
 	};
 };
 

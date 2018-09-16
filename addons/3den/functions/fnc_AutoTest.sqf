@@ -32,13 +32,13 @@ _output append (_this call FUNC(AutoTest_Common));
 	};
 
 	if (_img isEqualTo 0) then {
-		_ctrlListbox lbSetPicture [_index, QPATHTOF(UI\_Approved.paa)];
+		_ctrlListbox lbSetPicture [_index, QPATHTOF(Data\_Approved.paa)];
 	};
 	if (_img isEqualTo 1) then {
-		_ctrlListbox lbSetPicture [_index, QPATHTOF(UI\_warning.paa)];
+		_ctrlListbox lbSetPicture [_index, QPATHTOF(Data\_warning.paa)];
 	};
 	if (_img isEqualTo 2) then {
-		_ctrlListbox lbSetPicture [_index, QPATHTOF(UI\_Error.paa)];
+		_ctrlListbox lbSetPicture [_index, QPATHTOF(Data\_Error.paa)];
 		_errorCount = _errorCount + 1;
 	};
 } forEach _output;
@@ -51,7 +51,7 @@ if (_errorCount > 0) then {
 	_index = _ctrlListbox lbAdd "";
 	_index = _ctrlListbox lbAdd format ["%1 Errors found, Mission is NOT ready to play", _errorCount];
 	_ctrlListbox lbSetTooltip [_index, "Fix current errors and try again"];
-	_ctrlListbox lbSetPicture [_index, QPATHTOF(UI\_Error.paa)];
+	_ctrlListbox lbSetPicture [_index, QPATHTOF(Data\_Error.paa)];
 
 	_ctrlListButton lbAdd "";
 	_ctrlListButton lbAdd "";

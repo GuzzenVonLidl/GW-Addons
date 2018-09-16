@@ -1,7 +1,5 @@
 
-// Stance
-
-class MENU_SUB(set3DENAttributes,unitStance) {
+class MENU_SUB(set3DENAttributes,unitStance) {	// Stance
 	items[] = {
 		MENU_SUB(set3DENAttributes,unitStance_up),
 		MENU_SUB(set3DENAttributes,unitStance_middle),
@@ -34,9 +32,7 @@ class MENU_SUB(set3DENAttributes,unitStance_auto) {
 	shortcuts[] = {INPUT_CTRL_OFFSET + DIK_4};
 };
 
-// Simple
-
-class MENU_SUB(set3DENAttributes,simpleObject) {
+class MENU_SUB(set3DENAttributes,simpleObject) {	// Simple
 	items[] = {
 		MENU_SUB(set3DENAttributes,simpleObject_true),
 		MENU_SUB(set3DENAttributes,simpleObject_false)
@@ -52,9 +48,7 @@ class MENU_SUB(set3DENAttributes,simpleObject_false) {
 	action = "[4, false] call GW_3DEN_fnc_setAttribute;";
 };
 
-// Simulation
-
-class MENU_SUB(set3DENAttributes,enableSimulation) {
+class MENU_SUB(set3DENAttributes,enableSimulation) {	// Simulation
 	items[] = {
 		MENU_SUB(set3DENAttributes,enableSimulation_true),
 		MENU_SUB(set3DENAttributes,enableSimulation_false)
@@ -70,9 +64,7 @@ class MENU_SUB(set3DENAttributes,enableSimulation_false) {
 	action = "[1, false] call GW_3DEN_fnc_setAttribute;";
 };
 
-// Simulation
-
-class MENU_SUB(set3DENAttributes,dynamicSim) {
+class MENU_SUB(set3DENAttributes,dynamicSim) {	// Simulation
 	items[] = {
 		MENU_SUB(set3DENAttributes,dynamicSim_true),
 		MENU_SUB(set3DENAttributes,dynamicSim_false)
@@ -88,9 +80,7 @@ class MENU_SUB(set3DENAttributes,dynamicSim_false) {
 	action = "[6, false] call GW_3DEN_fnc_setAttribute;";
 };
 
-// Damage
-
-class MENU_SUB(set3DENAttributes,allowDamage) {
+class MENU_SUB(set3DENAttributes,allowDamage) {	// Damage
 	items[] = {
 		MENU_SUB(set3DENAttributes,allowDamage_true),
 		MENU_SUB(set3DENAttributes,allowDamage_false)
@@ -106,9 +96,8 @@ class MENU_SUB(set3DENAttributes,allowDamage_false) {
 	action = "[2, false] call GW_3DEN_fnc_setAttribute;";
 };
 
-// Help
 
-class MENU_SUB(set3DENAttributes,Help) {
+class MENU_SUB(set3DENAttributes,Help) {	// Help
 	text = "Help...";
 	action = "[2] call GW_3DEN_fnc_showMessage;";
 };
