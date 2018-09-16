@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	get all ace configs defined in description
@@ -11,7 +12,6 @@
 
 	Public: No
 */
-#include "script_Component.hpp"
 
 _Modules = [];
 _settings = [];

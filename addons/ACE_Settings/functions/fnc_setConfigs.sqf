@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	Author: GuzzenVonLidl
 	retrieves ACE configs from description and configures CBA addon settings to have correct defaults
@@ -11,7 +12,6 @@
 
 	Public: No
 */
-#include "script_Component.hpp"
 
 _allConfigs = call FUNC(getConfigs);
 
