@@ -1,4 +1,5 @@
 #include "script_component.hpp"
+#include "\a3\editor_f\Data\Scripts\dikCodes.h"
 
 #include "XEH_PREP.sqf"
 
@@ -17,7 +18,6 @@ GVAR(UnitCaching_Objects) = [];
 GVAR(ParadropHalo) = true;
 GVAR(ParadropHaloHeight) = 150;
 GVAR(ParadropStaticHeight) = 125;
-
 
 GVAR(STHud_EnabledOld) = isClass(configFile >> "CfgPatches" >> "ST_STHud");
 GVAR(STHud_Enabled) = isClass(configFile >> "CfgPatches" >> "STUI_Core");
@@ -49,4 +49,11 @@ if (GVAR(STHud_Enabled)) then {
 			GVAR(Toggle_STHud_Compass) = false;
 		};
 	};
+};
+
+//	[DIK code, [Shift, Ctrl, Alt]]
+if (hasInterface) then {
+	[QUOTE(PREFIX),"flexi_InteractSelfClient", "Client Menu", {
+		["player",[],100, [QUOTE(call FUNC(flexi_InteractSelf)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
+	}, {}, [DIK_RWIN,[false,false,false]]] call CBA_fnc_addKeybind;
 };

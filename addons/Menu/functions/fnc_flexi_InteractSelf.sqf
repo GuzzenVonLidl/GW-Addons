@@ -24,12 +24,12 @@ private _allmenus = [
 	[
 		"<t color='#DF9100'>Player Menu ></t>",
 		"","","",
-		[QUOTE(call FUNC(flexi_InteractSelfClient)),"actions", 1]
+		[QUOTE(call FUNC(flexi_InteractSelf)),"actions", 1]
 	],
 	[
 		"<t color='#1C4ED6'>Settings ></t>",
 		"","","",
-		[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_main", 1]
+		[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_main", 1]
 	]
 ];
 

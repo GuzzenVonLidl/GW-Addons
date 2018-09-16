@@ -32,12 +32,17 @@ class RscDisplayInterrupt: RscStandardDisplay {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
+
+		delete BloodLustSettingsButton;
+
 	};
 };
 class RscDisplayMPInterrupt: RscDisplayInterrupt {
 	class controls {
 		class GW_MainMenu_Client: GW_MainMenu_Client {};
 		class GW_MainMenu_Admin: GW_MainMenu_Admin {};
+		delete BloodLustSettingsButton;
+
 	};
 };
 class RscDisplayInterruptEditor3D: RscDisplayInterrupt {

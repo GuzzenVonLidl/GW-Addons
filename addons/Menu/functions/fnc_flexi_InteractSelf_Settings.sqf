@@ -21,28 +21,28 @@ private _menus = [
 			[
 				"View Distance >",
 				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_viewDistance", 1],
+				[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_viewDistance", 1],
 				-1,true,
 				GVAR(viewDistance_Enabled)
 			],
 			[
 				"Grass Settings >",
 				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_grass", 1],
+				[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_grass", 1],
 				-1,true,
 				GVAR(Grass_Enabled)
 			],
 			[
 				"Hud Options >",
 				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud", 1],
+				[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_sthud", 1],
 				-1, true,
 				(GVAR(STHud_Enabled) || GVAR(STHud_EnabledOld))
 			],
 			[
 				"Performance >",
 				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_performance", 1],
+				[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_performance", 1],
 				-1, true,true
 			],
 			["Save Settings", { [QGVAR(settings), "save"] call CBA_fnc_localEvent; } ],
@@ -155,7 +155,7 @@ if (GVAR(STHud_EnabledOld)) then {
 				[
 					"Display Mode >",
 					"","","",
-					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
+					[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_sthud_subMenu", 1]
 				],
 				["Toggle compass",{ST_STHud_ShowCompass = !ST_STHud_ShowCompass;}],
 				["Restart HUD",{
@@ -189,7 +189,7 @@ if (GVAR(STHud_Enabled)) then {	// New
 				[
 					"Display Mode >",
 					"","","",
-					[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_sthud_subMenu", 1]
+					[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_sthud_subMenu", 1]
 				],
 				[
 					"Toggle Compass",
@@ -254,7 +254,7 @@ if (_menuName isEqualTo "settings_performance") then {
 			[
 				"Target FPS for DVD >",
 				"","","",
-				[QUOTE(call FUNC(flexi_InteractSelfClient_Settings)),"settings_dvd_targetfps", 1]
+				[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_dvd_targetfps", 1]
 			]
 		]
 	];
