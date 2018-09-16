@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Copy units, vehicles and waypoints
@@ -41,7 +42,6 @@
 	Music							music
 	UI Overlay						title
 */
-#include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
 
 private _units = [];

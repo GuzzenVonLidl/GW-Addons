@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 	Gets Location in the area and then moves selected units to the valid house positions
@@ -11,7 +12,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 
 params [["_pos", [0,0,0]]];
 

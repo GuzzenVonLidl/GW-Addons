@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 
@@ -13,8 +14,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
-
 private _radius = "Preferences" get3DENMissionAttribute "GW_WaypointRadius";
 private _waypointCount = "Preferences" get3DENMissionAttribute "GW_WaypointCount";
 

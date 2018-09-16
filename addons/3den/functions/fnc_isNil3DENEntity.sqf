@@ -1,9 +1,9 @@
+#include "script_component.hpp"
 /*
 
 	[] call GW_3DEN_fnc_isNil3DENEntity
 
 */
-#include "script_component.hpp"
 
 params ["_3denEntity"];
 

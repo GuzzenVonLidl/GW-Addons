@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Copy units, vehicles and waypoints
@@ -11,7 +12,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_x get3DENAttribute Var) select 0)
 //#define	CUT_X(Var1) [Var1, 2] call BIS_fnc_cutDecimals
 #define	CUT_X(Var1) parseNumber(Var1 toFixed 2)

@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 
 	Author: DreadedEntity, Simplified by GuzzenVonLidl
@@ -13,7 +14,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 disableSerialization;
 _cfgViewer = findDisplay 2928;

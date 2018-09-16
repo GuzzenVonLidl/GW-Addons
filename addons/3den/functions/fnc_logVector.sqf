@@ -1,9 +1,9 @@
+#include "script_component.hpp"
 /*
 
 	[] call GW_3DEN_fnc_logVector
 
 */
-#include "script_component.hpp"
 
 _text = "";
 _br = tostring [13,10];

@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 	Moves selected objects in to a specified pattern.
@@ -13,7 +14,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 
 params [["_patternType", "LINE", [""]]];
 

@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 
@@ -10,7 +11,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 #define	GETATTRIBUTE(Var) ((_object get3DENAttribute Var) select 0)
 #define	GETATTRIBUTEGROUP(Var) (((group _object) get3DENAttribute Var) select 0)
 

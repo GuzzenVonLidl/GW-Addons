@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 
@@ -10,7 +11,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 #include "\a3\3DEN\UI\resincl.inc"
 
 params ["_case", ["_value", 0]];

@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Copy units, vehicles and waypoints
@@ -11,7 +12,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 #define	GETATTRIBUTE(Var1) ((_x get3DENAttribute Var1) select 0)
 #define	GETMAGAZINE(Var1) (getArray(configfile >> "CfgWeapons" >> Var1 >> "magazines"))
 

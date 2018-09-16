@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 
@@ -10,7 +11,6 @@
 
 	Public: NO
 */
-#include "script_component.hpp"
 
 private _params = (uiNamespace getVariable [QGVAR(FunctionParams), ""]);
 private _function = (uiNamespace getVariable [QGVAR(FunctionName), ""]);

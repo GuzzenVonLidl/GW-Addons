@@ -1,3 +1,4 @@
+#include "script_component.hpp"
 /*
 	Author: GuzzenVonLidl
 	Copies objects relative location and rotation from players and puts them in a Config based format
@@ -13,8 +14,6 @@
 	Public: NO
 
 */
-
-#include "script_component.hpp"
 
 //	if (isNull player) exitWith { ["No player unit found!","Warning!"] call BIS_fnc_3DENShowMessage; };
 if (isNull player) exitWith { ["No player unit found!", 1, 10, true] call BIS_fnc_3DENNotification; };

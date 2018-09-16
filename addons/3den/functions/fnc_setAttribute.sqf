@@ -1,9 +1,9 @@
+#include "script_component.hpp"
 /*
 
 	[] call GW_3DEN_fnc_setAttribute
 
 */
-#include "script_component.hpp"
 
 params ["_case","_value"];
 

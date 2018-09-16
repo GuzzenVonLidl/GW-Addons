@@ -1,9 +1,9 @@
+#include "script_component.hpp"
 /*
 
 	[] call GW_3DEN_fnc_getTool
 
 */
-#include "script_component.hpp"
 
 params [["_entity", "GW_3den_ToolsItem"]];
 
