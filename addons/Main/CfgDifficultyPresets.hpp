@@ -1,8 +1,20 @@
 
+class CfgAISkill {
+    aimingAccuracy[] = {0,0, 1,0.5};
+    aimingShake[]    = {0,0, 1,0.5};
+    aimingSpeed[]    = {0,0, 1,0.5};
+    commanding[]     = {0,0, 1,1};
+    courage[]        = {0,0, 1,1};
+    endurance[]      = {0,0, 1,1};
+    general[]        = {0,0, 1,0.5};
+    spotDistance[]   = {0,0, 1,1};
+    spotTime[]       = {0,0, 1,1};
+};
+
 class CfgAILevelPresets {
 	class AILevelCustom {
 		displayName = "GOL";
-		precisionAI = 0.6;
+		precisionAI = 0.3;
 		skillAI = 0.8;
 	};
 	class AILevelCustomHigh {
@@ -16,7 +28,7 @@ class CfgDifficultyPresets {
 	defaultPreset = "Regular";
 	class Regular {
 		description = "Custom difficulty defined by GOL Clan.";
-		displayName = "GOL Setting";
+		displayName = "GOL Difficulty Preset";
 		levelAI = "AILevelCustom";
 		optionDescription = "Custom difficulty defined by GOL Clan.";
 		optionPicture = "\A3\Ui_f\data\Logos\arma3_white_ca.paa";
@@ -81,4 +93,10 @@ class CfgDifficultyPresets {
 			weaponInfo = 2;
 		};
 	};
+};
+
+class CfgSurfaces {
+    class Default {
+        AIAvoidStance = 2;
+    };
 };

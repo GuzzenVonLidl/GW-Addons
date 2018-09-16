@@ -10,15 +10,7 @@
 #endif
 
 #define	ISADMIN	(GVARMAIN(isAdmin) || (serverCommandAvailable "#logout"))
-
-#define	GUZZENVONLIDL	"76561197993196728"
-#define	ARROW "76561197971568283"
-#define	OKSMAN	"76561198013929549"
-#define	R4IDER	"76561197985030555"
-#define	RAPTOR	"76561198076457189"
-#define	FILTHY "76561198014971848"
-#define	JASON "76561198020957858"
-#define	PARKER "76561198003452927"
+#define	ISACTIVEADMIN	(GVARMAIN(isActiveAdmin) || (serverCommandAvailable "#logout"))
 
 #define REMOTEONLYSERVER(A) remoteExecCall [A, 2]
 #define MAPLOADED getClientStateNumber >= 9 || !isMultiplayer

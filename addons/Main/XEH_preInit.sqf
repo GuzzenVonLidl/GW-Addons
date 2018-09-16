@@ -1,5 +1,5 @@
 #include "script_component.hpp"
-
+/*
 ADDON = false;
 
 GVARMAIN(isAdmin) = false;
@@ -12,3 +12,4 @@ GVARMAIN(superAdminList) = ["_SP_PLAYER_", GUZZENVONLIDL, ARROW];
 GVARMAIN(canUseDevConsole) = false;
 
 ADDON = true;
+*/
