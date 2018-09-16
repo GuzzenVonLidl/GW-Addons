@@ -1,3 +1,4 @@
+#include "script_Component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
 
@@ -10,7 +11,6 @@
 
 	Public: NO
 */
-#include "script_Component.hpp"
 
 if (GVAR(Enabled)) then {
 	{
