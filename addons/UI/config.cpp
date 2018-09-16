@@ -21,14 +21,12 @@ class CfgPatches {
 #include "RscMisc.hpp"
 
 class CfgLensFlare {
-	flareSizeEye[] = {0.06};
-	flareSizeEyeSun[] = {0.06};
+	flareSizeEye[] = {0.1};
+	flareSizeEyeSun[] = {0.1};
 };
 
 class CfgCoreData {
-	eyeFlareSun = "A3\data_f\masktextureflare00_co.paa";	// Big
-//	eyeFlareSun = "A3\data_f\masktextureflare01_co.paa";	// Small
-//	eyeFlareSun = "A3\data_f\eyeflareSun_ca.paa";			// Default
+	eyeFlareSun = "A3\data_f\eyeflareSun_ca.paa";			// Default
 };
 
 class CfgIRLaserSettings {

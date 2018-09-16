@@ -24,4 +24,28 @@ class CfgUnitInsignia {
 		texture = QPATHTOF(data\Insignia_AAC.paa);
 		textureVehicle = QPATHTOF(data\Insignia_AAC.paa);
 	};
+	class insignia_Blufor {
+		displayName = "Side Blufor";
+		author = "GuzzenVonLidl";
+		texture = QPATHTOF(data\insignia_side_blufor.paa);
+		textureVehicle = QPATHTOF(data\insignia_side_blufor.paa);
+	};
+	class insignia_Opfor {
+		displayName = "Side Opfor";
+		author = "GuzzenVonLidl";
+		texture = QPATHTOF(data\insignia_side_opfor.paa);
+		textureVehicle = QPATHTOF(data\insignia_side_opfor.paa);
+	};
+	class insignia_Indep {
+		displayName = "Side Independent";
+		author = "GuzzenVonLidl";
+		texture = QPATHTOF(data\insignia_side_indep.paa);
+		textureVehicle = QPATHTOF(data\insignia_side_indep.paa);
+	};
+	class insignia_Civi {
+		displayName = "Side Civilian";
+		author = "GuzzenVonLidl";
+		texture = QPATHTOF(data\insignia_side_civi.paa);
+		textureVehicle = QPATHTOF(data\insignia_side_civi.paa);
+	};
 };

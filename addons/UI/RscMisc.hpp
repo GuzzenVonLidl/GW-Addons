@@ -1,25 +1,51 @@
 
-class RscControlsGroup;
-class RscText;
 class RscObject;
 class RscCompass : RscObject {
-	scale = 1;
+	scale = 0.8;
 };
-
+class RscControlsGroup;
+class RscText;
 class RscPicture;
+class RscProgress;
 class RscVignette {
 	colorText[] = {0, 0, 0, 0};
 };
 
-/*
-class RscCompass: RscObject {
-	model = "\A3\ui_f\objects\compass.p3d";
-	direction[] = {0,0.5,0.5};
-	up[] = {0,1,0};
-	scale = "0.47 * 0.875 * (SafeZoneW Min SafeZoneH)";
-	positionBack[] = {0,-0.02,0.075};
+class GW_loadingScreen {
+	idd = -1;
+	class controlsBackground {
+		class Background : RscText {
+			colorBackground[] = {0,0,0,1};
+			colorText[] = {0,0,0,0};
+			h = safezoneH;
+			text = "";
+			w = safezoneW;
+			x = safezoneX;
+			y = safezoneY;
+		};
+		class Picture : RscPicture {
+			h = 1.0;
+			style = 48 + 0x800;
+			text = "\x\gw\addons\3den\data\Logo_GOL_1.paa";
+			w = 1.0;
+			x = (safezoneX + safezoneW/2 - 0.5);
+			y = (safezoneY + safezoneH/2 - 0.5);
+		};
+	};
+	class controls {
+		class CA_Progress : RscProgress {
+			h = 0.025;
+			idc = 104;
+			style = 0;
+			type = 8;
+			w = 1.0;
+			x = (safezoneX + safezoneW/2 - 0.5);
+			y = (safezoneY + safezoneH - 0.4);
+		};
+	};
 };
 
+/*
 // Ammo Count
 class RscInGameUI {
 	class RscUnitInfo {
