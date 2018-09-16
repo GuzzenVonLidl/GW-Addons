@@ -38,39 +38,9 @@ class CfgMods {
 		hidePicture=1;
 		name="GuzzenWorks";
 		overview="GW-Addons is a collection of addons containing enhancements for Infantry, Mission Editing and more";
-//		picture="\x\gw\addons\main\logos\logo_ca.paa";
+		picture = "\x\gw\addons\3den\data\Logo_GOL_1.paa";
 		tooltip="GW-Addons";
 		tooltipOwned="GW-Addons";
-	};
-	class A3: Mod_Base {
-		name = "A3";
-	};
-	class DLCBundle: Mod_Base {
-		name = "DLC1";
-	};
-	class Curator: Mod_Base {
-		name = "Zeus";
-	};
-	class Kart: Mod_Base {
-		name = "Karts";
-	};
-	class Heli: Mod_Base {
-		name = "Heli";
-	};
-	class Mark: Mod_Base {
-		name = "Mark";
-	};
-	class Expansion: Mod_Base {
-		name = "Apex";
-	};
-	class DLCBundle2: Mod_Base {
-		name = "DLC2";
-	};
-	class Jets: Mod_Base {
-		name = "Jets";
-	};
-	class Argo: Mod_Base {
-		name = "Argo";
 	};
 };
 

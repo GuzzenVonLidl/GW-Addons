@@ -26,24 +26,3 @@ class CfgAddons {
 
 cba_settings_whitelist[] += {"_SP_PLAYER_", GUZZENVONLIDL, ARROW, OKSMAN, R4IDER, RAPTOR, FILTHY, JASON, PARKER};
 //	enableDebugConsole[] = {GUZZENVONLIDL, ARROW, OKSMAN, R4IDER, RAPTOR, FILTHY, JASON, PARKER};
-
-
-class Extended_DisplayLoad_EventHandlers {
-	class RscDisplayCurator {
-		CuratorOpend = "player playMoveNow (animationState player)";
-	};
-};
-/*
-
-class Extended_DisplayUnload_EventHandlers {
-	class RscDisplayCurator {
-		CuratorClosed = "";
-	};
-	class RscDisplayArsenal {
-		Arsenal = "";
-	};
-	class RscDisplayEGSpectator {
-		Spectator = "";
-	};
-};
-*/

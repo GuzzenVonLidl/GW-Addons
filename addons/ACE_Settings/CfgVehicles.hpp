@@ -8,11 +8,7 @@
 class CfgVehicles {
 	class ThingX;
     class ReammoBox_F: ThingX {
-        class ACE_Actions {
-            class ACE_MainActions {
-				distance = 10;
-			};
-		};
+		DISTANCE(10)
 	};
 	class Scrapyard_base_F;
 	class Land_PaperBox_closed_F: Scrapyard_base_F {
