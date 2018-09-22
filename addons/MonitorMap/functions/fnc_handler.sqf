@@ -58,7 +58,6 @@ if !(GVAR(Enabled)) then { // Not running
 	hint "Map Monitor Ending...";
 };
 
-	hintSilent "";
 if !(_silent) then {
 	[{
 		hintSilent "";
