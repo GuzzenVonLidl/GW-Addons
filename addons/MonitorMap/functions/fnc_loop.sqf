@@ -115,5 +115,4 @@ while {GVAR(Enabled)} do {
 	uiSleep _interval;
 };
 
-hint "Map Monitor Ended.";
 GVAR(Enabled) = false;

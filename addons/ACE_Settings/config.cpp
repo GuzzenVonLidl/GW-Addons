@@ -15,7 +15,7 @@ class CfgPatches {
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgVehicles.hpp"
+//#include "CfgVehicles.hpp"
 
 class ACE_Medical_Actions {
 	class Basic {

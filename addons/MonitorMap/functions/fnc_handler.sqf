@@ -40,19 +40,27 @@
 #include "script_component.hpp"
 
 if !(GVAR(Enabled)) then { // Not running
-	params [["_detailLevel", 1, [0]], ["_interval", 1, [0]]];
+	params [["_detailLevel", 1, [0]], ["_interval", 1, [0]], ["_silent", false]];
 	if (_interval > 0) then {
 		GVAR(Enabled) = true;
-		hint format ["Map Monitor Starting.\nInterval: %1 second(s).", _interval];
+		if !(_silent) then {
+			hint format ["Map Monitor Starting.\nInterval: %1 second(s).", _interval];
+		};
 		[_detailLevel, _interval] spawn FUNC(loop);
 	} else {
-		hint format ["Map Monitor Failed to Start.\nInvalid Interval of %1 second(s).", _interval];
+		if !(_silent) then {
+			hint format ["Map Monitor Failed to Start.\nInvalid Interval of %1 second(s).", _interval];
+		};
 	};
 } else { // Already Running
 	GVAR(sigTerm) = true;
+	params [["_silent", false]];
 	hint "Map Monitor Ending...";
 };
 
-[{
 	hintSilent "";
-}, [], 3] call CBA_fnc_waitAndExecute;
+if !(_silent) then {
+	[{
+		hintSilent "";
+	}, [], 3] call CBA_fnc_waitAndExecute;
+};

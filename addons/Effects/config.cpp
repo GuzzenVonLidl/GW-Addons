@@ -27,7 +27,7 @@ class cfgWeapons {
 	};
 	class Rifle;
 	class Rifle_Base_F: Rifle {
-		fireLightDuration = 0.015;
+		fireLightDuration = 0.02;
 		fireLightIntensity = 0.3;
 		fireLightDiffuse[] = {2,1.5,0};
 	};
