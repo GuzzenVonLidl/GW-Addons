@@ -21,6 +21,28 @@ if (hasInterface) then {
 		if (ISADMIN) then {
 			["player",[],100, [QUOTE(call FUNC(flexi_InteractSelf)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
 		};
-	}, {}, [DIK_INSERT,[true,false,true]]] call CBA_fnc_addKeybind;
+	}, {}, [DIK_INSERT,[true,false,true]], false] call CBA_fnc_addKeybind;
 };
 
+/*
+	if ((getNumber (ConfigFile >> "CfgPatches" >> "CBA_Main" >> "version")) >= 3.9) then {
+		[[QUOTE(PREFIX), "Admin"],"flexi_InteractSelfAdmin", "Admin Menu", {
+			if (ISADMIN) then {
+				["player",[],100, [QUOTE(call FUNC(flexi_InteractSelf)),"main"]] call cba_fnc_fleximenu_openMenuByDef;
+			};
+		}, {}, [DIK_INSERT,[true,false,true]], false] call CBA_fnc_addKeybind;
+
+		[[QUOTE(PREFIX), "Admin"],"key_MonitorMap", "Toggle Map Monitor", {
+			if (ISADMIN) then {
+				[] call EFUNC(MonitorMap,Handler);
+			};
+		}, {}, [0,[false,false,false]], false] call CBA_fnc_addKeybind;
+
+		[[QUOTE(PREFIX), "Admin"],"key_MonitorServer", "Toggle Server Monitor", {
+			if (ISADMIN) then {
+				[] call EFUNC(MonitorServer,Toggle);
+			};
+		}, {}, [0,[false,false,false]], false] call CBA_fnc_addKeybind;
+	} else {
+	};
+*/

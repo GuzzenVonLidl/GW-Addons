@@ -99,10 +99,15 @@
 	{
 		_ZeuzModule setCuratorCoef [_x,0];
 	} forEach ["place","edit","delete","destroy","group","synchronize"];
-	_unit assignCurator _ZeuzModule;
-	{
-		[_x] call EGVAR(Common,addToCurators);
-	} forEach (allUnits + vehicles);
+
+	[{
+		(_this select 0) assignCurator (_this select 1);
+	}, [_unit, _ZeuzModule], 0.5] call CBA_fnc_waitAndExecute;
+	[{
+		{
+			(_this select 0) addCuratorEditableObjects [[_x],true];
+		} forEach (allUnits + vehicles);
+	}, [_ZeuzModule], 5] call CBA_fnc_waitAndExecute;
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(removeZeus), {

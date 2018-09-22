@@ -13,12 +13,11 @@ class Extended_PostInit_EventHandlers {
 
 class Extended_DisplayLoad_EventHandlers {
 	class RscDisplayCurator {
-		CuratorOpend = "player playMoveNow (animationState player)";
+		CuratorOpend = "_anim = switch (stance player) do {case 'STAND': {'amovpercmstpsraswrfldnon'};case 'CROUCH': {'amovpknlmstpsraswrfldnon'};case 'PRONE': {'amovppnemstpsraswrfldnon'};}; player playMoveNow _anim;";
 	};
 };
 
 /*
-
 class Extended_DisplayUnload_EventHandlers {
 	class RscDisplayCurator {
 		CuratorClosed = "";

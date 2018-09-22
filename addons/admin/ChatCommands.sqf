@@ -30,7 +30,7 @@ if (GVARMAIN(mod_ACE)) then {
 		if (GVARMAIN(isAdmin)) then {
 			params ["_name"];
 			private _unit = _name call EFUNC(Common,findMatch);
-			[QGVAR(fullHeal), _unit, GVARMAIN(activeAdmins)] call CBA_fnc_targetEvent;
+			[QGVAR(fullHeal), _unit, _unit] call CBA_fnc_targetEvent;
 			_unit setDamage 0;
 		};
 	}, "all"] call CBA_fnc_registerChatCommand;
