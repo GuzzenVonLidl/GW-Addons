@@ -125,12 +125,12 @@ class Display3DEN {
 					};
 				};
 
+				#include "display3DEN\_about.hpp"			// About
 				#include "display3DEN\_copy.hpp"			// Copy Selected
 				#include "display3DEN\_doActions.hpp"		// Placement Tools
+				#include "display3DEN\_extra.hpp"			// Extra
+				#include "display3DEN\_misc.hpp"			// Misc
 				#include "display3DEN\_setAttributes.hpp"	// Attributes
-				#include "display3DEN\_Misc.hpp"			// Misc
-				#include "display3DEN\_Extra.hpp"			// Extra
-				#include "display3DEN\_About.hpp"			// About
 
 				class MENU(Actions) {
 					text = "Repeat Action";

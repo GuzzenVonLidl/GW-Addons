@@ -25,17 +25,14 @@ GVAR(HintInt) = 0;
 
 if (isClass(missionConfigFile >> "GW_FRAMEWORK")) then {
 	[] spawn {
-		sleep 1;
+		uisleep 1;
 		_list = [];
 		{
 			_list pushBackUnique ((CBA_settings_default getVariable _x) select 4)
 		} forEach CBA_settings_allSettings;
 		_list sort true;
 		_index = (_list find "GW_Common");
-	//	_index = (_list find "GW_Gear");
-		if !((_list find "STR_ace_vehiclelock_DisplayName") isEqualTo -1) then {
-			_index = _index + 1;
-		};
+		_index = (_index + ({!((_x find "STR_") isEqualTo -1)} count _list));
 		uiNamespace setVariable ["cba_settings_addonIndex", _index];
 	};
 };
