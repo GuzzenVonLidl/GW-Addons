@@ -9,9 +9,13 @@ switch (_switch) do {
 				["Scenario", "Author", getText(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "Author")],
 				["Scenario", "IntelBriefingName", getText(missionConfigFile >> "briefingName")],
 				["Scenario", "OnLoadMission", ""],
-				["Scenario", "LoadScreen", ""],
-				["Multiplayer", "GameType", ""]
+				["Scenario", "LoadScreen", ""]
 			];
+/*
+			if ((getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "isCoopMode")) isEqualTo 1) then {
+				"Multiplayer" set3DENMissionAttribute ["GameType", "Coop"];
+			};
+*/
 
 			if !("GW_MissionPreferences" get3DENMissionAttribute "GW_isConfigured") then {
 				set3DENMissionAttributes [
