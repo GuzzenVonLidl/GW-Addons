@@ -23,6 +23,7 @@ class CfgAddons {
 };
 
 #include "CfgEventHandlers.hpp"
+#include "CfgGUI.hpp"
 
 cba_settings_whitelist[] += {"_SP_PLAYER_", GUZZENVONLIDL, ARROW, OKSMAN, R4IDER, RAPTOR, FILTHY, JASON, PARKER};
 //	enableDebugConsole[] = {GUZZENVONLIDL, ARROW, OKSMAN, R4IDER, RAPTOR, FILTHY, JASON, PARKER};

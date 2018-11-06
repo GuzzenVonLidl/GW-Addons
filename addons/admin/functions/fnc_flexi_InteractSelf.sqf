@@ -72,15 +72,15 @@ if (_menuName isEqualTo "actions") then {
 if (_menuName isEqualTo "mhqlist") then {
 	private _mhqMenu = [];
 	{
-		if (!isNil{(_x getVariable "GW_MHQ_Info")}) then {
-			if (_x getVariable "GW_MHQ_Active") then {
-				_mhqMenu pushBack [(format ["Deactivate %1", _x]), {([QEGVAR(MHQ,Enabled), [_x, false, str([player] call EFUNC(Common,getSide))]] call CBA_fnc_serverEvent);}];
+		if (!isNil{(_x getVariable QEGVAR(MHQ,Info))}) then {
+			if (_x getVariable QEGVAR(MHQ,Active)) then {
+				_mhqMenu pushBack [(format ["Deactivate %1", _x]), (compile format ["['GW_MHQ_Enabled', [%1, false, str([player] call GW_Common_fnc_getSide)]] call CBA_fnc_serverEvent", _x])];
 			} else {
-				_mhqMenu pushBack [(format ["Move %1", _x]), {[QEGVAR(MHQ,Enabled), [_x, true, str([player] call EFUNC(Common,getSide))]] call CBA_fnc_serverEvent}];
-				_mhqMenu pushBack [(format ["Activate %1", _x]), compile format ["[%1, player, 5] call GW_Menu_fnc_MoveVehicle;", _x]];
+				_mhqMenu pushBack [(format ["Move %1", _x]), (compile format ["[%1, player, 5] call GW_Menu_fnc_MoveVehicle;", _x])];
+				_mhqMenu pushBack [(format ["Activate %1", _x]), (compile format ["['GW_MHQ_Enabled', [%1, true, str([player] call GW_Common_fnc_getSide)]] call CBA_fnc_serverEvent", _x])];
 			};
 		};
-	} forEach vehicles;
+	} forEach (vehicles select {alive _x});
 	_menus pushBack [["mhqlist", "MHQ List", _menuRsc],_mhqMenu];
 };
 

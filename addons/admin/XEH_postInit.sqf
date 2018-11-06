@@ -132,7 +132,7 @@
 
 [QGVAR(sendMsg), {
 	params ["_msg", "_unit"];
-	systemChat format ["Admin: %1 - %3", (name _unit), _msg];
+	systemChat format ["Admin: %1 - %2", (name _unit), _msg];
 }] call CBA_fnc_addEventHandler;
 
 if (GVARMAIN(mod_ACE)) then {

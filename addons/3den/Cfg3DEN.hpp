@@ -430,7 +430,7 @@ class Cfg3DEN {
 						tooltip = "Force a unit to be a specific role, This by passes the 'Auto Gear' (Requires GW Framework)";
 						property = "GW_LoadoutSelector";
 						control = "GW_SelectLoadout";
-						expression = "_this setVariable ['GW_Gear_Loadout', _value];";
+						expression = "_this setVariable ['GW_Gear_Loadout', _value, true];";
 						condition = "objectBrain";
 					};
 				};

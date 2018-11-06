@@ -22,3 +22,19 @@
 
 #define MAXLOAD320 \
     maximumLoad = 320;
+
+
+
+#define LAUNCHER \
+	aiAmmoUsageFlags = "64 + 128 + 256 + 512"; \
+	airLock = 0; \
+	allowAgainstInfantry = 1; \
+	cost = 100; \
+	soundFly[] = {"A3\Sounds_F\weapons\Rockets\rocket_fly_1",6,0.85,500}; \
+	whistleDist = 32;
+
+#define LAUNCHER_NOSOUND \
+	aiAmmoUsageFlags = "64 + 128 + 256 + 512"; \
+	airLock = 0; \
+	allowAgainstInfantry = 1; \
+	cost = 100;
