@@ -124,8 +124,8 @@ class Display3DEN {
 						"HelpTutorials",
 						"GW_Addon_Github",
 						"GW_Github",
-						"GW_MissionRequirements",
-						"GOL_Wiki"
+//						"GW_MissionRequirements",	// Legacy
+//						"GOL_Wiki"
 					};
 				};
 
