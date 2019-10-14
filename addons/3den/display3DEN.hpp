@@ -123,7 +123,7 @@ class Display3DEN {
 					items[] = {
 						"HelpTutorials",
 						"GW_Addon_Github",
-						"GW_Github",
+						"GW_Github"
 //						"GW_MissionRequirements",	// Legacy
 //						"GOL_Wiki"
 					};

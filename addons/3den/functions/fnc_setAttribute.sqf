@@ -1,8 +1,8 @@
 #include "script_component.hpp"
 /*
-
 	[] call GW_3DEN_fnc_setAttribute
 
+	Used for quick actions in 3den, Not for spawnList
 */
 
 params ["_case","_value"];
