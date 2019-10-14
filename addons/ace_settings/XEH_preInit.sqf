@@ -85,6 +85,18 @@ ACE_MaxWeightCarry = 10000;
 			["CBA_settings_refreshSetting", _setting] call CBA_fnc_localEvent;
 		} forEach ([_configList, false] call CBA_settings_fnc_parse);
 	};
+
+}] call CBA_fnc_addEventHandler;
+
+["ace_settingChanged", {
+	params ["_name","_value"];
+	if (_name isEqualTo "ace_medical_painEffectType") then {
+		if (ace_medical_painEffectType == 0) then {
+			ace_medical_painCoefficient = (["ace_medical_painCoefficient", "priority"] call CBA_settings_fnc_get);
+		} else {
+			ace_medical_painCoefficient = (["ace_medical_painCoefficient", "priority"] call CBA_settings_fnc_get) * 0.5;
+		};
+	};
 }] call CBA_fnc_addEventHandler;
 
 ["ace_unconscious", {
