@@ -19,6 +19,6 @@ params ["_unit"];
 
 if !("ACE_Sandbag_empty" in (_unit call ACE_common_fnc_uniqueItems)) exitWith {false};
 
-if (_unit getVariable ["ACE_IsEngineer", false]) exitWith {true};	// Bypass dig check
+if ((_unit getVariable ["ACE_IsEngineer", 0]) > 0) exitWith {true};	// Bypass dig check
 
 (_unit call ACE_common_fnc_canDig)
