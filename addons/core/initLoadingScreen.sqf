@@ -20,8 +20,11 @@
 
 #define	GETCONFIG(Var1)	getText(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> Var1)
 
-if !(isClass(missionConfigFile >> "GW_FRAMEWORK")) exitWith {false};
-if (getNumber(missionconfigfile >> "GW_FRAMEWORK" >> "Core" >> "Version") < 0.8) exitWith {false};
+//if !(isClass(missionConfigFile >> "GW_FRAMEWORK")) exitWith {false};
+//if (getNumber(missionconfigfile >> "GW_FRAMEWORK" >> "Core" >> "Version") < 0.8) exitWith {false};
+
+if (is3DEN) exitWith {false};
+if !(getNumber(missionconfigfile >> "GW_FRAMEWORK" >> "Naming" >> "Fullscreen") isEqualTo 1) exitWith {false};
 if (GETCONFIG("Picture") isEqualTo "") exitWith {false};
 
 params ["_display"];
