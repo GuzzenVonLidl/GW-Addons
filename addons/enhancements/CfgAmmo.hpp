@@ -66,6 +66,17 @@ class CfgAmmo {
 		timeToLive = 45;
 	};
 
+	class rhs_g_vg40md_white: G_40mm_Smoke {
+		aiAmmoUsageFlags = "2 + 4 + 64";
+//		coefGravity = 0.8;
+		cost = 10;
+		deflecting = 0;
+		deflectionSlowDown = 0;
+		simulation = "shotSmoke";
+		smokeColor[] = {1,1,1,1};
+		timeToLive = 45;
+	}
+
 	class FlareCore;
 	class FlareBase: FlareCore {
 //		brightness = 1; == intensity = 3000; ?
