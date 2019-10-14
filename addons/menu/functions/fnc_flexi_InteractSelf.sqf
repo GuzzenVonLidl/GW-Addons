@@ -57,35 +57,39 @@ private _menus = [
 if (_menuName isEqualTo "actions") then {
 	_menus pushBack [
 		["actions","Player Actions", _menuRsc],
-		["Fix SW Radio", {
-				_radio = (call TFAR_fnc_activeSwRadio);
-				[_radio, 1, "10"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 2, "20"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 3, "30"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 4, "40"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 5, "50"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
-				[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
-				[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
-				titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
-			}, "","","",-1,true, !((call TFAR_fnc_activeSwRadio) isEqualTo "")
-		],
-		["Fix LR Radio", {
-				_radio = (call TFAR_fnc_activeLrRadio);
-				[_radio, 1, "10"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 2, "20"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 3, "30"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 4, "40"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 5, "50"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
-				[_radio, 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
-				[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
-				[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
-				titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
-			}, "","","",-1,true, !((call TFAR_fnc_activeLrRadio) isEqualTo "")
+		[
+			[
+				"Fix SW Radio", {
+					_radio = (call TFAR_fnc_activeSwRadio);
+					[_radio, 1, "10"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 2, "20"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 3, "30"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 4, "40"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 5, "50"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
+					[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
+					[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
+					titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
+				},"","","",-1,true, !((call TFAR_fnc_activeSwRadio) isEqualTo "")
+			],
+			[
+				"Fix LR Radio", {
+					_radio = (call TFAR_fnc_activeLrRadio);
+					[_radio, 1, "10"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 2, "20"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 3, "30"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 4, "40"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 5, "50"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 6, "50.1"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 7, "50.2"] call TFAR_fnc_SetChannelFrequency;
+					[_radio, 8, "50.3"] call TFAR_fnc_SetChannelFrequency;
+					[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
+					[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
+					titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
+				},"","","",-1,true, !((call TFAR_fnc_activeLrRadio) isEqualTo "")
+			]
 		]
 	];
 };
