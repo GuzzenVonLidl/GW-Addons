@@ -50,7 +50,7 @@ private _vehicles = [];
 
 {
 	if (_x isKindOf "AllVehicles") then {
-		private _special = ([_x] call FUNC(getAttributes));
+		private _special = ([_x] call FUNC(getAttributesLegacy));
 
 		if !(_x isKindOf "CAManBase") then {
 			private _crewList = [];

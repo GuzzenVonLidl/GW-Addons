@@ -31,7 +31,7 @@ private _return = 0;
 	switch (_type) do {
 		case 1: { // Units && Vehicles
 			if (_x isKindOf "AllVehicles") then {
-				private _special = ([_x] call FUNC(getAttributes));
+				private _special = ([_x] call FUNC(getAttributesLegacy));
 
 				if !(_x isKindOf "CAManBase") then {
 					private _crewList = [];
@@ -63,7 +63,7 @@ private _return = 0;
 
 		case 2: { // Objects
 			if ((_x isKindOf "All") && !(_x isKindOf "CAManBase")) then {
-				private _special = ([_x] call FUNC(getAttributes));
+				private _special = ([_x] call FUNC(getAttributesLegacy));
 
 				(vectorDir _x) params ["_dirX","_dirY","_dirZ"];
 				(vectorUp _x) params ["_upX","_upY","_upZ"];

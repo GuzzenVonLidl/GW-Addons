@@ -17,6 +17,7 @@ PREP(createWaypoints);
 PREP(doAction);
 PREP(doActionMisc);
 PREP(getAttributes);
+PREP(getAttributesLegacy);
 PREP(getCorrectVersion);
 PREP(isNil3DENEntity);
 PREP(logVector);

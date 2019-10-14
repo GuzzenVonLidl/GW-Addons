@@ -67,16 +67,16 @@ private _vehicles = [];
 				} forEach _crew;
 			};
 
-			_special = ([_x, false] call FUNC(getAttributes));
+			_special = ([_x, false] call FUNC(getAttributesLegacy));
 			_vehicles pushBack [GETATTRIBUTE("itemClass"), GETATTRIBUTE("position"), round(GETATTRIBUTE("rotation") select 2), _crewList, _special];
 		};
 
 		if (_x isKindOf "CAManBase") then {	// Infantry only
 			if ((isNull (objectParent _x)) || !((objectParent _x) in (get3DENSelected "object"))) then {
 				if ((count _units) isEqualTo 0) then {
-					_special = ([_x, true] call FUNC(getAttributes));
+					_special = ([_x, true] call FUNC(getAttributesLegacy));
 				} else {
-					_special = ([_x, false] call FUNC(getAttributes));
+					_special = ([_x, false] call FUNC(getAttributesLegacy));
 				};
 				_units pushBack [GETATTRIBUTE("position"),round(GETATTRIBUTE("rotation") select 2), _special];
 			};
