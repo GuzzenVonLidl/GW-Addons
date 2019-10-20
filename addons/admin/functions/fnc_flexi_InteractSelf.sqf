@@ -124,8 +124,9 @@ if (_menuName isEqualTo "modules") then {
 			],
 			[	// Legacy
 				"Weapon Lock (Legacy)", {
-					if (EGVAR(StartUp,SafeMode_Enabled)) then {
+					if (EGVAR(StartUp,Enabled)) then {
 						[QEGVAR(StartUp,setSafetyMode), false] call CBA_fnc_globalEvent;
+						["GW_StartUp_setSafetyMode", false] call CBA_fnc_globalEvent;
 					} else {
 						[QEGVAR(StartUp,setSafetyMode), true] call CBA_fnc_globalEvent;
 					};

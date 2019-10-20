@@ -94,7 +94,7 @@ ACE_MaxWeightCarry = 10000;
 		if (ace_medical_painEffectType == 0) then {
 			ace_medical_painCoefficient = (["ace_medical_painCoefficient", "priority"] call CBA_settings_fnc_get);
 		} else {
-			ace_medical_painCoefficient = (["ace_medical_painCoefficient", "priority"] call CBA_settings_fnc_get) * 0.5;
+			ace_medical_painCoefficient = (["ace_medical_painCoefficient", "priority"] call CBA_settings_fnc_get) * 0.7;
 		};
 	};
 }] call CBA_fnc_addEventHandler;
@@ -110,6 +110,20 @@ ACE_MaxWeightCarry = 10000;
 
 [QGVARMAIN(missionStarted), {
 	"CIV_IDAP_F" call ace_dogtags_fnc_disableFactionDogtags;
+}] call CBA_fnc_addEventHandler;
+
+[QGVARMAIN(playerReady), {
+	if ((isClass(missionConfigFile >> "GW_FRAMEWORK")) && (getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Core" >> "Version") < 0.8)) then {	// Quick and dirty hotfix for older missions to be updated
+		[{
+			player setVariable ["ACE_GForceCoef", 0.5];
+
+			ace_nightvision_aimDownSightsBlur = 0;
+			ace_nightvision_disableNVGsWithSights = false;
+			ace_nightvision_effectScaling = 0.3;
+			ace_nightvision_fogScaling = 0.1;
+			ace_nightvision_noiseScaling = 0.1;
+		}, [], 0.5] call CBA_fnc_waitAndExecute;
+	};
 }] call CBA_fnc_addEventHandler;
 
 /*

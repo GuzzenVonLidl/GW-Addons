@@ -25,7 +25,7 @@ if ({!(_x isEqualTo [])} count _respawnObjs > 1) then {
 };
 
 if ((count _respawnObjs) > 0) then {
-	(getPosATL (_respawnObjs select 0))
+	(getPosASL (_respawnObjs select 0))
 } else {
 	_markerList = [];
 	{
@@ -40,4 +40,3 @@ if ((count _respawnObjs) > 0) then {
 		(_unit getVariable [QGVARMAIN(spawnLocation), [0,0,0]])
 	};
 };
-
