@@ -114,6 +114,17 @@ class cTab_Tablet_dlg {
 	};
 };
 
+class cTab_FBCB2_dlg {
+	class controlsBackground {
+		class screen: cTab_RscMapControl {
+			widthRailWay = 1;
+		};
+		class screenTopo: screen {
+			widthRailWay = 1;
+		};
+	};
+};
+
 class RscTitles {
 	class cTab_Android_dsp {
 		class controlsBackground {

@@ -23,15 +23,14 @@
 params ["_target","_player","_dir","_isZoomed"];
 
 private _alpha = 0;
-
 private _distance = (_player distance _target);
 
 if (_isZoomed) then {
-	_aim = (linearConversion [1, 0.6, _dir, 1, 0.1, true]);
+	_aim = (linearConversion [0.95, 0.6, _dir, 1.0, 0.1, true]);
 	_dist = (linearConversion [30, 59, _distance, 1.0, 0.1, true]);
 	_alpha = (_aim * _dist);
 } else {
-	_aim = (linearConversion [0.9, -0.9, _dir, 0.9, 0.0, true]);
+	_aim = (linearConversion [0.8, -0.9, _dir, 1.0, 0.0, true]);
 	_dist = (linearConversion [3, 30, _distance, 1.0, 0.0, true]);
 	_alpha = ((_aim * _dist) max 0.01);
 };

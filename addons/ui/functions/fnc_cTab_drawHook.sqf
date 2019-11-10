@@ -21,7 +21,10 @@
  	Example:
 		[_display,_ctrlScreen,_playerPos,cTabMapCursorPos,0,false] call cTab_fnc_drawHook;
 */
-#include "\cTab\shared\cTab_gui_macros.hpp"
+#define IDC_CTAB_OSD_HOOK_GRID	2617
+#define IDC_CTAB_OSD_HOOK_DIR	2618
+#define IDC_CTAB_OSD_HOOK_DST	2619
+#define IDC_CTAB_OSD_HOOK_ELEVATION 2620
 
 private ["_display","_ctrlScreen","_pos","_secondPos","_dirToSecondPos","_dstToSecondPos"];
 
