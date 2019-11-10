@@ -184,12 +184,12 @@ class Cfg3DEN {
 						};
 						class legacy08 {
 //							text = "Copy version 1.8";
-							text = "Framework (0.6)";
+							text = "Framework Legacy (0.6)";
 							data = "0.6";
 						};
 						class legacy07 {
 //							text = "Copy version 1.5";
-							text = "Framework (0.5 or less)";
+							text = "Framework Legacy (0.5 or less)";
 							data = "0.5";
 						};
 					};

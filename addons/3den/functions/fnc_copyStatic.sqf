@@ -40,11 +40,7 @@ private _return = 0;
 						_crew = (fullCrew [_x, "", true]);
 					} else {
 						{
-							if (_x select 4) then {	// Force FFV to cargo instead of turret
-								_crewList pushBack ["cargo", (_x select 2), (_x select 3)];
-							} else {
-								_crewList pushBack [(_x select 1), (_x select 2), (_x select 3)];
-							};
+							_crewList pushBack [(_x select 1), (_x select 2), (_x select 3)];
 						} forEach _crew;
 					};
 
