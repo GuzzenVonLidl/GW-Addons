@@ -4,6 +4,25 @@
 if !(hasInterface) exitWith {false};
 
 [QGVARMAIN(playerReady), {
+	if (GVARMAIN(mod_ACE3)) then {
+		if (GVAR(nameTags) > 0) then {
+			if (ace_nametags_showPlayerNames > 0) then {
+				private _tag = 0;
+				if (ace_nametags_showPlayerNames in [1,2]) then {
+					_tag = 1;
+				} else {
+					if (ace_nametags_showPlayerNames in [3,4,5]) then {
+						_tag = 2;
+					};
+				};
+				[QGVAR(nameTags), _tag, true, "client", true] call CBA_settings_fnc_set;
+			};
+
+			["ace_nametags_showPlayerNames", 0, true, "client", true] call CBA_settings_fnc_set;	// Update in menu if avilable
+			ace_nametags_showPlayerNames = 0;	// Force disable even if settings dont allow it
+		};
+	};
+
 	["GW","show_nametags_key", "Show NameTags", {
 		if (GVAR(nameTags) isEqualTo 2) then {
 			GVAR(showNameTags) = true;
@@ -15,11 +34,6 @@ if !(hasInterface) exitWith {false};
 		GVAR(showNameTags) = false;
 		false
 	}, [DIK_TAB, [false, false, false]], false] call CBA_fnc_addKeybind;
-
-	if (GVARMAIN(mod_ACE3) && (GVAR(nameTags) > 0)) then {
-		["ace_nametags_showPlayerNames", 0, true, "client", true] call CBA_settings_fnc_set;
-		ace_nametags_showPlayerNames = 0;
-	};
 
 	addMissionEventHandler ["EntityRespawned",{
 		params ["_entity", "_corpse"];
@@ -33,6 +47,95 @@ if !(hasInterface) exitWith {false};
 			};
 		};
 	}];
+
+	if ((EGVAR(menu,STHud_Enabled)) || (EGVAR(menu,STHud_EnabledOld))) then {
+
+		if (EGVAR(menu,STHud_Enabled)) then {
+		};
+		if (EGVAR(menu,STHud_EnabledOld)) then {
+			["player",[[35,[true,false,true]]],-99,["@sthud\addons\sthud_usermenu\st_menu_init_sthud_self.sqf","main"],true] call CBA_ui_fnc_remove;
+
+			ST_STHud_GetColour = compileFinal "
+				params [""_unit"",""_distance""];
+
+				if (_unit == player) exitWith{
+					if (leader(player) == _unit) then {
+						[1, 1, 1, 1];
+					} else {
+						[0.85, 0.85, 0, 1];
+					};
+				};
+
+				if (_distance < ST_STHud_Close) exitWith {
+					[0.85, 0.4, 0, 1];
+				};
+
+				private _result = [0, 0.8, 0, 1];
+				if (leader(player) == _unit) then {
+					_result = [1, 1, 1, 1];
+				};
+
+				if (_distance > ST_STHud_MaxDist) then {
+				private _alpha = (0 max (ST_STHud_FadeEdge - _distance)) / ST_STHud_EdgeStep;
+					_alpha = 0.8 min _alpha;
+					_result set [3, _alpha];
+				};
+
+				if (call GW_UI_isTagsBlurred) then {
+					_result set [3, 0.07];
+				};
+
+				_result;
+			";
+
+			ST_STHud_GetColour_FromTeam = compileFinal "
+				params [""_unit"",""_distance""];
+
+				private _team_colour = _unit call ST_STHud_assignedTeam;
+				private _is_player = (_unit == player);
+
+				if ((!_is_player) && (_distance < ST_STHud_Close)) exitWith {
+					[0.85, 0.4, 0, 1];
+				};
+
+				private _colour = switch (_team_colour) do {
+					case ""MAIN"": {if (_is_player) then {[1, 1, 1, 1]} else {[0.7, 0.7, 0.7, 1]}};
+					case ""RED"": {[0.9, 0, 0, 1]};
+					case ""BLUE"": {[0.2, 0.2, 1, 1]};
+					case ""GREEN"": {[0, 0.8, 0, 1]};
+					case ""YELLOW"": {[0.85, 0.85, 0, 1]};
+					default {[0, 0.8, 0, 1]}
+				};
+
+				if (_distance < ST_STHud_MaxDist) then {
+					_colour set [3, 0.8];
+				} else {
+					private ""_alpha"";
+					_alpha = (0 max (ST_STHud_FadeEdge - _distance)) / ST_STHud_EdgeStep;
+					_alpha = 0.8 min _alpha;
+					_colour set [3, _alpha];
+				};
+
+				if (_is_player) then {
+					_colour set [3, 1];
+				};
+
+				if (call GW_UI_isTagsBlurred) then {
+					_colour set [3, 0.07];
+				};
+
+				_colour;
+			";
+		};
+
+		["featureCamera", {
+			if ((call CBA_fnc_getActiveFeatureCamera) isEqualTo "") then {
+				[true] call FUNC(toggleHud);
+			} else {
+				[false] call FUNC(toggleHud);
+			};
+		}] call CBA_fnc_addPlayerEventHandler;
+	};
 }] call CBA_fnc_addEventHandler;
 
 [QGVARMAIN(pauseMenuOpened), {

@@ -72,6 +72,7 @@ if ((GVAR(nameTags) > 0) && (isNil QGVAR(frameHandler)) && (isNil QGVAR(drawHand
 				_alpha = [_mod, 1] call BIS_fnc_cutDecimals;
 				GVAR(damageAlpha) = _alpha;
 			};
+
 			GVAR(damageAlpha) = _alpha;
 		};
 
