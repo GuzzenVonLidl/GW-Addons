@@ -40,6 +40,7 @@ class Display3DEN {
 						MENU(Misc),
 						"Separator",
 						MENU(OpenSettingsMenu),
+						MENU(getVersionMenu),
 						"Separator",
 						MENU(Extra),
 						MENU(About)
@@ -105,6 +106,12 @@ class Display3DEN {
 					text = "Open Framework Settings...";
 					action = "edit3DENMissionAttributes 'GW_MissionPreferences';";
 					shortcuts[] = {INPUT_SHIFT_OFFSET + DIK_K};
+				};
+
+				class MENU(getVersionMenu) {
+					text = "Check Version...";
+//					text = "Get Versions Menu...";
+					action = "[] call GW_3den_fnc_getVersion;";
 				};
 
 				class MENU(Extra) {
