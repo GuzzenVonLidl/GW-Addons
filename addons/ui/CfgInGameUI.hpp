@@ -1,18 +1,10 @@
 
 class CfgInGameUI  {
-	class Actions {
-//		x = "(profilenamespace getvariable [""IGUI_GRID_MENU_X"", (1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + safezoneX)])";
-//		y = "(profilenamespace getvariable [""IGUI_GRID_MENU_Y"", (5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + safezoneY)])";
+/*
+	class Actions {	// Move menu closer to crosshair
+		x = "(profilenamespace getvariable [""IGUI_GRID_MENU_X"", (1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + safezoneX)])";
 	};
-	class DefaultAction {
-		size = 0;		// Hide crosshair text
-	};
-	class PeripheralVision {
-		cueTexture = "A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
-		cueColor[] = {0,0,0,0};
-		cueEnemyColor[] = {0,0,0,0};
-		cueFriendlyColor[] = {0,0,0,0};
-	};
+*/
 	class CommandBar  {
 		left = 0;
 		top = 9999;
@@ -31,5 +23,16 @@ class CfgInGameUI  {
 		tactical = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		unitUnconscious = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
 		watch = "\A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+	};
+
+	class DefaultAction {
+		size = 0;		// Hide crosshair text
+	};
+
+	class PeripheralVision {
+		cueTexture = "A3\ui_f\data\igui\cfg\actions\clear_empty_ca.paa";
+		cueColor[] = {0,0,0,0};
+		cueEnemyColor[] = {0,0,0,0};
+		cueFriendlyColor[] = {0,0,0,0};
 	};
 };

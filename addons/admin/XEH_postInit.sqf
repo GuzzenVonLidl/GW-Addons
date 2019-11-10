@@ -249,7 +249,7 @@
 
 	_box = createVehicle [_class, [0,0,0], [], 0, "NONE"];
 	_pos = (_unit getRelPos [3, 0]);
-	_pos set [2, (getPosASL _unit) select 0];
+	_pos set [2, (getPosASL _unit) select 2];
 	_box setPos _pos;
 	[_box, [_type, toLower(str([_unit] call GW_Common_Fnc_getSide)), true]] call GW_Gear_Fnc_Handler;
 }] call CBA_fnc_addEventHandler;

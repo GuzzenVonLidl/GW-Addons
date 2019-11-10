@@ -9,8 +9,13 @@ class CfgActions {
 		showWindow = 0;
 		textDefault = "";
 	};
-	class OpenBag: None {
+	class Gear: None {
 		shortcut = "Gear";
+		textDefault = "";	//	<img image='\A3\ui_f\data\igui\cfg\actions\gear_ca.paa' size='2.5' shadow=2 />
+	};
+	class GearOpen: None {
+		shortcut = "Gear";
+		textDefault = "";
 	};
 
 	// to pistol

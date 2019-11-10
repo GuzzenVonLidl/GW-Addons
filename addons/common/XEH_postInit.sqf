@@ -53,15 +53,7 @@ if (hasInterface && ((getNumber(missionConfigFile >> "GW_Modules" >> "Common" >>
 				} forEach (units (group player));
 			}, [], 0.5] call CBA_fnc_waitAndExecute;
 		}] call CBA_fnc_addPlayerEventHandler;
-/*
-		if (GVARMAIN(mod_ACE3)) then {
-			["loadout", {
-				[{
-					player setVariable ["ACE_GForceCoef", 0.5];			// IsPilot
-				}, [], 0.5] call CBA_fnc_waitAndExecute;
-			}] call CBA_fnc_addPlayerEventHandler;
-		};
-*/
+
 		if (GVARMAIN(mod_TFAR)) then {
 			private _group = (group player);
 			if !((_group getVariable "TF_lr_frequency") isEqualTo TF_freq_west_lr) then {
@@ -88,26 +80,6 @@ if (hasInterface && ((getNumber(missionConfigFile >> "GW_Modules" >> "Common" >>
 					};
 				};
 			}, Player] call TFAR_fnc_addEventHandler;
-		};
-
-		if ((EGVAR(menu,STHud_Enabled)) || (EGVAR(menu,STHud_EnabledOld))) then {
-			["featureCamera", {
-				if ((call CBA_fnc_getActiveFeatureCamera) isEqualTo "") then {
-					_mode = player getVariable [QGVAR(STHUD_Mode), 1];
-					if (EGVAR(menu,STHud_Enabled)) then {
-						STHUD_UIMode = _mode;
-					} else {
-						_mode call fn_sthud_usermenu_changeMode;
-					};
-				} else {
-					player setVariable [QGVAR(STHUD_Mode), STHUD_UIMode];
-					if (EGVAR(menu,STHud_Enabled)) then {
-						STHUD_UIMode = 0;
-					} else {
-						0 call fn_sthud_usermenu_changeMode;
-					};
-				};
-			}] call CBA_fnc_addPlayerEventHandler;
 		};
 	}, [], 2] call CBA_fnc_waitAndExecute;
 
