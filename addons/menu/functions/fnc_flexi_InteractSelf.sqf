@@ -15,13 +15,6 @@ if (typeName _params isEqualTo typeName []) then {
 
 private _allmenus = [
 	[
-		"<t color='#B22400'>Parachute Jump </t>",
-		{ [player] call GW_Menu_fnc_doParadrop },
-		QPATHTOF(DATA\parachute_icon.paa),
-		"","",-1,true,
-		(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > GVAR(ParadropHaloHeight)))
-	],
-	[
 		"<t color='#DF9100'>Player Menu ></t>",
 		"","","",
 		[QUOTE(call FUNC(flexi_InteractSelf)),"actions", 1]
@@ -32,13 +25,42 @@ private _allmenus = [
 		[QUOTE(call FUNC(flexi_InteractSelf_Settings)),"settings_main", 1]
 	],
 	[
-		"Eject",
-		{
-			player action ["Eject", (Vehicle player)];
-			moveOut player;
-		},
-		"","","",-1,true,
-		!(isNull (objectParent player))
+		"----------------------------------", "","","","",-1,false, !(isNull (objectParent player))
+	],
+	[
+		"<t color='#B22400'>Parachute Jump</t>",
+		{ [player] call GW_Menu_fnc_doParadrop },
+		QPATHTOF(DATA\parachute_icon.paa),
+		"","",-1,true,
+		(!(isNull (objectParent player)) && (getPosATL (vehicle player) select 2 > GVAR(ParadropHaloHeight)))
+	],
+	[
+		"<t color='#B22400'>Get Out Left</t>", {
+			_veh = (objectParent player);
+			(boundingBoxReal _veh) params ["_p1","_p2"];
+			_maxWidth = abs ((_p2 select 0) - (_p1 select 0));
+			_pos = (_veh getRelPos [((_maxWidth/2) + 2), 270]);
+			_pos set [2, ((getPosATL _veh) select 2)];
+
+			player action ["Eject", _veh];
+			player setPosATL _pos;
+			player setDir ((getDir _veh) + 270);
+		}, "","","",-1,true,
+		(!(isNull (objectParent player)) && ((speed (objectParent player)) < 7))
+	],
+	[
+		"<t color='#B22400'>Get Out Rogjt</t>", {
+			_veh = (objectParent player);
+			(boundingBoxReal _veh) params ["_p1","_p2"];
+			_maxWidth = abs ((_p2 select 0) - (_p1 select 0));
+			_pos = (_veh getRelPos [((_maxWidth/2) + 2), 90]);
+			_pos set [2, ((getPosATL _veh) select 2)];
+
+			player action ["Eject", _veh];
+			player setPosATL _pos;
+			player setDir ((getDir _veh) + 90);
+		}, "","","",-1,true,
+		(!(isNull (objectParent player)) && ((speed (objectParent player)) < 7))
 	]
 ];
 
@@ -72,7 +94,7 @@ if (_menuName isEqualTo "actions") then {
 					[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
 					[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
 					titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
-				},"","","",-1,true, !((call TFAR_fnc_activeSwRadio) isEqualTo "")
+				},"","","",-1,true, (call TFAR_fnc_haveSWRadio)
 			],
 			[
 				"Fix LR Radio", {
@@ -88,7 +110,7 @@ if (_menuName isEqualTo "actions") then {
 					[(_radio select 0), (_radio select 1), 6] call TFAR_fnc_setLrChannel;
 					[(_radio select 0), (_radio select 1), 5] call TFAR_fnc_setLrVolume;
 					titleText ["Radio Frencency Reset!", "PLAIN DOWN"];
-				},"","","",-1,true, !((call TFAR_fnc_activeLrRadio) isEqualTo "")
+				},"","","",-1,true, (call TFAR_fnc_haveLRRadio)
 			]
 		]
 	];

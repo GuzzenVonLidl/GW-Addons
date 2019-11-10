@@ -171,10 +171,22 @@ if (GVAR(STHud_EnabledOld)) then {
 		_menus pushBack [
 			["settings_sthud_subMenu","Display Mode", _menuRsc],
 			[
-				["Normal",{3 call fn_sthud_usermenu_changeMode;}],
-				["HUD only",{1 call fn_sthud_usermenu_changeMode;}],
-				["Names only",{2 call fn_sthud_usermenu_changeMode;}],
-				["Off",{0 call fn_sthud_usermenu_changeMode;}]
+				["Normal",{
+					3 call fn_sthud_usermenu_changeMode;
+					player setVariable [QEGVAR(ui,STHUD_Mode), sthud_usermenu_uitypeInd];
+				}],
+				["HUD only",{
+					1 call fn_sthud_usermenu_changeMode;
+					player setVariable [QEGVAR(ui,STHUD_Mode), sthud_usermenu_uitypeInd];
+				}],
+				["Names only",{
+					2 call fn_sthud_usermenu_changeMode;
+					player setVariable [QEGVAR(ui,STHUD_Mode), sthud_usermenu_uitypeInd];
+				}],
+				["Off",{
+					0 call fn_sthud_usermenu_changeMode;
+					player setVariable [QEGVAR(ui,STHUD_Mode), sthud_usermenu_uitypeInd];
+				}]
 			]
 		];
 	};
@@ -207,10 +219,22 @@ if (GVAR(STHud_Enabled)) then {	// New
 		_menus pushBack [
 			["settings_sthud_subMenu","Display Mode", _menuRsc],
 			[
-				["Normal", { STHUD_UIMode = 3; } ],
-				["Names only", { STHUD_UIMode = 2; } ],
-				["HUD only", { STHUD_UIMode = 1; } ],
-				["Off", { STHUD_UIMode = 0; } ]
+				["Normal", {
+					STHUD_UIMode = 3;
+					player setVariable [QEGVAR(ui,STHUD_Mode), STHUD_UIMode];
+				}],
+				["Names only", {
+					STHUD_UIMode = 2;
+					player setVariable [QEGVAR(ui,STHUD_Mode), STHUD_UIMode];
+				}],
+				["HUD only", {
+					STHUD_UIMode = 1;
+					player setVariable [QEGVAR(ui,STHUD_Mode), STHUD_UIMode];
+				}],
+				["Off", {
+					STHUD_UIMode = 0;
+					player setVariable [QEGVAR(ui,STHUD_Mode), STHUD_UIMode];
+				}]
 			]
 		];
 	};
