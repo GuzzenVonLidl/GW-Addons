@@ -1,7 +1,7 @@
 //	[Vehicle, ServiceStation, FullService] Spawn NEKY_ServiceStation_Repair;
-//
+//	
 //	This handles repairing a vehicle
-//
+//	
 //	Made by NeKo-ArroW
 
 Private ["_Veh","_SS","_FullService","_InspectionSpeed","_RepairingSpeed","_RepairingTrackSpeed","_RepairSpeed","_RemoveWheelSpeed","_MountWheelSpeed","_Wheels","_Tracks","_PartHP","_MsgIndex","_Msg" ];
@@ -65,7 +65,7 @@ if !((Count _DamagePoints) isEqualTo 0) then
 		_Temp = ToString _Temp;
 		_PartName = toUpper _Temp;
 		if ((_Part find "track") isEqualTo -1) then {_RepairSpeed = _RepairingSpeed} else {_RepairSpeed = _RepairingTrackSpeed};
-
+		
 		if (_PartHP >= 0.01) then
 		{
 			_MsgIndex = 0;
@@ -84,10 +84,10 @@ if !((Count _DamagePoints) isEqualTo 0) then
 	};
 
 	//	Fixing Wheels
-	if !((Count _Wheels) isEqualTo 0) then
+	if !((Count _Wheels) isEqualTo 0) then 
 	{
 		if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
-
+		
 		For "_i" from 0 to ((Count _Wheels) -1) step 1 do
 		{
 			_WheelArray = _Wheels select _i;
@@ -97,18 +97,18 @@ if !((Count _DamagePoints) isEqualTo 0) then
 			{
 				["Removing damaged wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _RemoveWheelSpeed;
-
+				
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 1]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 				["Mounting new wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _MountWheelSpeed;
-
+				
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 0]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 			} else {
 				["Repairing Wheel.", _Veh] spawn NEKY_ServiceStation_Hints;
 				Sleep _MountWheelSpeed;
-
+				
 				if !(_Veh in NEKY_ServiceStationArray) Then {BreakTo "Main"};
 				[[_Veh,_Wheel],{(_This select 0) setHitPointDamage [(_This select 1), 0]}] remoteExec ["BIS_FNC_SPAWN",Owner _Veh];
 			};
@@ -124,7 +124,8 @@ if !((Count _DamagePoints) isEqualTo 0) then
 	["Repairs Complete.", _Veh] spawn NEKY_ServiceStation_Hints;
 	sleep 2;
 } else {
-	["Vehicle is not in need of repairs.", _Veh] spawn NEKY_ServiceStation_Hints;
+	["Vehicle is not in need of repairs. Failsafe running.", _Veh] spawn NEKY_ServiceStation_Hints;
+	_Veh setDamage 0;
 	Sleep 2;
 };
 if (!(_Veh in NEKY_ServiceStationArray)) exitWith {[_SS,true] call NEKY_ServiceStation_Available; ["You have left the service station, service ending",_Veh] call NEKY_ServiceStation_Hints};

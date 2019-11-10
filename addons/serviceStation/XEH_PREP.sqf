@@ -1,4 +1,3 @@
-#include "script_Component.hpp"
 
 NEKY_ServiceStation_Actions = compile preprocessFileLineNumbers "\x\gw\addons\serviceStation\Functions\AddActions.sqf";
 NEKY_ServiceStation_Available = compile preprocessFileLineNumbers "\x\gw\addons\serviceStation\Functions\Available.sqf";

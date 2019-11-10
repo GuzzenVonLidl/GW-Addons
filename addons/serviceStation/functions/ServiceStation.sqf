@@ -53,11 +53,8 @@ if (isServer) then  // To avoid having all players loop the scanners
 		["_Filter", ["LANDVEHICLE","AIR","SHIP"], [[]]]
 	];
 
-	if (isNil "NEKY_ServiceStationArray") then
-	{
-		_Variables = ["NEKY_ServiceStationArray","NEKY_ServiceStations"];
-		{ call compile format ["if (isNil '%1') then {%1 = [];}", _x] } forEach _Variables;
-	};
+	_Variables = ["NEKY_ServiceStationArray","NEKY_ServiceStations"];
+	{ call compile format ["if (isNil '%1') then {%1 = [];}", _x] } forEach _Variables;
 	sleep 1;
 
 	_FullService = False;
@@ -92,12 +89,7 @@ if (isServer) then  // To avoid having all players loop the scanners
 
 		While {_SS in NEKY_ServiceStations} do
 		{
-			_position = (getPosATL _SS);
-			if (surfaceIsWater (getpos _SS)) then {
-				_position = (getPosASL _SS);
-			};
-
-			_Vehicles = NearestObjects [_position, _Filter, _Radius];
+			_Vehicles = NearestObjects [(getPosATL _SS), _Filter, _Radius];
 			{
 				if (!(_x in NEKY_ServiceStationArray) && (Alive _x)) then
 				{
