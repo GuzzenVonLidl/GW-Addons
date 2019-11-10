@@ -1,12 +1,13 @@
 #include "script_component.hpp"
 
-if (FILE_EXISTS("Scripts\NEKY_ServiceStation\ServiceStation.sqf")) exitWith {
-	LOG("NEKY ServiceStation found in mission, Stopping addon version");
-	false
-};
-
-LOG("NEKY ServiceStation not found, using addon version instead");
+NEKY_ServiceStationActive = [];
 
 #include "XEH_PREP.sqf"
 
-NEKY_ServiceStationActive = [];
+/*
+if (is3DEN) then {
+	if (FILE_EXISTS("Scripts\NEKY_ServiceStation\ServiceStation.sqf")) then {
+		["NEKY ServiceStation found in mission.   This is not needed as its included in the framework already.","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	};
+};
+*/

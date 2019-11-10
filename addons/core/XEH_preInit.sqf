@@ -54,13 +54,6 @@ if (isServer) then {
 
 if !(isClass(missionConfigFile >> "GW_FRAMEWORK")) exitWith {false};
 
-//	enableEngineArtillery false;
-enableSentences false;
-enableRadio false;
-enableTeamSwitch false;
-useAISteeringComponent true;
-0 fadeRadio 0;
-
 if (VERSION >= 0.8) then {
 	#include "XEH_preInitModules.sqf"
 };

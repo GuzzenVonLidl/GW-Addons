@@ -31,9 +31,14 @@ if !(isClass(missionConfigFile >> "GW_FRAMEWORK")) exitWith {
 
 if (hasInterface) then {
 	LOG("Loading Player Variables");
+	0 fadeRadio 0;
 //	disableRemoteSensors true;	// PVP missions only
+//	enableEngineArtillery false;
 	enableEnvironment [false, true];
+	enableRadio false;
+	enableSentences false;
 	enableStressDamage false;
+	enableTeamSwitch false;
 	player addRating 100000;
 	player disableConversation true;
 	player enableWeaponDisassembly false;
@@ -47,6 +52,7 @@ if (hasInterface) then {
 
 	setCompassOscillation [(rad 5), 0.1, 1];
 	setCurrentChannel 1;
+	useAISteeringComponent true;
 
 	if (isNull(objectParent player)) then {
 		player switchMove "AmovPknlMstpSlowWrflDnon";

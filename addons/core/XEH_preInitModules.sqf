@@ -74,18 +74,26 @@ LOG(FORMAT_1("Modules Loaded: %1", (count GVARMAIN(logModules))));
 
 "CBA_settings_refreshAllSettings" call CBA_fnc_localEvent;
 
-if (FILE_EXISTS("spawnList.sqf")) then {
-	LOG("SpawnList Loaded");
-	PREPMISSIONFOLDER(spawnList);
-} else {
-	LOG("SpawnList FAILED");
-	["Framework is corupt                           Missing file spawnList.sqf","WARNING"] spawn BIS_fnc_3DENShowMessage;
-};
+if (is3DEN) then {
+	if (FILE_EXISTS("spawnList.sqf")) then {
+		LOG("SpawnList Loaded");
+		PREPMISSIONFOLDER(spawnList);
+	} else {
+		LOG("SpawnList FAILED");
+		["Framework is corupt                           Missing file spawnList.sqf","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	};
 
-if (FILE_EXISTS("Custom_Init.sqf")) then {
-	LOG("Custom Init Started");
+	if (FILE_EXISTS("Custom_Init.sqf")) then {
+		LOG("Custom Init Started");
+		[] call (compile preprocessFileLineNumbers "Custom_Init.sqf");
+	} else {
+		LOG("Custom Init FAILED");
+		["Framework is corupt                           Missing file Custom_Init.sqf","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	};
+} else {	// Assume problem is fixed when its play/testing time
+	PREPMISSIONFOLDER(spawnList);
+	LOG("SpawnList Loaded");
+
 	[] call (compile preprocessFileLineNumbers "Custom_Init.sqf");
-} else {
-	LOG("Custom Init FAILED");
-	["Framework is corupt                           Missing file Custom_Init.sqf","WARNING"] spawn BIS_fnc_3DENShowMessage;
+	LOG("Custom Init Started");
 };
