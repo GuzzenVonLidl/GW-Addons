@@ -45,10 +45,13 @@ if (hasInterface) then {
 	player setVariable ["BIS_enableRandomization", false, true];
 	player setVariable ["BIS_noCoreConversations", true, true];
 	player triggerDynamicSimulation true;
-	player addMPEventHandler ["MPRespawn", {
-		params ["_unit", "_corpse"];
-		[_unit] call EFUNC(Common,getRespawn);
-	}];
+
+	if ((getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "legacyRespawn")) isEqualTo 0) then {
+		player addMPEventHandler ["MPRespawn", {
+			params ["_unit", "_corpse"];
+			[_unit] call EFUNC(Common,getRespawn);
+		}];
+	};
 
 	setCompassOscillation [(rad 5), 0.1, 1];
 	setCurrentChannel 1;

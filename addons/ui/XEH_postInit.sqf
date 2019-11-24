@@ -8,10 +8,10 @@ if !(hasInterface) exitWith {false};
 		if (GVAR(nameTags) > 0) then {
 			if (ace_nametags_showPlayerNames > 0) then {
 				private _tag = 0;
-				if (ace_nametags_showPlayerNames in [1,2]) then {
+				if (ace_nametags_showPlayerNames in [1,2,5]) then {
 					_tag = 1;
 				} else {
-					if (ace_nametags_showPlayerNames in [3,4,5]) then {
+					if (ace_nametags_showPlayerNames in [3,4]) then {
 						_tag = 2;
 					};
 				};
@@ -82,7 +82,7 @@ if !(hasInterface) exitWith {false};
 				};
 
 				if (call GW_UI_isTagsBlurred) then {
-					_result set [3, 0.07];
+					_result set [3, 0.1];
 				};
 
 				_result;
@@ -121,7 +121,7 @@ if !(hasInterface) exitWith {false};
 				};
 
 				if (call GW_UI_isTagsBlurred) then {
-					_colour set [3, 0.07];
+					_colour set [3, 0.1];
 				};
 
 				_colour;

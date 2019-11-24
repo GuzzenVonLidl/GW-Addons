@@ -13,14 +13,6 @@
 	Public: No
 */
 
-private _enable = true;
-if (GVARMAIN(mod_ACE3)) then {
-	_enable = false;
-	if (ace_nametags_showPlayerNames isEqualTo 0) then {
-		_enable = true;
-	};
-};
-
 if (missionNamespace getVariable ["NEKY_Medical_Enabled", false]) then {
 	NEKY_Medical_HurtBlur_Strength = 0;
 	NEKY_Medical_HurtBlur_Min = 0;

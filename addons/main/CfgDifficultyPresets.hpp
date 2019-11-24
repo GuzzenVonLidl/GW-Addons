@@ -2,7 +2,7 @@
 class CfgAILevelPresets {
 	class AILevelCustom {
 		displayName = "GOL";
-		precisionAI = 0.5;
+		precisionAI = 0.3;
 		skillAI = 0.5;
 	};
 };

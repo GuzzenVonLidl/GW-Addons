@@ -43,13 +43,14 @@ private _allmenus = [
 			_pos set [2, ((getPosATL _veh) select 2)];
 
 			player action ["Eject", _veh];
+			moveOut player;
 			player setPosATL _pos;
 			player setDir ((getDir _veh) + 270);
 		}, "","","",-1,true,
 		(!(isNull (objectParent player)) && ((speed (objectParent player)) < 7))
 	],
 	[
-		"<t color='#B22400'>Get Out Rogjt</t>", {
+		"<t color='#B22400'>Get Out Rigjt</t>", {
 			_veh = (objectParent player);
 			(boundingBoxReal _veh) params ["_p1","_p2"];
 			_maxWidth = abs ((_p2 select 0) - (_p1 select 0));
@@ -57,6 +58,7 @@ private _allmenus = [
 			_pos set [2, ((getPosATL _veh) select 2)];
 
 			player action ["Eject", _veh];
+			moveOut player;
 			player setPosATL _pos;
 			player setDir ((getDir _veh) + 90);
 		}, "","","",-1,true,

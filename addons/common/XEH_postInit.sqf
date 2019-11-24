@@ -62,24 +62,9 @@ if (hasInterface && ((getNumber(missionConfigFile >> "GW_Modules" >> "Common" >>
 				_group setVariable ["TF_lr_frequency", TF_freq_west_lr, true];
 			};
 
-			player setVariable ["tf_globalVolume", 1.2];
+			player setVariable ["tf_globalVolume", 0.9];
 			player setVariable ["TF_receivingDistanceMultiplicator", 1];
 			player setVariable ["TF_sendingDistanceMultiplicator", EGVAR(Common,radioDistnace)];
-
-			["GW_onYellingFix", "OnSpeakVolume", {
-				if (TF_speak_volume_meters isEqualTo 60) then {
-					[] spawn {
-						sleep 2;
-						if (TF_speak_volume_meters isEqualTo 60) then {
-							sleep (40 + (random 30));
-							if (TF_speak_volume_meters isEqualTo 60) then {
-								TF_speak_volume_level = "Whispering";
-								[] call TFAR_fnc_onSpeakVolumeChange;
-							};
-						};
-					};
-				};
-			}, Player] call TFAR_fnc_addEventHandler;
 		};
 	}, [], 2] call CBA_fnc_waitAndExecute;
 

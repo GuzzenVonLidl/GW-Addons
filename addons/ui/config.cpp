@@ -40,19 +40,12 @@ class CfgIRLaserSettings {
 	maxViewDistance = 2000;
 };
 
-class CfgVehicleClasses {
-	class SystemSides {		// Remove?
-		displayName = "Sides (GW Respawn)";
-	};
-};
-
 class CfgMarkerColors {
 	class Default;
 	class ColorUNKNOWN: Default {
 		color[] = {0.4,0,0.8,1};
 	};
 };
-
 
 class cTab_settings {
 	// define vehicle classes that are equipped with FBCB2 devices
