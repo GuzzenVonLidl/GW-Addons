@@ -68,6 +68,10 @@ if (isClass(missionConfigFile >> "GW_FRAMEWORK")) then {
 	if (isNull _required) then {
 		_output pushBack [_warning,"You are using a legacy version of GW-Framework", "Use latest version or things might not work as intended", [-1]];
 	};
+
+	if ((getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "legacyRespawn")) isEqualTo 1) then {
+		_output pushBack [_warning,"Legacy Respawn Mode is Active", "Respawn at Logic is not being used, Will revert back to marker if found", [-1]];
+	};
 } else {
 	_output pushBack [_error,"NO Framework detected in mission", "", [-1]];
 };
