@@ -14,6 +14,8 @@
 
 [QGVAR(slingloadEnabled), "CHECKBOX", ["Slingload Fix", "This is a dirty attemt to try to make slingloading less buggy"], [QUOTE(ADDON), "#0 General"], true, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
 
+[QGVAR(allowQuickRepair), "CHECKBOX", ["Allow Emergency Repair", "This is a dirty way of fixing broken vehicle in field"], [QUOTE(ADDON), "#0 General"], false, CBA_SERVEROVERWRITE] call CBA_settings_fnc_init;
+
 /*
 [
 	QGVAR(relationsBlufor), "LIST",

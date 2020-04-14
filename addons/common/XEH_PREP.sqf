@@ -11,10 +11,8 @@ PREP(getRespawnMarker);
 PREP(getRespawnObjects);
 PREP(getSide);
 PREP(getSunAngle);
-PREP(getVersionAddon);
-PREP(getVersionFramework);
 PREP(hint);
-//PREP(isDebugConsoleAllowed); // CfgFunction
+//	PREP(isDebugConsoleAllowed);	// CfgFunction
 PREP(isDevBuild);
 PREP(isNight);
 PREP(isNightSoon);
@@ -24,7 +22,7 @@ PREP(setAIStatic);
 PREP(setEditor);		// Legacy
 PREP(setFramework);		// Legacy
 PREP(setHideTerrainObjects);
-//PREP(setTimeBySunAngle);
+//	PREP(setTimeBySunAngle);	// Todo
 PREP(setSettingsTFAR);
 PREP(setName);			// Legacy
 PREP(quickRepair);

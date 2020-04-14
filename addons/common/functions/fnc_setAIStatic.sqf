@@ -25,7 +25,11 @@ if ((skill _unit) > 0.6) then {
 	_unit disableAI 'SUPPRESSION';
 };
 
-_unit disableAI "PATH";
+
+
+if !(_unit getVariable [QGVAR(disableAI_canMove), false]) then {
+	_unit disableAI "PATH";
+};
 _unit disableAI "TARGET";
 _unit disableAI "MINEDETECTION";
 _unit disableAI 'AUTOCOMBAT';			// AI run another FSM when in combat, this may reduce the calculations
