@@ -1,5 +1,7 @@
 //	https://community.bistudio.com/wiki/setLightAttenuation
 
+class manual;
+
 class CfgWeapons {
 	class Default {
 		fireLightDuration = 1;
@@ -65,7 +67,7 @@ class CfgWeapons {
 				useFlare = 1;
 				flareSize = 1.5;
 				flareMaxDistance = "600.0f";
-				dayLight = 0;
+				dayLight = 1;
 				class Attenuation {
 					start = 0.5;
 					constant = 80;
@@ -141,7 +143,7 @@ class CfgWeapons {
 				coneFadeCoef = 5;
 				direction = "flash";
 				position = "flash dir";
-				dayLight = 0;
+				dayLight = 1;
 				useFlare = 1;
 				flareSize = 1;
 				flareMaxDistance = 100;
@@ -158,5 +160,12 @@ class CfgWeapons {
 		};
 		inertia = 0.1;
 	};
-};
 
+	class HMG_127;
+	class HMG_01: HMG_127 {
+		class manual: manual {
+			dispersion = 0.006;
+			reloadTime = 0.12;
+		};
+	};
+};

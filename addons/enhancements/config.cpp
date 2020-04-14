@@ -33,11 +33,23 @@ class CfgPatches {
 
 class asdg_SlotInfo;
 class asdg_FrontSideRail: asdg_SlotInfo {
-	class compatibleItems {
-		GW_X3000 = 1;
-		GVL_X2000_wide = 1;
-		GVL_X2000_point = 1;
-	};
+    class compatibleItems {
+        GW_X3000 = 1;
+        GVL_X2000_wide = 1;
+        GVL_X2000_point = 1;
+    };
+};
+
+class SlotInfo;
+class PointerSlot: SlotInfo {
+	compatibleItems[] += {"GW_X3000","GVL_X2000_wide","GVL_X2000_point"};
+};
+class PointerSlot_Rail: PointerSlot {
+    class compatibleItems {
+        GW_X3000 = 1;
+        GVL_X2000_wide = 1;
+        GVL_X2000_point = 1;
+    };
 };
 
 #include "CfgAmmo.hpp"
@@ -57,7 +69,7 @@ class CfgSounds {
 	};
 };
 class CfgAnimation {
-	ladderSpeed="0.5*2";
+	ladderSpeed = "0.5*2";
 };
 
 /*
