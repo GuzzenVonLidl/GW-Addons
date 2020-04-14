@@ -118,8 +118,25 @@ if (_menuName isEqualTo "settings_viewDistance") then {
 };
 
 if (_menuName isEqualTo "settings_grass") then {
+
+	_grassName = "Grass Settings: None";
+
+	if (getTerrainGrid isEqualTo 25) then {
+		_grassName = "Grass Settings: Low";
+	} else {
+		if (getTerrainGrid isEqualTo 12.5) then {
+			_grassName = "Grass Settings: Medium";
+		} else {
+			if (getTerrainGrid isEqualTo 6.25) then {
+				_grassName = "Grass Settings: High";
+			} else {
+				_grassName = "Grass Settings: Unknown";
+			};
+		};
+	};
+
 	_menus pushBack [
-		["settings_grass","Grass Settings", _menuRsc],
+		["settings_grass",_grassName, _menuRsc],
 		[
 			[
 				"None",
