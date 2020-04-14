@@ -85,6 +85,7 @@ class Display3DEN {
 						MENU_SUB(set3DENAttributes,enableSimulation),
 						MENU_SUB(set3DENAttributes,dynamicSim),
 						MENU_SUB(set3DENAttributes,allowDamage),
+						MENU_SUB(set3DENAttributes,doorState),
 						"Separator",
 						MENU_SUB(set3DENAttributes,Help)
 					};

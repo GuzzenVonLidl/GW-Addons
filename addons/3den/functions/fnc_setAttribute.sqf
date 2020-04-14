@@ -36,6 +36,20 @@ collect3DENHistory {
 					_x set3DENAttribute ["dynamicSimulation", _value];
 					_type = "dynamicSimulation";
 				};
+				case 7: {
+					switch (_value) do {
+						case 0: {
+							_x set3DENAttribute ["DoorStates", [0,0,0]];
+						};
+						case 1: {
+							_x set3DENAttribute ["DoorStates", [21845,21845,21845]];
+						};
+						case 2: {
+							_x set3DENAttribute ["DoorStates", [43690,43690,43690]];
+						};
+					};
+					_type = "DoorStates";
+				};
 				default {
 				};
 			};

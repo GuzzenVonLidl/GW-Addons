@@ -97,6 +97,28 @@ class MENU_SUB(set3DENAttributes,allowDamage_false) {
 };
 
 
+class MENU_SUB(set3DENAttributes,doorState) {	// Damage
+	items[] = {
+		MENU_SUB(set3DENAttributes,doorState_Default),
+		MENU_SUB(set3DENAttributes,doorState_Locked),
+		MENU_SUB(set3DENAttributes,doorState_Open)
+	};
+	text = "DoorState";
+};
+class MENU_SUB(set3DENAttributes,doorState_Default) {
+	text = "Closed (Default)";
+	action = "[7, 0] call GW_3DEN_fnc_setAttribute;";
+};
+class MENU_SUB(set3DENAttributes,doorState_Locked) {
+	text = "Locked";
+	action = "[7, 1] call GW_3DEN_fnc_setAttribute;";
+};
+class MENU_SUB(set3DENAttributes,doorState_Open) {
+	text = "Open";
+	action = "[7, 2] call GW_3DEN_fnc_setAttribute;";
+};
+
+
 class MENU_SUB(set3DENAttributes,Help) {	// Help
 	text = "Help...";
 	action = "[2] call GW_3DEN_fnc_showMessage;";
