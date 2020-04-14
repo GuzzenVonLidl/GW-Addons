@@ -74,7 +74,7 @@ private _return = 0;
 switch (_type) do {
 	case 1: {
 		_objects = (get3DENSelected "object") select {(_x isKindOf "CAManBase")};
-		_side = "civilian";
+		_side = "C";
 		if (_objects isEqualTo []) then {
 			_crew = (get3DENSelected "object") select {count (crew _x) > 0};
 			if !(_crew isEqualTo []) then {
@@ -83,17 +83,25 @@ switch (_type) do {
 		} else {
 			_side = str(side(_objects select 0));
 		};
-		if (_side isEqualTo "CIV") then {
-			_side = "civilian";
+
+		systemChat format ["Copy Static: %3, %1 units, %2 vehicles copied", (count _units), (count _vehicles), _side];
+
+		if (toUpper(_side) isEqualTo "WEST") then {
+			_side = "W";
 		};
-		if (_side isEqualTo "GUER") then {
-			_side = "independent";
+		if (toUpper(_side) isEqualTo "EAST") then {
+			_side = "E";
+		};
+		if (toUpper(_side) isEqualTo "GUER") then {
+			_side = "I";
+		};
+		if (toUpper(_side) isEqualTo "CIV") then {
+			_side = "C";
 		};
 
-		_return = (str([_side, _units, _vehicles, []]) + (" call GW_Common_fnc_addToSpawnList;"));
+		_return = (str([_side, _units, _vehicles, []]) + (" call GW_Common_fnc_spawnGroup;"));
 		TRACE_1("Units", _units);
 		TRACE_1("Vehicles", _vehicles);
-		systemChat format ["Copy Static: %3, %1 units, %2 vehicles copied", (count _units), (count _vehicles), _side];
 	};
 	case 2: {
 		_return = (str(_objects) + (" call GW_Common_fnc_spawnObjects;"));

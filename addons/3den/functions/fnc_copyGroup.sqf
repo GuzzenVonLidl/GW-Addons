@@ -147,7 +147,7 @@ if ((count _grps) > 1) then {
 } forEach _waypoints;
 
 _objects = (get3DENSelected "object") select {(_x isKindOf "CAManBase")};
-_side = "civilian";
+_side = "C";
 if (_objects isEqualTo []) then {
 	_crew = (get3DENSelected "object") select {count (crew _x) > 0};
 	if !(_crew isEqualTo []) then {
@@ -156,14 +156,23 @@ if (_objects isEqualTo []) then {
 } else {
 	_side = str(side(_objects select 0));
 };
-if (_side isEqualTo "CIV") then {
-	_side = "civilian";
+
+systemChat format ["Copy Group: %4, %1 units, %2 vehicles, %3 waypoints copied", (count _units), (count _vehicles), (count _groupWaypoint), _side];
+
+if (toUpper(_side) isEqualTo "WEST") then {
+	_side = "W";
 };
-if (_side isEqualTo "GUER") then {
-	_side = "independent";
+if (toUpper(_side) isEqualTo "EAST") then {
+	_side = "E";
+};
+if (toUpper(_side) isEqualTo "GUER") then {
+	_side = "I";
+};
+if (toUpper(_side) isEqualTo "CIV") then {
+	_side = "C";
 };
 
-_return = (str([_side, _units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_addToSpawnList;"));
+_return = (str([_side, _units, _vehicles, _groupWaypoint]) + (" call GW_Common_fnc_spawnGroup;"));
 
 if ("Preferences" get3DENMissionAttribute "GW_DeleteOnCopy") then {
 	_delete = (get3DENSelected "object") + (get3DENSelected "waypoint") + (get3DENSelected "group");
@@ -183,8 +192,6 @@ if ("Preferences" get3DENMissionAttribute "GW_PrintToConsoleFile") then {
 };
 
 [[],QFUNC(copyGroup)] call FUNC(uiSaveFunction);
-
-systemChat format ["Copy Group: %4, %1 units, %2 vehicles, %3 waypoints copied", (count _units), (count _vehicles), (count _groupWaypoint), _side];
 
 TRACE_1("Units", _units);
 TRACE_1("Waypoints", _groupWaypoint);
