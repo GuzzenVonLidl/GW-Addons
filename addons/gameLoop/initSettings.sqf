@@ -27,4 +27,4 @@ if ((isClass(missionConfigFile >> "GW_FRAMEWORK")) && !(isClass(missionConfigFil
 	CBA_SERVEROVERWRITE, {}, CBA_NEEDRESTART
 ] call CBA_settings_fnc_init;
 
-
+[QGVAR(SafeMode_blockVeh), "CHECKBOX", ["Block Vehicles", "Kicks player out of vehicles while safeStart is enabled"], [QUOTE(ADDON), "SafeMode"], false, CBA_SERVEROVERWRITE, {}] call CBA_settings_fnc_init;
