@@ -203,12 +203,18 @@ if (_aiCount > 100) then {
 	};
 } forEach (all3DENEntities select 2);
 
+
 if !(((CBA_Settings_mission getVariable ["GW_UI_NameTags", [0,0]]) select 1) isEqualTo 0) then {
 	_output pushBack [_error,"GW NameTags is currently forced in mission settings","This is a Client setting, please leave it as so", [-1], ""];
 	CBA_Settings_mission setVariable ["GW_UI_NameTags", [((CBA_Settings_mission getVariable "GW_UI_NameTags") select 0),0]];
 };
 
 if (GVARMAIN(mod_ACE3)) then {
+	if !(((CBA_Settings_mission getVariable ["ace_nametags_showPlayerNames", [0,0]]) select 1) isEqualTo 0) then {
+		_output pushBack [_error,"ACE NameTags is currently forced in mission settings","This is a Client setting, please leave it as so", [-1], ""];
+		CBA_Settings_mission setVariable ["GW_UI_NameTags", [((CBA_Settings_mission getVariable "GW_UI_NameTags") select 0),0]];
+	};
+
 	if !(((CBA_Settings_mission getVariable ["ace_medical_painEffectType", [0,0]]) select 1) isEqualTo 0) then {
 		_output pushBack [_error,"ACE Pain Effect is currently forced in mission settings","This is a Client setting, please leave it as so", [-1], ""];
 		CBA_Settings_mission setVariable ["ace_medical_painEffectType", [((CBA_Settings_mission getVariable "ace_medical_painEffectType") select 0),0]];

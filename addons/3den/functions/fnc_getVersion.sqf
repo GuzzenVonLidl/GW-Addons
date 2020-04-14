@@ -1,6 +1,7 @@
 #include "script_component.hpp"
 /*
 	AUTHOR: GuzzenVonLidl
+	Used for displaying current version in editor when action is selected in the dropdown list
 
 	Usage:
 	[] call GW_3den_fnc_getVersion;

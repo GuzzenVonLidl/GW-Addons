@@ -32,6 +32,9 @@ switch (_event) do {
 		["Event: Focus on Object", 0, 2, true] call BIS_fnc_3DENNotification;
 		_pos = ((_var get3DENAttribute "position") select 0);
 		move3DENCamera [[(_pos select 0), (_pos select 1), (_pos select 2) + 5], true];
+		if (_var in (all3DENEntities select 5)) then {
+			do3DENAction "ToggleMap";
+		};
 	};
 	case 5: {
 		do3DENAction "FolderMission";
