@@ -82,7 +82,7 @@ if !(hasInterface) exitWith {false};
 				};
 
 				if (call GW_UI_isTagsBlurred) then {
-					_result set [3, 0.1];
+					_result set [3, 0.15];
 				};
 
 				_result;
@@ -121,7 +121,7 @@ if !(hasInterface) exitWith {false};
 				};
 
 				if (call GW_UI_isTagsBlurred) then {
-					_colour set [3, 0.1];
+					_colour set [3, 0.15];
 				};
 
 				_colour;

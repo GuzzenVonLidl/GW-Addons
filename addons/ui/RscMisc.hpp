@@ -26,7 +26,8 @@ class GW_loadingScreen {
 		class Picture : RscPicture {
 			h = 1.0;
 			style = 48 + 0x800;
-			text = "\x\gw\addons\3den\data\Logo_GOL_1.paa";
+//			text = "\x\gw\addons\3den\data\Logo_GOL_1.paa";
+			text = "\x\gw\addons\ui\data\Logo_Type_1.paa";
 			w = 1.0;
 			x = (safezoneX + safezoneW/2 - 0.5);
 			y = (safezoneY + safezoneH/2 - 0.5);
@@ -170,7 +171,7 @@ class RscDisplayMain: RscStandardDisplay {
 			text = "Join";
 			textIsQuote = 0; // 1 to add quotation marks around the text
 			picture = QPATHTOF(data\Logo_Type_1.paa); // Square picture, ideally 512x512
-			action = "0 = [_this, 'arma3.gol-clan.co.uk', '2302', 'god'] execVM '\x\gw\addons\ui\joinServer.sqf';";
+			action = "0 = [_this, 'arma3.gol-clan.co.uk', '2302', ''] execVM '\x\gw\addons\ui\joinServer.sqf';";
 			actionText = "Join server: GOL"; // Text displayed in top left corner of on-hover white frame
 			condition = "true"; // Condition for showing the spotlight
 		};
