@@ -21,3 +21,5 @@
 #define BLU	"76561198086056020"
 
 #define	ADMINLIST GUZZENVONLIDL, ARROW, OKSMAN, FILTHY, PARKER, PILGRIM, HOOFED, BLU
+
+#define	ACTIVE_LIST (GVARMAIN(activeAdmins) + [getAssignedCuratorUnit GW_ZeuzModuleAdminLogged])
