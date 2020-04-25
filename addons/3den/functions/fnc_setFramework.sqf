@@ -61,11 +61,19 @@ collect3DENHistory {
 		disableUserInput true;
 		[] spawn {
 			((findDisplay 313) call CBA_settings_fnc_openSettingsMenu);
-			[(preprocessFile "x\gw\addons\ACE_Settings\Settings\cba_settings.sqf"), "mission"] call CBA_settings_fnc_import;
-			[(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical_Legacy.sqf"), "mission"] call CBA_settings_fnc_import;
-			if (EGVAR(settings_ACE,medical_level) isEqualTo 2) then {
-				[(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical_Legacy_adv.sqf"), "mission"] call CBA_settings_fnc_import;
+
+			if (getNumber(configFile >> "CfgPatches" >> "ACE_Common" >> "version") >= 3.13) then {
+				[(preprocessFile "x\gw\addons\ACE_Settings\Settings\cba_settings.sqf"), "mission"] call CBA_settings_fnc_import;
+				[(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical.sqf"), "mission"] call CBA_settings_fnc_import;
+			} else {
+				[(preprocessFile "x\gw\addons\ACE_Settings\Settings\cba_settings_legacy.sqf"), "mission"] call CBA_settings_fnc_import;
+				[(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical_Legacy.sqf"), "mission"] call CBA_settings_fnc_import;
+
+				if (EGVAR(settings_ACE,medical_level) isEqualTo 2) then {
+					[(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical_Legacy_adv.sqf"), "mission"] call CBA_settings_fnc_import;
+				};
 			};
+
 			[] call CBA_settings_fnc_gui_saveTempData;
 			(uiNamespace getVariable "RscDisplayGameOptions") closeDisplay 1;
 			"GW_MissionPreferences" set3DENMissionAttribute ["GW_isConfigured_ACE", true];
@@ -83,9 +91,3 @@ collect3DENHistory {
 		set3DENMissionAttributes[["Multiplayer", "Enh_SaveLoadout", false]];
 	};
 };
-
-	/*
-		if !(([getText(configFile >> "CfgPatches" >> "ACE_main" >> "version"), 0, 3] call BIS_fnc_trimString) isEqualTo "3.11") then {	// No CBA Settings
-			[] call GW_ACE_Settings_fnc_setConfigs;
-		};
-	*/
