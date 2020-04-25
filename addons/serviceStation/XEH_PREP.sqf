@@ -12,5 +12,5 @@ NEKY_ServiceStation_Refuel = compile preprocessFileLineNumbers "\x\gw\addons\ser
 NEKY_ServiceStation_Repair = compile preprocessFileLineNumbers "\x\gw\addons\serviceStation\Functions\Repair.sqf";
 NEKY_ServiceStation_Init = compile preprocessFileLineNumbers "\x\gw\addons\serviceStation\Functions\ServiceStation.sqf";
 
-GW_ServiceStation_fnc_Init = CompileFinal "_this spawn NEKY_ServiceStation_Init;";
-GW_ServiceStation_fnc_InitMobile = CompileFinal "[_this select 0] spawn NEKY_ServiceStation_MobileSS;";
+GW_ServiceStation_fnc_Init = compileFinal "_this spawn NEKY_ServiceStation_Init;";
+GW_ServiceStation_fnc_InitMobile = compileFinal "[_this select 0] spawn NEKY_ServiceStation_MobileSS;";
