@@ -1,3 +1,9 @@
+#define GL_LAUNCHER \
+	aiAmmoUsageFlags = "4 + 64 + 512"; \
+	airLock = 1; \
+	allowAgainstInfantry = 1; \
+	cost = 40;
+
 #define LAUNCHER \
 	aiAmmoUsageFlags = "64 + 128 + 256 + 512"; \
 	airLock = 1; \
@@ -45,7 +51,7 @@ class CfgAmmo {
 		LAUNCHER
 	};
 	class G_40mm_HE: GrenadeBase {
-		LAUNCHER
+		GL_LAUNCHER
 	};
 
 
