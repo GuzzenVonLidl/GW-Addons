@@ -308,12 +308,18 @@
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(treatmentAdvanced_CPRLocal), {
-	_this call (treatmentAdvanced_CPRLocal);
+	if (getNumber(configFile >> "CfgPatches" >> "ACE_Common" >> "version") < 3.13) then {
+		_this call (treatmentAdvanced_CPRLocal);
+	};
 }] call CBA_fnc_addEventHandler;
 
 [QGVAR(fullHeal), {
 	params ["_unit"];
-	[_unit, _unit] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
+	if (getNumber(configFile >> "CfgPatches" >> "ACE_Common" >> "version") >= 3.13) then {
+		[_unit] call ace_medical_treatment_fnc_fullHealLocal
+	} else {
+		[_unit, _unit] call ACE_medical_fnc_treatmentAdvanced_fullHealLocal;
+	};
 }] call CBA_fnc_addEventHandler;
 
 #include "ChatCommands.sqf"

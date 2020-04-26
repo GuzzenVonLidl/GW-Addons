@@ -8,6 +8,10 @@ if (!GVARMAIN(mod_ACE3)) exitWith {false};
 ACE_MaxWeightDrag = 100000;
 ACE_MaxWeightCarry = 10000;
 
+if (getNumber(configFile >> "CfgPatches" >> "ACE_Common" >> "version") >= 3.13) then {
+	ace_medical_level = 1;	// Variable required for gear system to work, variable gone in new version
+};
+
 /*
 ["CBA_settingsInitializedDelayed", {
 	if (([QEGVAR(settings_ACE,medical_level), "mission"] call CBA_settings_fnc_get) != [QEGVAR(settings_ACE,medical_level), "server"] call CBA_settings_fnc_get) then {
@@ -86,6 +90,15 @@ ACE_MaxWeightCarry = 10000;
 				ace_nightvision_fogScaling = 0.1;
 				ace_nightvision_noiseScaling = 0.1;
 			}, [], 0.5] call CBA_fnc_waitAndExecute;
+
+			if (getNumber(configFile >> "CfgPatches" >> "ACE_Common" >> "version") >= 3.13) then {
+				_settings = ([(preprocessFile "x\gw\addons\ACE_Settings\Settings\cba_settings.sqf")] call CBA_settings_fnc_parse);
+				_settings = _settings + ([(preprocessFile "x\gw\addons\ACE_Settings\Settings\medical.sqf")] call CBA_settings_fnc_parse);
+
+				{
+					[(_x select 0), (_x select 1), 2] call CBA_settings_fnc_set;
+				} forEach _settings;
+			};
 		};
 	};
 }] call CBA_fnc_addEventHandler;
