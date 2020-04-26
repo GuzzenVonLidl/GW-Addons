@@ -18,7 +18,7 @@ if (isNil QEGVAR(Gear,GearboxActive)) then {
 };
 
 // Add multiple curators at mission start to prevent lag if other people needs access
-if (isServer) then {
+if (isServer && isMultiplayer) then {
 	private _LogicCenter = createCenter sideLogic;
 	private _moduleGroup = createGroup _LogicCenter;
 
@@ -40,8 +40,8 @@ if (isServer) then {
 		} forEach ["place","edit","delete","destroy","group","synchronize"];
 
 		[{
-			GVARMAIN(ZeuzModuleAdminLogged) addCuratorAddons (activatedAddons);
-		}, [], 30] call CBA_fnc_waitAndExecute;
+			_this addCuratorAddons (activatedAddons);
+		}, _x, 30] call CBA_fnc_waitAndExecute;
 
 		GVARMAIN(adminCurators) pushBack _curtor;
 	};
