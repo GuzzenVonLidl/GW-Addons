@@ -23,13 +23,6 @@ collect3DENHistory {
 				["Scenario", "OnLoadMission", ""],
 				["Scenario", "LoadScreen", ""]
 			];
-
-			if ((getNumber(missionConfigFile >> "GW_FRAMEWORK" >> "Naming" >> "isPVPMode")) isEqualTo 0) then {
-				"Multiplayer" set3DENMissionAttribute ["GameType", "COOP"];
-			} else {
-	//			"Multiplayer" set3DENMissionAttribute ["GameType", "Unknown"];
-				"Multiplayer" set3DENMissionAttribute ["GameType", "Sandbox"];
-			};
 		};
 
 		_allPlayers = {((_x get3DENAttribute "ControlMP") select 0) || ((_x get3DENAttribute "ControlSP") select 0)} count ((all3DENEntities select 0) + (all3DENEntities select 3));

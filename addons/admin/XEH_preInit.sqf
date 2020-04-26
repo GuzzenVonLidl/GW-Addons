@@ -26,7 +26,7 @@ if (isServer && isMultiplayer) then {
 		_curtor = _moduleGroup createUnit ["ModuleCurator_F",[0,0,1000],[],0,"CAN_COLLIDE"];
 		_curtor setVariable ["Owner", "", true];
 		_curtor setVariable ["Name", format ["GW_Admin_Curator_%1", count GVARMAIN(adminCurators)], true];
-		_curtor setVariable ["Addons", 0, true];
+		_curtor setVariable ["Addons", 3, true];
 		_curtor setVariable ["Forced", 0, true];
 		_curtor setVariable ["birdType", "", true];
 		_curtor setVariable ["showNotification", false, true];
@@ -38,10 +38,6 @@ if (isServer && isMultiplayer) then {
 		{
 			_curtor setCuratorCoef [_x,0];
 		} forEach ["place","edit","delete","destroy","group","synchronize"];
-
-		[{
-			_this addCuratorAddons (activatedAddons);
-		}, _x, 30] call CBA_fnc_waitAndExecute;
 
 		GVARMAIN(adminCurators) pushBack _curtor;
 	};

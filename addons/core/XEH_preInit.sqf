@@ -38,7 +38,7 @@ if (isServer) then {
 	GVARMAIN(ZeuzModuleAdminLogged) = _moduleGroup createUnit ["ModuleCurator_F",[0,0,1000],[],0,"CAN_COLLIDE"];
 	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Owner", "#adminLogged", true];
 	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Name", "AdminZeusLogged", true];
-	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Addons", 0, true];
+	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Addons", 3, true];
 	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["Forced", 0, true];
 	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["birdType", "", true];
 	GVARMAIN(ZeuzModuleAdminLogged) setVariable ["showNotification", false, true];
@@ -48,9 +48,6 @@ if (isServer) then {
 	} forEach ["place","edit","delete","destroy","group","synchronize"];
 
 	publicVariable QGVARMAIN(ZeuzModuleAdminLogged);
-	[{
-		GVARMAIN(ZeuzModuleAdminLogged) addCuratorAddons (activatedAddons);
-	}, [], 30] call CBA_fnc_waitAndExecute;
 };
 
 if !(isClass(missionConfigFile >> "GW_FRAMEWORK")) exitWith {false};
